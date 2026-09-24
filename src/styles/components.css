@@ -1,0 +1,184 @@
+/* =========================================================
+   COMPONENTES — botones, navbar, desplegables y pestañas
+   ========================================================= */
+
+/* ---------- Botones ---------- */
+.boton {
+  align-items: center;
+  background: var(--coral);
+  border-radius: 40px;
+  color: var(--blanco);
+  display: inline-flex;
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 23px;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  transition: background-color .2s, transform .2s var(--ease), box-shadow .2s;
+  white-space: nowrap;
+}
+.boton:hover { background: #ff5a5e; box-shadow: 0 8px 20px -8px rgba(255, 111, 114, .8); transform: translateY(-1px); }
+.boton--azul { background: var(--azul-oscuro); }
+.boton--azul:hover { background: #0e2c6a; box-shadow: 0 8px 20px -8px rgba(19, 56, 131, .7); }
+
+/* Botón "Pedí tu demo" del navbar */
+.boton-demo {
+  align-items: center;
+  background: var(--azul-oscuro);
+  border-radius: 40px;
+  color: var(--blanco);
+  display: inline-flex;
+  font-size: 18px;
+  font-weight: 500;
+  gap: 10px;
+  line-height: 23px;
+  padding: 10px 20px;
+  transition: background-color .2s, transform .2s var(--ease);
+  white-space: nowrap;
+}
+.boton-demo:hover { background: #0e2c6a; transform: translateY(-1px); }
+.boton-demo img { height: 13px; transition: transform .2s var(--ease); width: 8px; }
+.boton-demo:hover img { transform: translateX(3px); }
+
+/* ---------- Navbar ---------- */
+.navbar {
+  align-items: center;
+  display: flex;
+  height: 138px;
+  justify-content: space-between;
+  left: 0;
+  margin: 0 auto;
+  padding: 0 max(var(--gutter), calc((100% - var(--contenido)) / 2));
+  position: sticky;
+  right: 0;
+  top: 0;
+  transition: background-color .3s, height .3s var(--ease), box-shadow .3s;
+  z-index: 50;
+}
+/* Al bajar, el navbar toma fondo de vidrio y textos oscuros */
+.navbar.is-scrolled {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(254, 250, 250, .8);
+  box-shadow: 0 1px 0 rgba(19, 56, 131, .08);
+  height: 84px;
+}
+.navbar__logo img { height: 33px; transition: filter .3s; width: 189px; }
+.navbar.is-scrolled .navbar__logo img, .navbar--claro .navbar__logo img { filter: brightness(0) saturate(100%) invert(12%) sepia(9%) saturate(0%) brightness(95%); }
+
+.navbar__menu {
+  align-items: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, .09);
+  border-radius: 50px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35), inset 0 1px 1px rgba(255, 255, 255, .4);
+  display: flex;
+  padding: 10px 20px;
+}
+.navbar.is-scrolled .navbar__menu, .navbar--claro .navbar__menu { background: rgba(19, 56, 131, .04); box-shadow: inset 0 0 0 1px rgba(19, 56, 131, .12); }
+.navbar__item { position: relative; }
+.navbar__menu > .navbar__link, .navbar__item > .navbar__link { opacity: .9; }
+.navbar__link {
+  align-items: center;
+  color: var(--blanco);
+  display: flex;
+  font-size: 16px;
+  font-weight: 500;
+  gap: 6px;
+  height: 36px;
+  line-height: 20px;
+  padding: 8px 24px;
+  transition: color .2s, opacity .2s;
+  white-space: nowrap;
+}
+.navbar__item .navbar__link { padding: 8px 16px 8px 24px; }
+.navbar__link img { height: 8px; margin: 0 6px; transition: transform .25s var(--ease), filter .3s; width: 12px; }
+.navbar__link:hover { opacity: .75; }
+.navbar__item.is-open .navbar__link img { transform: rotate(180deg); }
+.navbar.is-scrolled .navbar__link, .navbar--claro .navbar__link { color: var(--azul-oscuro); }
+.navbar.is-scrolled .navbar__link img, .navbar--claro .navbar__link img { filter: brightness(0) saturate(100%) invert(17%) sepia(57%) saturate(2718%) hue-rotate(211deg) brightness(88%); }
+.navbar__demo-movil, .navbar__hamburguesa { display: none; }
+
+/* ---------- Desplegables del menú (diseño "Soluciones v2" / "Industrias v2") ---------- */
+.dropdown {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, .96);
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .25), 0 0 4px rgba(0, 0, 0, .25);
+  display: grid;
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: calc(100% + 26px);
+  transform: translate(-50%, -6px);
+  transition: opacity .2s, transform .25s var(--ease);
+}
+/* Flechita que apunta al item del menú */
+.dropdown::before {
+  background: rgba(255, 255, 255, .96);
+  border-radius: 2px;
+  content: "";
+  height: 22px;
+  left: var(--flecha, 50%);
+  position: absolute;
+  top: -8px;
+  transform: translateX(-50%) rotate(45deg);
+  width: 22px;
+}
+.dropdown::after { content: ""; height: 26px; left: 0; position: absolute; right: 0; top: -26px; } /* puente para no perder el hover */
+.dropdown--soluciones { --flecha: 91px; grid-template-columns: repeat(2, 240px); left: 0; padding: 16px 10px 8px; transform: translate(-19px, -6px); }
+.dropdown--industrias { grid-template-columns: repeat(2, 212px); padding: 10px 8px; }
+.navbar__item.is-open .dropdown { opacity: 1; pointer-events: auto; }
+.navbar__item.is-open .dropdown--industrias { transform: translate(-50%, 0); }
+.navbar__item.is-open .dropdown--soluciones { transform: translate(-19px, 0); }
+
+.dropdown__bloque { border-radius: 8px; display: flex; flex-direction: column; gap: 10px; padding: 8px 10px; position: relative; transition: background-color .2s; }
+.dropdown--industrias .dropdown__bloque { gap: 2px; }
+.dropdown__bloque:hover { background: rgba(228, 219, 251, .45); }
+.dropdown__titulo { align-items: center; color: #313131; display: flex; font-size: 16px; font-weight: 600; gap: 10px; letter-spacing: .32px; line-height: 20px; text-transform: uppercase; }
+.dropdown--industrias .dropdown__titulo { letter-spacing: 0; text-transform: none; }
+.dropdown__titulo img { height: 24px; width: 24px; }
+a.dropdown__titulo:hover { color: var(--violeta); }
+.dropdown__sublista { display: flex; flex-direction: column; gap: 8px; }
+.dropdown__sublista a { color: #676767; display: block; font-size: 14px; font-weight: 500; letter-spacing: .28px; line-height: 18px; padding-left: 35px; transition: color .2s; }
+.dropdown__sublista a:hover { color: var(--violeta); }
+.dropdown__texto { color: #a5a5a5; font-size: 14px; font-weight: 500; line-height: 18px; padding-left: 2px; }
+
+/* ---------- Pestañas (píldora de vidrio) ---------- */
+.pestanas {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(98, 98, 98, .01);
+  border: 1px solid #dfdfdf;
+  border-radius: 50px;
+  display: flex;
+  max-width: 100%;
+  padding: 4px;
+}
+.pestanas__boton {
+  align-items: center;
+  border-radius: 30px;
+  color: var(--azul-oscuro);
+  display: flex;
+  font-size: 20px;
+  height: 45px;
+  justify-content: center;
+  line-height: 25px;
+  padding: 10px;
+  transition: background-color .25s, box-shadow .25s, color .2s;
+  white-space: nowrap;
+  width: 235px;
+}
+.pestanas__boton:not(.is-activa) { color: rgba(19, 56, 131, .3); }
+.pestanas__boton:not(.is-activa):hover { color: rgba(19, 56, 131, .6); }
+.pestanas__boton.is-activa {
+  background: rgba(255, 255, 255, .2);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7), 0 1px 6px rgba(19, 56, 131, .08);
+  font-size: 22px;
+  height: 48px;
+  line-height: 28px;
+}

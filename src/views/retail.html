@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thinkion para Retail | Un solo software para potenciar tu negocio</title>
+  <meta name="description" content="Punto de venta, administración, stock y fidelización integrados para tu negocio de retail.">
+  <meta name="theme-color" content="#7a4aeb">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/layout.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+  <link rel="stylesheet" href="../styles/segmento.css">
+</head>
+<body class="pagina-segmento pagina-retail">
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <!-- Fondo decorativo: manchas de color del diseño. No tiene contenido editable. -->
+  <div class="fondo-deco" aria-hidden="true">
+    <img class="fondo-seg__hero" src="../../public/img/segmentos/fondo-retail-hero.svg" alt="" width="2162" height="1564">
+    <img class="fondo-seg__lila" src="../../public/img/segmentos/fondo-lila.svg" alt="" width="1657" height="1657">
+    <img class="fondo-seg__violeta" src="../../public/img/segmentos/fondo-retail-violeta.svg" alt="" width="1823" height="1746">
+    <img class="fondo-seg__izq" src="../../public/img/segmentos/fondo-retail-coral-izq.svg" alt="" width="2045" height="2064">
+    <img class="fondo-seg__der" src="../../public/img/segmentos/fondo-retail-turquesa-der.svg" alt="" width="2207" height="2328">
+  </div>
+
+  <!-- =====================================================
+       NAVBAR — logo, menú y botón
+       ===================================================== -->
+  <header class="navbar" data-navbar>
+    <a class="navbar__logo" href="../../index.html" aria-label="Thinkion, inicio">
+      <img src="../../public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
+    </a>
+
+    <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
+      <!-- Desplegable SOLUCIONES -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Soluciones
+          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--soluciones">
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="pos-erp.html"><img src="../../public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</a>
+            <ul class="dropdown__sublista">
+              <li><a href="pos-erp.html#kds">KDS</a></li>
+              <li><a href="pos-erp.html#integraciones">Integraciones</a></li>
+              <li><a href="pos-erp.html#modos-de-uso">Modos de uso</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="check.html"><img src="../../public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</a>
+            <ul class="dropdown__sublista">
+              <li><a href="check.html#funcionalidades">Funcionalidades</a></li>
+              <li><a href="check.html#modos-de-uso">Modos de uso</a></li>
+              <li><a href="check.html#beneficios">Beneficios</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="marketing.html"><img src="../../public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</a>
+            <ul class="dropdown__sublista">
+              <li><a href="marketing.html#fidelizacion">Fidelización</a></li>
+              <li><a href="marketing.html#encuestas">Encuestas</a></li>
+              <li><a href="marketing.html#reservas">Reservas</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="productividad.html"><img src="../../public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</a>
+            <ul class="dropdown__sublista">
+              <li><a href="productividad.html#dispositivos">Dispositivos</a></li>
+              <li><a href="productividad.html#integracion">Integración</a></li>
+              <li><a href="productividad.html#sensores">Sensores</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desplegable INDUSTRIAS -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Industrias
+          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--industrias">
+          <a class="dropdown__bloque" href="gastronomia.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-gastronomia.svg" alt="" width="24" height="24">Gastronómicas</span>
+            <span class="dropdown__texto">Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio.</span>
+          </a>
+          <a class="dropdown__bloque" href="retail.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-retail.svg" alt="" width="24" height="24">Retail</span>
+            <span class="dropdown__texto">Administrá ventas, stock y promociones desde un mismo entorno.</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="navbar__link" href="sobre-nosotros.html">Nosotros</a>
+      <a class="navbar__link" href="clientes.html">Clientes</a>
+      <a class="boton-demo navbar__demo-movil" href="#contacto">Pedí tu demo</a>
+    </nav>
+
+    <a class="boton-demo navbar__demo" href="#contacto">
+      Pedí tu demo
+      <img src="../../public/img/home/chevron-boton.svg" alt="" width="8" height="13">
+    </a>
+
+    <button class="navbar__hamburguesa" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span></span><span></span><span></span>
+      <b class="sr-only">Abrir menú</b>
+    </button>
+  </header>
+
+  <!-- NOTA: en el Figma, Retail todavía tiene los textos de Gastronomía. Reemplazalos cuando estén los definitivos. -->
+  <main id="contenido" class="segmento">
+
+    <!-- =====================================================
+         HERO — título, bajada, botón y video
+         ===================================================== -->
+    <section class="seg-hero">
+      <div class="seg-hero__texto">
+        <!-- La palabra dentro de <span class="seg-hero__subrayado"> lleva la línea debajo -->
+        <h1 class="seg-hero__titulo">Un solo software, todas las herramientas para <span class="seg-hero__subrayado">potenciar</span> tu negocio</h1>
+        <p class="seg-hero__bajada">Diseñado para que cada área de tu negocio funcione conectada, haciendo más simple tu día a día. Trabajá con más claridad y control, optimizando tu tiempo y mejorando la experiencia de tu equipo y tus clientes</p>
+        <a class="boton" href="#contacto">Pedí tu demo</a>
+      </div>
+      <!-- Video: cambiá el href por el link del video -->
+      <div class="seg-video seg-video--vidrio">
+        <a class="seg-video__enlace" href="#" aria-label="Ver el video de Thinkion">
+          <img src="../../public/img/segmentos/video-sistema.webp" alt="Panel de Thinkion con el resumen de ventas" width="1111" height="621" fetchpriority="high">
+          <img class="seg-video__play" src="../../public/img/segmentos/play-grande.svg" alt="" width="92" height="111">
+        </a>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PUNTO DE VENTA / ADMINISTRACIÓN (pestañas)
+         ===================================================== -->
+    <section class="seg-card reveal" id="punto-de-venta" data-tabs>
+      <img class="seg-card__chevron" src="../../public/img/home/deco-chevron-tabs.svg" alt="" width="258" height="490" aria-hidden="true">
+      <div class="pestanas pestanas--ancha" role="tablist" aria-label="Módulos">
+        <button class="pestanas__boton is-activa" type="button" role="tab" aria-selected="true" data-tab="punto-de-venta">Punto de venta</button>
+        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="administracion">Administración</button>
+      </div>
+
+      <div class="seg-panel" role="tabpanel" data-panel="punto-de-venta">
+        <div class="seg-panel__texto">
+          <h2>Enfocados en tus beneficios</h2>
+          <ul class="seg-lista">
+            <li><img src="../../public/img/segmentos/icono-celular.svg" alt="" width="24" height="24">Tomá comandas desde cualquier dispositivo</li>
+            <li><img src="../../public/img/segmentos/icono-sin-internet.svg" alt="" width="24" height="24">Seguí operando con o sin internet sin interrupciones</li>
+            <li><img src="../../public/img/segmentos/icono-local.svg" alt="" width="24" height="24">Visualizá lo que pasa en tu local al instante</li>
+            <li><img src="../../public/img/segmentos/icono-rayo.svg" alt="" width="24" height="24">Atención rápida, fácil e intuitiva</li>
+            <li><img src="../../public/img/segmentos/icono-delivery.svg" alt="" width="24" height="24">Integrá apps de delivery y gestioná todo en un mismo lugar</li>
+            <li><img src="../../public/img/segmentos/icono-factura.svg" alt="" width="24" height="24">Facturación electrónica integrada con ARCA</li>
+          </ul>
+        </div>
+        <div class="seg-panel__imagen">
+          <img class="seg-panel__notebook" src="../../public/img/segmentos/pos-notebook.webp" alt="Punto de venta de Thinkion en una notebook" width="577" height="355" loading="lazy">
+          <img class="seg-panel__celular" src="../../public/img/segmentos/pos-celular.webp" alt="Punto de venta de Thinkion en el celular" width="148" height="311" loading="lazy">
+        </div>
+      </div>
+
+      <div class="seg-panel" role="tabpanel" data-panel="administracion" hidden>
+        <div class="seg-panel__imagen seg-panel__imagen--adm">
+          <img src="../../public/img/segmentos/adm-notebook.webp" alt="Administración de Thinkion en una notebook" width="538" height="364" loading="lazy">
+          <img class="seg-panel__tablet" src="../../public/img/segmentos/adm-tablet.webp" alt="Administración de Thinkion en una tablet" width="222" height="256" loading="lazy">
+        </div>
+        <div class="seg-panel__texto">
+          <h2>Gestioná todo desde un solo lugar</h2>
+          <ul class="seg-lista">
+            <li><img src="../../public/img/segmentos/icono-ajustes.svg" alt="" width="24" height="24">Personalización de Punto de venta</li>
+            <li><img src="../../public/img/segmentos/icono-calendario.svg" alt="" width="24" height="24">Calendario e historial de pagos</li>
+            <li><img src="../../public/img/segmentos/icono-seguridad.svg" alt="" width="24" height="24">Alertas de seguridad</li>
+            <li><img src="../../public/img/segmentos/icono-stock.svg" alt="" width="24" height="24">Stock en tiempo real</li>
+            <li><img src="../../public/img/segmentos/icono-personal.svg" alt="" width="24" height="24">Gestión de personal</li>
+            <li><img src="../../public/img/segmentos/icono-sucursales.svg" alt="" width="24" height="24">Gestión completa de uno o más locales en simultanea</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         LOGOS DE CLIENTES
+         ===================================================== -->
+    <section class="seg-logos reveal" aria-label="Algunos de nuestros clientes">
+      <img src="../../public/img/segmentos/logo-cliente-1.webp" alt="El Club de la Milanesa" width="122" height="120" loading="lazy">
+      <img src="../../public/img/segmentos/logo-cliente-2.webp" alt="Sushi 2x1" width="122" height="122" loading="lazy">
+      <img src="../../public/img/segmentos/logo-cliente-3.webp" alt="Quijote" width="122" height="122" loading="lazy">
+      <img class="logo-multiplicar" src="../../public/img/segmentos/logo-cliente-4.webp" alt="Temple" width="120" height="122" loading="lazy">
+      <img class="logo-multiplicar" src="../../public/img/segmentos/logo-cliente-5.webp" alt="Patagonia" width="122" height="122" loading="lazy">
+      <img class="logo-multiplicar" src="../../public/img/segmentos/logo-cliente-6.webp" alt="Costumbres Argentinas" width="119" height="122" loading="lazy">
+      <img class="logo-multiplicar" src="../../public/img/segmentos/logo-cliente-7.webp" alt="Beatmemo" width="122" height="122" loading="lazy">
+    </section>
+
+    <!-- =====================================================
+         INSTALACIÓN — hoja de ruta en 6 pasos
+         ===================================================== -->
+    <section class="seg-ruta reveal">
+      <h2 class="titulo-40">La instalación mas fácil: te acompañamos en todo el proceso</h2>
+      <div class="ruta">
+        <img class="ruta__lineas" src="../../public/img/segmentos/hoja-de-ruta-lineas.svg" alt="" width="1120" height="290" aria-hidden="true">
+        <div class="ruta__paso ruta__paso--activo">
+          <span class="ruta__icono"><img src="../../public/img/segmentos/ruta-relevamiento.webp" alt="" width="100" height="81" loading="lazy"></span>
+          <p>Relevamiento para compra de hardware</p>
+        </div>
+        <div class="ruta__paso">
+          <span class="ruta__icono"><img src="../../public/img/segmentos/ruta-carga-datos.webp" alt="" width="100" height="81" loading="lazy"></span>
+          <p>Puesta a punto del sistema: carga masiva de datos</p>
+        </div>
+        <div class="ruta__paso">
+          <span class="ruta__icono"><img src="../../public/img/segmentos/ruta-apps-delivery.webp" alt="" width="100" height="81" loading="lazy"></span>
+          <p>Configuración de apps de delivery e integraciones</p>
+        </div>
+        <div class="ruta__paso ruta__paso--grande">
+          <span class="ruta__icono"><img src="../../public/img/segmentos/ruta-instalacion.webp" alt="" width="100" height="81" loading="lazy"></span>
+          <p>Instalación presencial o remota</p>
+        </div>
+        <div class="ruta__paso ruta__paso--ancho">
+          <span class="ruta__icono"><img src="../../public/img/segmentos/ruta-capacitaciones.webp" alt="" width="100" height="81" loading="lazy"></span>
+          <p>Capacitaciones personalizadas del punto de venta y del administrador</p>
+        </div>
+        <div class="ruta__paso">
+          <span class="ruta__icono"><img src="../../public/img/segmentos/ruta-acompanamiento.webp" alt="" width="100" height="81" loading="lazy"></span>
+          <p>Acompañamiento durante el primer mes</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         CALIDAD DE ATENCIÓN — datos destacados.
+         Lo que va dentro de <small> sale en azul claro.
+         ===================================================== -->
+    <section class="seg-calidad reveal">
+      <div class="seg-calidad__contenido">
+        <div class="seg-calidad__texto">
+          <h2>Garantizamos la mejor calidad de atención</h2>
+          <p>Resolvemos todas tus dudas en <strong>tiempo récord</strong> con un <strong>equipo experto y dedicado</strong> para tu tranquilidad.</p>
+        </div>
+        <div class="seg-datos">
+          <div class="dato">
+            <p class="dato__cifra"><span class="dato__icono"><img src="../../public/img/segmentos/dato-rayo.svg" alt="" width="10" height="12"></span>100<small>%</small></p>
+            <p>SLA Primera Respuesta<br>(Menos de 5 minutos)</p>
+          </div>
+          <div class="dato">
+            <p class="dato__cifra"><span class="dato__icono"><img src="../../public/img/segmentos/dato-check.svg" alt="" width="11" height="8"></span>94,5<small>%</small></p>
+            <p>Tickets resueltos en 1ª linea</p>
+          </div>
+          <div class="dato">
+            <p class="dato__cifra"><span class="dato__icono"><img src="../../public/img/segmentos/dato-reloj.svg" alt="" width="11" height="13"></span>&gt;1<small>min</small></p>
+            <p>Tiempo de primera respuesta</p>
+          </div>
+          <div class="dato">
+            <p class="dato__cifra"><span class="dato__icono"><img src="../../public/img/segmentos/dato-horario.svg" alt="" width="12" height="12"></span>19<small>min</small></p>
+            <p>Tiempo promedio de resolución de incidencias</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         TECNOLOGÍA DE VANGUARDIA
+         ===================================================== -->
+    <section class="seg-tecno reveal">
+      <h2 class="titulo-40">Tecnología de vanguardia para tomar mejores decisiones</h2>
+      <div class="tecno-grilla tecno-grilla--imagenes">
+        <article class="tecno-card">
+          <img src="../../public/img/segmentos/retail-tec-seguridad.webp" alt="" width="225" height="194" loading="lazy">
+          <h3>Seguridad y actualizaciones</h3>
+          <p>Tu información es nuestra prioridad, por eso garantizamos el sistema mas seguro y resguardamos tu información con backups diarios. Además, actualizamos la plataforma automáticamente con mejoras y nuevas funciones, sin costo adicional y sin interrumpir tu operación.</p>
+        </article>
+        <article class="tecno-card">
+          <img src="../../public/img/segmentos/retail-tec-reportes.webp" alt="" width="389" height="213" loading="lazy">
+          <h3>Reportes BI</h3>
+          <p>Nuestros reportes de Business Intelligence son mucho más que datos centralizados. Ofrecen un panel de control detallado que transforma cada una de las 300 métricas en información práctica para mejorar tu rentabilidad.</p>
+        </article>
+        <article class="tecno-card tecno-card--blanca">
+          <img src="../../public/img/segmentos/retail-tec-ia.webp" alt="" width="337" height="225" loading="lazy">
+          <h3>Inteligencia Artificial</h3>
+          <p>Ofrecemos funcionalidades con IA que detectan patrones, optimizan procesos y facilitan la toma de decisiones en base a datos históricos y fuentes externas.</p>
+        </article>
+        <article class="tecno-card tecno-card--blanca">
+          <img src="../../public/img/segmentos/retail-tec-deteccion.webp" alt="" width="389" height="228" loading="lazy">
+          <h3>Detección inteligente de inconsistencias</h3>
+          <p>Analizamos automáticamente ventas, órdenes y cierres de caja para identificar comportamientos inusuales. El sistema resalta operaciones sospechosas para que puedas revisarlas, calificarlas y actuar a tiempo.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PRODUCTOS — lista a la izquierda, detalle a la derecha.
+         Cada botón (data-tab) muestra el panel con el mismo data-panel.
+         ===================================================== -->
+    <section class="seg-productos reveal" data-tabs>
+      <div class="productos-lista" role="tablist" aria-label="Productos">
+        <button class="pestanas__boton is-activa" type="button" role="tab" aria-selected="true" data-tab="fidelizacion"><img src="../../public/img/segmentos/producto-fidelizacion.svg" alt="" width="36" height="36">Fidelización</button>
+        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="encuestas"><img src="../../public/img/segmentos/producto-encuestas.svg" alt="" width="36" height="36">Encuestas y satisfacción</button>
+        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="reservas"><img src="../../public/img/segmentos/producto-reservas.svg" alt="" width="36" height="36">Reservas</button>
+        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="auditorias"><img src="../../public/img/segmentos/producto-auditorias.svg" alt="" width="36" height="36">Auditorías</button>
+        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="carta-digital"><img src="../../public/img/segmentos/producto-carta-digital.svg" alt="" width="36" height="36">Carta digital y autopedido</button>
+        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="kds"><img src="../../public/img/segmentos/producto-kds.svg" alt="" width="36" height="36">KDS</button>
+        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="e-commerce"><img src="../../public/img/segmentos/producto-e-commerce.svg" alt="" width="36" height="36">E-commerce</button>
+      </div>
+
+      <!-- Producto: Fidelización -->
+      <div class="producto" role="tabpanel" data-panel="fidelizacion">
+        <div class="producto__fotos">
+          <div class="producto__columna">
+            <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
+            <img src="../../public/img/segmentos/prod-fidelizacion-2.webp" alt="" width="352" height="274" loading="lazy">
+          </div>
+          <div class="producto__celular">
+            <img src="../../public/img/segmentos/prod-fidelizacion-celular.webp" alt="Pantalla de Fidelización en el celular" width="299" height="542" loading="lazy">
+          </div>
+        </div>
+        <div class="producto__pie">
+          <div class="producto__barra"><span></span></div>
+          <div class="producto__texto">
+            <p>Fidelizá a tus clientes mediante una e-card otorgando puntos y beneficios, traccionando el consumo de forma dirigida. Se podrán trazar mediante reportes historiales de compra de clientes, tipo de consumo y mucho más.</p>
+            <a class="boton-borde" href="marketing.html#fidelizacion">Conocer más</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto: Encuestas y satisfacción -->
+      <div class="producto" role="tabpanel" data-panel="encuestas" hidden>
+        <div class="producto__fotos">
+          <div class="producto__columna">
+            <img src="../../public/img/segmentos/prod-encuestas-1.webp" alt="" width="352" height="274" loading="lazy">
+            <img src="../../public/img/segmentos/prod-encuestas-2.webp" alt="" width="352" height="274" loading="lazy">
+          </div>
+          <div class="producto__celular">
+            <img src="../../public/img/segmentos/prod-encuestas-celular.webp" alt="Pantalla de Encuestas y satisfacción en el celular" width="299" height="542" loading="lazy">
+          </div>
+        </div>
+        <div class="producto__pie">
+          <div class="producto__barra"><span></span></div>
+          <div class="producto__texto">
+            <p>Conocé a tus clientes y su experiencia en el local. Aumentá la frecuencia de su visita otorgando beneficios por responder las preguntas. Integrado con Google Places para mejorar tu reputación online.</p>
+            <a class="boton-borde" href="marketing.html#encuestas">Conocer más</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto: Reservas -->
+      <div class="producto" role="tabpanel" data-panel="reservas" hidden>
+        <div class="producto__fotos">
+          <div class="producto__columna">
+            <img src="../../public/img/segmentos/prod-reservas-1.webp" alt="" width="352" height="274" loading="lazy">
+            <img src="../../public/img/segmentos/prod-reservas-2.webp" alt="" width="352" height="274" loading="lazy">
+          </div>
+          <div class="producto__celular">
+            <img src="../../public/img/segmentos/prod-reservas-celular.webp" alt="Pantalla de Reservas en el celular" width="299" height="542" loading="lazy">
+          </div>
+        </div>
+        <div class="producto__pie">
+          <div class="producto__barra"><span></span></div>
+          <div class="producto__texto">
+            <p>Vas a poder gestionar las reservas que hacen tus clientes, asignarle una mesa y trazar todos sus consumos. Podés ofrecer pre compra, cobro por reserva, descuentos en determinados horarios y más.</p>
+            <a class="boton-borde" href="marketing.html#reservas">Conocer más</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto: Auditorías -->
+      <div class="producto" role="tabpanel" data-panel="auditorias" hidden>
+        <div class="producto__fotos">
+          <div class="producto__columna">
+            <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
+            <img src="../../public/img/segmentos/prod-fidelizacion-2.webp" alt="" width="352" height="274" loading="lazy">
+          </div>
+          <div class="producto__celular">
+            <img src="../../public/img/segmentos/prod-fidelizacion-celular.webp" alt="Pantalla de Auditorías en el celular" width="299" height="542" loading="lazy">
+          </div>
+        </div>
+        <div class="producto__pie">
+          <div class="producto__barra"><span></span></div>
+          <div class="producto__texto">
+            <p>Te permite realizar checklists detallados de cada sucursal, proceso o espacio que necesites relevar. Asegurá la eficiencia de todos los procesos cumpliendo con tus estándares. Podés planificar auditorias, ver la información histórica, trabajar sobre alertas y más.</p>
+            <a class="boton-borde" href="check.html">Conocer más</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto: Carta digital y autopedido -->
+      <div class="producto" role="tabpanel" data-panel="carta-digital" hidden>
+        <div class="producto__fotos">
+          <div class="producto__columna">
+            <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
+            <img src="../../public/img/segmentos/prod-fidelizacion-2.webp" alt="" width="352" height="274" loading="lazy">
+          </div>
+          <div class="producto__celular">
+            <img src="../../public/img/segmentos/prod-fidelizacion-celular.webp" alt="Pantalla de Carta digital y autopedido en el celular" width="299" height="542" loading="lazy">
+          </div>
+        </div>
+        <div class="producto__pie">
+          <div class="producto__barra"><span></span></div>
+          <div class="producto__texto">
+            <p>Digitalizá tu local de una forma ágil y sencilla. Tus clientes van a poder ver el menú desde el celular, incluso pudiendo seleccionar su pedido y abonarlo, para luego pasar a retirarlo por el mostrador.</p>
+            <a class="boton-borde" href="pos-erp.html#carta-digital">Conocer más</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto: KDS -->
+      <div class="producto" role="tabpanel" data-panel="kds" hidden>
+        <div class="producto__fotos">
+          <div class="producto__columna">
+            <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
+            <img src="../../public/img/segmentos/prod-fidelizacion-2.webp" alt="" width="352" height="274" loading="lazy">
+          </div>
+          <div class="producto__celular">
+            <img src="../../public/img/segmentos/prod-fidelizacion-celular.webp" alt="Pantalla de KDS en el celular" width="299" height="542" loading="lazy">
+          </div>
+        </div>
+        <div class="producto__pie">
+          <div class="producto__barra"><span></span></div>
+          <div class="producto__texto">
+            <p>Digitalizá tus ordenes para dejar de depender de las comandas en papel. Permite dar trazabilidad a cada órden, seguir su estado y trabajar en la mejora de tiempos de cocina.</p>
+            <a class="boton-borde" href="pos-erp.html#kds">Conocer más</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto: E-commerce -->
+      <div class="producto" role="tabpanel" data-panel="e-commerce" hidden>
+        <div class="producto__fotos">
+          <div class="producto__columna">
+            <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
+            <img src="../../public/img/segmentos/prod-fidelizacion-2.webp" alt="" width="352" height="274" loading="lazy">
+          </div>
+          <div class="producto__celular">
+            <img src="../../public/img/segmentos/prod-fidelizacion-celular.webp" alt="Pantalla de E-commerce en el celular" width="299" height="542" loading="lazy">
+          </div>
+        </div>
+        <div class="producto__pie">
+          <div class="producto__barra"><span></span></div>
+          <div class="producto__texto">
+            <p>Recibí y gestioná pedidos con nuestra plataforma de delivery propio. Integrado con Mercado Pago para el cobro de pedidos. Geolocalización de clientes, notificaciones vía mail, y mucho más.</p>
+            <a class="boton-borde" href="pos-erp.html#e-commerce">Conocer más</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================
+       FOOTER — links, contacto y redes
+       ===================================================== -->
+  <footer class="footer" id="contacto">
+    <div class="footer__marca">
+      <img src="../../public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="150" height="26" loading="lazy">
+      <img class="footer__sellos" src="../../public/img/home/sellos-iram-iqnet.webp" alt="Certificaciones IRAM ISO 9001 e IQNET" width="138" height="95" loading="lazy">
+    </div>
+
+    <nav class="footer__columnas" aria-label="Links del pie de página">
+      <div class="footer__columna">
+        <h2>Industrias</h2>
+        <a href="gastronomia.html">Gastronómicas</a>
+        <a href="retail.html">Retail</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Soluciones</h2>
+        <a href="pos-erp.html">POS y ERP</a>
+        <a href="check.html">Auditorías</a>
+        <a href="marketing.html">Marketing</a>
+        <a href="productividad.html">IoT</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Empresa</h2>
+        <a href="sobre-nosotros.html">Sobre nosotros</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="sobre-nosotros.html#trabaja-con-nosotros">Trabaja con nosotros</a>
+      </div>
+    </nav>
+
+    <div class="footer__contacto">
+      <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
+      <a href="mailto:info@thinkion.com.ar">info@thinkion.com.ar</a>
+      <div class="footer__redes">
+        <!-- Cambiá los href por los links reales de las redes -->
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
+          <img src="../../public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
+          <img src="../../public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+      </div>
+    </div>
+
+    <p class="footer__copyright">© 2026 Thinkion. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../controllers/controller.js" defer></script>
+</body>
+</html>

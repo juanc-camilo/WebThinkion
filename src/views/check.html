@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thinkion Check | Auditorías y checklists</title>
+  <meta name="description" content="Check es la herramienta de Thinkion para ordenar, escalar y estandarizar tus procesos con auditorías, reportes BI y planes de acción.">
+  <meta name="theme-color" content="#7a4aeb">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/layout.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+  <link rel="stylesheet" href="../styles/paginas.css">
+</head>
+<body class="pagina-check">
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <!-- Fondo decorativo: manchas de color del diseño. No tiene contenido editable. -->
+  <div class="fondo-deco" aria-hidden="true">
+    <img class="fondo-pagina" src="../../public/img/check/fondo-check.svg" alt="" width="3240" height="6296">
+  </div>
+
+  <!-- =====================================================
+       NAVBAR — logo, menú y botón
+       ===================================================== -->
+  <header class="navbar navbar--claro" data-navbar>
+    <a class="navbar__logo" href="../../index.html" aria-label="Thinkion, inicio">
+      <img src="../../public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="189" height="33">
+    </a>
+
+    <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
+      <!-- Desplegable SOLUCIONES -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Soluciones
+          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--soluciones">
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="pos-erp.html"><img src="../../public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</a>
+            <ul class="dropdown__sublista">
+              <li><a href="pos-erp.html#kds">KDS</a></li>
+              <li><a href="pos-erp.html#integraciones">Integraciones</a></li>
+              <li><a href="pos-erp.html#modos-de-uso">Modos de uso</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="check.html"><img src="../../public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</a>
+            <ul class="dropdown__sublista">
+              <li><a href="check.html#funcionalidades">Funcionalidades</a></li>
+              <li><a href="check.html#modos-de-uso">Modos de uso</a></li>
+              <li><a href="check.html#beneficios">Beneficios</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="marketing.html"><img src="../../public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</a>
+            <ul class="dropdown__sublista">
+              <li><a href="marketing.html#fidelizacion">Fidelización</a></li>
+              <li><a href="marketing.html#encuestas">Encuestas</a></li>
+              <li><a href="marketing.html#reservas">Reservas</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="productividad.html"><img src="../../public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</a>
+            <ul class="dropdown__sublista">
+              <li><a href="productividad.html#dispositivos">Dispositivos</a></li>
+              <li><a href="productividad.html#integracion">Integración</a></li>
+              <li><a href="productividad.html#sensores">Sensores</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desplegable INDUSTRIAS -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Industrias
+          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--industrias">
+          <a class="dropdown__bloque" href="gastronomia.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-gastronomia.svg" alt="" width="24" height="24">Gastronómicas</span>
+            <span class="dropdown__texto">Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio.</span>
+          </a>
+          <a class="dropdown__bloque" href="retail.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-retail.svg" alt="" width="24" height="24">Retail</span>
+            <span class="dropdown__texto">Administrá ventas, stock y promociones desde un mismo entorno.</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="navbar__link" href="sobre-nosotros.html">Nosotros</a>
+      <a class="navbar__link" href="clientes.html">Clientes</a>
+      <a class="boton-demo navbar__demo-movil" href="#contacto">Pedí tu demo</a>
+    </nav>
+
+    <a class="boton-demo navbar__demo" href="#contacto">
+      Pedí tu demo
+      <img src="../../public/img/home/chevron-boton.svg" alt="" width="8" height="13">
+    </a>
+
+    <button class="navbar__hamburguesa" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span></span><span></span><span></span>
+      <b class="sr-only">Abrir menú</b>
+    </button>
+  </header>
+
+  <main id="contenido" class="check">
+
+    <!-- =====================================================
+         HERO — título, bajada y video
+         ===================================================== -->
+    <section class="check-hero">
+      <h1>Medí, controlá y mejorá tus procesos en un <span class="subrayado-violeta">solo lugar</span></h1>
+      <p>Check es la herramienta de Thinkion para equipos que buscan ordenar, escalar y estandarizar su forma de trabajar</p>
+    </section>
+    <!-- Video: cambiá el href por el link del video -->
+    <a class="check-video" href="#" aria-label="Ver el video de Thinkion Check">
+      <img src="../../public/img/check/video-portada.webp" alt="Persona usando Thinkion Check en una notebook" width="1093" height="621" fetchpriority="high">
+      <img class="check-video__play" src="../../public/img/home/play.svg" alt="" width="131" height="151">
+    </a>
+
+    <!-- =====================================================
+         DE LA OBSERVACIÓN A LA ACCIÓN
+         ===================================================== -->
+    <section class="check-dif reveal">
+      <div class="check-dif__encabezado">
+        <h2>De la observación a la acción:<br>Convertí cada auditoría en una oportunidad de mejora</h2>
+        <p>Los checklists de Check simplifican la supervisión diaria. Centralizá la información clave de tu marca y obtené una visión clara de lo que ocurre en cada punto. Una manera simple de mantener el control sin perder tiempo ni detalle.</p>
+      </div>
+      <ul class="check-dif__lista">
+        <li><img src="../../public/img/check/icono-app.webp" alt="" width="128" height="128" loading="lazy"><h3>App Mobile</h3><p>Auditorías rápidas y simples, pensadas para equipos en movimiento</p></li>
+        <li><img src="../../public/img/check/icono-reportes.webp" alt="" width="128" height="128" loading="lazy"><h3>Reportes BI</h3><p>Visualizá métricas y resultados en tiempo real desde cualquier dispositivo.</p></li>
+        <li><img src="../../public/img/check/icono-plan.webp" alt="" width="128" height="128" loading="lazy"><h3>Plan de acción</h3><p>Convertí hallazgos en tareas y seguí su evolución hasta su resolución</p></li>
+      </ul>
+    </section>
+
+    <!-- =====================================================
+         MOCKUP — monitor, celular y datos destacados
+         ===================================================== -->
+    <section class="check-mockup reveal">
+      <img class="check-mockup__monitor" src="../../public/img/check/mockup-monitor.webp" alt="Panel de Thinkion Check en un monitor" width="867" height="717" loading="lazy">
+      <div class="celular"><img src="../../public/img/check/mockup-celular.webp" alt="Auditoría de Thinkion Check en el celular" width="208" height="452" loading="lazy"></div>
+      <p class="check-dato check-dato--1"><img src="../../public/img/check/icono-rayo.svg" alt="" width="28" height="32">Toda tu información al instante</p>
+      <p class="check-dato check-dato--2"><img src="../../public/img/check/icono-rayo.svg" alt="" width="28" height="32">Otro dato relevante</p>
+      <p class="check-dato check-dato--3"><img src="../../public/img/check/icono-rayo.svg" alt="" width="28" height="32">Otro dato relevante</p>
+    </section>
+
+    <!-- LOGOS DE CLIENTES -->
+    <section class="check-logos reveal" aria-label="Algunos de nuestros clientes">
+      <img class="logo-prune" src="../../public/img/check/logo-prune.webp" alt="Prüne" style="opacity: .6;" width="122" height="40" loading="lazy">
+      <img src="../../public/img/check/logo-club-milanesa.webp" alt="El Club de la Milanesa" style="opacity: .4;" width="122" height="120" loading="lazy">
+      <img src="../../public/img/check/logo-sushi.webp" alt="Sushi 2x1" style="opacity: .8;" width="122" height="122" loading="lazy">
+      <img src="../../public/img/check/logo-quijote.webp" alt="Quijote" style="opacity: .5;" width="122" height="122" loading="lazy">
+      <img class="logo-mishka" src="../../public/img/check/logo-mishka.webp" alt="Mishka" style="opacity: .7;" width="122" height="122" loading="lazy">
+    </section>
+
+    <!-- =====================================================
+         FUNCIONES — imagen + texto (se alternan los lados)
+         ===================================================== -->
+    <section class="check-funciones reveal">
+      <article class="funcion" id="funcionalidades">
+        <img src="../../public/img/check/checklist.webp" alt="" width="544" height="493" loading="lazy">
+        <div class="funcion__texto">
+          <span class="etiqueta">Flexibilidad total</span>
+          <h2>Checklist 100% personalizable</h2>
+          <p>Diseñá auditorías adaptadas a cada local, área o equipo.<br>Creá categorías, subcategorías y preguntas con distintos tipos de respuesta —del 1 al 5, binarias, informativas o con alertas— y asigná ponderación individual para priorizar lo importante.</p>
+        </div>
+      </article>
+      <article class="funcion funcion--invertida" id="modos-de-uso">
+        <img src="../../public/img/check/app-movil.webp" alt="" width="544" height="493" loading="lazy">
+        <div class="funcion__texto">
+          <span class="etiqueta">Acceso Móvil</span>
+          <h2>App online simple, ágil e intuitiva</h2>
+          <p>Accedé desde cualquier dispositivo y completá y finalizá las auditorías en el momento que necesites. Sumá comentarios y fotos directamente desde la app para dejar constancia visual de cada revisión.</p>
+        </div>
+      </article>
+      <article class="funcion" id="beneficios">
+        <img src="../../public/img/check/escalabilidad.webp" alt="" width="544" height="493" loading="lazy">
+        <div class="funcion__texto">
+          <span class="etiqueta">Escalabilidad</span>
+          <h2>Sin límites de locales o usuarios</h2>
+          <p>Pensado para escalar sin restricciones. Gestioná toda tu red, sin importar su tamaño, con un sistema preparado para grandes volúmenes de información y múltiples usuarios activos.</p>
+        </div>
+      </article>
+      <article class="funcion funcion--invertida">
+        <img src="../../public/img/check/reportes.webp" alt="" width="544" height="493" loading="lazy">
+        <div class="funcion__texto">
+          <span class="etiqueta">Analítica avanzada</span>
+          <h2>Reportes BI</h2>
+          <p>Visualizá toda la información procesada en tableros dinámicos y claros. Detectá patrones, analizá datos en tiempo real y obtené insights accionables sin preocuparte por el volumen de información.</p>
+        </div>
+      </article>
+      <article class="funcion">
+        <img src="../../public/img/check/planes-de-accion.webp" alt="" width="544" height="493" loading="lazy">
+        <div class="funcion__texto">
+          <span class="etiqueta">Gestión de tareas</span>
+          <h2>Mejora continua con planes de acción</h2>
+          <p>Cada punto que no cumple con el estándar se convierte automáticamente en una tarea dentro del plan de acción.<br>Desde allí, podés hacer seguimiento, dejar comentarios y marcarlo como resuelto en la próxima revisión.</p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- =====================================================
+       FOOTER — links, contacto y redes
+       ===================================================== -->
+  <footer class="footer" id="contacto">
+    <div class="footer__marca">
+      <img src="../../public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="150" height="26" loading="lazy">
+      <img class="footer__sellos" src="../../public/img/home/sellos-iram-iqnet.webp" alt="Certificaciones IRAM ISO 9001 e IQNET" width="138" height="95" loading="lazy">
+    </div>
+
+    <nav class="footer__columnas" aria-label="Links del pie de página">
+      <div class="footer__columna">
+        <h2>Industrias</h2>
+        <a href="gastronomia.html">Gastronómicas</a>
+        <a href="retail.html">Retail</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Soluciones</h2>
+        <a href="pos-erp.html">POS y ERP</a>
+        <a href="check.html">Auditorías</a>
+        <a href="marketing.html">Marketing</a>
+        <a href="productividad.html">IoT</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Empresa</h2>
+        <a href="sobre-nosotros.html">Sobre nosotros</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="sobre-nosotros.html#trabaja-con-nosotros">Trabaja con nosotros</a>
+      </div>
+    </nav>
+
+    <div class="footer__contacto">
+      <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
+      <a href="mailto:info@thinkion.com.ar">info@thinkion.com.ar</a>
+      <div class="footer__redes">
+        <!-- Cambiá los href por los links reales de las redes -->
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
+          <img src="../../public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
+          <img src="../../public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+      </div>
+    </div>
+
+    <p class="footer__copyright">© 2026 Thinkion. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../controllers/controller.js" defer></script>
+</body>
+</html>

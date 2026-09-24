@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clientes | Thinkion</title>
+  <meta name="description" content="Conocé a las empresas de gastronomía y retail que ya confían en Thinkion para centralizar su operación.">
+  <meta name="theme-color" content="#7a4aeb">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/layout.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+  <link rel="stylesheet" href="../styles/paginas.css">
+</head>
+<body class="pagina-clientes">
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <!-- Fondo decorativo: manchas de color del diseño. No tiene contenido editable. -->
+  <div class="fondo-deco" aria-hidden="true">
+    <img class="fondo-pagina" src="../../public/img/clientes/fondo-clientes.svg" alt="" width="3240" height="2200">
+  </div>
+
+  <!-- =====================================================
+       NAVBAR — logo, menú y botón
+       ===================================================== -->
+  <header class="navbar navbar--claro" data-navbar>
+    <a class="navbar__logo" href="../../index.html" aria-label="Thinkion, inicio">
+      <img src="../../public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="189" height="33">
+    </a>
+
+    <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
+      <!-- Desplegable SOLUCIONES -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Soluciones
+          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--soluciones">
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="pos-erp.html"><img src="../../public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</a>
+            <ul class="dropdown__sublista">
+              <li><a href="pos-erp.html#kds">KDS</a></li>
+              <li><a href="pos-erp.html#integraciones">Integraciones</a></li>
+              <li><a href="pos-erp.html#modos-de-uso">Modos de uso</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="check.html"><img src="../../public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</a>
+            <ul class="dropdown__sublista">
+              <li><a href="check.html#funcionalidades">Funcionalidades</a></li>
+              <li><a href="check.html#modos-de-uso">Modos de uso</a></li>
+              <li><a href="check.html#beneficios">Beneficios</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="marketing.html"><img src="../../public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</a>
+            <ul class="dropdown__sublista">
+              <li><a href="marketing.html#fidelizacion">Fidelización</a></li>
+              <li><a href="marketing.html#encuestas">Encuestas</a></li>
+              <li><a href="marketing.html#reservas">Reservas</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="productividad.html"><img src="../../public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</a>
+            <ul class="dropdown__sublista">
+              <li><a href="productividad.html#dispositivos">Dispositivos</a></li>
+              <li><a href="productividad.html#integracion">Integración</a></li>
+              <li><a href="productividad.html#sensores">Sensores</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desplegable INDUSTRIAS -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Industrias
+          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--industrias">
+          <a class="dropdown__bloque" href="gastronomia.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-gastronomia.svg" alt="" width="24" height="24">Gastronómicas</span>
+            <span class="dropdown__texto">Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio.</span>
+          </a>
+          <a class="dropdown__bloque" href="retail.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-retail.svg" alt="" width="24" height="24">Retail</span>
+            <span class="dropdown__texto">Administrá ventas, stock y promociones desde un mismo entorno.</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="navbar__link" href="sobre-nosotros.html">Nosotros</a>
+      <a class="navbar__link" href="clientes.html">Clientes</a>
+      <a class="boton-demo navbar__demo-movil" href="#contacto">Pedí tu demo</a>
+    </nav>
+
+    <a class="boton-demo navbar__demo" href="#contacto">
+      Pedí tu demo
+      <img src="../../public/img/home/chevron-boton.svg" alt="" width="8" height="13">
+    </a>
+
+    <button class="navbar__hamburguesa" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span></span><span></span><span></span>
+      <b class="sr-only">Abrir menú</b>
+    </button>
+  </header>
+
+  <main id="contenido" class="clientes-pag">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+    <section class="clientes-hero">
+      <h1>La plataforma que impulsa el <span class="subrayado-violeta">crecimiento</span> de tu negocio</h1>
+      <p>Cientos de empresas ya confían en nuestro ecosistema para centralizar su operación y tomar decisiones basadas en datos reales</p>
+    </section>
+
+    <!-- =====================================================
+         FILTROS + GRILLA DE CLIENTES
+         Cada tarjeta tiene data-rubro="gastronomicas", "retail" o "productividad".
+         Para sumar un cliente, copiá un <article class="tarjeta-cliente">.
+         ===================================================== -->
+    <section data-filtros>
+      <div class="filtros" role="group" aria-label="Filtrar clientes por industria">
+        <button class="is-activa" type="button" data-filtro="todos" aria-pressed="true">TODOS</button>
+        <button type="button" data-filtro="gastronomicas" aria-pressed="false">GASTRONÓMICAS</button>
+        <button type="button" data-filtro="retail" aria-pressed="false">RETAIL</button>
+        <button type="button" data-filtro="productividad" aria-pressed="false">PRODUCTIVIDAD</button>
+      </div>
+      <div class="grilla-clientes">
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-club-milanesa.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-club-milanesa.webp" alt="El Club de la Milanesa" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">El Club de la Milanesa</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-quijote.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-quijote.webp" alt="Quijote" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Quijote</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="retail">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-prune.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-prune.webp" alt="Prüne" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Retail</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Prüne</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-sushi.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-sushi.webp" alt="Sushi 2x1" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Sushi 2x1</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="retail">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-mishka.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-mishka.webp" alt="Mishka" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Retail</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Mishka</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-beerco.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-beerco.webp" alt="Beer Co." width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Beer Co.</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-rapanui.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-rapanui.webp" alt="Rapa Nui" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Rapa Nui</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-eltopo.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo tarjeta-cliente__logo--claro" src="../../public/img/clientes/logo-eltopo.webp" alt="El Topo" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">El Topo</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/home/cliente-temple.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/home/logo-temple.webp" alt="Temple Brewery" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Temple Brewery</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/home/cliente-patagonia.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/home/logo-patagonia.webp" alt="Cerveza Patagonia" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Cerveza Patagonia</span>
+      </article>
+        <p class="grilla-clientes__vacio" data-vacio hidden>Muy pronto vas a ver acá a los clientes de esta industria.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Botón flotante "¿Listo para usar Thinkion?" (se despliega al pasar el mouse) -->
+  <aside class="cta-flotante" tabindex="0" aria-label="¿Listo para usar Thinkion?">
+    <p class="cta-flotante__titulo">¿Listo para usar Thinkion?</p>
+    <p>Unite a los líderes que confian en nosotros para impulsar su crecimiento</p>
+    <a href="#contacto">PEDÍ TU DEMO</a>
+  </aside>
+
+  <!-- =====================================================
+       FOOTER — links, contacto y redes
+       ===================================================== -->
+  <footer class="footer" id="contacto">
+    <div class="footer__marca">
+      <img src="../../public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="150" height="26" loading="lazy">
+      <img class="footer__sellos" src="../../public/img/home/sellos-iram-iqnet.webp" alt="Certificaciones IRAM ISO 9001 e IQNET" width="138" height="95" loading="lazy">
+    </div>
+
+    <nav class="footer__columnas" aria-label="Links del pie de página">
+      <div class="footer__columna">
+        <h2>Industrias</h2>
+        <a href="gastronomia.html">Gastronómicas</a>
+        <a href="retail.html">Retail</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Soluciones</h2>
+        <a href="pos-erp.html">POS y ERP</a>
+        <a href="check.html">Auditorías</a>
+        <a href="marketing.html">Marketing</a>
+        <a href="productividad.html">IoT</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Empresa</h2>
+        <a href="sobre-nosotros.html">Sobre nosotros</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="sobre-nosotros.html#trabaja-con-nosotros">Trabaja con nosotros</a>
+      </div>
+    </nav>
+
+    <div class="footer__contacto">
+      <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
+      <a href="mailto:info@thinkion.com.ar">info@thinkion.com.ar</a>
+      <div class="footer__redes">
+        <!-- Cambiá los href por los links reales de las redes -->
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
+          <img src="../../public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
+          <img src="../../public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+      </div>
+    </div>
+
+    <p class="footer__copyright">© 2026 Thinkion. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../controllers/controller.js" defer></script>
+</body>
+</html>

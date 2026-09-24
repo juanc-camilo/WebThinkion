@@ -1,0 +1,31 @@
+/* =========================================================
+   VARIABLES — colores, tipografía y medidas del Figma
+   Cambiando un valor acá se actualiza en toda la web.
+   ========================================================= */
+:root {
+  /* Marca */
+  --violeta: #7a4aeb;
+  --azul-oscuro: #133883;
+  --coral: #ff6f72;
+  --rosa-palido: #ffd6ce;
+  --lila: #e4dbfb;
+
+  /* Neutros */
+  --texto: #1b1b1b;
+  --gris: #7a7a7a;
+  --gris-parrafo: #7e818a;
+  --gris-oscuro: #4e4e4e;
+  --blanco: #fff;
+  --blanco-suave: #f7f7f7;
+  --fondo: #fefafa;
+
+  /* Tipografía */
+  --fuente: "Outfit", system-ui, sans-serif;
+  --fuente-cita: "Instrument Serif", Georgia, serif;
+
+  /* Medidas */
+  --contenido: 1120px;  /* ancho del contenido */
+  --gutter: 16px;       /* margen lateral en mobile */
+  --radio-card: 40px;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}

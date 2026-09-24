@@ -1,0 +1,314 @@
+/* =========================================================
+   SEGMENTO — páginas de industria (Gastronomía y Retail)
+   Medidas del Figma "segmento - Gastro" / "segmento - Retail" (1440px)
+   ========================================================= */
+
+/* ---------- Fondo decorativo ---------- */
+.fondo-seg__hero    { left: calc(50% - 720px - 299px);   top: -651px;   width: 2162px; height: 1564px; }
+.fondo-seg__lila    { left: calc(50% - 720px - 1023px);  top: 934px;    width: 1657px; height: 1657px; }
+.fondo-seg__violeta { left: calc(50% - 720px - 1046.5px); top: 1154.4px; width: 1823px; height: 1746px; }
+.fondo-seg__izq     { left: calc(50% - 720px - 1264.3px); top: 3024px;   width: 2045px; height: 2064px; }
+.fondo-seg__der     { left: calc(50% - 720px + 725px);    top: 436.7px;  width: 2207px; height: 2328px; }
+.pagina-retail .fondo-seg__hero { left: calc(50% - 720px - 264px); top: -648px; }
+
+/* ---------- Columna principal ---------- */
+.segmento { align-items: center; display: flex; flex-direction: column; gap: 93px; padding-top: 45px; }
+.pagina-retail .segmento { gap: 90px; }
+.segmento > section { width: min(var(--contenido), 100% - 2 * var(--gutter)); }
+.titulo-40 { color: var(--azul-oscuro); font-size: 40px; font-weight: 400; line-height: 50px; text-align: center; }
+
+/* ---------- Hero ---------- */
+.seg-hero { align-items: center; display: flex; flex-direction: column; gap: 24px; }
+.seg-hero__texto { align-items: center; display: flex; flex-direction: column; gap: 24px; text-align: center; }
+.seg-hero__titulo { color: var(--blanco-suave); font-size: 60px; font-weight: 400; letter-spacing: -1.8px; line-height: 66px; max-width: 1122px; }
+.seg-hero__subrayado { display: inline-block; position: relative; }
+.seg-hero__subrayado::after {
+  background: url("../../public/img/segmentos/subrayado-coral.svg") no-repeat center / 100% 100%;
+  content: "";
+  height: 32px;
+  left: -8px;
+  position: absolute;
+  top: 51px;
+  width: 237px;
+}
+.pagina-retail .seg-hero__subrayado::after { background-image: url("../../public/img/segmentos/subrayado-azul.svg"); }
+.seg-hero__bajada { color: var(--blanco-suave); font-size: 18px; line-height: 23px; max-width: 1034px; }
+.pagina-retail .seg-hero { gap: 48px; }
+.pagina-retail .seg-hero .boton { background: var(--azul-oscuro); }
+
+/* Video con marco de líneas (Gastro) */
+.seg-video { position: relative; width: min(1187px, 100vw - 2 * var(--gutter)); }
+.seg-video__enlace { aspect-ratio: 1121 / 621; border-radius: 2px; display: block; margin: 3.454% 2.78% 3.37%; overflow: hidden; position: relative; }
+.seg-video__enlace > img:first-child { height: 100%; object-fit: cover; width: 100%; }
+.seg-video__enlace::after { background: rgba(0, 0, 0, .2); content: ""; inset: 0; position: absolute; transition: background-color .3s; }
+.seg-video__enlace:hover::after { background: rgba(0, 0, 0, .08); }
+.seg-video__play { height: 111px; left: 50%; position: absolute; top: 50%; transform: translate(-50%, -50%); transition: transform .3s var(--ease); width: 92px; z-index: 1; }
+.seg-video__enlace:hover .seg-video__play { transform: translate(-50%, -50%) scale(1.1); }
+.seg-video__marco { height: 100%; inset: 0; max-width: none; pointer-events: none; position: absolute; width: 100%; }
+/* Video en caja de vidrio (Retail) */
+.seg-video--vidrio {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, .1);
+  border-radius: 30px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6);
+  padding: 15px;
+  width: min(1141px, 100vw - 2 * var(--gutter));
+}
+.seg-video--vidrio .seg-video__enlace { aspect-ratio: 1111 / 621; border-radius: 15px; margin: 0; }
+
+/* ---------- Card con pestañas (Punto de venta / Administración) ---------- */
+.seg-card {
+  align-items: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(227, 227, 227, .15);
+  border: 1px solid rgba(201, 201, 201, .3);
+  border-radius: var(--radio-card);
+  box-shadow: 0 7px 14px -4px rgba(0, 0, 0, .15);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow: hidden;
+  padding: 20px;
+  position: relative;
+}
+.pagina-retail .seg-card { gap: 16px; }
+.seg-card__chevron { height: 490px; left: 27px; max-width: none; pointer-events: none; position: absolute; top: -5px; width: 258px; }
+.pestanas--ancha { background: rgba(98, 98, 98, .1); border-radius: 30px; position: relative; width: 100%; }
+.pestanas--ancha .pestanas__boton { flex: 1; font-weight: 400; width: auto; }
+.pestanas--ancha .pestanas__boton.is-activa { font-weight: 500; }
+.seg-panel { align-items: center; animation: aparecer .45s var(--ease); display: flex; gap: 43px; justify-content: space-between; position: relative; width: 100%; }
+.seg-panel__texto { display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; width: 500px; }
+.seg-panel__texto h2 { color: var(--azul-oscuro); font-size: 28px; font-weight: 400; line-height: 35px; padding: 0 6px; }
+.seg-lista li { align-items: center; color: var(--gris); display: flex; font-size: 16px; gap: 10px; line-height: 28px; padding: 11px 15px 11px 10px; }
+.seg-lista img { flex-shrink: 0; height: 24px; object-fit: contain; width: 24px; }
+.seg-panel__imagen { flex-shrink: 0; height: 357px; position: relative; width: 577px; }
+.seg-panel__imagen img { position: absolute; }
+.seg-panel__notebook { height: 355px; left: 0; top: 0; width: 577px; }
+.seg-panel__celular { border-radius: 20px; height: 311px; left: 421px; top: 46px; width: 148px; }
+.seg-panel__imagen--adm img:first-child { height: 364px; left: 39px; top: -3px; width: 538px; }
+.seg-panel__tablet { height: 256px; left: 0; top: 91px; width: 222px; }
+
+/* ---------- Logos de clientes ---------- */
+.seg-logos { align-items: center; display: flex; justify-content: space-between; padding: 0 64px; width: 100%; }
+.segmento > .seg-logos { width: 100%; }
+.seg-logos img { height: 122px; object-fit: contain; opacity: .4; width: 122px; }
+.seg-logos .logo-multiplicar { mix-blend-mode: multiply; }
+
+/* ---------- Instalación (hoja de ruta) ---------- */
+.seg-ruta { align-items: center; display: flex; flex-direction: column; gap: 50px; }
+.ruta { height: 473px; position: relative; width: 1120px; }
+.ruta__lineas { filter: drop-shadow(0 0 10px rgba(122, 74, 235, .25)); height: 290px; left: 0; max-width: none; position: absolute; top: 66px; width: 1120px; }
+.ruta__paso { align-items: center; display: flex; flex-direction: column; gap: 9px; position: absolute; text-align: center; width: 276px; }
+.ruta__paso:nth-child(2) { left: 23px; top: 0; }
+.ruta__paso:nth-child(3) { left: 422px; top: 0; }
+.ruta__paso:nth-child(4) { left: 819px; top: 0; }
+.ruta__paso:nth-child(5) { left: 23px; top: 284px; }
+.ruta__paso:nth-child(6) { left: 422px; top: 284px; }
+.ruta__paso:nth-child(7) { left: 819px; top: 284px; }
+.ruta__icono {
+  align-items: center;
+  background: var(--blanco);
+  border-radius: 80px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .25);
+  display: flex;
+  height: 130px;
+  justify-content: center;
+  transition: transform .3s var(--ease), box-shadow .3s;
+  width: 130px;
+}
+.pagina-retail .ruta__icono { background: #f9f7ff; }
+.ruta__icono img { height: 81px; width: 100px; }
+.ruta__paso:hover .ruta__icono, .ruta__paso--activo .ruta__icono { box-shadow: 0 0 4px rgba(255, 111, 114, .64), inset 0 0 0 .5px rgba(19, 56, 131, .4); }
+.ruta__paso:hover .ruta__icono { transform: translateY(-3px); }
+.ruta__paso--activo .ruta__icono img { opacity: .7; }
+.ruta__paso p { color: var(--gris); font-size: 18px; font-weight: 300; line-height: 23px; max-width: 248px; }
+.ruta__paso--activo p { color: var(--azul-oscuro); font-size: 20px; font-weight: 400; line-height: 25px; max-width: 187px; }
+.ruta__paso--ancho p { max-width: 296px; }
+.ruta__paso--grande p { font-size: 20px; line-height: 25px; max-width: 186px; }
+
+/* ---------- Calidad de atención (banda con datos) ---------- */
+.segmento > .seg-calidad { width: 100%; }
+.seg-calidad {
+  align-items: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: linear-gradient(160deg, rgba(205, 190, 255, .2), rgba(246, 243, 255, .2));
+  border-bottom: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
+  display: flex;
+  justify-content: center;
+  min-height: 430px;
+  padding: 50px var(--gutter);
+}
+.pagina-retail .seg-calidad { background: linear-gradient(160deg, rgba(122, 74, 235, .2), rgba(167, 130, 254, .2)); border-color: #e2cbff; }
+.seg-calidad__contenido { align-items: center; display: flex; justify-content: space-between; width: min(var(--contenido), 100%); }
+.seg-calidad__texto { display: flex; flex-direction: column; gap: 8px; width: 480px; }
+.seg-calidad__texto h2 { color: var(--azul-oscuro); font-size: 40px; font-weight: 300; line-height: 50px; }
+.seg-calidad__texto p { color: var(--gris); font-size: 20px; line-height: 25px; }
+.seg-calidad__texto strong { font-weight: 600; }
+.seg-datos { display: grid; gap: 30px 32px; grid-template-columns: repeat(2, 240px); margin-right: 16px; }
+.dato { display: flex; flex-direction: column; gap: 8px; padding: 8px 0; }
+.dato .dato__cifra { align-items: center; color: var(--azul-oscuro); display: flex; font-size: 64px; font-weight: 600; gap: 10px; line-height: 81px; }
+.dato__cifra small { color: rgba(19, 56, 131, .25); font-size: inherit; }
+.dato__icono { align-items: center; background: rgba(19, 56, 131, .25); border-radius: 30px; display: flex; flex-shrink: 0; height: 30px; justify-content: center; width: 30px; }
+.dato__icono img { height: 13px; object-fit: contain; width: 13px; }
+.dato p:not(.dato__cifra) { color: var(--gris); font-size: 16px; font-weight: 300; line-height: 20px; max-width: 240px; padding-left: 40px; }
+
+/* ---------- Tecnología de vanguardia ---------- */
+.seg-tecno { align-items: center; display: flex; flex-direction: column; gap: 50px; }
+.seg-tecno .titulo-40 { max-width: 702px; }
+.tecno-grilla { display: grid; gap: 40px 34px; grid-template-columns: repeat(2, 1fr); width: 100%; }
+.tecno-card {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, .1);
+  border-radius: 20px;
+  box-shadow: 0 7px 14px -4px rgba(0, 0, 0, .15), inset 0 0 0 1px rgba(255, 255, 255, .6);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 218px;
+  padding: 40px 80px 40px 30px;
+  position: relative;
+}
+.tecno-card:nth-child(odd) { align-items: flex-end; padding: 40px 30px 40px 80px; text-align: right; }
+.tecno-card h3 { color: var(--azul-oscuro); font-size: 24px; font-weight: 600; line-height: 30px; }
+.tecno-card p { color: var(--gris); font-size: 16px; line-height: 20px; }
+.tecno-card > img { opacity: .8; pointer-events: none; position: absolute; }
+.tecno-card:nth-child(odd) > img { left: -105px; top: 24px; }
+.tecno-card:nth-child(even) > img { right: -105px; top: 29px; }
+/* Variante Retail: imagen arriba y texto centrado */
+.tecno-grilla--imagenes .tecno-card { -webkit-backdrop-filter: none; align-items: center; backdrop-filter: none; gap: 16px; justify-content: flex-end; padding: 20px 18px; text-align: center; }
+.tecno-grilla--imagenes .tecno-card--blanca { gap: 0; }
+.tecno-grilla--imagenes .tecno-card--blanca > img { height: 225px; object-fit: contain; }
+.tecno-grilla--imagenes .tecno-card--blanca h3 { margin: 0 0 12px; }
+.tecno-grilla--imagenes .tecno-card h3 { color: var(--texto); }
+.tecno-grilla--imagenes .tecno-card > img { left: auto; mix-blend-mode: multiply; opacity: .9; position: static; right: auto; top: auto; }
+.tecno-grilla--imagenes .tecno-card--blanca { background: var(--blanco); box-shadow: 0 2px 4px rgba(0, 0, 0, .25), inset 0 0 0 1px #f0f0f0; }
+
+/* ---------- Productos (lista con pestañas verticales) ---------- */
+.seg-productos { display: flex; gap: 16px; min-height: 700px; }
+.productos-lista { border-right: 1px solid rgba(175, 175, 175, .31); display: flex; flex-direction: column; flex-shrink: 0; padding-right: 16px; width: 368px; }
+.productos-lista .pestanas__boton {
+  align-items: center;
+  border-radius: 10px;
+  color: var(--gris);
+  font-size: 24px;
+  font-weight: 500;
+  gap: 16px;
+  height: 100px;
+  justify-content: flex-start;
+  line-height: 30px;
+  padding: 30px;
+  text-align: left;
+  width: 352px;
+}
+.productos-lista .pestanas__boton:not(.is-activa):hover { color: var(--coral); }
+.productos-lista .pestanas__boton.is-activa {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, .1);
+  box-shadow: inset 0 0 0 1px #ddd;
+  color: var(--coral);
+  font-size: 24px;
+  height: 100px;
+  line-height: 30px;
+  padding: 30px 20px;
+}
+.productos-lista .pestanas__boton img { display: none; flex-shrink: 0; height: 36px; width: 36px; }
+.productos-lista .pestanas__boton.is-activa img { display: block; }
+.producto { animation: aparecer .45s var(--ease); display: flex; flex-direction: column; gap: 16px; justify-content: space-between; padding: 10px 0; width: 736px; }
+.producto__fotos { display: grid; gap: 16px; grid-template-columns: 352px 352px; height: 564px; }
+.producto__columna { display: flex; flex-direction: column; gap: 16px; }
+.producto__columna img { border-radius: 10px; box-shadow: inset 0 0 0 1px #cecece; height: 274px; object-fit: cover; outline: 1px solid #cecece; outline-offset: -1px; width: 352px; }
+.producto__celular { background: #f2edfd; border-radius: 10px; overflow: hidden; position: relative; }
+.producto__celular img { height: 542px; left: 25px; object-fit: contain; position: absolute; top: 50px; width: 299px; }
+.producto__pie { display: flex; flex-direction: column; gap: 8px; }
+.producto__barra { background: #e6e6e6; border-radius: 5px; height: 10px; overflow: hidden; width: 640px; }
+.producto__barra span { background: var(--coral); border-radius: 5px; display: block; height: 100%; width: 45%; }
+.producto__texto { align-items: center; display: flex; gap: 10px; justify-content: space-between; }
+.producto__texto p { color: #7d7d7d; font-size: 16px; line-height: 20px; max-width: 532px; }
+.boton-borde {
+  border: 2px solid var(--coral);
+  border-radius: 20px;
+  color: var(--coral);
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 8px 18px;
+  transition: background-color .2s, color .2s;
+}
+.boton-borde:hover { background: var(--coral); color: var(--blanco); }
+
+.pagina-segmento .footer { margin-top: 44px; }
+.pagina-retail .footer { margin-top: 201px; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1100px) {
+  .seg-hero__titulo { font-size: clamp(36px, 5.6vw, 60px); line-height: 1.12; }
+  .seg-hero__subrayado::after { display: none; }
+  .seg-panel { flex-direction: column; }
+  .seg-panel__texto { width: 100%; }
+  .seg-panel__imagen { height: auto; aspect-ratio: 577 / 357; width: min(577px, 100%); }
+  .seg-panel__imagen img { height: auto; }
+  .seg-panel__notebook { width: 100%; }
+  .seg-panel__celular { left: 73%; top: 13%; width: 25.6%; }
+  .seg-panel__imagen--adm img:first-child { left: 6.8%; top: 0; width: 93.2%; }
+  .seg-panel__tablet { top: 25%; width: 38.5%; }
+  .seg-logos { flex-wrap: wrap; gap: 16px 24px; justify-content: center; padding: 0 var(--gutter); }
+  .seg-logos img { height: 90px; width: 90px; }
+  .ruta { display: grid; gap: 40px 16px; grid-template-columns: repeat(3, 1fr); height: auto; width: 100%; }
+  .ruta__lineas { display: none; }
+  .ruta__paso { position: static; width: auto; }
+  .seg-calidad__contenido { flex-direction: column; gap: 40px; text-align: center; }
+  .seg-calidad__texto { width: min(560px, 100%); }
+  .seg-datos { margin: 0; text-align: left; }
+  .tecno-grilla { grid-template-columns: 1fr; }
+  .tecno-card, .tecno-card:nth-child(odd) { align-items: flex-start; padding: 32px; text-align: left; }
+  .tecno-card > img { display: none; }
+  .tecno-grilla--imagenes .tecno-card > img { display: block; max-width: 100%; }
+  .seg-productos { flex-direction: column; min-height: 0; }
+  .productos-lista { border-right: 0; flex-direction: row; overflow-x: auto; padding: 0 0 8px; scrollbar-width: none; width: 100%; }
+  .productos-lista::-webkit-scrollbar { display: none; }
+  .productos-lista .pestanas__boton, .productos-lista .pestanas__boton.is-activa { flex-shrink: 0; font-size: 18px; height: 56px; padding: 12px 18px; width: auto; }
+  .productos-lista .pestanas__boton img { height: 26px; width: 26px; }
+  .producto { width: 100%; }
+  .producto__fotos { grid-template-columns: 1fr 1fr; height: auto; }
+  .producto__columna img { height: auto; aspect-ratio: 352 / 274; width: 100%; }
+  .producto__celular { aspect-ratio: 352 / 564; }
+  .producto__celular img { height: 90%; left: 7%; top: 9%; width: 85%; }
+  .producto__barra { width: 100%; }
+  .pagina-segmento .footer, .pagina-retail .footer { margin-top: 80px; }
+}
+
+@media (max-width: 760px) {
+  .segmento { gap: 56px; padding-top: 16px; }
+  .seg-hero__titulo { font-size: 34px; letter-spacing: -1px; }
+  .seg-hero__bajada { font-size: 16px; }
+  .seg-video__play { height: 56px; width: 46px; }
+  .titulo-40 { font-size: 28px; line-height: 34px; }
+  .seg-card { border-radius: 28px; padding: 12px; }
+  .seg-card__chevron { display: none; }
+  .pestanas--ancha .pestanas__boton { font-size: 16px; }
+  .pestanas--ancha .pestanas__boton.is-activa { font-size: 17px; }
+  .seg-panel__texto h2 { font-size: 24px; }
+  .seg-lista li { align-items: flex-start; font-size: 15px; line-height: 22px; padding: 8px 4px; }
+  .ruta { grid-template-columns: 1fr 1fr; }
+  .ruta__icono { height: 100px; width: 100px; }
+  .ruta__icono img { height: 62px; width: 77px; }
+  .ruta__paso p, .ruta__paso--activo p, .ruta__paso--grande p, .ruta__paso--ancho p { font-size: 15px; line-height: 20px; }
+  .seg-calidad__texto h2 { font-size: 30px; line-height: 38px; }
+  .seg-calidad__texto p { font-size: 17px; }
+  .seg-datos { gap: 20px 12px; grid-template-columns: 1fr 1fr; }
+  .dato .dato__cifra { font-size: 38px; gap: 6px; line-height: 48px; }
+  .dato p:not(.dato__cifra) { font-size: 14px; padding-left: 0; }
+  .tecno-card h3 { font-size: 20px; }
+  .producto__fotos { grid-template-columns: 1fr; }
+  .producto__celular { display: none; }
+  .producto__texto { align-items: flex-start; flex-direction: column; }
+}

@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre nosotros | Thinkion</title>
+  <meta name="description" content="Conocé a Thinkion: nuestros valores, nuestra evolución, nuestra política de calidad y cómo sumarte al equipo.">
+  <meta name="theme-color" content="#7a4aeb">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="../styles/variables.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="stylesheet" href="../styles/layout.css">
+  <link rel="stylesheet" href="../styles/responsive.css">
+  <link rel="stylesheet" href="../styles/paginas.css">
+</head>
+<body class="pagina-nosotros">
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <!-- Fondo decorativo: manchas de color del diseño. No tiene contenido editable. -->
+  <div class="fondo-deco" aria-hidden="true">
+    <img class="fondo-pagina" src="../../public/img/nosotros/fondo-nosotros.svg" alt="" width="3240" height="3573">
+  </div>
+
+  <!-- =====================================================
+       NAVBAR — logo, menú y botón
+       ===================================================== -->
+  <header class="navbar" data-navbar>
+    <a class="navbar__logo" href="../../index.html" aria-label="Thinkion, inicio">
+      <img src="../../public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
+    </a>
+
+    <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
+      <!-- Desplegable SOLUCIONES -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Soluciones
+          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--soluciones">
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="pos-erp.html"><img src="../../public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</a>
+            <ul class="dropdown__sublista">
+              <li><a href="pos-erp.html#kds">KDS</a></li>
+              <li><a href="pos-erp.html#integraciones">Integraciones</a></li>
+              <li><a href="pos-erp.html#modos-de-uso">Modos de uso</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="check.html"><img src="../../public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</a>
+            <ul class="dropdown__sublista">
+              <li><a href="check.html#funcionalidades">Funcionalidades</a></li>
+              <li><a href="check.html#modos-de-uso">Modos de uso</a></li>
+              <li><a href="check.html#beneficios">Beneficios</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="marketing.html"><img src="../../public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</a>
+            <ul class="dropdown__sublista">
+              <li><a href="marketing.html#fidelizacion">Fidelización</a></li>
+              <li><a href="marketing.html#encuestas">Encuestas</a></li>
+              <li><a href="marketing.html#reservas">Reservas</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="productividad.html"><img src="../../public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</a>
+            <ul class="dropdown__sublista">
+              <li><a href="productividad.html#dispositivos">Dispositivos</a></li>
+              <li><a href="productividad.html#integracion">Integración</a></li>
+              <li><a href="productividad.html#sensores">Sensores</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desplegable INDUSTRIAS -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Industrias
+          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--industrias">
+          <a class="dropdown__bloque" href="gastronomia.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-gastronomia.svg" alt="" width="24" height="24">Gastronómicas</span>
+            <span class="dropdown__texto">Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio.</span>
+          </a>
+          <a class="dropdown__bloque" href="retail.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-retail.svg" alt="" width="24" height="24">Retail</span>
+            <span class="dropdown__texto">Administrá ventas, stock y promociones desde un mismo entorno.</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="navbar__link" href="sobre-nosotros.html">Nosotros</a>
+      <a class="navbar__link" href="clientes.html">Clientes</a>
+      <a class="boton-demo navbar__demo-movil" href="#contacto">Pedí tu demo</a>
+    </nav>
+
+    <a class="boton-demo navbar__demo" href="#contacto">
+      Pedí tu demo
+      <img src="../../public/img/home/chevron-boton.svg" alt="" width="8" height="13">
+    </a>
+
+    <button class="navbar__hamburguesa" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span></span><span></span><span></span>
+      <b class="sr-only">Abrir menú</b>
+    </button>
+  </header>
+
+  <main id="contenido" class="nosotros">
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+    <section class="nos-hero">
+      <div class="nos-hero__texto">
+        <h1>Thinkion: Un ecosistema diseñado para tu crecimiento</h1>
+        <p>Nacimos de la necesidad de <strong>unificar la gestión y la operación.</strong> Hoy, somos la plataforma que <strong>centraliza</strong> cada dato de tu negocio, permitiéndote <strong>escalar</strong> sin preocuparte por el caos de sistemas aislados.</p>
+      </div>
+      <img class="nos-hero__imagen" src="../../public/img/nosotros/hero-ecosistema.webp" alt="Ilustración del ecosistema Thinkion: módulos conectados a una plataforma central" width="544" height="362" fetchpriority="high">
+    </section>
+
+    <!-- =====================================================
+         VALORES — "Los valores que nos definen"
+         ===================================================== -->
+    <section class="nos-valores reveal">
+      <div class="nos-valores__encabezado">
+        <h2 class="titulo-seccion-40">Los valores que nos definen</h2>
+        <p>En Thinkion, nuestra esencia va más allá del código. Estos pilares fundamentales guían cada <strong>decisión, proyecto y relación</strong> que construimos día a día.</p>
+      </div>
+      <div class="valores">
+        <article class="valor valor--izq">
+          <img src="../../public/img/nosotros/valor-startup.webp" alt="" width="230" height="260" loading="lazy">
+          <div class="valor__card">
+            <h3>Mentalidad Startup</h3>
+            <p><strong>Nos movemos rápido y nos adaptamos constantemente</strong>. Nuestra estructura horizontal y flexible nos permite <strong>innovar</strong> sin frenos. Trabajamos por <strong>objetivos claros</strong>, priorizando siempre a las personas: nuestro equipo y nuestros clientes son el <strong>centro</strong> de cada decisión.</p>
+          </div>
+        </article>
+        <article class="valor valor--der">
+          <div class="valor__card">
+            <h3>Honestidad</h3>
+            <p>La confianza se construye con <strong>transparencia</strong> y <strong>franqueza</strong>. En Thinkion, cumplimos nuestra palabra y actuamos con <strong>sinceridad absoluta</strong>. Mantenemos una <strong>comunicación abierta</strong> y honesta con cada persona que forma parte de nuestro ecosistema.</p>
+          </div>
+          <img src="../../public/img/nosotros/valor-honestidad.webp" alt="" width="248" height="211" loading="lazy">
+        </article>
+        <article class="valor valor--izq">
+          <img src="../../public/img/nosotros/valor-equipo.webp" alt="" width="230" height="260" loading="lazy">
+          <div class="valor__card">
+            <h3>Trabajo en equipo</h3>
+            <p><strong>Construimos</strong> sobre el respeto mutuo, la tolerancia y la lealtad. <strong>Compartimos</strong> objetivos y <strong>celebramos</strong> juntos cada logro. Porque en Thinkion sabemos que los grandes resultados nacen de la <strong>colaboración genuina.</strong></p>
+          </div>
+        </article>
+        <article class="valor valor--der">
+          <div class="valor__card">
+            <h3>Desarrollo y crecimiento</h3>
+            <p>Nos impulsa la <strong>mejora</strong> continua y el <strong>desarrollo</strong> constante. Buscamos superarnos cada día, tanto <strong>individual</strong> como <strong>colectivamente</strong>, porque el crecimiento de cada persona fortalece el crecimiento de toda la compañía.</p>
+          </div>
+          <img src="../../public/img/nosotros/valor-crecimiento.webp" alt="" width="258" height="219" loading="lazy">
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         NUESTRA EVOLUCIÓN — línea de tiempo.
+         Cada año es un botón; su texto va en el bloque "hito" con el mismo año.
+         TEXTOS PROVISORIOS: el Figma todavía tiene "Lorem ipsum".
+         ===================================================== -->
+    <section class="evolucion reveal" data-linea-tiempo>
+      <div class="evolucion__encabezado">
+        <h2>Nuestra evolución</h2>
+        <p>Cada año ha sido un escalón fundamental en nuestro camino, transformando desafíos en oportunidades y expandiendo nuestros horizontes hacia nuevas metas.</p>
+      </div>
+      <div class="anios">
+        <div class="anios__lista">
+            <button class="is-activo" type="button" data-anio="2019" aria-label="Ver 2019">2019</button>
+            <button class="" type="button" data-anio="2020" aria-label="Ver 2020">2020</button>
+            <button class="" type="button" data-anio="2021" aria-label="Ver 2021">2021</button>
+            <button class="" type="button" data-anio="2022" aria-label="Ver 2022">2022</button>
+            <button class="" type="button" data-anio="2023" aria-label="Ver 2023">2023</button>
+            <button class="" type="button" data-anio="2024" aria-label="Ver 2024">2024</button>
+            <button class="" type="button" data-anio="2025" aria-label="Ver 2025">2025</button>
+        </div>
+      </div>
+      <div class="anios__linea" aria-hidden="true"><span class="anios__punto"></span></div>
+      <div class="evolucion__pie">
+        <div class="evolucion__hitos">
+          <div class="hito" data-hito="2019">
+            <h3>Título 2019</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam.</p>
+          </div>
+          <div class="hito" data-hito="2020" hidden>
+            <h3>Título 2020</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam.</p>
+          </div>
+          <div class="hito" data-hito="2021" hidden>
+            <h3>Título 2021</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam.</p>
+          </div>
+          <div class="hito" data-hito="2022" hidden>
+            <h3>Título 2022</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam.</p>
+          </div>
+          <div class="hito" data-hito="2023" hidden>
+            <h3>Título 2023</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam.</p>
+          </div>
+          <div class="hito" data-hito="2024" hidden>
+            <h3>Título 2024</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam.</p>
+          </div>
+          <div class="hito" data-hito="2025" hidden>
+            <h3>Título 2025</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam.</p>
+          </div>
+        </div>
+        <div class="evolucion__flechas">
+          <button type="button" data-anterior aria-label="Año anterior" disabled><img src="../../public/img/nosotros/flecha-izquierda.svg" alt="" width="16" height="12"></button>
+          <button type="button" data-siguiente aria-label="Año siguiente"><img src="../../public/img/nosotros/flecha-derecha.svg" alt="" width="16" height="12"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         POLÍTICA DE CALIDAD — "Leer más" despliega el texto completo
+         ===================================================== -->
+    <section class="politica reveal" data-politica>
+      <h2 class="titulo-seccion-40">Nuestra política de calidad</h2>
+      <div class="politica__texto" id="politica-texto"><p>Thinkion brinda soluciones especializadas en sistemas POS &amp; ERP para la gestión eficiente de locales gastronómicos. Nuestra propuesta integral va más allá de la automatización, abarcando operación, gestión, venta y administración, brindando así una experiencia completa a nuestros clientes.</p><p>Centramos nuestro enfoque en un proceso de consultoría personalizado, identificando la configuración óptima del sistema para adaptarlo a las operaciones específicas del cliente, brindando asesoramiento integral durante todas las etapas de la implementación. Esto incluye respaldo durante cambios culturales, transformación digital, mejora de la productividad y optimización del flujo de trabajo.</p><p>Creemos en la integración de soluciones, enfocada en mejorar tanto la comunicación interna como las interacciones externas relacionadas con la operación y el soporte. Buscamos crear un ecosistema cohesivo que optimice la eficiencia y efectividad en las operaciones gastronómicas.</p><p>Reafirmamos nuestro compromiso inquebrantable con la calidad, estableciendo relaciones sólidas con proveedores estratégicos, evaluando la calidad de sus servicios para garantizar coherencia y fiabilidad en nuestra cadena de suministro. La capacidad de nuestro equipo es también un pilar en la búsqueda de la calidad, su formación constante es una prioridad fundamental. Todo ello nos permite aspirar a ser una entidad rentable a largo plazo en búsqueda de la satisfacción continua de nuestros clientes.</p><p>Operamos eficientemente, optimizando recursos y comprometiéndonos con la mejora continua. El cumplimiento de legislación y normativas aplicables es esencial en nuestra búsqueda de excelencia operativa.</p><p>Nuestro enfoque trasciende la simple transacción comercial. Buscamos posicionar a Thinkion como una fuerza en la innovación tecnológica, aspirando a ser auténticos socios estratégicos de nuestros clientes en su camino hacia el éxito.</p>
+      </div>
+      <button class="politica__boton" type="button" aria-expanded="false" aria-controls="politica-texto">
+        <span>Leer más</span>
+        <img src="../../public/img/nosotros/flecha-select.svg" alt="" width="24" height="24">
+      </button>
+    </section>
+
+    <!-- =====================================================
+         UNITE A NUESTRO EQUIPO — formulario de postulación.
+         Para recibir los datos hace falta conectar el formulario
+         (por ejemplo con Formspree o un servidor): poné la dirección en action="".
+         ===================================================== -->
+    <section class="postulacion reveal" id="trabaja-con-nosotros">
+      <div class="postulacion__encabezado">
+        <h2>Unite a nuestro equipo</h2>
+        <p>Estamos en constante crecimiento y siempre buscamos personas talentosas que quieran sumarse a nuestro propósito. Completa el formulario y adjunta tu CV para que podamos contactarte.</p>
+      </div>
+      <form class="formulario" action="#" method="post" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Datos personales</legend>
+          <div class="formulario__grilla">
+            <label class="campo"><span>Nombre completo</span><input type="text" name="nombre" placeholder="Pepito Pérez" autocomplete="name" required></label>
+            <label class="campo"><span>Correo electrónico</span><input type="email" name="email" placeholder="ejemplo@email.com" autocomplete="email" required></label>
+            <label class="campo"><span>Tel. de contacto</span><input type="tel" name="telefono" placeholder="+54 9 11 1234-5678" autocomplete="tel"></label>
+            <label class="campo"><span>Ciudad de residencia</span>
+              <select name="ciudad" required>
+                <option value="" disabled selected>Buenos Aires</option>
+                <option>Ciudad de Buenos Aires</option>
+                <option>Provincia de Buenos Aires</option>
+                <option>Córdoba</option>
+                <option>Rosario</option>
+                <option>Mendoza</option>
+                <option>Otra</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Perfil profesional</legend>
+          <div class="formulario__grilla">
+            <label class="campo"><span>Puesto laboral</span>
+              <select name="puesto" required>
+                <option value="" disabled selected>Desarrollador Front-End</option>
+                <option>Desarrollador Front-End</option>
+                <option>Desarrollador Back-End</option>
+                <option>Soporte técnico</option>
+                <option>Implementación</option>
+                <option>Ventas</option>
+                <option>Otro</option>
+              </select>
+            </label>
+            <label class="campo"><span>Nivel de experiencia</span>
+              <select name="experiencia" required>
+                <option value="" disabled selected>Junior (0-2 años)</option>
+                <option>Junior (0-2 años)</option>
+                <option>Semi Senior (2-5 años)</option>
+                <option>Senior (+5 años)</option>
+              </select>
+            </label>
+            <div class="campo campo--archivo" data-archivo>
+              <span>Adjuntar CV</span>
+              <label>
+                <input type="file" name="cv" accept=".pdf,.doc,.docx">
+                <img src="../../public/img/nosotros/icono-subir.svg" alt="" width="58" height="41">
+                <small data-archivo-texto>Arrastra el archivo o<br><b>seleccionalo desde aquí</b></small>
+              </label>
+            </div>
+            <label class="campo"><span>Carta de presentación (opcional)</span><textarea name="carta" placeholder="Mensaje de presentación..."></textarea></label>
+          </div>
+        </fieldset>
+        <!-- Este botón no está en el Figma: sin él no se puede enviar el formulario -->
+        <button class="boton formulario__enviar" type="submit">Enviar postulación</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- =====================================================
+       FOOTER — links, contacto y redes
+       ===================================================== -->
+  <footer class="footer" id="contacto">
+    <div class="footer__marca">
+      <img src="../../public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="150" height="26" loading="lazy">
+      <img class="footer__sellos" src="../../public/img/home/sellos-iram-iqnet.webp" alt="Certificaciones IRAM ISO 9001 e IQNET" width="138" height="95" loading="lazy">
+    </div>
+
+    <nav class="footer__columnas" aria-label="Links del pie de página">
+      <div class="footer__columna">
+        <h2>Industrias</h2>
+        <a href="gastronomia.html">Gastronómicas</a>
+        <a href="retail.html">Retail</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Soluciones</h2>
+        <a href="pos-erp.html">POS y ERP</a>
+        <a href="check.html">Auditorías</a>
+        <a href="marketing.html">Marketing</a>
+        <a href="productividad.html">IoT</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Empresa</h2>
+        <a href="sobre-nosotros.html">Sobre nosotros</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="sobre-nosotros.html#trabaja-con-nosotros">Trabaja con nosotros</a>
+      </div>
+    </nav>
+
+    <div class="footer__contacto">
+      <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
+      <a href="mailto:info@thinkion.com.ar">info@thinkion.com.ar</a>
+      <div class="footer__redes">
+        <!-- Cambiá los href por los links reales de las redes -->
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
+          <img src="../../public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
+          <img src="../../public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+      </div>
+    </div>
+
+    <p class="footer__copyright">© 2026 Thinkion. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../controllers/controller.js" defer></script>
+</body>
+</html>

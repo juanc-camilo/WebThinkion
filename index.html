@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thinkion | Crecé sin límites, simplificá tu negocio</title>
+  <meta name="description" content="Thinkion es un ecosistema que se adapta al tamaño de tu negocio: POS, ERP, compras, auditorías y más, integrados en un solo lugar para gastronomía, retail y servicios.">
+  <meta name="theme-color" content="#7a4aeb">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="src/styles/variables.css">
+  <link rel="stylesheet" href="src/styles/base.css">
+  <link rel="stylesheet" href="src/styles/components.css">
+  <link rel="stylesheet" href="src/styles/layout.css">
+  <link rel="stylesheet" href="src/styles/responsive.css">
+</head>
+<body class="pagina-home">
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <!-- Fondo decorativo: manchas de color del diseño. No tiene contenido editable. -->
+  <div class="fondo-deco" aria-hidden="true">
+    <img class="fondo-deco__hero" src="public/img/home/fondo-hero.svg" alt="" width="2065" height="1564">
+    <img class="fondo-deco__violeta" src="public/img/home/fondo-mancha-violeta.svg" alt="" width="1819" height="1588">
+    <img class="fondo-deco__coral-izq" src="public/img/home/fondo-mancha-coral-izq.svg" alt="" width="2045" height="2064">
+    <img class="fondo-deco__coral-der" src="public/img/home/fondo-mancha-coral-der.svg" alt="" width="2207" height="2328">
+  </div>
+
+  <!-- =====================================================
+       NAVBAR — logo, menú y botón
+       ===================================================== -->
+  <header class="navbar" data-navbar>
+    <a class="navbar__logo" href="index.html" aria-label="Thinkion, inicio">
+      <img src="public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
+    </a>
+
+    <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
+      <!-- Desplegable SOLUCIONES -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Soluciones
+          <img src="public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--soluciones">
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="src/views/pos-erp.html"><img src="public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</a>
+            <ul class="dropdown__sublista">
+              <li><a href="src/views/pos-erp.html#kds">KDS</a></li>
+              <li><a href="src/views/pos-erp.html#integraciones">Integraciones</a></li>
+              <li><a href="src/views/pos-erp.html#modos-de-uso">Modos de uso</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="src/views/check.html"><img src="public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</a>
+            <ul class="dropdown__sublista">
+              <li><a href="src/views/check.html#funcionalidades">Funcionalidades</a></li>
+              <li><a href="src/views/check.html#modos-de-uso">Modos de uso</a></li>
+              <li><a href="src/views/check.html#beneficios">Beneficios</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="src/views/marketing.html"><img src="public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</a>
+            <ul class="dropdown__sublista">
+              <li><a href="src/views/marketing.html#fidelizacion">Fidelización</a></li>
+              <li><a href="src/views/marketing.html#encuestas">Encuestas</a></li>
+              <li><a href="src/views/marketing.html#reservas">Reservas</a></li>
+            </ul>
+          </div>
+          <div class="dropdown__bloque">
+            <a class="dropdown__titulo" href="src/views/productividad.html"><img src="public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</a>
+            <ul class="dropdown__sublista">
+              <li><a href="src/views/productividad.html#dispositivos">Dispositivos</a></li>
+              <li><a href="src/views/productividad.html#integracion">Integración</a></li>
+              <li><a href="src/views/productividad.html#sensores">Sensores</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desplegable INDUSTRIAS -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Industrias
+          <img src="public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--industrias">
+          <a class="dropdown__bloque" href="src/views/gastronomia.html">
+            <span class="dropdown__titulo"><img src="public/img/home/menu-gastronomia.svg" alt="" width="24" height="24">Gastronómicas</span>
+            <span class="dropdown__texto">Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio.</span>
+          </a>
+          <a class="dropdown__bloque" href="src/views/retail.html">
+            <span class="dropdown__titulo"><img src="public/img/home/menu-retail.svg" alt="" width="24" height="24">Retail</span>
+            <span class="dropdown__texto">Administrá ventas, stock y promociones desde un mismo entorno.</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="navbar__link" href="src/views/sobre-nosotros.html">Nosotros</a>
+      <a class="navbar__link" href="src/views/clientes.html">Clientes</a>
+      <a class="boton-demo navbar__demo-movil" href="#contacto">Pedí tu demo</a>
+    </nav>
+
+    <a class="boton-demo navbar__demo" href="#contacto">
+      Pedí tu demo
+      <img src="public/img/home/chevron-boton.svg" alt="" width="8" height="13">
+    </a>
+
+    <button class="navbar__hamburguesa" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span></span><span></span><span></span>
+      <b class="sr-only">Abrir menú</b>
+    </button>
+  </header>
+
+  <main id="contenido">
+
+    <!-- =====================================================
+         HERO — título, bajada, botón y video
+         ===================================================== -->
+    <section class="hero">
+      <div class="hero__texto">
+        <!-- La palabra dentro de <span class="subrayado"> lleva la línea coral -->
+        <h1 class="hero__titulo"><span class="subrayado">Crecé</span> sin límites, simplificá tu negocio</h1>
+        <!-- Lo que está entre <strong> sale en negrita -->
+        <p class="hero__bajada">Un ecosistema que se adapta al tamaño de tu negocio. Gestioná todo desde un solo lugar, manteniendo <strong>control y datos claros</strong> en cada etapa.</p>
+        <a class="boton" href="#contacto">Pedí tu demo</a>
+      </div>
+
+      <!-- Video: cambiá el href por el link del video (por ejemplo, de YouTube) -->
+      <div class="hero__video-marco">
+        <a class="hero__video" href="#" aria-label="Ver el video de Thinkion">
+          <img src="public/img/home/video-portada.webp" alt="Persona usando el sistema Thinkion en una notebook" width="543" height="335" fetchpriority="high">
+          <img class="hero__play" src="public/img/home/play.svg" alt="" width="37" height="41">
+        </a>
+        <img class="hero__lineas" src="public/img/home/marco-video.svg" alt="" width="591" height="386" aria-hidden="true">
+      </div>
+    </section>
+
+    <div class="home">
+
+      <!-- =====================================================
+           DIFERENCIALES — "Todo tu negocio conectado..."
+           ===================================================== -->
+      <section class="diferenciales reveal">
+        <div class="diferenciales__encabezado">
+          <h2 class="diferenciales__titulo">Todo tu negocio conectado en un solo ecosistema</h2>
+          <p class="diferenciales__bajada">Una plataforma que conecta todos los puntos de tu operación, sin importar la industria.</p>
+        </div>
+        <ul class="diferenciales__lista">
+          <li class="pilar">
+            <img src="public/img/home/icono-integracion.webp" alt="" width="128" height="128" loading="lazy">
+            <h3>Integración</h3>
+            <p>Conectá ventas, operación y canales para trabajar sin fricciones.</p>
+          </li>
+          <li class="pilar">
+            <img class="pilar__icono-lampara" src="public/img/home/icono-inteligencia.webp" alt="" width="128" height="128" loading="lazy">
+            <h3>Inteligencia</h3>
+            <p>Visualizá ventas, inventario y rendimiento con datos claros, en tiempo real.</p>
+          </li>
+          <li class="pilar">
+            <img class="pilar__icono-suave" src="public/img/home/icono-escalabilidad.webp" alt="" width="128" height="128" loading="lazy">
+            <h3>Escalabilidad</h3>
+            <p>Automatizá procesos y acompañá el crecimiento de tu negocio sin perder control.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- =====================================================
+           SOLUCIONES — diagrama de módulos conectados
+           Cada módulo: el texto curvo va dentro de <textPath>
+           y la ilustración en el <img>.
+           ===================================================== -->
+      <section class="soluciones reveal" id="soluciones">
+        <!-- Curvas que siguen los textos de los módulos (no tocar) -->
+        <svg class="arcos" aria-hidden="true" focusable="false">
+          <path id="arco-chico" d="M -46.19 0 A 46.19 46.19 0 0 1 46.19 0"/>
+          <path id="arco-grande" d="M -65.96 0 A 65.96 65.96 0 0 1 65.96 0"/>
+        </svg>
+
+        <div class="diagrama">
+          <img class="diagrama__lineas" src="public/img/home/diagrama-lineas.svg" alt="" width="726" height="505" aria-hidden="true" loading="lazy">
+
+          <!-- Módulos principales -->
+          <figure class="modulo modulo--grande" style="--x: 374.21; --y: 84.12;">
+            <svg class="modulo__etiqueta" viewBox="-84 -84 168 168"><text><textPath href="#arco-grande" startOffset="50%">Compras</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-compras.webp" alt="" width="122" height="122" loading="lazy" style="opacity: .8;"></span>
+          </figure>
+          <figure class="modulo modulo--grande" style="--x: 235.24; --y: 279.12;">
+            <svg class="modulo__etiqueta" viewBox="-84 -84 168 168"><text><textPath href="#arco-grande" startOffset="50%">POS</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-pos.webp" alt="" width="122" height="122" loading="lazy" style="opacity: .8;"></span>
+          </figure>
+          <figure class="modulo modulo--grande" style="--x: 510.24; --y: 279.12;">
+            <svg class="modulo__etiqueta" viewBox="-84 -84 168 168"><text><textPath href="#arco-grande" startOffset="50%">ERP</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-erp.webp" alt="" width="122" height="122" loading="lazy"></span>
+          </figure>
+
+          <!-- Módulos secundarios -->
+          <figure class="modulo modulo--azul" style="--x: 149.51; --y: 112.77;">
+            <svg class="modulo__etiqueta" viewBox="-60 -60 120 120"><text><textPath href="#arco-chico" startOffset="50%">Forecasting</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-forecasting.webp" alt="" width="85" height="85" loading="lazy" style="opacity: .9;"></span>
+          </figure>
+          <figure class="modulo modulo--azul" style="--x: 59.77; --y: 254.76;">
+            <svg class="modulo__etiqueta" viewBox="-60 -60 120 120"><text><textPath href="#arco-chico" startOffset="50%">Reservas</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-reservas.webp" alt="" width="85" height="85" loading="lazy"></span>
+          </figure>
+          <figure class="modulo" style="--x: 92.77; --y: 392.75;">
+            <svg class="modulo__etiqueta" viewBox="-60 -60 120 120"><text><textPath href="#arco-chico" startOffset="50%">Carta QR</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-carta-qr.webp" alt="" width="85" height="85" loading="lazy"></span>
+          </figure>
+          <figure class="modulo" style="--x: 226.77; --y: 462.76;">
+            <svg class="modulo__etiqueta" viewBox="-60 -60 120 120"><text><textPath href="#arco-chico" startOffset="50%">Encuestas</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-encuestas.webp" alt="" width="85" height="85" loading="lazy"></span>
+          </figure>
+          <figure class="modulo" style="--x: 372.72; --y: 410.76;">
+            <svg class="modulo__etiqueta" viewBox="-60 -60 120 120"><text><textPath href="#arco-chico" startOffset="50%">Fidelización</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-fidelizacion.webp" alt="" width="85" height="85" loading="lazy"></span>
+          </figure>
+          <figure class="modulo" style="--x: 570.72; --y: 66.76;">
+            <svg class="modulo__etiqueta" viewBox="-60 -60 120 120"><text><textPath href="#arco-chico" startOffset="50%">Reportes BI</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-reportes-bi.webp" alt="" width="85" height="85" loading="lazy" style="opacity: .8;"></span>
+          </figure>
+          <figure class="modulo" style="--x: 658.51; --y: 172.76;">
+            <svg class="modulo__etiqueta" viewBox="-60 -60 120 120"><text><textPath href="#arco-chico" startOffset="50%">Agente AI</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-agente-ai.webp" alt="" width="85" height="85" loading="lazy" style="opacity: .8;"></span>
+          </figure>
+          <figure class="modulo" style="--x: 690.13; --y: 309.76;">
+            <svg class="modulo__etiqueta" viewBox="-60 -60 120 120"><text><textPath href="#arco-chico" startOffset="50%">Auditorías</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-auditorias.webp" alt="" width="85" height="85" loading="lazy"></span>
+          </figure>
+          <figure class="modulo" style="--x: 626.6; --y: 425.77;">
+            <svg class="modulo__etiqueta" viewBox="-60 -60 120 120"><text><textPath href="#arco-chico" startOffset="50%">E-commerce</textPath></text></svg>
+            <span class="modulo__circulo"><img src="public/img/home/diagrama-e-commerce.webp" alt="" width="85" height="85" loading="lazy"></span>
+          </figure>
+        </div>
+
+        <div class="soluciones__texto">
+          <h2 class="titulo-seccion">Soluciones que se potencian entre sí</h2>
+          <p class="bajada-seccion soluciones__bajada">Un ecosistema donde cada módulo se integra para amplificar el valor de tu operación, desde la venta hasta la analítica.</p>
+        </div>
+        <a class="boton" href="#contacto">Pedí tu demo</a>
+      </section>
+
+      <!-- =====================================================
+           INDUSTRIAS — pestañas Gastronomía / Retail / Productividad
+           Cada pestaña muestra su panel (data-tab = data-panel).
+           ===================================================== -->
+      <section class="industrias reveal" data-tabs>
+        <div class="pestanas" role="tablist" aria-label="Industrias">
+          <button class="pestanas__boton is-activa" type="button" role="tab" aria-selected="true" data-tab="gastronomia">Gastronomía</button>
+          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="retail">Retail</button>
+          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="productividad">Productividad</button>
+        </div>
+
+        <div class="industrias__card">
+          <img class="industrias__chevron" src="public/img/home/deco-chevron-tabs.svg" alt="" width="282" height="536" aria-hidden="true">
+
+          <div class="industrias__panel" role="tabpanel" data-panel="gastronomia">
+            <div class="industrias__texto">
+              <h2>Diseñado para el día a día de la gastronomía</h2>
+              <p><strong>Gestioná</strong> pedidos, mesas y pagos sin cortar el ritmo del servicio. <strong>Mantené el control</strong> de la operación incluso en los momentos de mayor demanda.</p>
+            </div>
+            <img src="public/img/home/tab-gastronomia.webp" alt="Plato con cubiertos" width="377" height="338" loading="lazy">
+          </div>
+
+          <div class="industrias__panel" role="tabpanel" data-panel="retail" hidden>
+            <div class="industrias__texto">
+              <h2>Diseñado para la operación diaria del retail</h2>
+              <p>Administrá ventas, stock y promociones desde un mismo entorno. <strong>Detectá oportunidades, cuidá márgenes y evitá quiebres de stock.</strong></p>
+            </div>
+            <img src="public/img/home/tab-retail.webp" alt="Bolsa de compras" width="377" height="338" loading="lazy">
+          </div>
+
+          <div class="industrias__panel" role="tabpanel" data-panel="productividad" hidden>
+            <div class="industrias__texto">
+              <h2>Diseñado para mejorar la productividad de tu negocio</h2>
+              <p><strong>Automatizá y monitoreá equipos y dispositivos en tiempo real.</strong> Reducí tareas manuales y ganá control sobre la operación física de tu negocio.</p>
+            </div>
+            <img src="public/img/home/tab-productividad.webp" alt="Dispositivos conectados" width="377" height="338" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           CLIENTES — "Ellos ya se sumaron al cambio"
+           Carrusel infinito: se ven 4 clientes enteros y medio a
+           cada costado. Tocando un costado (o con las flechas del
+           teclado, arrastrando o deslizando) avanza y vuelve a
+           empezar solo.
+           Para agregar un cliente, copiá un <li class="cliente">.
+           "cliente--activo" marca el destacado al cargar.
+           ===================================================== -->
+      <section class="clientes reveal" id="clientes">
+        <h2 class="clientes__titulo">Ellos ya se sumaron al cambio</h2>
+
+        <div class="carrusel" data-carrusel tabindex="0" aria-label="Clientes de Thinkion. Usá las flechas para ver más.">
+          <button class="carrusel__costado carrusel__costado--anterior" type="button" data-anterior aria-label="Ver clientes anteriores"></button>
+          <ul class="carrusel__lista">
+            <li class="cliente">
+              <img class="cliente__foto" src="public/img/home/cliente-sushi.webp" alt="Sushi de Sushi 2x1" width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-sushi.webp" alt="Sushi 2x1" width="122" height="120" loading="lazy">
+                <span class="cliente__rubro">Gastronomía</span>
+              </div>
+            </li>
+            <li class="cliente cliente--activo">
+              <img class="cliente__foto" src="public/img/home/cliente-club-milanesa.webp" alt="Milanesa con papas fritas de El Club de la Milanesa" width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo" src="public/img/home/logo-club-milanesa.webp" alt="El Club de la Milanesa" width="122" height="120" loading="lazy">
+                <span class="cliente__rubro">Gastronomía</span>
+              </div>
+            </li>
+            <li class="cliente">
+              <img class="cliente__foto" src="public/img/home/cliente-temple.webp" alt="Barra de la cervecería Temple" width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo cliente__logo--temple" src="public/img/home/logo-temple.webp" alt="Temple Brewery" width="122" height="126" loading="lazy">
+                <span class="cliente__rubro">Gastronomía</span>
+              </div>
+            </li>
+            <li class="cliente">
+              <img class="cliente__foto" src="public/img/home/cliente-mishka.webp" alt="Frente del local de Mishka" width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo cliente__logo--mishka" src="public/img/home/logo-mishka.webp" alt="Mishka" width="133" height="76" loading="lazy">
+                <span class="cliente__rubro">Retail</span>
+              </div>
+            </li>
+            <li class="cliente">
+              <img class="cliente__foto" src="public/img/home/cliente-prune.webp" alt="Vidriera de Prüne" width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-prune.svg" alt="Prüne" width="122" height="120" loading="lazy">
+                <span class="cliente__rubro">Retail</span>
+              </div>
+            </li>
+            <li class="cliente">
+              <img class="cliente__foto" src="public/img/home/cliente-patagonia.webp" alt="Cervecería Patagonia" width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-patagonia.webp" alt="Cerveza Patagonia" width="122" height="120" loading="lazy">
+                <span class="cliente__rubro">Gastronomía</span>
+              </div>
+            </li>
+            <li class="cliente">
+              <img class="cliente__foto" src="public/img/home/cliente-rapanui.webp" alt="Chocolates y helados de Rapa Nui" width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-rapanui.webp" alt="Rapa Nui" width="122" height="120" loading="lazy">
+                <span class="cliente__rubro">Gastronomía</span>
+              </div>
+            </li>
+            <li class="cliente">
+              <img class="cliente__foto" src="public/img/home/cliente-beerco.webp" alt="Cervezas de Beer Co." width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-beerco.webp" alt="Beer Co." width="122" height="120" loading="lazy">
+                <span class="cliente__rubro">Gastronomía</span>
+              </div>
+            </li>
+            <li class="cliente">
+              <img class="cliente__foto" src="public/img/home/cliente-quijote.webp" alt="Sándwiches y tortas de Quijote" width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-quijote.webp" alt="Quijote" width="122" height="120" loading="lazy">
+                <span class="cliente__rubro">Gastronomía</span>
+              </div>
+            </li>
+          </ul>
+          <button class="carrusel__costado carrusel__costado--siguiente" type="button" data-siguiente aria-label="Ver más clientes"></button>
+        </div>
+
+        <figure class="testimonio">
+          <blockquote class="testimonio__cita">“Mantener el control de toda la operación nunca fue tan fácil. Todo integrado, todo desde cualquier lugar.”</blockquote>
+          <figcaption class="testimonio__autor">Federico Sala, El Club de la Milanesa</figcaption>
+        </figure>
+
+        <a class="boton boton--azul" href="src/views/clientes.html">Ver nuestros clientes</a>
+      </section>
+
+      <hr class="separador">
+
+      <!-- =====================================================
+           PREGUNTAS FRECUENTES
+           Cada pregunta es un <details>: el texto de <summary> es la
+           pregunta y el <p> de abajo es la respuesta.
+           ===================================================== -->
+      <section class="faq reveal" id="preguntas" data-tabs>
+        <div class="faq__encabezado">
+          <h2 class="titulo-seccion faq__titulo">Preguntas frecuentes</h2>
+          <p class="bajada-seccion faq__bajada">Conocé cómo funciona la plataforma, cómo se integra y qué incluye cada solución.</p>
+        </div>
+
+        <div class="pestanas pestanas--faq" role="tablist" aria-label="Categorías de preguntas">
+          <button class="pestanas__boton is-activa" type="button" role="tab" aria-selected="true" data-tab="generales">Generales</button>
+          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="retail">Retail</button>
+          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="gastronomicas">Gastronómicas</button>
+          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="productos">Productos</button>
+          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="precios">Precios</button>
+        </div>
+
+        <!-- Categoría: GENERALES -->
+        <div class="faq__lista" role="tabpanel" data-panel="generales">
+          <details class="faq__item" open>
+            <summary>¿Qué es Thinkion y a quién está dirigido?</summary>
+            <p>Thinkion es una plataforma que unifica todas las herramientas que necesitás para gestionar tu negocio. Está pensada para <strong>gastronomía, retail y servicios</strong>, y te ayuda a simplificar la operación y crecer con control.</p>
+          </details>
+          <!-- RESPUESTA PROVISORIA: el Figma no trae el texto -->
+          <details class="faq__item">
+            <summary>¿Necesito ser un experto en tecnología para usar Thinkion?</summary>
+            <p>No. Thinkion está pensado para que cualquier persona de tu equipo lo use desde el primer día, y te acompañamos en la implementación.</p>
+          </details>
+          <!-- RESPUESTA PROVISORIA -->
+          <details class="faq__item">
+            <summary>¿Thinkion puede integrarse con los sistemas que ya uso?</summary>
+            <p>Sí. Thinkion se integra con plataformas de delivery, medios de pago, facturación electrónica y otras herramientas que ya usás.</p>
+          </details>
+          <!-- RESPUESTA PROVISORIA -->
+          <details class="faq__item">
+            <summary>¿Qué tipo de soporte técnico ofrecen?</summary>
+            <p>Tenemos un equipo de soporte que te ayuda por WhatsApp, mail y teléfono para que tu operación nunca se detenga.</p>
+          </details>
+        </div>
+
+        <!-- Categoría: RETAIL (TEXTO PROVISORIO) -->
+        <div class="faq__lista" role="tabpanel" data-panel="retail" hidden>
+          <details class="faq__item" open>
+            <summary>¿Puedo manejar varias sucursales?</summary>
+            <p>Sí. Controlás stock, ventas y precios de todas tus sucursales desde un mismo panel.</p>
+          </details>
+        </div>
+
+        <!-- Categoría: GASTRONÓMICAS (TEXTO PROVISORIO) -->
+        <div class="faq__lista" role="tabpanel" data-panel="gastronomicas" hidden>
+          <details class="faq__item" open>
+            <summary>¿Sirve para restaurantes con delivery?</summary>
+            <p>Sí. Integrás mesas, mostrador y delivery en un solo sistema, con los pedidos de todas las plataformas en un mismo lugar.</p>
+          </details>
+        </div>
+
+        <!-- Categoría: PRODUCTOS (TEXTO PROVISORIO) -->
+        <div class="faq__lista" role="tabpanel" data-panel="productos" hidden>
+          <details class="faq__item" open>
+            <summary>¿Qué módulos incluye Thinkion?</summary>
+            <p>POS, ERP, compras, auditorías, fidelización, reportes BI y más. Podés sumar solo los que necesitás.</p>
+          </details>
+        </div>
+
+        <!-- Categoría: PRECIOS (TEXTO PROVISORIO) -->
+        <div class="faq__lista" role="tabpanel" data-panel="precios" hidden>
+          <details class="faq__item" open>
+            <summary>¿Cuánto cuesta Thinkion?</summary>
+            <p>Depende de los módulos y la cantidad de locales. Pedí tu demo y te armamos una propuesta a medida.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           LLAMADO FINAL — "¿Querés ver cómo funciona...?"
+           ===================================================== -->
+      <section class="cta reveal">
+        <h2 class="cta__titulo">¿Querés ver cómo funciona en tu negocio?</h2>
+        <p class="cta__bajada">Hablemos y veamos cómo Thinkion puede adaptarse a tu negocio.</p>
+        <a class="boton" href="#contacto">Pedí tu demo</a>
+      </section>
+    </div>
+  </main>
+
+  <!-- =====================================================
+       FOOTER — links, contacto y redes
+       ===================================================== -->
+  <footer class="footer" id="contacto">
+    <div class="footer__marca">
+      <img src="public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="150" height="26" loading="lazy">
+      <img class="footer__sellos" src="public/img/home/sellos-iram-iqnet.webp" alt="Certificaciones IRAM ISO 9001 e IQNET" width="138" height="95" loading="lazy">
+    </div>
+
+    <nav class="footer__columnas" aria-label="Links del pie de página">
+      <div class="footer__columna">
+        <h2>Industrias</h2>
+        <a href="src/views/gastronomia.html">Gastronómicas</a>
+        <a href="src/views/retail.html">Retail</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Soluciones</h2>
+        <a href="src/views/pos-erp.html">POS y ERP</a>
+        <a href="src/views/check.html">Auditorías</a>
+        <a href="src/views/marketing.html">Marketing</a>
+        <a href="src/views/productividad.html">IoT</a>
+      </div>
+      <div class="footer__columna">
+        <h2>Empresa</h2>
+        <a href="src/views/sobre-nosotros.html">Sobre nosotros</a>
+        <a href="src/views/clientes.html">Clientes</a>
+        <a href="src/views/sobre-nosotros.html#trabaja-con-nosotros">Trabaja con nosotros</a>
+      </div>
+    </nav>
+
+    <div class="footer__contacto">
+      <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
+      <a href="mailto:info@thinkion.com.ar">info@thinkion.com.ar</a>
+      <div class="footer__redes">
+        <!-- Cambiá los href por los links reales de las redes -->
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
+          <img src="public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
+          <img src="public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
+        </a>
+      </div>
+    </div>
+
+    <p class="footer__copyright">© 2026 Thinkion. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="src/controllers/controller.js" defer></script>
+</body>
+</html>
