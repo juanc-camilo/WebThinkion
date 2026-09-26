@@ -60,8 +60,8 @@
   .dropdown::before, .dropdown::after { display: none; }
   .navbar__item.is-open .dropdown { display: grid; transform: none; }
   .dropdown__sublista { flex-direction: row; flex-wrap: wrap; gap: 6px 16px; }
-  .dropdown__sublista a { padding-left: 34px; }
-  .dropdown__sublista li + li a { padding-left: 0; }
+  .dropdown__sublista li { padding-left: 34px; }
+  .dropdown__sublista li + li { padding-left: 0; }
 
   .hero { flex-direction: column; gap: 48px; padding: 40px 0 72px; }
   .hero__texto { align-items: center; text-align: center; width: min(640px, 100%); }

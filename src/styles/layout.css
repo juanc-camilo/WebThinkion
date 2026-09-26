@@ -177,16 +177,17 @@ body { display: flow-root; position: relative; }
   line-height: 60px;
   text-align: center;
 }
-/* Se ven 4 tarjetas enteras y media tarjeta a cada costado (1435px = 5 tarjetas + 5 espacios) */
+/* Se ven 4 tarjetas enteras y, a cada costado, unos 2/3 de tarjeta (1511px de ancho).
+   La máscara las difumina de forma progresiva hasta desaparecer en el borde del carrusel. */
 .carrusel {
   margin: -12px auto -20px;
-  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, .1) 0, rgba(0, 0, 0, .5) 128px, #000 159px, #000 calc(100% - 159px), rgba(0, 0, 0, .5) calc(100% - 128px), rgba(0, 0, 0, .1) 100%);
-  mask-image: linear-gradient(90deg, rgba(0, 0, 0, .1) 0, rgba(0, 0, 0, .5) 128px, #000 159px, #000 calc(100% - 159px), rgba(0, 0, 0, .5) calc(100% - 128px), rgba(0, 0, 0, .1) 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, .06) 16px, rgba(0, 0, 0, .18) 40px, rgba(0, 0, 0, .36) 70px, rgba(0, 0, 0, .58) 104px, rgba(0, 0, 0, .8) 140px, rgba(0, 0, 0, .94) 172px, #000 197px, #000 calc(100% - 197px), rgba(0, 0, 0, .94) calc(100% - 172px), rgba(0, 0, 0, .8) calc(100% - 140px), rgba(0, 0, 0, .58) calc(100% - 104px), rgba(0, 0, 0, .36) calc(100% - 70px), rgba(0, 0, 0, .18) calc(100% - 40px), rgba(0, 0, 0, .06) calc(100% - 16px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, rgba(0, 0, 0, .06) 16px, rgba(0, 0, 0, .18) 40px, rgba(0, 0, 0, .36) 70px, rgba(0, 0, 0, .58) 104px, rgba(0, 0, 0, .8) 140px, rgba(0, 0, 0, .94) 172px, #000 197px, #000 calc(100% - 197px), rgba(0, 0, 0, .94) calc(100% - 172px), rgba(0, 0, 0, .8) calc(100% - 140px), rgba(0, 0, 0, .58) calc(100% - 104px), rgba(0, 0, 0, .36) calc(100% - 70px), rgba(0, 0, 0, .18) calc(100% - 40px), rgba(0, 0, 0, .06) calc(100% - 16px), transparent 100%);
   overflow: hidden;
   padding: 12px 0 20px;
   position: relative;
   touch-action: pan-y;
-  width: min(100%, 1435px);
+  width: min(100%, 1511px);
 }
 .carrusel__lista {
   display: flex;
@@ -196,7 +197,7 @@ body { display: flow-root; position: relative; }
 }
 .carrusel__lista.is-animando { transition: transform .55s var(--ease); }
 /* Zonas de los costados: al tocarlas el carrusel avanza o retrocede */
-.carrusel__costado { bottom: 0; cursor: pointer; position: absolute; top: 0; width: 159px; z-index: 2; }
+.carrusel__costado { bottom: 0; cursor: pointer; position: absolute; top: 0; width: calc((100% - 1117px) / 2); z-index: 2; }
 .carrusel__costado--anterior { left: 0; }
 .carrusel__costado--siguiente { right: 0; }
 .carrusel__costado:focus-visible { outline-offset: -6px; }

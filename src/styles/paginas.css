@@ -181,6 +181,8 @@
 .pagina-postulacion .postulacion, .pagina-demo .postulacion { background: rgba(255, 255, 255, .78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 7px 30px -8px rgba(19, 56, 131, .25), inset 0 0 0 1px rgba(255, 255, 255, .8); }
 
 /* ---------- Pedí tu demo ---------- */
+/* Sin el botón del navbar: un espacio del ancho del logo mantiene el menú centrado */
+@media (min-width: 1101px) { .pagina-demo .navbar::after { content: ""; flex: 0 0 189px; } }
 .demo { align-items: start; display: grid; gap: 48px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); padding: 40px 50px; }
 .demo__info { display: flex; flex-direction: column; gap: 16px; }
 .demo__info h1 { color: var(--azul-oscuro); font-size: 40px; font-weight: 400; line-height: 50px; }
@@ -273,6 +275,57 @@
 .pagina-check .footer { margin-top: 195px; }
 
 /* =========================================================
+   POS & ERP y MARKETING — usan el diseño de Check y suman:
+   ========================================================= */
+.check-hero .boton { margin-top: 8px; }
+/* Imagen fija en lugar de video (sin oscurecer) */
+.check-video--imagen::after { display: none; }
+/* Capturas del sistema e ilustraciones: van dentro de un recuadro lila */
+.funcion__visual {
+  align-items: center;
+  background: linear-gradient(180deg, #e9e3fd 0%, #f6f3ff 70%);
+  border-radius: 22px;
+  display: flex;
+  flex-shrink: 0;
+  height: 493px;
+  justify-content: center;
+  padding: 36px;
+  width: 544px;
+}
+.funcion__visual img { height: 100%; object-fit: contain; width: 100%; }
+.funcion__visual--icono img { height: 180px; width: 180px; }
+.funcion__visual--ilustracion img { height: 70%; }
+.funcion__lista { display: flex; flex-direction: column; gap: 10px; }
+.funcion__lista li { color: var(--gris); font-size: 18px; line-height: 24px; padding-left: 30px; position: relative; }
+.funcion__lista li::before { background: var(--lila) url("../../public/img/segmentos/dato-check.svg") center / 12px no-repeat; border-radius: 50%; content: ""; height: 20px; left: 0; position: absolute; top: 2px; width: 20px; }
+.funcion__lista strong { color: var(--azul-oscuro); font-weight: 500; }
+
+/* Grilla de tarjetas (Integraciones / Todo lo que incluye) */
+.integraciones { display: flex; flex-direction: column; gap: 32px; margin-top: 130px; width: min(var(--contenido), 100% - 2 * var(--gutter)); }
+.integraciones__encabezado { display: flex; flex-direction: column; gap: 8px; margin: 0 auto; max-width: 760px; text-align: center; }
+.integraciones__encabezado p { color: var(--gris); font-size: 20px; line-height: 26px; }
+.integraciones__lista { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.integraciones__lista li {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, .7);
+  border-radius: 20px;
+  box-shadow: 0 2px 14px 5px rgba(0, 0, 0, .03), inset 0 0 0 1px rgba(255, 255, 255, .8);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px;
+}
+@media (min-width: 900px) { .integraciones__lista--tres { grid-template-columns: repeat(3, 1fr); } }
+.integraciones__logo { align-self: flex-start; background: var(--blanco); border-radius: 50%; box-shadow: 0 2px 8px rgba(19, 56, 131, .12); height: 56px; margin-bottom: 6px; object-fit: contain; width: 56px; }
+.integraciones__logo--relleno { padding: 7px; }
+/* Logos que son solo texto (sin círculo) */
+.integraciones__logo--texto { background: none; border-radius: 0; box-shadow: none; height: 28px; margin: 14px 0 20px; width: auto; }
+.integraciones__lista h3 { color: var(--azul-oscuro); font-size: 20px; font-weight: 600; line-height: 25px; }
+.integraciones__lista p { color: var(--gris); font-size: 16px; line-height: 21px; }
+.solucion__cta { margin-top: 130px; }
+
+/* =========================================================
    CLIENTES
    ========================================================= */
 .clientes-pag { align-items: center; display: flex; flex-direction: column; }
@@ -362,6 +415,7 @@
   .evolucion__pie { padding: 0; }
   .funcion, .funcion--invertida { flex-direction: column; }
   .funcion > img { height: auto; aspect-ratio: 544 / 493; width: min(544px, 100%); }
+  .funcion__visual { height: auto; aspect-ratio: 544 / 493; padding: 24px; width: min(544px, 100%); }
   .funcion__texto { width: min(600px, 100%); }
   .check-hero h1 { font-size: clamp(34px, 5vw, 56px); line-height: 1.25; }
   .clientes-hero h1 { font-size: clamp(36px, 5.6vw, 64px); line-height: 1.25; }
@@ -393,6 +447,10 @@
   .check-dato { font-size: 12px; gap: 6px; line-height: 15px; padding: 6px 10px; width: 150px; }
   .check-dato img { height: 18px; width: 16px; }
   .check-logos, .check-funciones { margin-top: 64px; }
+  .integraciones, .solucion__cta { margin-top: 64px; }
+  .integraciones__encabezado p { font-size: 17px; line-height: 23px; }
+  .funcion__lista li { font-size: 16px; line-height: 22px; }
+  .funcion__visual--icono img { height: 110px; width: 110px; }
   .check-logos img { height: 80px; width: 80px; }
   .funcion__texto h2 { font-size: 32px; line-height: 40px; }
   .funcion__texto p { font-size: 17px; }

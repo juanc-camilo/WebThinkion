@@ -98,29 +98,41 @@ document.querySelectorAll('[data-carrusel]').forEach((carrusel) => {
     setTimeout(correr, 650);
   };
 
-  const siguiente = () => {
-    if (moviendo) return;
-    moviendo = true;
+  // Los clics que llegan durante una animación no se pierden: se acumulan y se
+  // recorren seguidos, uno detrás del otro.
+  let pendientes = 0;
+  const pasoSiguiente = () => {
     const { paso, base } = medidas();
     marcarActiva(2); // la que entra se destaca desde el primer momento, igual que hacia la izquierda
     ubicar(base - paso, true);
     alTerminar(() => {
       lista.append(lista.firstElementChild);
       ubicar(base, false);
-      moviendo = false;
+      terminarPaso();
     });
   };
-  const anterior = () => {
-    if (moviendo) return;
-    moviendo = true;
+  const pasoAnterior = () => {
     const { paso, base } = medidas();
     lista.prepend(lista.lastElementChild);
     ubicar(base - paso, false);
     lista.getBoundingClientRect(); // fuerza el reflow antes de animar
     ubicar(base, true);
     marcarActiva();
-    alTerminar(() => { moviendo = false; });
+    alTerminar(terminarPaso);
   };
+  const moverPendientes = () => {
+    if (moviendo || pendientes === 0) return;
+    moviendo = true;
+    const sentido = Math.sign(pendientes);
+    pendientes -= sentido;
+    if (sentido > 0) pasoSiguiente(); else pasoAnterior();
+  };
+  function terminarPaso() {
+    moviendo = false;
+    moverPendientes();
+  }
+  const siguiente = () => { pendientes += 1; moverPendientes(); };
+  const anterior = () => { pendientes -= 1; moverPendientes(); };
 
   ubicar(medidas().base, false);
   window.addEventListener('resize', () => ubicar(medidas().base, false));
@@ -207,7 +219,7 @@ document.querySelectorAll('[data-filtros]').forEach((seccion) => {
     });
     let visibles = 0;
     tarjetas.forEach((tarjeta) => {
-      const mostrar = filtro === 'todos' || tarjeta.dataset.rubro === filtro;
+      const mostrar = filtro === 'todos' || tarjeta.dataset.rubro.split(' ').includes(filtro);
       tarjeta.hidden = !mostrar;
       if (mostrar) visibles += 1;
     });

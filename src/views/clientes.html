@@ -41,38 +41,38 @@
           <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
         </button>
         <div class="dropdown dropdown--soluciones">
-          <div class="dropdown__bloque">
-            <a class="dropdown__titulo" href="pos-erp.html"><img src="../../public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</a>
+          <a class="dropdown__bloque" href="pos-erp.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</span>
             <ul class="dropdown__sublista">
-              <li><a href="pos-erp.html#kds">KDS</a></li>
-              <li><a href="pos-erp.html#integraciones">Integraciones</a></li>
-              <li><a href="pos-erp.html#modos-de-uso">Modos de uso</a></li>
+              <li>KDS</li>
+              <li>Integraciones</li>
+              <li>Modos de uso</li>
             </ul>
-          </div>
-          <div class="dropdown__bloque">
-            <a class="dropdown__titulo" href="check.html"><img src="../../public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</a>
+          </a>
+          <a class="dropdown__bloque" href="check.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</span>
             <ul class="dropdown__sublista">
-              <li><a href="check.html#funcionalidades">Funcionalidades</a></li>
-              <li><a href="check.html#modos-de-uso">Modos de uso</a></li>
-              <li><a href="check.html#beneficios">Beneficios</a></li>
+              <li>Funcionalidades</li>
+              <li>Modos de uso</li>
+              <li>Beneficios</li>
             </ul>
-          </div>
-          <div class="dropdown__bloque">
-            <a class="dropdown__titulo" href="marketing.html"><img src="../../public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</a>
+          </a>
+          <a class="dropdown__bloque" href="marketing.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</span>
             <ul class="dropdown__sublista">
-              <li><a href="marketing.html#fidelizacion">Fidelización</a></li>
-              <li><a href="marketing.html#encuestas">Encuestas</a></li>
-              <li><a href="marketing.html#reservas">Reservas</a></li>
+              <li>Fidelización</li>
+              <li>Encuestas</li>
+              <li>Reservas</li>
             </ul>
-          </div>
-          <div class="dropdown__bloque">
-            <a class="dropdown__titulo" href="productividad.html"><img src="../../public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</a>
+          </a>
+          <a class="dropdown__bloque" href="productividad.html">
+            <span class="dropdown__titulo"><img src="../../public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</span>
             <ul class="dropdown__sublista">
-              <li><a href="productividad.html#dispositivos">Dispositivos</a></li>
-              <li><a href="productividad.html#integracion">Integración</a></li>
-              <li><a href="productividad.html#sensores">Sensores</a></li>
+              <li>Dispositivos</li>
+              <li>Integración</li>
+              <li>Sensores</li>
             </ul>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -123,6 +123,7 @@
     <!-- =====================================================
          FILTROS + GRILLA DE CLIENTES
          Cada tarjeta tiene data-rubro="gastronomicas", "retail" o "productividad".
+         Para que aparezca en más de un filtro, separalos con un espacio: data-rubro="gastronomicas retail".
          Para sumar un cliente, copiá un <article class="tarjeta-cliente">.
          ===================================================== -->
     <section data-filtros>
@@ -151,7 +152,7 @@
         <span class="tarjeta-cliente__rubro">Retail</span>
         <span class="tarjeta-cliente__nombre" aria-hidden="true">Prüne</span>
       </article>
-      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+      <article class="tarjeta-cliente" data-rubro="gastronomicas retail">
         <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-sushi.webp" alt="" width="352" height="139" loading="lazy">
         <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-sushi.webp" alt="Sushi 2x1" width="120" height="120" loading="lazy">
         <span class="tarjeta-cliente__rubro">Gastronómica</span>
@@ -276,6 +277,30 @@
         <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-sensei.webp" alt="Sensei Sushi" width="120" height="120" loading="lazy">
         <span class="tarjeta-cliente__rubro">Gastronómica</span>
         <span class="tarjeta-cliente__nombre" aria-hidden="true">Sensei Sushi</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-harrys.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-harrys.webp" alt="Harry's Burger" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Harry's Burger</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-trevi.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-trevi.webp" alt="Trevi Gelato" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Trevi Gelato</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-dashi.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-dashi.webp" alt="Dashi" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Dashi</span>
+      </article>
+      <article class="tarjeta-cliente" data-rubro="gastronomicas">
+        <img class="tarjeta-cliente__foto" src="../../public/img/clientes/foto-tutsy.webp" alt="" width="352" height="139" loading="lazy">
+        <img class="tarjeta-cliente__logo" src="../../public/img/clientes/logo-tutsy.webp" alt="Tutsy Pizza" width="120" height="120" loading="lazy">
+        <span class="tarjeta-cliente__rubro">Gastronómica</span>
+        <span class="tarjeta-cliente__nombre" aria-hidden="true">Tutsy Pizza</span>
       </article>
         <p class="grilla-clientes__vacio" data-vacio hidden>Muy pronto vas a ver acá a los clientes de esta industria.</p>
       </div>
