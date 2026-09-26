@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre nosotros | Thinkion</title>
-  <meta name="description" content="Conocé a Thinkion: nuestros valores, nuestra evolución, nuestra política de calidad y cómo sumarte al equipo.">
+  <meta name="description" content="Conocé a Thinkion: nuestros valores, nuestra evolución y nuestra política de calidad.">
   <meta name="theme-color" content="#7a4aeb">
+  <link rel="icon" href="../../public/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
@@ -29,7 +30,8 @@
        ===================================================== -->
   <header class="navbar" data-navbar>
     <a class="navbar__logo" href="../../index.html" aria-label="Thinkion, inicio">
-      <img src="../../public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
+      <img class="navbar__logo-claro" src="../../public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
+      <img class="navbar__logo-oscuro" src="../../public/img/home/logo-thinkion-oscuro.svg" alt="" width="189" height="33" aria-hidden="true">
     </a>
 
     <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
@@ -95,10 +97,10 @@
 
       <a class="navbar__link" href="sobre-nosotros.html">Nosotros</a>
       <a class="navbar__link" href="clientes.html">Clientes</a>
-      <a class="boton-demo navbar__demo-movil" href="#contacto">Pedí tu demo</a>
+      <a class="boton-demo navbar__demo-movil" href="demo.html">Pedí tu demo</a>
     </nav>
 
-    <a class="boton-demo navbar__demo" href="#contacto">
+    <a class="boton-demo navbar__demo" href="demo.html">
       Pedí tu demo
       <img src="../../public/img/home/chevron-boton.svg" alt="" width="8" height="13">
     </a>
@@ -223,84 +225,12 @@
     </section>
 
     <!-- =====================================================
-         POLÍTICA DE CALIDAD — "Leer más" despliega el texto completo
+         POLÍTICA DE CALIDAD — texto completo
          ===================================================== -->
-    <section class="politica reveal" data-politica>
+    <section class="politica reveal">
       <h2 class="titulo-seccion-40">Nuestra política de calidad</h2>
-      <div class="politica__texto" id="politica-texto"><p>Thinkion brinda soluciones especializadas en sistemas POS &amp; ERP para la gestión eficiente de locales gastronómicos. Nuestra propuesta integral va más allá de la automatización, abarcando operación, gestión, venta y administración, brindando así una experiencia completa a nuestros clientes.</p><p>Centramos nuestro enfoque en un proceso de consultoría personalizado, identificando la configuración óptima del sistema para adaptarlo a las operaciones específicas del cliente, brindando asesoramiento integral durante todas las etapas de la implementación. Esto incluye respaldo durante cambios culturales, transformación digital, mejora de la productividad y optimización del flujo de trabajo.</p><p>Creemos en la integración de soluciones, enfocada en mejorar tanto la comunicación interna como las interacciones externas relacionadas con la operación y el soporte. Buscamos crear un ecosistema cohesivo que optimice la eficiencia y efectividad en las operaciones gastronómicas.</p><p>Reafirmamos nuestro compromiso inquebrantable con la calidad, estableciendo relaciones sólidas con proveedores estratégicos, evaluando la calidad de sus servicios para garantizar coherencia y fiabilidad en nuestra cadena de suministro. La capacidad de nuestro equipo es también un pilar en la búsqueda de la calidad, su formación constante es una prioridad fundamental. Todo ello nos permite aspirar a ser una entidad rentable a largo plazo en búsqueda de la satisfacción continua de nuestros clientes.</p><p>Operamos eficientemente, optimizando recursos y comprometiéndonos con la mejora continua. El cumplimiento de legislación y normativas aplicables es esencial en nuestra búsqueda de excelencia operativa.</p><p>Nuestro enfoque trasciende la simple transacción comercial. Buscamos posicionar a Thinkion como una fuerza en la innovación tecnológica, aspirando a ser auténticos socios estratégicos de nuestros clientes en su camino hacia el éxito.</p>
+      <div class="politica__texto"><p>Thinkion brinda soluciones especializadas en sistemas POS &amp; ERP para la gestión eficiente de locales gastronómicos. Nuestra propuesta integral va más allá de la automatización, abarcando operación, gestión, venta y administración, brindando así una experiencia completa a nuestros clientes.</p><p>Centramos nuestro enfoque en un proceso de consultoría personalizado, identificando la configuración óptima del sistema para adaptarlo a las operaciones específicas del cliente, brindando asesoramiento integral durante todas las etapas de la implementación. Esto incluye respaldo durante cambios culturales, transformación digital, mejora de la productividad y optimización del flujo de trabajo.</p><p>Creemos en la integración de soluciones, enfocada en mejorar tanto la comunicación interna como las interacciones externas relacionadas con la operación y el soporte. Buscamos crear un ecosistema cohesivo que optimice la eficiencia y efectividad en las operaciones gastronómicas.</p><p>Reafirmamos nuestro compromiso inquebrantable con la calidad, estableciendo relaciones sólidas con proveedores estratégicos, evaluando la calidad de sus servicios para garantizar coherencia y fiabilidad en nuestra cadena de suministro. La capacidad de nuestro equipo es también un pilar en la búsqueda de la calidad, su formación constante es una prioridad fundamental. Todo ello nos permite aspirar a ser una entidad rentable a largo plazo en búsqueda de la satisfacción continua de nuestros clientes.</p><p>Operamos eficientemente, optimizando recursos y comprometiéndonos con la mejora continua. El cumplimiento de legislación y normativas aplicables es esencial en nuestra búsqueda de excelencia operativa.</p><p>Nuestro enfoque trasciende la simple transacción comercial. Buscamos posicionar a Thinkion como una fuerza en la innovación tecnológica, aspirando a ser auténticos socios estratégicos de nuestros clientes en su camino hacia el éxito.</p>
       </div>
-      <button class="politica__boton" type="button" aria-expanded="false" aria-controls="politica-texto">
-        <span>Leer más</span>
-        <img src="../../public/img/nosotros/flecha-select.svg" alt="" width="24" height="24">
-      </button>
-    </section>
-
-    <!-- =====================================================
-         UNITE A NUESTRO EQUIPO — formulario de postulación.
-         Para recibir los datos hace falta conectar el formulario
-         (por ejemplo con Formspree o un servidor): poné la dirección en action="".
-         ===================================================== -->
-    <section class="postulacion reveal" id="trabaja-con-nosotros">
-      <div class="postulacion__encabezado">
-        <h2>Unite a nuestro equipo</h2>
-        <p>Estamos en constante crecimiento y siempre buscamos personas talentosas que quieran sumarse a nuestro propósito. Completa el formulario y adjunta tu CV para que podamos contactarte.</p>
-      </div>
-      <form class="formulario" action="#" method="post" enctype="multipart/form-data">
-        <fieldset>
-          <legend>Datos personales</legend>
-          <div class="formulario__grilla">
-            <label class="campo"><span>Nombre completo</span><input type="text" name="nombre" placeholder="Pepito Pérez" autocomplete="name" required></label>
-            <label class="campo"><span>Correo electrónico</span><input type="email" name="email" placeholder="ejemplo@email.com" autocomplete="email" required></label>
-            <label class="campo"><span>Tel. de contacto</span><input type="tel" name="telefono" placeholder="+54 9 11 1234-5678" autocomplete="tel"></label>
-            <label class="campo"><span>Ciudad de residencia</span>
-              <select name="ciudad" required>
-                <option value="" disabled selected>Buenos Aires</option>
-                <option>Ciudad de Buenos Aires</option>
-                <option>Provincia de Buenos Aires</option>
-                <option>Córdoba</option>
-                <option>Rosario</option>
-                <option>Mendoza</option>
-                <option>Otra</option>
-              </select>
-            </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Perfil profesional</legend>
-          <div class="formulario__grilla">
-            <label class="campo"><span>Puesto laboral</span>
-              <select name="puesto" required>
-                <option value="" disabled selected>Desarrollador Front-End</option>
-                <option>Desarrollador Front-End</option>
-                <option>Desarrollador Back-End</option>
-                <option>Soporte técnico</option>
-                <option>Implementación</option>
-                <option>Ventas</option>
-                <option>Otro</option>
-              </select>
-            </label>
-            <label class="campo"><span>Nivel de experiencia</span>
-              <select name="experiencia" required>
-                <option value="" disabled selected>Junior (0-2 años)</option>
-                <option>Junior (0-2 años)</option>
-                <option>Semi Senior (2-5 años)</option>
-                <option>Senior (+5 años)</option>
-              </select>
-            </label>
-            <div class="campo campo--archivo" data-archivo>
-              <span>Adjuntar CV</span>
-              <label>
-                <input type="file" name="cv" accept=".pdf,.doc,.docx">
-                <img src="../../public/img/nosotros/icono-subir.svg" alt="" width="58" height="41">
-                <small data-archivo-texto>Arrastra el archivo o<br><b>seleccionalo desde aquí</b></small>
-              </label>
-            </div>
-            <label class="campo"><span>Carta de presentación (opcional)</span><textarea name="carta" placeholder="Mensaje de presentación..."></textarea></label>
-          </div>
-        </fieldset>
-        <!-- Este botón no está en el Figma: sin él no se puede enviar el formulario -->
-        <button class="boton formulario__enviar" type="submit">Enviar postulación</button>
-      </form>
     </section>
   </main>
 
@@ -330,19 +260,18 @@
         <h2>Empresa</h2>
         <a href="sobre-nosotros.html">Sobre nosotros</a>
         <a href="clientes.html">Clientes</a>
-        <a href="sobre-nosotros.html#trabaja-con-nosotros">Trabaja con nosotros</a>
+        <a href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
       </div>
     </nav>
 
     <div class="footer__contacto">
       <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
-      <a href="mailto:info@thinkion.com.ar">info@thinkion.com.ar</a>
+      <a href="mailto:marketing@thinkion.com.ar">marketing@thinkion.com.ar</a>
       <div class="footer__redes">
-        <!-- Cambiá los href por los links reales de las redes -->
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
+        <a href="https://www.instagram.com/_thinkion_/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
           <img src="../../public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
         </a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
+        <a href="https://www.linkedin.com/company/b-smart/posts/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
           <img src="../../public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
         </a>
       </div>

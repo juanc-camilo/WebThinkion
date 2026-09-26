@@ -6,6 +6,7 @@
   <title>Thinkion | Crecé sin límites, simplificá tu negocio</title>
   <meta name="description" content="Thinkion es un ecosistema que se adapta al tamaño de tu negocio: POS, ERP, compras, auditorías y más, integrados en un solo lugar para gastronomía, retail y servicios.">
   <meta name="theme-color" content="#7a4aeb">
+  <link rel="icon" href="public/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
@@ -31,7 +32,8 @@
        ===================================================== -->
   <header class="navbar" data-navbar>
     <a class="navbar__logo" href="index.html" aria-label="Thinkion, inicio">
-      <img src="public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
+      <img class="navbar__logo-claro" src="public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
+      <img class="navbar__logo-oscuro" src="public/img/home/logo-thinkion-oscuro.svg" alt="" width="189" height="33" aria-hidden="true">
     </a>
 
     <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
@@ -97,10 +99,10 @@
 
       <a class="navbar__link" href="src/views/sobre-nosotros.html">Nosotros</a>
       <a class="navbar__link" href="src/views/clientes.html">Clientes</a>
-      <a class="boton-demo navbar__demo-movil" href="#contacto">Pedí tu demo</a>
+      <a class="boton-demo navbar__demo-movil" href="src/views/demo.html">Pedí tu demo</a>
     </nav>
 
-    <a class="boton-demo navbar__demo" href="#contacto">
+    <a class="boton-demo navbar__demo" href="src/views/demo.html">
       Pedí tu demo
       <img src="public/img/home/chevron-boton.svg" alt="" width="8" height="13">
     </a>
@@ -122,7 +124,7 @@
         <h1 class="hero__titulo"><span class="subrayado">Crecé</span> sin límites, simplificá tu negocio</h1>
         <!-- Lo que está entre <strong> sale en negrita -->
         <p class="hero__bajada">Un ecosistema que se adapta al tamaño de tu negocio. Gestioná todo desde un solo lugar, manteniendo <strong>control y datos claros</strong> en cada etapa.</p>
-        <a class="boton" href="#contacto">Pedí tu demo</a>
+        <a class="boton" href="src/views/demo.html">Pedí tu demo</a>
       </div>
 
       <!-- Video: cambiá el href por el link del video (por ejemplo, de YouTube) -->
@@ -236,7 +238,7 @@
           <h2 class="titulo-seccion">Soluciones que se potencian entre sí</h2>
           <p class="bajada-seccion soluciones__bajada">Un ecosistema donde cada módulo se integra para amplificar el valor de tu operación, desde la venta hasta la analítica.</p>
         </div>
-        <a class="boton" href="#contacto">Pedí tu demo</a>
+        <a class="boton" href="src/views/demo.html">Pedí tu demo</a>
       </section>
 
       <!-- =====================================================
@@ -337,13 +339,6 @@
               </div>
             </li>
             <li class="cliente">
-              <img class="cliente__foto" src="public/img/home/cliente-rapanui.webp" alt="Chocolates y helados de Rapa Nui" width="256" height="363" loading="lazy">
-              <div class="cliente__info">
-                <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-rapanui.webp" alt="Rapa Nui" width="122" height="120" loading="lazy">
-                <span class="cliente__rubro">Gastronomía</span>
-              </div>
-            </li>
-            <li class="cliente">
               <img class="cliente__foto" src="public/img/home/cliente-beerco.webp" alt="Cervezas de Beer Co." width="256" height="363" loading="lazy">
               <div class="cliente__info">
                 <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-beerco.webp" alt="Beer Co." width="122" height="120" loading="lazy">
@@ -354,6 +349,13 @@
               <img class="cliente__foto" src="public/img/home/cliente-quijote.webp" alt="Sándwiches y tortas de Quijote" width="256" height="363" loading="lazy">
               <div class="cliente__info">
                 <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-quijote.webp" alt="Quijote" width="122" height="120" loading="lazy">
+                <span class="cliente__rubro">Gastronomía</span>
+              </div>
+            </li>
+            <li class="cliente">
+              <img class="cliente__foto" src="public/img/home/cliente-antares.webp" alt="Fábrica de Cervecería Antares" width="256" height="363" loading="lazy">
+              <div class="cliente__info">
+                <img class="cliente__logo cliente__logo--ancho" src="public/img/home/logo-antares.webp" alt="Cervecería Antares" width="122" height="120" loading="lazy">
                 <span class="cliente__rubro">Gastronomía</span>
               </div>
             </li>
@@ -452,7 +454,7 @@
       <section class="cta reveal">
         <h2 class="cta__titulo">¿Querés ver cómo funciona en tu negocio?</h2>
         <p class="cta__bajada">Hablemos y veamos cómo Thinkion puede adaptarse a tu negocio.</p>
-        <a class="boton" href="#contacto">Pedí tu demo</a>
+        <a class="boton" href="src/views/demo.html">Pedí tu demo</a>
       </section>
     </div>
   </main>
@@ -483,19 +485,18 @@
         <h2>Empresa</h2>
         <a href="src/views/sobre-nosotros.html">Sobre nosotros</a>
         <a href="src/views/clientes.html">Clientes</a>
-        <a href="src/views/sobre-nosotros.html#trabaja-con-nosotros">Trabaja con nosotros</a>
+        <a href="src/views/trabaja-con-nosotros.html">Trabaja con nosotros</a>
       </div>
     </nav>
 
     <div class="footer__contacto">
       <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
-      <a href="mailto:info@thinkion.com.ar">info@thinkion.com.ar</a>
+      <a href="mailto:marketing@thinkion.com.ar">marketing@thinkion.com.ar</a>
       <div class="footer__redes">
-        <!-- Cambiá los href por los links reales de las redes -->
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
+        <a href="https://www.instagram.com/_thinkion_/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
           <img src="public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
         </a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
+        <a href="https://www.linkedin.com/company/b-smart/posts/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
           <img src="public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
         </a>
       </div>

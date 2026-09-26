@@ -64,8 +64,12 @@
   box-shadow: 0 1px 0 rgba(19, 56, 131, .08);
   height: 84px;
 }
-.navbar__logo img { height: 33px; transition: filter .3s; width: 189px; }
-.navbar.is-scrolled .navbar__logo img, .navbar--claro .navbar__logo img { filter: brightness(0) saturate(100%) invert(12%) sepia(9%) saturate(0%) brightness(95%); }
+.navbar__logo { position: relative; }
+.navbar__logo img { height: 33px; transition: opacity .3s; width: 189px; }
+/* Sobre fondo claro (scroll o menú abierto) se cambia al logo oscuro: la flecha sigue violeta */
+.navbar__logo-oscuro { left: 0; opacity: 0; position: absolute; top: 0; }
+.navbar.is-scrolled .navbar__logo-claro, .navbar.menu-abierto .navbar__logo-claro, .navbar--claro .navbar__logo-claro { opacity: 0; }
+.navbar.is-scrolled .navbar__logo-oscuro, .navbar.menu-abierto .navbar__logo-oscuro, .navbar--claro .navbar__logo-oscuro { opacity: 1; }
 
 .navbar__menu {
   align-items: center;

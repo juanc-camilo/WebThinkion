@@ -22,7 +22,6 @@
   .navbar.menu-abierto .navbar__hamburguesa span:nth-child(2) { opacity: 0; }
   .navbar.menu-abierto .navbar__hamburguesa span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   .navbar.menu-abierto { background: rgba(254, 250, 250, .96); }
-  .navbar.menu-abierto .navbar__logo img { filter: brightness(0) saturate(100%) invert(12%); }
 
   .navbar__menu {
     align-items: stretch;

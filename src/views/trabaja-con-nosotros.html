@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marketing | Thinkion (en construcción)</title>
-  <meta name="description" content="La página de Marketing de Thinkion está en construcción.">
+  <title>Trabajá con nosotros | Thinkion</title>
+  <meta name="description" content="Sumate al equipo de Thinkion: completá el formulario y adjuntá tu CV.">
   <meta name="theme-color" content="#7a4aeb">
   <link rel="icon" href="../../public/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,18 +17,18 @@
   <link rel="stylesheet" href="../styles/responsive.css">
   <link rel="stylesheet" href="../styles/paginas.css">
 </head>
-<body class="pagina-construccion">
+<body class="pagina-nosotros pagina-postulacion">
   <a class="skip-link" href="#contenido">Ir al contenido</a>
 
-  <!-- Fondo decorativo (el mismo del hero de la Home) -->
+  <!-- Fondo decorativo: manchas de color del diseño. No tiene contenido editable. -->
   <div class="fondo-deco" aria-hidden="true">
-    <img class="fondo-deco__hero" src="../../public/img/home/fondo-hero.svg" alt="" width="2065" height="1564">
+    <img class="fondo-pagina" src="../../public/img/clientes/fondo-clientes.svg" alt="" width="3240" height="2200">
   </div>
 
   <!-- =====================================================
        NAVBAR — logo, menú y botón
        ===================================================== -->
-  <header class="navbar" data-navbar>
+  <header class="navbar navbar--claro" data-navbar>
     <a class="navbar__logo" href="../../index.html" aria-label="Thinkion, inicio">
       <img class="navbar__logo-claro" src="../../public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
       <img class="navbar__logo-oscuro" src="../../public/img/home/logo-thinkion-oscuro.svg" alt="" width="189" height="33" aria-hidden="true">
@@ -111,30 +111,74 @@
     </button>
   </header>
 
-  <main id="contenido" class="construccion">
+  <main id="contenido" class="nosotros">
+
     <!-- =====================================================
-         PÁGINA EN CONSTRUCCIÓN
-         Cuando esté el diseño, se reemplaza todo este bloque.
+         UNITE A NUESTRO EQUIPO — formulario de postulación.
+         Para recibir los datos hace falta conectar el formulario
+         (por ejemplo con Formspree o un servidor): poné la dirección en action="".
          ===================================================== -->
-    <section class="construccion__card">
-      <span class="construccion__icono" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="40" height="40"><path fill="currentColor" d="M13.8 3.2a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4l-1.4 1.4a1 1 0 0 1-1.4 0l-.7-.7-7.9 7.9a2.5 2.5 0 1 1-3.5-3.5l7.9-7.9-.7-.7a1 1 0 0 1 0-1.4l.7-.7zM5.3 17.3a.5.5 0 1 0 .7.7.5.5 0 0 0-.7-.7z"/></svg>
-      </span>
-      <p class="construccion__etiqueta">Marketing</p>
-      <h1>Estamos construyendo esta página</h1>
-      <p class="construccion__texto">Muy pronto vas a encontrar acá toda la información sobre las herramientas para fidelizar a tus clientes: fidelización, encuestas y reservas. Mientras tanto, podés seguir recorriendo la web o pedirnos una demo.</p>
-      <div class="construccion__botones">
-        <a class="boton" href="../../index.html">Volver al inicio</a>
-        <a class="boton-borde construccion__atras" href="../../index.html" data-volver>Volver atrás</a>
+    <section class="postulacion" id="trabaja-con-nosotros">
+      <div class="postulacion__encabezado">
+        <h1>Unite a nuestro equipo</h1>
+        <p>Estamos en constante crecimiento y siempre buscamos personas talentosas que quieran sumarse a nuestro propósito. Completa el formulario y adjunta tu CV para que podamos contactarte.</p>
       </div>
-      <nav class="construccion__links" aria-label="Otras páginas">
-        <span>O visitá:</span>
-        <a href="gastronomia.html">Gastronomía</a>
-        <a href="retail.html">Retail</a>
-        <a href="check.html">Auditorías</a>
-        <a href="clientes.html">Clientes</a>
-        <a href="sobre-nosotros.html">Nosotros</a>
-      </nav>
+      <form class="formulario" action="#" method="post" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Datos personales</legend>
+          <div class="formulario__grilla">
+            <label class="campo"><span>Nombre completo</span><input type="text" name="nombre" placeholder="Pepito Pérez" autocomplete="name" required></label>
+            <label class="campo"><span>Correo electrónico</span><input type="email" name="email" placeholder="ejemplo@email.com" autocomplete="email" required></label>
+            <label class="campo"><span>Tel. de contacto</span><input type="tel" name="telefono" placeholder="+54 9 11 1234-5678" autocomplete="tel"></label>
+            <label class="campo"><span>Ciudad de residencia</span>
+              <select name="ciudad" required>
+                <option value="" disabled selected>Buenos Aires</option>
+                <option>Ciudad de Buenos Aires</option>
+                <option>Provincia de Buenos Aires</option>
+                <option>Córdoba</option>
+                <option>Rosario</option>
+                <option>Mendoza</option>
+                <option>Otra</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Perfil profesional</legend>
+          <div class="formulario__grilla">
+            <label class="campo"><span>Puesto laboral</span>
+              <select name="puesto" required>
+                <option value="" disabled selected>Desarrollador Front-End</option>
+                <option>Desarrollador Front-End</option>
+                <option>Desarrollador Back-End</option>
+                <option>Soporte técnico</option>
+                <option>Implementación</option>
+                <option>Ventas</option>
+                <option>Otro</option>
+              </select>
+            </label>
+            <label class="campo"><span>Nivel de experiencia</span>
+              <select name="experiencia" required>
+                <option value="" disabled selected>Junior (0-2 años)</option>
+                <option>Junior (0-2 años)</option>
+                <option>Semi Senior (2-5 años)</option>
+                <option>Senior (+5 años)</option>
+              </select>
+            </label>
+            <div class="campo campo--archivo" data-archivo>
+              <span>Adjuntar CV</span>
+              <label>
+                <input type="file" name="cv" accept=".pdf,.doc,.docx">
+                <img src="../../public/img/nosotros/icono-subir.svg" alt="" width="58" height="41">
+                <small data-archivo-texto>Arrastra el archivo o<br><b>seleccionalo desde aquí</b></small>
+              </label>
+            </div>
+            <label class="campo"><span>Carta de presentación (opcional)</span><textarea name="carta" placeholder="Mensaje de presentación..."></textarea></label>
+          </div>
+        </fieldset>
+        <!-- Este botón no está en el Figma: sin él no se puede enviar el formulario -->
+        <button class="boton formulario__enviar" type="submit">Enviar postulación</button>
+      </form>
     </section>
   </main>
 

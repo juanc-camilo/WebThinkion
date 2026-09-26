@@ -50,6 +50,12 @@ Copiá un bloque `<li class="cliente">…</li>` completo, pegalo donde quieras q
 
 **Ojo con las rutas:** en `index.html` las imágenes se escriben `public/img/...`, pero en las páginas de `src/views/` se escriben `../../public/img/...`.
 
+## Formularios (Pedí tu demo y Trabajá con nosotros)
+
+- Todos los botones "Pedí tu demo" llevan a `src/views/demo.html` (teléfono, mail, ubicación y tipo de local; la demo se hace por Google Meet con un vendedor).
+- "Trabaja con nosotros" es `src/views/trabaja-con-nosotros.html`, y solo se entra desde el footer.
+- Para recibir los datos hay que conectar cada formulario (por ejemplo con Formspree): poné la dirección en `action=""` del `<form>`.
+
 ## Colores y tipografía
 
 Están en `src/styles/variables.css`. Por ejemplo, si cambiás `--coral`, cambian todos los botones.

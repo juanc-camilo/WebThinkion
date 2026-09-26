@@ -114,23 +114,8 @@
 /* Política de calidad */
 .politica { align-items: center; display: flex; flex-direction: column; gap: 24px; min-height: 350px; }
 .politica h2 { color: #000; }
-.politica__texto {
-  color: var(--gris);
-  font-size: 20px;
-  line-height: 36px;
-  max-height: 276px;
-  -webkit-mask-image: linear-gradient(180deg, #000 36%, transparent 64%);
-  mask-image: linear-gradient(180deg, #000 36%, transparent 64%);
-  overflow: hidden;
-  text-align: center;
-  transition: max-height .6s var(--ease);
-}
+.politica__texto { color: var(--gris); font-size: 20px; line-height: 36px; text-align: center; }
 .politica__texto p + p { margin-top: 18px; }
-.politica.is-abierta .politica__texto { max-height: 1600px; -webkit-mask-image: none; mask-image: none; }
-.politica__boton { align-items: center; border-radius: 55px; color: var(--azul-oscuro); display: flex; font-size: 24px; font-weight: 500; gap: 16px; line-height: 36px; margin-top: -148px; padding: 10px 25px; position: relative; z-index: 1; }
-.politica.is-abierta .politica__boton { margin-top: 0; }
-.politica__boton img { transition: transform .3s var(--ease); }
-.politica.is-abierta .politica__boton img { transform: rotate(180deg); }
 
 /* Formulario "Unite a nuestro equipo" */
 .postulacion {
@@ -145,7 +130,7 @@
   padding: 30px 50px;
 }
 .postulacion__encabezado { display: flex; flex-direction: column; gap: 8px; }
-.postulacion__encabezado h2 { color: var(--azul-oscuro); font-size: 36px; font-weight: 400; line-height: 45px; }
+.postulacion__encabezado h1, .postulacion__encabezado h2 { color: var(--azul-oscuro); font-size: 36px; font-weight: 400; line-height: 45px; }
 .postulacion__encabezado p { color: var(--gris); font-size: 20px; line-height: 25px; }
 .formulario { display: flex; flex-direction: column; gap: 24px; }
 .formulario fieldset { border: 0; display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; }
@@ -190,6 +175,24 @@
 .campo--archivo small { color: #a1a1a1; font-size: 16px; font-weight: 300; line-height: 20px; }
 .campo--archivo small b { color: var(--azul-oscuro); font-weight: 500; text-decoration: underline; }
 .formulario__enviar { align-self: flex-end; }
+
+/* Páginas propias del formulario (Trabajá con nosotros y Pedí tu demo):
+   arrancan arriba, sobre la mancha violeta, así que la tarjeta va más opaca para que se lea */
+.pagina-postulacion .postulacion, .pagina-demo .postulacion { background: rgba(255, 255, 255, .78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 7px 30px -8px rgba(19, 56, 131, .25), inset 0 0 0 1px rgba(255, 255, 255, .8); }
+
+/* ---------- Pedí tu demo ---------- */
+.demo { align-items: start; display: grid; gap: 48px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); padding: 40px 50px; }
+.demo__info { display: flex; flex-direction: column; gap: 16px; }
+.demo__info h1 { color: var(--azul-oscuro); font-size: 40px; font-weight: 400; line-height: 50px; }
+.demo__info > p { color: var(--gris); font-size: 20px; font-weight: 300; line-height: 28px; }
+.demo__info strong { color: var(--azul-oscuro); font-weight: 500; }
+.demo__pasos { display: flex; flex-direction: column; gap: 14px; list-style: none; margin: 8px 0 0; padding: 0; }
+.demo__pasos li { align-items: flex-start; color: var(--gris); display: flex; font-size: 18px; gap: 14px; line-height: 24px; }
+.demo__pasos b { align-items: center; background: var(--lila); border-radius: 50%; color: var(--violeta); display: flex; flex-shrink: 0; font-weight: 500; height: 32px; justify-content: center; width: 32px; }
+.demo__pasos span { padding-top: 4px; }
+.campo--ancho { grid-column: 1 / -1; }
+.demo .campo input, .demo .campo select { min-width: 0; width: 100%; }
+.demo__aviso { color: var(--gris); font-size: 16px; font-weight: 300; }
 .pagina-nosotros .footer { margin-top: 101px; }
 
 /* =========================================================
@@ -351,6 +354,7 @@
   .grilla-clientes { grid-template-columns: repeat(2, minmax(0, 352px)); }
 }
 @media (max-width: 1100px) {
+  .demo { grid-template-columns: minmax(0, 1fr); }
   .nos-hero { flex-direction: column; text-align: center; }
   .nos-hero__texto { align-items: center; width: 100%; }
   .nos-hero__texto h1 { font-size: clamp(36px, 5.5vw, 60px); line-height: 1.25; width: auto; }
@@ -373,11 +377,13 @@
   .anios__lista button { font-size: 56px; line-height: 72px; width: 130px; }
   .evolucion__pie { align-items: flex-start; flex-direction: column; gap: 20px; }
   .politica__texto { font-size: 17px; line-height: 30px; }
-  .politica__boton { font-size: 20px; }
   .postulacion { border-radius: 28px; padding: 24px 18px; }
-  .postulacion__encabezado h2 { font-size: 28px; }
+  .postulacion__encabezado h1, .postulacion__encabezado h2 { font-size: 28px; }
   .formulario__grilla { grid-template-columns: 1fr; }
   .formulario__enviar { align-self: stretch; }
+  .demo { gap: 32px; grid-template-columns: minmax(0, 1fr); padding: 24px 18px; }
+  .demo__info h1 { font-size: 28px; line-height: 34px; }
+  .demo__info > p { font-size: 17px; line-height: 24px; }
   .check-video { margin-top: 32px; }
   .check-video__play { height: 64px; width: 56px; }
   .check-dif { border-radius: 28px; margin-top: 64px; }

@@ -76,15 +76,25 @@ document.querySelectorAll('[data-carrusel]').forEach((carrusel) => {
     lista.classList.toggle('is-animando', animar && !sinAnimaciones);
     lista.style.transform = `translateX(${x}px)`;
   };
-  const marcarActiva = () => {
-    [...lista.children].forEach((tarjeta, i) => tarjeta.classList.toggle('cliente--activo', i === 1));
+  // Destaca la tarjeta que queda (o va a quedar) en el primer lugar entero
+  const marcarActiva = (indice = 1) => {
+    [...lista.children].forEach((tarjeta, i) => tarjeta.classList.toggle('cliente--activo', i === indice));
   };
-  // Corre la acción cuando termina la animación (con respaldo por si el evento no llega)
+  // Corre la acción cuando termina el movimiento de la lista (con respaldo por si el evento no llega).
+  // Se ignoran las transiciones de las tarjetas (opacidad, sombra), que también avisan al terminar.
   const alTerminar = (accion) => {
     if (sinAnimaciones) { accion(); return; }
     let hecho = false;
-    const correr = () => { if (!hecho) { hecho = true; accion(); } };
-    lista.addEventListener('transitionend', correr, { once: true });
+    const correr = () => {
+      if (hecho) return;
+      hecho = true;
+      lista.removeEventListener('transitionend', alFinal);
+      accion();
+    };
+    const alFinal = (evento) => {
+      if (evento.target === lista && evento.propertyName === 'transform') correr();
+    };
+    lista.addEventListener('transitionend', alFinal);
     setTimeout(correr, 650);
   };
 
@@ -92,11 +102,11 @@ document.querySelectorAll('[data-carrusel]').forEach((carrusel) => {
     if (moviendo) return;
     moviendo = true;
     const { paso, base } = medidas();
+    marcarActiva(2); // la que entra se destaca desde el primer momento, igual que hacia la izquierda
     ubicar(base - paso, true);
     alTerminar(() => {
       lista.append(lista.firstElementChild);
       ubicar(base, false);
-      marcarActiva();
       moviendo = false;
     });
   };
@@ -159,16 +169,6 @@ document.querySelectorAll('[data-linea-tiempo]').forEach((seccion) => {
   siguiente.addEventListener('click', () => mostrar(actual + 1));
   anios.forEach((boton, i) => boton.addEventListener('click', () => mostrar(i)));
   window.addEventListener('resize', () => mostrar(actual));
-});
-
-/* ---------- "Leer más" (Política de calidad) ---------- */
-document.querySelectorAll('[data-politica]').forEach((seccion) => {
-  const boton = seccion.querySelector('.politica__boton');
-  boton.addEventListener('click', () => {
-    const abierta = seccion.classList.toggle('is-abierta');
-    boton.setAttribute('aria-expanded', String(abierta));
-    boton.querySelector('span').textContent = abierta ? 'Leer menos' : 'Leer más';
-  });
 });
 
 /* ---------- Adjuntar CV: muestra el nombre del archivo y acepta arrastrar ---------- */
