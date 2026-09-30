@@ -3,12 +3,7 @@
    Medidas del Figma "segmento - Gastro" / "segmento - Retail" (1440px)
    ========================================================= */
 
-/* ---------- Fondo decorativo ---------- */
-.fondo-seg__hero    { left: calc(50% - 720px - 299px);   top: -651px;   width: 2162px; height: 1564px; }
-.fondo-seg__lila    { left: calc(50% - 720px - 1023px);  top: 934px;    width: 1657px; height: 1657px; }
-.fondo-seg__violeta { left: calc(50% - 720px - 1046.5px); top: 1154.4px; width: 1823px; height: 1746px; }
-.fondo-seg__izq     { left: calc(50% - 720px - 1264.3px); top: 3024px;   width: 2045px; height: 2064px; }
-.fondo-seg__der     { left: calc(50% - 720px + 725px);    top: 436.7px;  width: 2207px; height: 2328px; }
+/* ---------- Fondo decorativo (posiciones base en layout.css) ---------- */
 .pagina-retail .fondo-seg__hero { left: calc(50% - 720px - 264px); top: -648px; }
 
 /* ---------- Columna principal ---------- */

@@ -10,6 +10,12 @@ body { display: flow-root; position: relative; }
 .fondo-deco__violeta   { left: calc(50% - 720px - 1030.6px); top: 1313.9px; width: 1819px; height: 1588px; }
 .fondo-deco__coral-izq { left: calc(50% - 720px - 1263.95px); top: 3024px; width: 2045px; height: 2064px; }
 .fondo-deco__coral-der { left: calc(50% - 720px + 725.05px); top: 436.65px; width: 2207px; height: 2328px; }
+/* Fondo estilo Gastronomía: segmentos y páginas internas */
+.fondo-seg__hero    { left: calc(50% - 720px - 299px);   top: -651px;   width: 2162px; height: 1564px; }
+.fondo-seg__lila    { left: calc(50% - 720px - 1023px);  top: 934px;    width: 1657px; height: 1657px; }
+.fondo-seg__violeta { left: calc(50% - 720px - 1046.5px); top: 1154.4px; width: 1823px; height: 1746px; }
+.fondo-seg__izq     { left: calc(50% - 720px - 1264.3px); top: 3024px;   width: 2045px; height: 2064px; }
+.fondo-seg__der     { left: calc(50% - 720px + 725px);    top: 436.7px;  width: 2207px; height: 2328px; }
 
 /* ---------- Títulos compartidos ---------- */
 .titulo-seccion { color: var(--azul-oscuro); font-size: 56px; font-weight: 400; letter-spacing: -1.68px; line-height: 71px; text-align: center; }
