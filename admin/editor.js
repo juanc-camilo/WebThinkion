@@ -720,6 +720,7 @@ const pintarPanelElemento = () => {
       <label class="campo"><span>Dirección</span>
         <input id="campo-href" value="${esc(aRutaVisible(edicion.atributos?.href ?? link.getAttribute('href'), base))}" placeholder="https://… o src/views/demo.html">
         <small>Web externa: empezá con https://. Mail: mailto:… · Teléfono: tel:…</small>
+        <small>🎬 Links de YouTube, Vimeo, Google Drive o .mp4 se reproducen en una ventana sobre la página (probalo en modo Navegar).</small>
       </label>
       <label class="check"><input type="checkbox" id="campo-blank" ${link.getAttribute('target') === '_blank' ? 'checked' : ''}> Abrir en otra pestaña</label>
     </div>` : ''}

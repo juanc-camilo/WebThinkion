@@ -363,3 +363,82 @@ window.mostrarBannerTemporada = mostrarBannerTemporada;
     if (frecuencia === 'dia') guardado('localStorage', clave, hoy);
   }, Math.max(0, Number(banner.retraso) || 0) * 1000);
 })();
+
+/* ---------- Videos en ventana (sin salir de la página) ----------
+   Cualquier link a un video se reproduce en una ventana sobre la página,
+   con el fondo difuminado. Sirve para:
+     YouTube  → https://www.youtube.com/watch?v=… · https://youtu.be/…
+     Vimeo    → https://vimeo.com/123456 (también los privados: vimeo.com/123456/abc123)
+     Drive    → https://drive.google.com/file/d/…/view (compartido como "Cualquier persona con el link")
+     Archivo  → un link que termine en .mp4 o .webm
+   Para cambiar el video alcanza con cambiar el href del link (o desde /admin). */
+const embedDeVideo = (href) => {
+  let url;
+  try { url = new URL(href, location.href); } catch { return null; }
+  const host = url.hostname.replace(/^www\.|^m\./, '');
+
+  if (host === 'youtu.be' || host.endsWith('youtube.com') || host === 'youtube-nocookie.com') {
+    const id = host === 'youtu.be'
+      ? url.pathname.slice(1)
+      : url.searchParams.get('v') || url.pathname.match(/\/(?:embed|shorts|live)\/([\w-]+)/)?.[1];
+    return id ? { tipo: 'iframe', src: `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0` } : null;
+  }
+  if (host === 'vimeo.com' || host === 'player.vimeo.com') {
+    const [, id, hash] = url.pathname.match(/(?:\/video)?\/(\d+)(?:\/(\w+))?/) || [];
+    const h = hash || url.searchParams.get('h');
+    return id ? { tipo: 'iframe', src: `https://player.vimeo.com/video/${id}?autoplay=1${h ? `&h=${h}` : ''}` } : null;
+  }
+  if (host === 'drive.google.com') {
+    const id = url.pathname.match(/\/file\/d\/([\w-]+)/)?.[1] || url.searchParams.get('id');
+    return id ? { tipo: 'iframe', src: `https://drive.google.com/file/d/${id}/preview` } : null;
+  }
+  if (/\.(mp4|webm|mov)$/i.test(url.pathname)) return { tipo: 'video', src: url.href };
+  return null;
+};
+
+const abrirVideo = (video, titulo) => {
+  const dialogo = document.createElement('dialog');
+  dialogo.className = 'video-modal';
+  dialogo.setAttribute('aria-label', titulo || 'Video');
+
+  const cerrar = document.createElement('button');
+  cerrar.type = 'button';
+  cerrar.className = 'video-modal__cerrar';
+  cerrar.setAttribute('aria-label', 'Cerrar video');
+  cerrar.textContent = '×';
+  cerrar.addEventListener('click', () => dialogo.close());
+
+  const marco = document.createElement('div');
+  marco.className = 'video-modal__marco';
+  if (video.tipo === 'iframe') {
+    const iframe = document.createElement('iframe');
+    iframe.src = video.src;
+    iframe.title = titulo || 'Video';
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
+    iframe.allowFullscreen = true;
+    marco.append(iframe);
+  } else {
+    const reproductor = document.createElement('video');
+    reproductor.src = video.src;
+    reproductor.controls = true;
+    reproductor.autoplay = true;
+    reproductor.playsInline = true;
+    marco.append(reproductor);
+  }
+
+  dialogo.append(cerrar, marco);
+  // Clic en el fondo difuminado: cierra. Al cerrar se borra todo y el video se detiene.
+  dialogo.addEventListener('click', (evento) => { if (evento.target === dialogo) dialogo.close(); });
+  dialogo.addEventListener('close', () => dialogo.remove());
+  document.body.append(dialogo);
+  dialogo.showModal();
+};
+
+document.addEventListener('click', (evento) => {
+  const link = evento.target.closest?.('a[href]');
+  if (!link || evento.defaultPrevented || evento.ctrlKey || evento.metaKey || evento.shiftKey) return;
+  const video = embedDeVideo(link.getAttribute('href'));
+  if (!video) return;
+  evento.preventDefault();
+  abrirVideo(video, link.getAttribute('aria-label'));
+});
