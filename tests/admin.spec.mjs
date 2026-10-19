@@ -32,3 +32,25 @@ test.describe('Panel de administración', () => {
     await expect(page.locator('#form-ingreso')).toBeVisible();
   });
 });
+
+// ---------- Buscadores e IAs ----------
+test.describe('Buscadores e IAs', () => {
+  test('las preguntas frecuentes llegan al JSON-LD (no vacío)', async ({ page }) => {
+    await page.goto(`${BASE_URL}/index.html`);
+    const bloques = await page.locator('script[type="application/ld+json"]').allTextContents();
+    const faq = bloques.map((b) => JSON.parse(b)['@graph'] || []).flat().find((n) => n['@type'] === 'FAQPage');
+    expect(faq?.mainEntity?.length, 'FAQPage sin preguntas').toBeGreaterThan(0);
+  });
+
+  test('robots.txt, sitemap.xml y llms.txt existen y apuntan al dominio', async ({ request }) => {
+    const robots = await (await request.get(`${BASE_URL}/robots.txt`)).text();
+    expect(robots).toMatch(/Sitemap: https:\/\/\S+\/sitemap\.xml/);
+    expect(robots).toContain('Disallow: /admin/');
+    const sitemap = await (await request.get(`${BASE_URL}/sitemap.xml`)).text();
+    expect(sitemap).toContain('<loc>https://');
+    expect(sitemap, 'las páginas en construcción no van al sitemap').not.toContain('retail.html');
+    const llms = await (await request.get(`${BASE_URL}/llms.txt`)).text();
+    expect(llms).toMatch(/^# Thinkion/);
+    expect(llms).toContain('## Preguntas frecuentes');
+  });
+});

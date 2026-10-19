@@ -1,10 +1,11 @@
 {
-  "_comentario": "Datos generales del sitio. Cuando esté el dominio final, cambiá solo 'dominio' (sin barra al final) y se actualiza en Open Graph y JSON-LD de las 11 páginas.",
-  "dominio": "https://DOMINIO-FINAL",
+  "_comentario": "Datos generales del sitio. Cuando esté el dominio final, cambiá solo 'dominio' (sin barra al final): se actualiza en canonical, Open Graph, JSON-LD, sitemap.xml, robots.txt y llms.txt.",
+  "dominio": "https://webthinkion.vercel.app",
   "nombre": "Thinkion",
   "razonSocial": "Thinkion SAS",
   "email": "marketing@thinkion.com.ar",
   "instagram": "https://www.instagram.com/_thinkion_/",
   "linkedin": "https://www.linkedin.com/company/b-smart/posts/",
-  "imagenCompartir": "public/img/og/thinkion.jpg"
+  "imagenCompartir": "public/img/og/thinkion.jpg",
+  "descripcion": "Thinkion es un ecosistema de software que se adapta a tu negocio: POS, ERP, compras y auditorías integrados en un solo lugar para gastronomía, retail y servicios."
 }

@@ -33,7 +33,7 @@ const sinEtiquetas = (html) => html
   .trim();
 
 const preguntasFrecuentes = (html) => {
-  const items = [...html.matchAll(/<details class="faq__item"[^>]*>\s*<summary[^>]*>([\s\S]*?)<\/summary>\s*([\s\S]*?)<\/details>/g)];
+  const items = [...html.matchAll(/<details\b[^>]*class="faq__item"[^>]*>\s*<summary[^>]*>([\s\S]*?)<\/summary>\s*([\s\S]*?)<\/details>/g)];
   return {
     '@type': 'FAQPage',
     mainEntity: items.map(([, pregunta, respuesta]) => ({
@@ -42,6 +42,54 @@ const preguntasFrecuentes = (html) => {
       acceptedAnswer: { '@type': 'Answer', text: sinEtiquetas(respuesta) },
     })),
   };
+};
+
+/* ---------- Buscadores e IAs: robots.txt, sitemap.xml y llms.txt ----------
+   Todo sale del dominio de src/_data/sitio.json y del HTML de cada página.
+   Las páginas con "indexar: false" (en construcción) quedan afuera. */
+const metaDe = (html, patron) => sinEtiquetas(html.match(patron)?.[1] || '');
+
+const paginasIndexables = (resultados, dominio) => resultados
+  .filter((r) => r.inputPath?.endsWith('.html') && !r.url.startsWith('/admin/'))
+  .filter((r) => !/<meta name="robots" content="noindex/.test(r.content))
+  .map((r) => ({
+    url: `${dominio}${r.url}`, // la Home es "/"
+    ruta: r.url,
+    titulo: metaDe(r.content, /<title>([\s\S]*?)<\/title>/),
+    descripcion: metaDe(r.content, /<meta name="description" content="([^"]*)"/),
+  }))
+  .sort((a, b) => a.ruta.localeCompare(b.ruta)); // la Home ("/") queda primera
+
+const robotsTxt = (sitio) => `# Buscadores e IAs (Google, Bing, ChatGPT, Claude, Gemini, Perplexity…): todo el sitio es público.
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: ${sitio.dominio}/sitemap.xml
+`;
+
+const sitemapXml = (paginas) => {
+  const hoy = new Date().toISOString().slice(0, 10);
+  const urls = paginas.map((p) => `  <url>\n    <loc>${p.url}</loc>\n    <lastmod>${hoy}</lastmod>\n  </url>`).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+};
+
+// llms.txt: resumen en texto para IAs (formato de llmstxt.org)
+const llmsTxt = (sitio, paginas, preguntas) => {
+  const lista = paginas.map((p) => `- [${p.titulo.replace(/\s*\|\s*Thinkion$/, '')}](${p.url}): ${p.descripcion}`).join('\n');
+  const faq = preguntas.map((q) => `### ${q.name}\n\n${q.acceptedAnswer.text}`).join('\n\n');
+  return `# ${sitio.nombre}
+
+> ${sitio.descripcion}
+
+${sitio.razonSocial} · Argentina · ${sitio.email}
+Instagram: ${sitio.instagram} · LinkedIn: ${sitio.linkedin}
+
+## Páginas
+
+${lista}
+${faq ? `\n## Preguntas frecuentes\n\n${faq}\n` : ''}`;
 };
 
 export default function (eleventyConfig) {
@@ -68,6 +116,17 @@ export default function (eleventyConfig) {
         `/* ===== ${nombre}.css ===== */\n${await readFile(`src/styles/${nombre}.css`, 'utf8')}`));
       await writeFile(`${dir.output}/src/styles/sitio-${tipo}.css`, partes.join('\n'));
     }
+  });
+
+  // robots.txt, sitemap.xml y llms.txt (para buscadores e IAs). Se arman con
+  // el HTML ya terminado, así toman los títulos y descripciones editados en /admin.
+  eleventyConfig.on('eleventy.after', async ({ dir, results }) => {
+    const sitio = JSON.parse(await readFile('src/_data/sitio.json', 'utf8'));
+    await writeFile(`${dir.output}/robots.txt`, robotsTxt(sitio));
+    const paginas = paginasIndexables(results, sitio.dominio);
+    await writeFile(`${dir.output}/sitemap.xml`, sitemapXml(paginas));
+    const home = results.find((r) => r.url === '/')?.content || '';
+    await writeFile(`${dir.output}/llms.txt`, llmsTxt(sitio, paginas, preguntasFrecuentes(home).mainEntity));
   });
 
   // Aplica las ediciones del panel /admin. Va antes que el JSON-LD de

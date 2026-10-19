@@ -21,7 +21,8 @@ Contexto para Claude Code. Basado en la auditoría técnica del 29 y 30/09/2026 
 - **No modificar** el hero de la Home, los íconos e ilustraciones, la alineación de las tarjetas ni la sección de Industrias de la Home.
 - Las internas (POS & ERP, Check, Marketing, Clientes, Demo, Trabajá) ya tienen la estética de la Home (commit `2b9f2ea`). **No aplicar** `internas-home.patch` de la auditoría: es de la versión anterior.
 - Demo y Trabajá con nosotros son páginas propias (no modales).
-- Hosting: Vercel (decidido por el usuario el 19/10/2026). El resto de lo que depende del dominio (canonical, formularios, GTM/GA4/Pixel, robots, sitemap) **espera indicación de Hernán**. El test de canonical falla a propósito hasta entonces.
+- Hosting: Vercel (decidido por el usuario el 19/10/2026). Dominio provisorio `https://webthinkion.vercel.app` en `src/_data/sitio.json`: de ahí salen canonical, Open Graph, JSON-LD, `robots.txt`, `sitemap.xml` y `llms.txt` (los arma `eleventy.config.mjs`). Cuando esté el dominio final, cambiar solo ese dato. Formularios y GTM/GA4/Pixel **esperan indicación de Hernán**.
+- Páginas en construcción (Retail, Productividad): `indexar: false` en el front matter → `noindex` y fuera del sitemap. Sacarlo cuando marketing las termine.
 
 ## No inventar
 
@@ -44,5 +45,5 @@ npm test          # arma _site con Eleventy y corre Playwright en :8080
 ```
 
 - `npm run admin`: sitio + panel en local (guarda en los archivos).
-- Al 19/10/2026: los mismos 99 del sitio pasan (más los 3 de `tests/admin.spec.mjs`) y 24 fallan (11 canonical, 3 texto de relleno, 2 formularios y 8 de contraste por el coral y las pestañas).
+- Al 19/10/2026: 115 pasan y 13 fallan (3 texto de relleno, 2 formularios y 8 de contraste por el coral y las pestañas).
 - Después de cada cambio: tests, mirar la página en escritorio (1440) y celular (390).

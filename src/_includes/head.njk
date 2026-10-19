@@ -5,6 +5,7 @@
       descripcion → resumen para Google y al compartir (70 a 160 caracteres)
       estilos     → "home", "paginas" o "segmento" (qué hoja de estilos carga)
       producto    → (opcional) nombre y descripción para el JSON-LD de producto
+      indexar     → (opcional) false = Google y las IAs no la indexan (páginas en construcción)
     El dominio y los datos de la empresa están en src/_data/sitio.json.
     ===================================================== #}
 {%- set urlPagina = sitio.dominio + ("/" if page.url == "/index.html" else page.url) %}
@@ -12,6 +13,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ titulo }}</title>
   <meta name="description" content="{{ descripcion }}">
+  <!-- Dirección oficial de la página: evita que Google la cuente dos veces (con y sin dominio propio) -->
+  <link rel="canonical" href="{{ urlPagina }}">
+  {%- if indexar === false %}
+  <meta name="robots" content="noindex, follow">
+  {%- endif %}
   <meta name="theme-color" content="#7a4aeb">
   <!-- Marca que el JavaScript está activo: recién ahí se ocultan las secciones que aparecen con animación (.reveal) -->
   <script>document.documentElement.classList.add('js')</script>
@@ -45,10 +51,19 @@
         "name": {{ sitio.nombre | dump | safe }},
         "legalName": {{ sitio.razonSocial | dump | safe }},
         "url": "{{ sitio.dominio }}/",
+        "description": {{ sitio.descripcion | dump | safe }},
         "logo": "{{ sitio.dominio }}/public/img/home/logo-thinkion-oscuro.svg",
         "email": {{ sitio.email | dump | safe }},
         "areaServed": "AR",
         "sameAs": [{{ sitio.instagram | dump | safe }}, {{ sitio.linkedin | dump | safe }}]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "{{ sitio.dominio }}/#web",
+        "name": {{ sitio.nombre | dump | safe }},
+        "url": "{{ sitio.dominio }}/",
+        "inLanguage": "es-AR",
+        "publisher": { "@id": "{{ sitio.dominio }}/#org" }
       }
       {%- if producto %},
       {
