@@ -21,15 +21,17 @@ ul, ol { list-style: none; }
 h1, h2, h3, h4 { font-weight: 600; }
 
 .sr-only { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
-.skip-link { background: var(--violeta); border-radius: 8px; color: #fff; left: 16px; padding: 8px 14px; position: fixed; top: -100px; z-index: 100; }
+.skip-link { background: var(--violeta); border-radius: 8px; color: var(--blanco); left: 16px; padding: 8px 14px; position: fixed; top: -100px; z-index: 100; }
 .skip-link:focus { top: 16px; }
 :focus-visible { outline: 2px solid var(--violeta); outline-offset: 3px; }
 
-/* Animación suave al aparecer (la activa js/controller.js) */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
-.reveal.is-visible { opacity: 1; transform: none; }
+/* Animación suave al aparecer (la activa src/controllers/controller.js).
+   Solo se oculta si el JavaScript está activo (clase "js" en <html>, la pone
+   el <head>): si el script falla, el contenido se ve igual. */
+html.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+html.js .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  html.js .reveal { opacity: 1; transform: none; transition: none; }
 }
 [hidden] { display: none !important; }

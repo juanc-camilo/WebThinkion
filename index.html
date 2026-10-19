@@ -1,20 +1,15 @@
-<!doctype html>
+---
+titulo: "Thinkion | Crecé sin límites, simplificá tu negocio"
+descripcion: "Thinkion es un ecosistema que se adapta a tu negocio: POS, ERP, compras y auditorías integrados en un solo lugar para gastronomía, retail y servicios."
+estilos: home
+raiz: ""
+vistas: "src/views/"
+preguntasFrecuentes: true
+---
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thinkion | Crecé sin límites, simplificá tu negocio</title>
-  <meta name="description" content="Thinkion es un ecosistema que se adapta al tamaño de tu negocio: POS, ERP, compras, auditorías y más, integrados en un solo lugar para gastronomía, retail y servicios.">
-  <meta name="theme-color" content="#7a4aeb">
-  <link rel="icon" href="public/favicon.ico" sizes="16x16 32x32 48x48">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
-  <link rel="stylesheet" href="src/styles/variables.css">
-  <link rel="stylesheet" href="src/styles/base.css">
-  <link rel="stylesheet" href="src/styles/components.css">
-  <link rel="stylesheet" href="src/styles/layout.css">
-  <link rel="stylesheet" href="src/styles/responsive.css">
+{% include "head.njk" %}
 </head>
 <body class="pagina-home">
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -27,91 +22,7 @@
     <img class="fondo-deco__coral-der" src="public/img/home/fondo-mancha-coral-der.svg" alt="" width="2207" height="2328">
   </div>
 
-  <!-- =====================================================
-       NAVBAR — logo, menú y botón
-       ===================================================== -->
-  <header class="navbar" data-navbar>
-    <a class="navbar__logo" href="index.html" aria-label="Thinkion, inicio">
-      <img class="navbar__logo-claro" src="public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
-      <img class="navbar__logo-oscuro" src="public/img/home/logo-thinkion-oscuro.svg" alt="" width="189" height="33" aria-hidden="true">
-    </a>
-
-    <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
-      <!-- Desplegable SOLUCIONES -->
-      <div class="navbar__item" data-dropdown>
-        <button class="navbar__link" type="button" aria-expanded="false">
-          Soluciones
-          <img src="public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
-        </button>
-        <div class="dropdown dropdown--soluciones">
-          <a class="dropdown__bloque" href="src/views/pos-erp.html">
-            <span class="dropdown__titulo"><img src="public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</span>
-            <ul class="dropdown__sublista">
-              <li>KDS</li>
-              <li>Integraciones</li>
-              <li>Modos de uso</li>
-            </ul>
-          </a>
-          <a class="dropdown__bloque" href="src/views/check.html">
-            <span class="dropdown__titulo"><img src="public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</span>
-            <ul class="dropdown__sublista">
-              <li>Funcionalidades</li>
-              <li>Modos de uso</li>
-              <li>Beneficios</li>
-            </ul>
-          </a>
-          <a class="dropdown__bloque" href="src/views/marketing.html">
-            <span class="dropdown__titulo"><img src="public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</span>
-            <ul class="dropdown__sublista">
-              <li>Fidelización</li>
-              <li>Encuestas</li>
-              <li>Reservas</li>
-            </ul>
-          </a>
-          <a class="dropdown__bloque" href="src/views/productividad.html">
-            <span class="dropdown__titulo"><img src="public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</span>
-            <ul class="dropdown__sublista">
-              <li>Dispositivos</li>
-              <li>Integración</li>
-              <li>Sensores</li>
-            </ul>
-          </a>
-        </div>
-      </div>
-
-      <!-- Desplegable INDUSTRIAS -->
-      <div class="navbar__item" data-dropdown>
-        <button class="navbar__link" type="button" aria-expanded="false">
-          Industrias
-          <img src="public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
-        </button>
-        <div class="dropdown dropdown--industrias">
-          <a class="dropdown__bloque" href="src/views/gastronomia.html">
-            <span class="dropdown__titulo"><img src="public/img/home/menu-gastronomia.svg" alt="" width="24" height="24">Gastronómicas</span>
-            <span class="dropdown__texto">Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio.</span>
-          </a>
-          <a class="dropdown__bloque" href="src/views/retail.html">
-            <span class="dropdown__titulo"><img src="public/img/home/menu-retail.svg" alt="" width="24" height="24">Retail</span>
-            <span class="dropdown__texto">Administrá ventas, stock y promociones desde un mismo entorno.</span>
-          </a>
-        </div>
-      </div>
-
-      <a class="navbar__link" href="src/views/sobre-nosotros.html">Nosotros</a>
-      <a class="navbar__link" href="src/views/clientes.html">Clientes</a>
-      <a class="boton-demo navbar__demo-movil" href="src/views/demo.html">Pedí tu demo</a>
-    </nav>
-
-    <a class="boton-demo navbar__demo" href="src/views/demo.html">
-      Pedí tu demo
-      <img src="public/img/home/chevron-boton.svg" alt="" width="8" height="13">
-    </a>
-
-    <button class="navbar__hamburguesa" type="button" aria-expanded="false" aria-controls="menu-principal">
-      <span></span><span></span><span></span>
-      <b class="sr-only">Abrir menú</b>
-    </button>
-  </header>
+  {% include "menu.njk" %}
 
   <main id="contenido">
 
@@ -247,15 +158,15 @@
            ===================================================== -->
       <section class="industrias reveal" data-tabs>
         <div class="pestanas" role="tablist" aria-label="Industrias">
-          <button class="pestanas__boton is-activa" type="button" role="tab" aria-selected="true" data-tab="gastronomia">Gastronomía</button>
-          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="retail">Retail</button>
-          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="productividad">Productividad</button>
+          <button class="pestanas__boton is-activa" type="button" role="tab" id="tab-industrias-gastronomia" aria-controls="panel-industrias-gastronomia" aria-selected="true" data-tab="gastronomia">Gastronomía</button>
+          <button class="pestanas__boton" type="button" role="tab" id="tab-industrias-retail" aria-controls="panel-industrias-retail" aria-selected="false" data-tab="retail">Retail</button>
+          <button class="pestanas__boton" type="button" role="tab" id="tab-industrias-productividad" aria-controls="panel-industrias-productividad" aria-selected="false" data-tab="productividad">Productividad</button>
         </div>
 
         <div class="industrias__card">
           <img class="industrias__chevron" src="public/img/home/deco-chevron-tabs.svg" alt="" width="282" height="536" aria-hidden="true">
 
-          <div class="industrias__panel" role="tabpanel" data-panel="gastronomia">
+          <div class="industrias__panel" role="tabpanel" id="panel-industrias-gastronomia" aria-labelledby="tab-industrias-gastronomia" data-panel="gastronomia">
             <div class="industrias__texto">
               <h2>Diseñado para el día a día de la gastronomía</h2>
               <p><strong>Gestioná</strong> pedidos, mesas y pagos sin cortar el ritmo del servicio. <strong>Mantené el control</strong> de la operación incluso en los momentos de mayor demanda.</p>
@@ -263,7 +174,7 @@
             <img src="public/img/home/tab-gastronomia.webp" alt="Plato con cubiertos" width="377" height="338" loading="lazy">
           </div>
 
-          <div class="industrias__panel" role="tabpanel" data-panel="retail" hidden>
+          <div class="industrias__panel" role="tabpanel" id="panel-industrias-retail" aria-labelledby="tab-industrias-retail" data-panel="retail" hidden>
             <div class="industrias__texto">
               <h2>Diseñado para la operación diaria del retail</h2>
               <p>Administrá ventas, stock y promociones desde un mismo entorno. <strong>Detectá oportunidades, cuidá márgenes y evitá quiebres de stock.</strong></p>
@@ -271,7 +182,7 @@
             <img src="public/img/home/tab-retail.webp" alt="Bolsa de compras" width="377" height="338" loading="lazy">
           </div>
 
-          <div class="industrias__panel" role="tabpanel" data-panel="productividad" hidden>
+          <div class="industrias__panel" role="tabpanel" id="panel-industrias-productividad" aria-labelledby="tab-industrias-productividad" data-panel="productividad" hidden>
             <div class="industrias__texto">
               <h2>Diseñado para mejorar la productividad de tu negocio</h2>
               <p><strong>Automatizá y monitoreá equipos y dispositivos en tiempo real.</strong> Reducí tareas manuales y ganá control sobre la operación física de tu negocio.</p>
@@ -293,7 +204,7 @@
       <section class="clientes reveal" id="clientes">
         <h2 class="clientes__titulo">Ellos ya se sumaron al cambio</h2>
 
-        <div class="carrusel" data-carrusel tabindex="0" aria-label="Clientes de Thinkion. Usá las flechas para ver más.">
+        <div class="carrusel" data-carrusel tabindex="0" role="region" aria-roledescription="carrusel" aria-label="Clientes de Thinkion. Usá las flechas para ver más.">
           <button class="carrusel__costado carrusel__costado--anterior" type="button" data-anterior aria-label="Ver clientes anteriores"></button>
           <ul class="carrusel__lista">
             <li class="cliente">
@@ -392,15 +303,15 @@
         </div>
 
         <div class="pestanas pestanas--faq" role="tablist" aria-label="Categorías de preguntas">
-          <button class="pestanas__boton is-activa" type="button" role="tab" aria-selected="true" data-tab="generales">Generales</button>
-          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="retail">Retail</button>
-          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="gastronomicas">Gastronómicas</button>
-          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="productos">Productos</button>
-          <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="precios">Precios</button>
+          <button class="pestanas__boton is-activa" type="button" role="tab" id="tab-categorias-de-preguntas-generales" aria-controls="panel-categorias-de-preguntas-generales" aria-selected="true" data-tab="generales">Generales</button>
+          <button class="pestanas__boton" type="button" role="tab" id="tab-categorias-de-preguntas-retail" aria-controls="panel-categorias-de-preguntas-retail" aria-selected="false" data-tab="retail">Retail</button>
+          <button class="pestanas__boton" type="button" role="tab" id="tab-categorias-de-preguntas-gastronomicas" aria-controls="panel-categorias-de-preguntas-gastronomicas" aria-selected="false" data-tab="gastronomicas">Gastronómicas</button>
+          <button class="pestanas__boton" type="button" role="tab" id="tab-categorias-de-preguntas-productos" aria-controls="panel-categorias-de-preguntas-productos" aria-selected="false" data-tab="productos">Productos</button>
+          <button class="pestanas__boton" type="button" role="tab" id="tab-categorias-de-preguntas-precios" aria-controls="panel-categorias-de-preguntas-precios" aria-selected="false" data-tab="precios">Precios</button>
         </div>
 
         <!-- Categoría: GENERALES -->
-        <div class="faq__lista" role="tabpanel" data-panel="generales">
+        <div class="faq__lista" role="tabpanel" id="panel-categorias-de-preguntas-generales" aria-labelledby="tab-categorias-de-preguntas-generales" data-panel="generales">
           <details class="faq__item" open>
             <summary>¿Qué es Thinkion y a quién está dirigido?</summary>
             <p>Thinkion es una plataforma que unifica todas las herramientas que necesitás para gestionar tu negocio. Está pensada para <strong>gastronomía, retail y servicios</strong>, y te ayuda a simplificar la operación y crecer con control.</p>
@@ -423,7 +334,7 @@
         </div>
 
         <!-- Categoría: RETAIL (TEXTO PROVISORIO) -->
-        <div class="faq__lista" role="tabpanel" data-panel="retail" hidden>
+        <div class="faq__lista" role="tabpanel" id="panel-categorias-de-preguntas-retail" aria-labelledby="tab-categorias-de-preguntas-retail" data-panel="retail" hidden>
           <details class="faq__item" open>
             <summary>¿Puedo manejar varias sucursales?</summary>
             <p>Sí. Controlás stock, ventas y precios de todas tus sucursales desde un mismo panel.</p>
@@ -431,7 +342,7 @@
         </div>
 
         <!-- Categoría: GASTRONÓMICAS (TEXTO PROVISORIO) -->
-        <div class="faq__lista" role="tabpanel" data-panel="gastronomicas" hidden>
+        <div class="faq__lista" role="tabpanel" id="panel-categorias-de-preguntas-gastronomicas" aria-labelledby="tab-categorias-de-preguntas-gastronomicas" data-panel="gastronomicas" hidden>
           <details class="faq__item" open>
             <summary>¿Sirve para restaurantes con delivery?</summary>
             <p>Sí. Integrás mesas, mostrador y delivery en un solo sistema, con los pedidos de todas las plataformas en un mismo lugar.</p>
@@ -439,7 +350,7 @@
         </div>
 
         <!-- Categoría: PRODUCTOS (TEXTO PROVISORIO) -->
-        <div class="faq__lista" role="tabpanel" data-panel="productos" hidden>
+        <div class="faq__lista" role="tabpanel" id="panel-categorias-de-preguntas-productos" aria-labelledby="tab-categorias-de-preguntas-productos" data-panel="productos" hidden>
           <details class="faq__item" open>
             <summary>¿Qué módulos incluye Thinkion?</summary>
             <p>POS, ERP, compras, auditorías, fidelización, reportes BI y más. Podés sumar solo los que necesitás.</p>
@@ -447,7 +358,7 @@
         </div>
 
         <!-- Categoría: PRECIOS (TEXTO PROVISORIO) -->
-        <div class="faq__lista" role="tabpanel" data-panel="precios" hidden>
+        <div class="faq__lista" role="tabpanel" id="panel-categorias-de-preguntas-precios" aria-labelledby="tab-categorias-de-preguntas-precios" data-panel="precios" hidden>
           <details class="faq__item" open>
             <summary>¿Cuánto cuesta Thinkion?</summary>
             <p>Depende de los módulos y la cantidad de locales. Pedí tu demo y te armamos una propuesta a medida.</p>
@@ -466,51 +377,7 @@
     </div>
   </main>
 
-  <!-- =====================================================
-       FOOTER — links, contacto y redes
-       ===================================================== -->
-  <footer class="footer" id="contacto">
-    <div class="footer__marca">
-      <img src="public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="150" height="26" loading="lazy">
-      <img class="footer__sellos" src="public/img/home/sellos-iram-iqnet.webp" alt="Certificaciones IRAM ISO 9001 e IQNET" width="138" height="95" loading="lazy">
-    </div>
-
-    <nav class="footer__columnas" aria-label="Links del pie de página">
-      <div class="footer__columna">
-        <h2>Industrias</h2>
-        <a href="src/views/gastronomia.html">Gastronómicas</a>
-        <a href="src/views/retail.html">Retail</a>
-      </div>
-      <div class="footer__columna">
-        <h2>Soluciones</h2>
-        <a href="src/views/pos-erp.html">POS y ERP</a>
-        <a href="src/views/check.html">Auditorías</a>
-        <a href="src/views/marketing.html">Marketing</a>
-        <a href="src/views/productividad.html">IoT</a>
-      </div>
-      <div class="footer__columna">
-        <h2>Empresa</h2>
-        <a href="src/views/sobre-nosotros.html">Sobre nosotros</a>
-        <a href="src/views/clientes.html">Clientes</a>
-        <a href="src/views/trabaja-con-nosotros.html">Trabaja con nosotros</a>
-      </div>
-    </nav>
-
-    <div class="footer__contacto">
-      <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
-      <a href="mailto:marketing@thinkion.com.ar">marketing@thinkion.com.ar</a>
-      <div class="footer__redes">
-        <a href="https://www.instagram.com/_thinkion_/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
-          <img src="public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
-        </a>
-        <a href="https://www.linkedin.com/company/b-smart/posts/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
-          <img src="public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
-        </a>
-      </div>
-    </div>
-
-    <p class="footer__copyright">© 2026 Thinkion. Todos los derechos reservados.</p>
-  </footer>
+  {% include "footer.njk" %}
 
   <script src="src/controllers/controller.js" defer></script>
 </body>

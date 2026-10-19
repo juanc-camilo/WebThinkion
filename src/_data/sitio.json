@@ -1,0 +1,10 @@
+{
+  "_comentario": "Datos generales del sitio. Cuando esté el dominio final, cambiá solo 'dominio' (sin barra al final) y se actualiza en Open Graph y JSON-LD de las 11 páginas.",
+  "dominio": "https://DOMINIO-FINAL",
+  "nombre": "Thinkion",
+  "razonSocial": "Thinkion SAS",
+  "email": "marketing@thinkion.com.ar",
+  "instagram": "https://www.instagram.com/_thinkion_/",
+  "linkedin": "https://www.linkedin.com/company/b-smart/posts/",
+  "imagenCompartir": "public/img/og/thinkion.jpg"
+}

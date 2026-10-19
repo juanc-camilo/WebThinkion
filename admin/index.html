@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- El panel no tiene que aparecer en Google -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel de administración · Thinkion</title>
+  <link rel="icon" href="../public/favicon.ico">
+  <link rel="stylesheet" href="admin.css">
+  <script type="module" src="editor.js"></script>
+</head>
+<body>
+
+  <!-- =====================================================
+       INGRESO — usuario y contraseña
+       ===================================================== -->
+  <main class="ingreso" id="ingreso" hidden>
+    <form class="ingreso__tarjeta" id="form-ingreso">
+      <img src="../public/img/home/logo-thinkion-oscuro.svg" alt="Thinkion" width="189" height="33">
+      <h1>Panel de administración</h1>
+      <label>Usuario
+        <input name="usuario" autocomplete="username" required autofocus>
+      </label>
+      <label>Contraseña
+        <input name="clave" type="password" autocomplete="current-password" required>
+      </label>
+      <p class="ingreso__error" id="ingreso-error" role="alert"></p>
+      <button class="btn btn--primario" type="submit">Ingresar</button>
+    </form>
+  </main>
+
+  <!-- =====================================================
+       EDITOR — barra superior, panel lateral y vista de la página
+       ===================================================== -->
+  <div class="app" id="app" hidden>
+    <header class="barra">
+      <div class="barra__marca">
+        <img src="../public/img/home/logo-thinkion-oscuro.svg" alt="Thinkion" width="120" height="21">
+        <span>Admin</span>
+      </div>
+
+      <label class="barra__pagina">
+        <span class="sr-only">Página</span>
+        <select id="selector-pagina"></select>
+      </label>
+
+      <div class="segmentado" role="group" aria-label="Modo">
+        <button type="button" data-modo="editar" class="is-activo" title="Hacé clic en cualquier cosa para editarla">✏️ Editar</button>
+        <button type="button" data-modo="navegar" title="Usá la página normal: abrir menús, pestañas, carruseles">👆 Navegar</button>
+      </div>
+
+      <div class="segmentado" role="group" aria-label="Dispositivo">
+        <button type="button" data-ancho="1440" class="is-activo" title="Escritorio (1440 px)">🖥️</button>
+        <button type="button" data-ancho="390" title="Celular (390 px)">📱</button>
+      </div>
+
+      <div class="barra__acciones">
+        <button type="button" class="btn" id="btn-deshacer" title="Deshacer (Ctrl+Z)" disabled>↶ Deshacer</button>
+        <a class="btn" href="../index.html" target="_blank" rel="noopener">Ver sitio ↗</a>
+        <button type="button" class="btn btn--primario" id="btn-publicar" disabled>Publicar <b id="contador-cambios"></b></button>
+        <button type="button" class="btn btn--texto" id="btn-salir">Salir</button>
+      </div>
+    </header>
+
+    <div class="aviso" id="aviso" hidden></div>
+
+    <aside class="lateral">
+      <nav class="pestanas" role="tablist">
+        <button type="button" role="tab" data-pestana="elemento" class="is-activa">Elemento</button>
+        <button type="button" role="tab" data-pestana="pagina">Página</button>
+        <button type="button" role="tab" data-pestana="tema">Diseño</button>
+        <button type="button" role="tab" data-pestana="temporadas">Temporadas</button>
+      </nav>
+      <div class="lateral__contenido">
+        <section data-panel="elemento" id="panel-elemento"></section>
+        <section data-panel="pagina" id="panel-pagina" hidden></section>
+        <section data-panel="tema" id="panel-tema" hidden></section>
+        <section data-panel="temporadas" id="panel-temporadas" hidden></section>
+      </div>
+    </aside>
+
+    <main class="lienzo" id="lienzo">
+      <div class="lienzo__marco" id="marco">
+        <iframe id="vista" title="Vista de la página" data-editor></iframe>
+      </div>
+    </main>
+  </div>
+
+  <!-- Avisos cortos (guardado, errores) -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

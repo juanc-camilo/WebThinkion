@@ -1,21 +1,12 @@
-<!doctype html>
+---
+titulo: "Clientes: restaurantes y cadenas que usan Thinkion"
+descripcion: "Conocé a las empresas de gastronomía y retail que ya confían en Thinkion para centralizar su operación."
+estilos: paginas
+---
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clientes | Thinkion</title>
-  <meta name="description" content="Conocé a las empresas de gastronomía y retail que ya confían en Thinkion para centralizar su operación.">
-  <meta name="theme-color" content="#7a4aeb">
-  <link rel="icon" href="../../public/favicon.ico" sizes="16x16 32x32 48x48">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
-  <link rel="stylesheet" href="../styles/variables.css">
-  <link rel="stylesheet" href="../styles/base.css">
-  <link rel="stylesheet" href="../styles/components.css">
-  <link rel="stylesheet" href="../styles/layout.css">
-  <link rel="stylesheet" href="../styles/responsive.css">
-  <link rel="stylesheet" href="../styles/paginas.css">
+{% include "head.njk" %}
 </head>
 <body class="pagina-clientes">
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -29,91 +20,7 @@
     <img class="fondo-seg__der" src="../../public/img/segmentos/fondo-gastro-coral-der.svg" alt="" width="2207" height="2328">
   </div>
 
-  <!-- =====================================================
-       NAVBAR — logo, menú y botón
-       ===================================================== -->
-  <header class="navbar" data-navbar>
-    <a class="navbar__logo" href="../../index.html" aria-label="Thinkion, inicio">
-      <img class="navbar__logo-claro" src="../../public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
-      <img class="navbar__logo-oscuro" src="../../public/img/home/logo-thinkion-oscuro.svg" alt="" width="189" height="33" aria-hidden="true">
-    </a>
-
-    <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
-      <!-- Desplegable SOLUCIONES -->
-      <div class="navbar__item" data-dropdown>
-        <button class="navbar__link" type="button" aria-expanded="false">
-          Soluciones
-          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
-        </button>
-        <div class="dropdown dropdown--soluciones">
-          <a class="dropdown__bloque" href="pos-erp.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</span>
-            <ul class="dropdown__sublista">
-              <li>KDS</li>
-              <li>Integraciones</li>
-              <li>Modos de uso</li>
-            </ul>
-          </a>
-          <a class="dropdown__bloque" href="check.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</span>
-            <ul class="dropdown__sublista">
-              <li>Funcionalidades</li>
-              <li>Modos de uso</li>
-              <li>Beneficios</li>
-            </ul>
-          </a>
-          <a class="dropdown__bloque" href="marketing.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</span>
-            <ul class="dropdown__sublista">
-              <li>Fidelización</li>
-              <li>Encuestas</li>
-              <li>Reservas</li>
-            </ul>
-          </a>
-          <a class="dropdown__bloque" href="productividad.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</span>
-            <ul class="dropdown__sublista">
-              <li>Dispositivos</li>
-              <li>Integración</li>
-              <li>Sensores</li>
-            </ul>
-          </a>
-        </div>
-      </div>
-
-      <!-- Desplegable INDUSTRIAS -->
-      <div class="navbar__item" data-dropdown>
-        <button class="navbar__link" type="button" aria-expanded="false">
-          Industrias
-          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
-        </button>
-        <div class="dropdown dropdown--industrias">
-          <a class="dropdown__bloque" href="gastronomia.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-gastronomia.svg" alt="" width="24" height="24">Gastronómicas</span>
-            <span class="dropdown__texto">Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio.</span>
-          </a>
-          <a class="dropdown__bloque" href="retail.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-retail.svg" alt="" width="24" height="24">Retail</span>
-            <span class="dropdown__texto">Administrá ventas, stock y promociones desde un mismo entorno.</span>
-          </a>
-        </div>
-      </div>
-
-      <a class="navbar__link" href="sobre-nosotros.html">Nosotros</a>
-      <a class="navbar__link" href="clientes.html">Clientes</a>
-      <a class="boton-demo navbar__demo-movil" href="demo.html">Pedí tu demo</a>
-    </nav>
-
-    <a class="boton-demo navbar__demo" href="demo.html">
-      Pedí tu demo
-      <img src="../../public/img/home/chevron-boton.svg" alt="" width="8" height="13">
-    </a>
-
-    <button class="navbar__hamburguesa" type="button" aria-expanded="false" aria-controls="menu-principal">
-      <span></span><span></span><span></span>
-      <b class="sr-only">Abrir menú</b>
-    </button>
-  </header>
+  {% include "menu.njk" %}
 
   <main id="contenido" class="clientes-pag">
 
@@ -315,55 +222,11 @@
   <!-- Botón flotante "¿Listo para usar Thinkion?" (se despliega al pasar el mouse) -->
   <aside class="cta-flotante" tabindex="0" aria-label="¿Listo para usar Thinkion?">
     <p class="cta-flotante__titulo">¿Listo para usar Thinkion?</p>
-    <p>Unite a los líderes que confian en nosotros para impulsar su crecimiento</p>
+    <p>Unite a los líderes que confían en nosotros para impulsar su crecimiento</p>
     <a href="demo.html">PEDÍ TU DEMO</a>
   </aside>
 
-  <!-- =====================================================
-       FOOTER — links, contacto y redes
-       ===================================================== -->
-  <footer class="footer" id="contacto">
-    <div class="footer__marca">
-      <img src="../../public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="150" height="26" loading="lazy">
-      <img class="footer__sellos" src="../../public/img/home/sellos-iram-iqnet.webp" alt="Certificaciones IRAM ISO 9001 e IQNET" width="138" height="95" loading="lazy">
-    </div>
-
-    <nav class="footer__columnas" aria-label="Links del pie de página">
-      <div class="footer__columna">
-        <h2>Industrias</h2>
-        <a href="gastronomia.html">Gastronómicas</a>
-        <a href="retail.html">Retail</a>
-      </div>
-      <div class="footer__columna">
-        <h2>Soluciones</h2>
-        <a href="pos-erp.html">POS y ERP</a>
-        <a href="check.html">Auditorías</a>
-        <a href="marketing.html">Marketing</a>
-        <a href="productividad.html">IoT</a>
-      </div>
-      <div class="footer__columna">
-        <h2>Empresa</h2>
-        <a href="sobre-nosotros.html">Sobre nosotros</a>
-        <a href="clientes.html">Clientes</a>
-        <a href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
-      </div>
-    </nav>
-
-    <div class="footer__contacto">
-      <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
-      <a href="mailto:marketing@thinkion.com.ar">marketing@thinkion.com.ar</a>
-      <div class="footer__redes">
-        <a href="https://www.instagram.com/_thinkion_/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
-          <img src="../../public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
-        </a>
-        <a href="https://www.linkedin.com/company/b-smart/posts/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
-          <img src="../../public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
-        </a>
-      </div>
-    </div>
-
-    <p class="footer__copyright">© 2026 Thinkion. Todos los derechos reservados.</p>
-  </footer>
+  {% include "footer.njk" %}
 
   <script src="../controllers/controller.js" defer></script>
 </body>

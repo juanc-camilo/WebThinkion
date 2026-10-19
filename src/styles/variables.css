@@ -7,13 +7,18 @@
   --violeta: #7a4aeb;
   --azul-oscuro: #133883;
   --coral: #ff6f72;
+  --coral-hover: #ff5a5e;
+  --coral-oscuro: #c9373d;        /* coral con contraste 5,1:1 para texto blanco */
+  --coral-oscuro-hover: #b32f35;
+  --azul-hover: #0e2c6a;
+  --violeta-texto: #5b2fc9;       /* violeta para texto sobre --lila (5,9:1) */
   --rosa-palido: #ffd6ce;
   --lila: #e4dbfb;
 
   /* Neutros */
   --texto: #1b1b1b;
-  --gris: #7a7a7a;
-  --gris-parrafo: #7e818a;
+  --gris: #6b6b6b;          /* 5,3:1 sobre blanco (mínimo AA: 4,5:1) */
+  --gris-parrafo: #666970;  /* 5,5:1 sobre blanco */
   --gris-oscuro: #4e4e4e;
   --blanco: #fff;
   --blanco-suave: #f7f7f7;

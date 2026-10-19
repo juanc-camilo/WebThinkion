@@ -1,21 +1,12 @@
-<!doctype html>
+---
+titulo: "Software para restaurantes y gastronomía | Thinkion"
+descripcion: "Punto de venta, administración, delivery, reservas y fidelización integrados para tu restaurante."
+estilos: segmento
+---
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thinkion para Gastronomía | Un solo software para potenciar tu restaurante</title>
-  <meta name="description" content="Punto de venta, administración, delivery, reservas y fidelización integrados para tu restaurante.">
-  <meta name="theme-color" content="#7a4aeb">
-  <link rel="icon" href="../../public/favicon.ico" sizes="16x16 32x32 48x48">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Outfit:wght@300;400;500;600&display=swap">
-  <link rel="stylesheet" href="../styles/variables.css">
-  <link rel="stylesheet" href="../styles/base.css">
-  <link rel="stylesheet" href="../styles/components.css">
-  <link rel="stylesheet" href="../styles/layout.css">
-  <link rel="stylesheet" href="../styles/responsive.css">
-  <link rel="stylesheet" href="../styles/segmento.css">
+{% include "head.njk" %}
 </head>
 <body class="pagina-segmento pagina-gastro">
   <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -29,91 +20,7 @@
     <img class="fondo-seg__der" src="../../public/img/segmentos/fondo-gastro-coral-der.svg" alt="" width="2207" height="2328">
   </div>
 
-  <!-- =====================================================
-       NAVBAR — logo, menú y botón
-       ===================================================== -->
-  <header class="navbar" data-navbar>
-    <a class="navbar__logo" href="../../index.html" aria-label="Thinkion, inicio">
-      <img class="navbar__logo-claro" src="../../public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
-      <img class="navbar__logo-oscuro" src="../../public/img/home/logo-thinkion-oscuro.svg" alt="" width="189" height="33" aria-hidden="true">
-    </a>
-
-    <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
-      <!-- Desplegable SOLUCIONES -->
-      <div class="navbar__item" data-dropdown>
-        <button class="navbar__link" type="button" aria-expanded="false">
-          Soluciones
-          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
-        </button>
-        <div class="dropdown dropdown--soluciones">
-          <a class="dropdown__bloque" href="pos-erp.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</span>
-            <ul class="dropdown__sublista">
-              <li>KDS</li>
-              <li>Integraciones</li>
-              <li>Modos de uso</li>
-            </ul>
-          </a>
-          <a class="dropdown__bloque" href="check.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</span>
-            <ul class="dropdown__sublista">
-              <li>Funcionalidades</li>
-              <li>Modos de uso</li>
-              <li>Beneficios</li>
-            </ul>
-          </a>
-          <a class="dropdown__bloque" href="marketing.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</span>
-            <ul class="dropdown__sublista">
-              <li>Fidelización</li>
-              <li>Encuestas</li>
-              <li>Reservas</li>
-            </ul>
-          </a>
-          <a class="dropdown__bloque" href="productividad.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</span>
-            <ul class="dropdown__sublista">
-              <li>Dispositivos</li>
-              <li>Integración</li>
-              <li>Sensores</li>
-            </ul>
-          </a>
-        </div>
-      </div>
-
-      <!-- Desplegable INDUSTRIAS -->
-      <div class="navbar__item" data-dropdown>
-        <button class="navbar__link" type="button" aria-expanded="false">
-          Industrias
-          <img src="../../public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
-        </button>
-        <div class="dropdown dropdown--industrias">
-          <a class="dropdown__bloque" href="gastronomia.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-gastronomia.svg" alt="" width="24" height="24">Gastronómicas</span>
-            <span class="dropdown__texto">Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio.</span>
-          </a>
-          <a class="dropdown__bloque" href="retail.html">
-            <span class="dropdown__titulo"><img src="../../public/img/home/menu-retail.svg" alt="" width="24" height="24">Retail</span>
-            <span class="dropdown__texto">Administrá ventas, stock y promociones desde un mismo entorno.</span>
-          </a>
-        </div>
-      </div>
-
-      <a class="navbar__link" href="sobre-nosotros.html">Nosotros</a>
-      <a class="navbar__link" href="clientes.html">Clientes</a>
-      <a class="boton-demo navbar__demo-movil" href="demo.html">Pedí tu demo</a>
-    </nav>
-
-    <a class="boton-demo navbar__demo" href="demo.html">
-      Pedí tu demo
-      <img src="../../public/img/home/chevron-boton.svg" alt="" width="8" height="13">
-    </a>
-
-    <button class="navbar__hamburguesa" type="button" aria-expanded="false" aria-controls="menu-principal">
-      <span></span><span></span><span></span>
-      <b class="sr-only">Abrir menú</b>
-    </button>
-  </header>
+  {% include "menu.njk" %}
 
   <main id="contenido" class="segmento">
 
@@ -143,11 +50,11 @@
     <section class="seg-card reveal" id="punto-de-venta" data-tabs>
       <img class="seg-card__chevron" src="../../public/img/home/deco-chevron-tabs.svg" alt="" width="258" height="490" aria-hidden="true">
       <div class="pestanas pestanas--ancha" role="tablist" aria-label="Módulos">
-        <button class="pestanas__boton is-activa" type="button" role="tab" aria-selected="true" data-tab="punto-de-venta">Punto de venta</button>
-        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="administracion">Administración</button>
+        <button class="pestanas__boton is-activa" type="button" role="tab" id="tab-modulos-punto-de-venta" aria-controls="panel-modulos-punto-de-venta" aria-selected="true" data-tab="punto-de-venta">Punto de venta</button>
+        <button class="pestanas__boton" type="button" role="tab" id="tab-modulos-administracion" aria-controls="panel-modulos-administracion" aria-selected="false" data-tab="administracion">Administración</button>
       </div>
 
-      <div class="seg-panel" role="tabpanel" data-panel="punto-de-venta">
+      <div class="seg-panel" role="tabpanel" id="panel-modulos-punto-de-venta" aria-labelledby="tab-modulos-punto-de-venta" data-panel="punto-de-venta">
         <div class="seg-panel__texto">
           <h2>Enfocados en tus beneficios</h2>
           <ul class="seg-lista">
@@ -165,7 +72,7 @@
         </div>
       </div>
 
-      <div class="seg-panel" role="tabpanel" data-panel="administracion" hidden>
+      <div class="seg-panel" role="tabpanel" id="panel-modulos-administracion" aria-labelledby="tab-modulos-administracion" data-panel="administracion" hidden>
         <div class="seg-panel__imagen seg-panel__imagen--adm">
           <img src="../../public/img/segmentos/adm-notebook.webp" alt="Administración de Thinkion en una notebook" width="538" height="364" loading="lazy">
           <img class="seg-panel__tablet" src="../../public/img/segmentos/adm-tablet.webp" alt="Administración de Thinkion en una tablet" width="222" height="256" loading="lazy">
@@ -201,7 +108,7 @@
          INSTALACIÓN — hoja de ruta en 6 pasos
          ===================================================== -->
     <section class="seg-ruta reveal">
-      <h2 class="titulo-40">La instalación mas fácil: te acompañamos en todo el proceso</h2>
+      <h2 class="titulo-40">La instalación más fácil: te acompañamos en todo el proceso</h2>
       <div class="ruta">
         <img class="ruta__lineas" src="../../public/img/segmentos/hoja-de-ruta-lineas.svg" alt="" width="1120" height="290" aria-hidden="true">
         <div class="ruta__paso ruta__paso--activo">
@@ -271,7 +178,7 @@
         <article class="tecno-card">
           <img src="../../public/img/segmentos/tec-seguridad.webp" alt="" width="199" height="170" loading="lazy">
           <h3>Seguridad y actualizaciones</h3>
-          <p>Tu información es nuestra prioridad, por eso garantizamos el sistema mas seguro y resguardamos tu información con backups diarios. Además, actualizamos la plataforma automáticamente con mejoras y nuevas funciones, sin costo adicional y sin interrumpir tu operación.</p>
+          <p>Tu información es nuestra prioridad, por eso garantizamos el sistema más seguro y resguardamos tu información con backups diarios. Además, actualizamos la plataforma automáticamente con mejoras y nuevas funciones, sin costo adicional y sin interrumpir tu operación.</p>
         </article>
         <article class="tecno-card">
           <img src="../../public/img/segmentos/tec-reportes.webp" alt="" width="163" height="170" loading="lazy">
@@ -297,17 +204,17 @@
          ===================================================== -->
     <section class="seg-productos reveal" data-tabs>
       <div class="productos-lista" role="tablist" aria-label="Productos">
-        <button class="pestanas__boton is-activa" type="button" role="tab" aria-selected="true" data-tab="fidelizacion"><img src="../../public/img/segmentos/producto-fidelizacion.svg" alt="" width="36" height="36">Fidelización</button>
-        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="encuestas"><img src="../../public/img/segmentos/producto-encuestas.svg" alt="" width="36" height="36">Encuestas y satisfacción</button>
-        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="reservas"><img src="../../public/img/segmentos/producto-reservas.svg" alt="" width="36" height="36">Reservas</button>
-        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="auditorias"><img src="../../public/img/segmentos/producto-auditorias.svg" alt="" width="36" height="36">Auditorías</button>
-        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="carta-digital"><img src="../../public/img/segmentos/producto-carta-digital.svg" alt="" width="36" height="36">Carta digital y autopedido</button>
-        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="kds"><img src="../../public/img/segmentos/producto-kds.svg" alt="" width="36" height="36">KDS</button>
-        <button class="pestanas__boton" type="button" role="tab" aria-selected="false" data-tab="e-commerce"><img src="../../public/img/segmentos/producto-e-commerce.svg" alt="" width="36" height="36">E-commerce</button>
+        <button class="pestanas__boton is-activa" type="button" role="tab" id="tab-productos-fidelizacion" aria-controls="panel-productos-fidelizacion" aria-selected="true" data-tab="fidelizacion"><img src="../../public/img/segmentos/producto-fidelizacion.svg" alt="" width="36" height="36">Fidelización</button>
+        <button class="pestanas__boton" type="button" role="tab" id="tab-productos-encuestas" aria-controls="panel-productos-encuestas" aria-selected="false" data-tab="encuestas"><img src="../../public/img/segmentos/producto-encuestas.svg" alt="" width="36" height="36">Encuestas y satisfacción</button>
+        <button class="pestanas__boton" type="button" role="tab" id="tab-productos-reservas" aria-controls="panel-productos-reservas" aria-selected="false" data-tab="reservas"><img src="../../public/img/segmentos/producto-reservas.svg" alt="" width="36" height="36">Reservas</button>
+        <button class="pestanas__boton" type="button" role="tab" id="tab-productos-auditorias" aria-controls="panel-productos-auditorias" aria-selected="false" data-tab="auditorias"><img src="../../public/img/segmentos/producto-auditorias.svg" alt="" width="36" height="36">Auditorías</button>
+        <button class="pestanas__boton" type="button" role="tab" id="tab-productos-carta-digital" aria-controls="panel-productos-carta-digital" aria-selected="false" data-tab="carta-digital"><img src="../../public/img/segmentos/producto-carta-digital.svg" alt="" width="36" height="36">Carta digital y autopedido</button>
+        <button class="pestanas__boton" type="button" role="tab" id="tab-productos-kds" aria-controls="panel-productos-kds" aria-selected="false" data-tab="kds"><img src="../../public/img/segmentos/producto-kds.svg" alt="" width="36" height="36">KDS</button>
+        <button class="pestanas__boton" type="button" role="tab" id="tab-productos-e-commerce" aria-controls="panel-productos-e-commerce" aria-selected="false" data-tab="e-commerce"><img src="../../public/img/segmentos/producto-e-commerce.svg" alt="" width="36" height="36">E-commerce</button>
       </div>
 
       <!-- Producto: Fidelización -->
-      <div class="producto" role="tabpanel" data-panel="fidelizacion">
+      <div class="producto" role="tabpanel" id="panel-productos-fidelizacion" aria-labelledby="tab-productos-fidelizacion" data-panel="fidelizacion">
         <div class="producto__fotos">
           <div class="producto__columna">
             <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
@@ -327,7 +234,7 @@
       </div>
 
       <!-- Producto: Encuestas y satisfacción -->
-      <div class="producto" role="tabpanel" data-panel="encuestas" hidden>
+      <div class="producto" role="tabpanel" id="panel-productos-encuestas" aria-labelledby="tab-productos-encuestas" data-panel="encuestas" hidden>
         <div class="producto__fotos">
           <div class="producto__columna">
             <img src="../../public/img/segmentos/prod-encuestas-1.webp" alt="" width="352" height="274" loading="lazy">
@@ -347,7 +254,7 @@
       </div>
 
       <!-- Producto: Reservas -->
-      <div class="producto" role="tabpanel" data-panel="reservas" hidden>
+      <div class="producto" role="tabpanel" id="panel-productos-reservas" aria-labelledby="tab-productos-reservas" data-panel="reservas" hidden>
         <div class="producto__fotos">
           <div class="producto__columna">
             <img src="../../public/img/segmentos/prod-reservas-1.webp" alt="" width="352" height="274" loading="lazy">
@@ -367,7 +274,7 @@
       </div>
 
       <!-- Producto: Auditorías -->
-      <div class="producto" role="tabpanel" data-panel="auditorias" hidden>
+      <div class="producto" role="tabpanel" id="panel-productos-auditorias" aria-labelledby="tab-productos-auditorias" data-panel="auditorias" hidden>
         <div class="producto__fotos">
           <div class="producto__columna">
             <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
@@ -387,7 +294,7 @@
       </div>
 
       <!-- Producto: Carta digital y autopedido -->
-      <div class="producto" role="tabpanel" data-panel="carta-digital" hidden>
+      <div class="producto" role="tabpanel" id="panel-productos-carta-digital" aria-labelledby="tab-productos-carta-digital" data-panel="carta-digital" hidden>
         <div class="producto__fotos">
           <div class="producto__columna">
             <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
@@ -407,7 +314,7 @@
       </div>
 
       <!-- Producto: KDS -->
-      <div class="producto" role="tabpanel" data-panel="kds" hidden>
+      <div class="producto" role="tabpanel" id="panel-productos-kds" aria-labelledby="tab-productos-kds" data-panel="kds" hidden>
         <div class="producto__fotos">
           <div class="producto__columna">
             <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
@@ -420,14 +327,14 @@
         <div class="producto__pie">
           <div class="producto__barra"><span></span></div>
           <div class="producto__texto">
-            <p>Digitalizá tus ordenes para dejar de depender de las comandas en papel. Permite dar trazabilidad a cada órden, seguir su estado y trabajar en la mejora de tiempos de cocina.</p>
+            <p>Digitalizá tus órdenes para dejar de depender de las comandas en papel. Permite dar trazabilidad a cada orden, seguir su estado y trabajar en la mejora de tiempos de cocina.</p>
             <a class="boton-borde" href="pos-erp.html#kds">Conocer más</a>
           </div>
         </div>
       </div>
 
       <!-- Producto: E-commerce -->
-      <div class="producto" role="tabpanel" data-panel="e-commerce" hidden>
+      <div class="producto" role="tabpanel" id="panel-productos-e-commerce" aria-labelledby="tab-productos-e-commerce" data-panel="e-commerce" hidden>
         <div class="producto__fotos">
           <div class="producto__columna">
             <img src="../../public/img/segmentos/prod-fidelizacion-1.webp" alt="" width="352" height="274" loading="lazy">
@@ -448,51 +355,7 @@
     </section>
   </main>
 
-  <!-- =====================================================
-       FOOTER — links, contacto y redes
-       ===================================================== -->
-  <footer class="footer" id="contacto">
-    <div class="footer__marca">
-      <img src="../../public/img/home/logo-thinkion-footer.svg" alt="Thinkion" width="150" height="26" loading="lazy">
-      <img class="footer__sellos" src="../../public/img/home/sellos-iram-iqnet.webp" alt="Certificaciones IRAM ISO 9001 e IQNET" width="138" height="95" loading="lazy">
-    </div>
-
-    <nav class="footer__columnas" aria-label="Links del pie de página">
-      <div class="footer__columna">
-        <h2>Industrias</h2>
-        <a href="gastronomia.html">Gastronómicas</a>
-        <a href="retail.html">Retail</a>
-      </div>
-      <div class="footer__columna">
-        <h2>Soluciones</h2>
-        <a href="pos-erp.html">POS y ERP</a>
-        <a href="check.html">Auditorías</a>
-        <a href="marketing.html">Marketing</a>
-        <a href="productividad.html">IoT</a>
-      </div>
-      <div class="footer__columna">
-        <h2>Empresa</h2>
-        <a href="sobre-nosotros.html">Sobre nosotros</a>
-        <a href="clientes.html">Clientes</a>
-        <a href="trabaja-con-nosotros.html">Trabaja con nosotros</a>
-      </div>
-    </nav>
-
-    <div class="footer__contacto">
-      <p class="footer__contacto-titulo">TRABAJEMOS JUNTOS</p>
-      <a href="mailto:marketing@thinkion.com.ar">marketing@thinkion.com.ar</a>
-      <div class="footer__redes">
-        <a href="https://www.instagram.com/_thinkion_/" target="_blank" rel="noopener" aria-label="Instagram de Thinkion">
-          <img src="../../public/img/home/icono-instagram.webp" alt="" width="16" height="16" loading="lazy">
-        </a>
-        <a href="https://www.linkedin.com/company/b-smart/posts/" target="_blank" rel="noopener" aria-label="LinkedIn de Thinkion">
-          <img src="../../public/img/home/icono-linkedin.webp" alt="" width="16" height="16" loading="lazy">
-        </a>
-      </div>
-    </div>
-
-    <p class="footer__copyright">© 2026 Thinkion. Todos los derechos reservados.</p>
-  </footer>
+  {% include "footer.njk" %}
 
   <script src="../controllers/controller.js" defer></script>
 </body>

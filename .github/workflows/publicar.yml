@@ -1,0 +1,43 @@
+# =====================================================================
+# Publica la web en GitHub Pages en cada push a main.
+# Eleventy arma el sitio en _site (menú, footer y head compartidos) y
+# se publica esa carpeta.
+# Requisito (una sola vez): en GitHub → Settings → Pages → "Build and
+# deployment" → Source: "GitHub Actions".
+# =====================================================================
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Si hay dos publicaciones seguidas, gana la última
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      # Arma el sitio en _site
+      - run: npx eleventy
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

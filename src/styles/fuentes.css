@@ -1,0 +1,21 @@
+/* =========================================================
+   FUENTES — alojadas en el sitio (public/fonts), sin pedirle nada a Google Fonts.
+   Outfit es variable: un solo archivo trae todos los pesos (100 a 900).
+   Subconjunto latino: cubre español (á, é, ñ, ¿, ¡).
+   Licencia SIL Open Font License 1.1 (uso libre, también comercial).
+   ========================================================= */
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../../public/fonts/outfit-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../public/fonts/instrument-serif-italic-latin.woff2") format("woff2");
+}

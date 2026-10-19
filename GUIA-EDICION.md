@@ -1,6 +1,36 @@
 # Guía rápida de edición
 
+> **Lo más fácil: el panel `/admin`.** Ahí cambiás textos, imágenes, links, colores, fondos, tipografías y el banner de cada temporada con el mouse, y tocás *Publicar*. Ver [ADMIN.md](ADMIN.md). Esta guía es para editar los archivos a mano.
+
 Todo lo que se ve (textos, links e imágenes) está escrito en los HTML: la Home es `index.html` y las demás páginas están en `src/views/`. No hace falta tocar el JavaScript.
+
+## Ver los cambios en tu compu
+
+El menú, el footer y el `<head>` se arman con Eleventy, así que para ver la página completa abrí una terminal en la carpeta del proyecto y corré:
+
+```bash
+npm install      # solo la primera vez
+npm run dev      # abre http://localhost:8080 y se actualiza solo cada vez que guardás
+```
+
+Si abrís el archivo HTML directo con doble clic, vas a ver `{% include "menu.njk" %}` en lugar del menú: es normal.
+
+## Menú, footer y datos de cada página
+
+- **Menú:** `src/_includes/menu.njk`. **Footer:** `src/_includes/footer.njk`. Se editan una sola vez y cambian en las 11 páginas.
+- En esos archivos, `{{ raiz }}` y `{{ vistas }}` son el camino hasta la carpeta correcta: dejalos como están y escribí el resto de la ruta, por ejemplo `href="{{ vistas }}clientes.html"`.
+- **Título y descripción de cada página** (lo que muestra Google y WhatsApp al compartir): están arriba de todo en cada HTML, entre las dos líneas `---`:
+
+```yaml
+---
+titulo: "Thinkion Check | Auditorías y checklists"
+descripcion: "Check es la herramienta de Thinkion para ordenar..."
+estilos: paginas
+---
+```
+
+  El título debería tener hasta 60 caracteres y la descripción entre 70 y 160.
+- **Dominio, mail y redes:** `src/_data/sitio.json`.
 
 ## Cambiar un texto
 
@@ -53,7 +83,7 @@ Copiá un bloque `<li class="cliente">…</li>` completo, pegalo donde quieras q
 ## Formularios (Pedí tu demo y Trabajá con nosotros)
 
 - Todos los botones "Pedí tu demo" llevan a `src/views/demo.html` (teléfono, mail, ubicación y tipo de local; la demo se hace por Google Meet con un vendedor).
-- "Trabaja con nosotros" es `src/views/trabaja-con-nosotros.html`, y solo se entra desde el footer.
+- "Trabajá con nosotros" es `src/views/trabaja-con-nosotros.html`, y solo se entra desde el footer.
 - Para recibir los datos hay que conectar cada formulario (por ejemplo con Formspree): poné la dirección en `action=""` del `<form>`.
 
 ## Colores y tipografía
@@ -62,6 +92,8 @@ Están en `src/styles/variables.css`. Por ejemplo, si cambiás `--coral`, cambia
 
 ## Qué archivo toca cada cosa
 
+- `src/_includes/menu.njk` y `footer.njk`: menú y footer de todas las páginas.
+- `src/_includes/head.njk`: metas, datos para compartir y datos estructurados.
 - `index.html` y `src/views/*.html`: textos, imágenes, links y estructura de cada página.
 - `src/styles/variables.css`: colores y medidas generales.
 - `src/styles/components.css`: botones, menú y desplegables.

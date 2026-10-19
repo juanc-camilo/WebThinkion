@@ -1,0 +1,98 @@
+{#- =====================================================
+    MENÚ — se usa en las 11 páginas. Cambiá acá y se actualiza en todas.
+    Variables (las define cada página o su carpeta):
+      raiz   → camino hasta la raíz del sitio ("" en la Home, "../../" en src/views)
+      vistas → camino hasta src/views ("src/views/" en la Home, "" en src/views)
+      sinBotonDemo → true en la página de Demo
+    ===================================================== #}
+  <!-- =====================================================
+       NAVBAR — logo, menú y botón
+       ===================================================== -->
+  <header class="navbar" data-navbar data-ambito="menu">
+    <a class="navbar__logo" href="{{ raiz }}index.html" aria-label="Thinkion, inicio">
+      <img class="navbar__logo-claro" src="{{ raiz }}public/img/home/logo-thinkion-blanco.svg" alt="Thinkion" width="189" height="33">
+      <img class="navbar__logo-oscuro" src="{{ raiz }}public/img/home/logo-thinkion-oscuro.svg" alt="" width="189" height="33" aria-hidden="true">
+    </a>
+
+    <nav class="navbar__menu" id="menu-principal" aria-label="Navegación principal">
+      <!-- Desplegable SOLUCIONES -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Soluciones
+          <img src="{{ raiz }}public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--soluciones">
+          <a class="dropdown__bloque" href="{{ vistas }}pos-erp.html">
+            <span class="dropdown__titulo"><img src="{{ raiz }}public/img/home/menu-pos.svg" alt="" width="24" height="24">POS &amp; ERP</span>
+            <ul class="dropdown__sublista">
+              <li>KDS</li>
+              <li>Integraciones</li>
+              <li>Modos de uso</li>
+            </ul>
+          </a>
+          <a class="dropdown__bloque" href="{{ vistas }}check.html">
+            <span class="dropdown__titulo"><img src="{{ raiz }}public/img/home/menu-auditorias.svg" alt="" width="24" height="24">Auditorías</span>
+            <ul class="dropdown__sublista">
+              <li>Funcionalidades</li>
+              <li>Modos de uso</li>
+              <li>Beneficios</li>
+            </ul>
+          </a>
+          <a class="dropdown__bloque" href="{{ vistas }}marketing.html">
+            <span class="dropdown__titulo"><img src="{{ raiz }}public/img/home/menu-marketing.svg" alt="" width="24" height="24">Marketing</span>
+            <ul class="dropdown__sublista">
+              <li>Fidelización</li>
+              <li>Encuestas</li>
+              <li>Reservas</li>
+            </ul>
+          </a>
+          <a class="dropdown__bloque" href="{{ vistas }}productividad.html">
+            <span class="dropdown__titulo"><img src="{{ raiz }}public/img/home/menu-productividad.svg" alt="" width="24" height="24">Productividad</span>
+            <ul class="dropdown__sublista">
+              <li>Dispositivos</li>
+              <li>Integración</li>
+              <li>Sensores</li>
+            </ul>
+          </a>
+        </div>
+      </div>
+
+      <!-- Desplegable INDUSTRIAS -->
+      <div class="navbar__item" data-dropdown>
+        <button class="navbar__link" type="button" aria-expanded="false">
+          Industrias
+          <img src="{{ raiz }}public/img/home/flecha-abajo-blanca.svg" alt="" width="12" height="8">
+        </button>
+        <div class="dropdown dropdown--industrias">
+          <a class="dropdown__bloque" href="{{ vistas }}gastronomia.html">
+            <span class="dropdown__titulo"><img src="{{ raiz }}public/img/home/menu-gastronomia.svg" alt="" width="24" height="24">Gastronómicas</span>
+            <span class="dropdown__texto">Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio.</span>
+          </a>
+          <a class="dropdown__bloque" href="{{ vistas }}retail.html">
+            <span class="dropdown__titulo"><img src="{{ raiz }}public/img/home/menu-retail.svg" alt="" width="24" height="24">Retail</span>
+            <span class="dropdown__texto">Administrá ventas, stock y promociones desde un mismo entorno.</span>
+          </a>
+        </div>
+      </div>
+
+      <a class="navbar__link" href="{{ vistas }}sobre-nosotros.html">Nosotros</a>
+      <a class="navbar__link" href="{{ vistas }}clientes.html">Clientes</a>
+      {%- if not sinBotonDemo %}
+      <a class="boton-demo navbar__demo-movil" href="{{ vistas }}demo.html">Pedí tu demo</a>
+      {%- endif %}
+    </nav>
+
+    {%- if not sinBotonDemo %}
+    <a class="boton-demo navbar__demo" href="{{ vistas }}demo.html">
+      Pedí tu demo
+      <img src="{{ raiz }}public/img/home/chevron-boton.svg" alt="" width="8" height="13">
+    </a>
+    {%- else %}
+    <!-- Sin botón "Pedí tu demo": ya estás en esa página -->
+    {%- endif %}
+
+    <button class="navbar__hamburguesa" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span></span><span></span><span></span>
+      <b class="sr-only">Abrir menú</b>
+    </button>
+  </header>

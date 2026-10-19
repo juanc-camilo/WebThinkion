@@ -1,0 +1,47 @@
+# =====================================================================
+# Control de calidad de la web de Thinkion
+# Corre en cada push y en cada pull request:
+#   1) Tests de Playwright: SEO, JSON-LD, accesibilidad (axe), teclado y formularios.
+#   2) Lighthouse CI: performance, accesibilidad, buenas prácticas y SEO con umbrales mínimos.
+# Si algo baja del mínimo, el check queda en rojo en el PR.
+# =====================================================================
+name: Calidad web
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Instala las dependencias de desarrollo declaradas en package.json
+      - run: npm install
+      # Descarga Chromium y sus librerías del sistema para Playwright
+      - run: npx playwright install --with-deps chromium
+      # playwright.config.mjs arma el sitio y levanta el servidor local solo (webServer)
+      - run: npx playwright test
+      # Si falla, deja el reporte descargable desde la pestaña Actions
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: resultados-tests
+          path: resultados-tests.json
+
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      # Arma el sitio en _site (Eleventy)
+      - run: npx eleventy
+      # lighthouserc.json define las URLs, las 3 corridas y los umbrales
+      - run: npx lhci autorun

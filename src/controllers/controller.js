@@ -34,7 +34,19 @@ desplegables.forEach((item) => {
   });
 });
 document.addEventListener('click', () => cerrarDesplegables());
-document.addEventListener('keydown', (evento) => { if (evento.key === 'Escape') cerrarDesplegables(); });
+
+/* ---------- Tecla Escape: cierra desplegables y el menú mobile ---------- */
+document.addEventListener('keydown', (evento) => {
+  if (evento.key !== 'Escape') return;
+  cerrarDesplegables();
+  // Si el menú mobile está abierto, se cierra y el foco vuelve al botón que lo abrió
+  if (navbar?.classList.contains('menu-abierto')) {
+    navbar.classList.remove('menu-abierto');
+    hamburguesa.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('no-scroll');
+    hamburguesa.focus();
+  }
+});
 
 /* ---------- Pestañas (Industrias y Preguntas frecuentes) ----------
    Cada botón [data-tab] muestra el panel [data-panel] con el mismo nombre. */
@@ -253,3 +265,101 @@ if ('IntersectionObserver' in window) {
 } else {
   aparecer.forEach((item) => item.classList.add('is-visible'));
 }
+
+/* ---------- Banner de temporada (al entrar a la página) ----------
+   Se configura desde el panel /admin → Temporadas. Los datos los deja
+   Eleventy en <script id="temporadas-datos">. La temporada activa ya la
+   eligió el <head> (atributo data-temporada en <html>).
+   Frecuencia: "sesion" (una vez por visita), "dia" (una vez por día),
+   "una-vez" (una sola vez por navegador) o "siempre". */
+const guardado = (almacen, clave, valor) => {
+  try {
+    if (valor === undefined) return window[almacen].getItem(clave);
+    window[almacen].setItem(clave, valor);
+  } catch { return null; }
+  return null;
+};
+
+const mostrarBannerTemporada = (banner) => {
+  document.querySelector('.banner-temporada')?.remove();
+  const dialogo = document.createElement('dialog');
+  dialogo.className = 'banner-temporada';
+  dialogo.setAttribute('aria-labelledby', 'banner-temporada-titulo');
+  dialogo.style.setProperty('--banner-fondo', banner.colorFondo || '#fff');
+  dialogo.style.setProperty('--banner-texto', banner.colorTexto || '#1b1b1b');
+  dialogo.style.setProperty('--banner-boton', banner.colorBoton || '#c9373d');
+
+  const cerrar = document.createElement('button');
+  cerrar.type = 'button';
+  cerrar.className = 'banner-temporada__cerrar';
+  cerrar.setAttribute('aria-label', 'Cerrar');
+  cerrar.textContent = '×';
+  cerrar.addEventListener('click', () => dialogo.close());
+  dialogo.append(cerrar);
+
+  if (banner.imagen) {
+    const imagen = document.createElement('img');
+    imagen.className = 'banner-temporada__imagen';
+    imagen.src = banner.imagen;
+    imagen.alt = banner.imagenAlt || '';
+    dialogo.append(imagen);
+  }
+
+  const cuerpo = document.createElement('div');
+  cuerpo.className = 'banner-temporada__cuerpo';
+  if (banner.titulo) {
+    const titulo = document.createElement('h2');
+    titulo.id = 'banner-temporada-titulo';
+    titulo.textContent = banner.titulo;
+    cuerpo.append(titulo);
+  }
+  if (banner.texto) {
+    const texto = document.createElement('p');
+    texto.textContent = banner.texto;
+    cuerpo.append(texto);
+  }
+  if (banner.botonTexto && banner.botonLink) {
+    const boton = document.createElement('a');
+    boton.className = 'banner-temporada__boton';
+    boton.href = banner.botonLink;
+    boton.textContent = banner.botonTexto;
+    cuerpo.append(boton);
+  }
+  dialogo.append(cuerpo);
+
+  // Clic en el fondo oscuro (fuera de la tarjeta): cierra
+  dialogo.addEventListener('click', (evento) => { if (evento.target === dialogo) dialogo.close(); });
+  dialogo.addEventListener('close', () => dialogo.remove());
+  document.body.append(dialogo);
+  dialogo.showModal();
+};
+// El panel /admin lo usa para la vista previa
+window.mostrarBannerTemporada = mostrarBannerTemporada;
+
+(() => {
+  const nodoDatos = document.getElementById('temporadas-datos');
+  const enEditor = new URLSearchParams(location.search).has('editor') || window.frameElement?.hasAttribute('data-editor');
+  if (!nodoDatos || enEditor) return;
+  let datos;
+  try { datos = JSON.parse(nodoDatos.textContent); } catch { return; }
+  const id = document.documentElement.getAttribute('data-temporada');
+  const banner = datos.temporadas.find((t) => t.id === id)?.banner;
+  if (!banner) return;
+  if (banner.paginas === 'home' && !document.body.classList.contains('pagina-home')) return;
+
+  // Si se edita el banner, vuelve a aparecer aunque ya se haya visto
+  const version = [id, banner.titulo, banner.texto, banner.imagen].join('|');
+  const clave = `banner-visto:${version}`;
+  const hoy = new Date().toDateString();
+  const frecuencia = banner.frecuencia || 'sesion';
+  if (frecuencia === 'sesion' && guardado('sessionStorage', clave)) return;
+  if (frecuencia === 'una-vez' && guardado('localStorage', clave)) return;
+  if (frecuencia === 'dia' && guardado('localStorage', clave) === hoy) return;
+
+  setTimeout(() => {
+    mostrarBannerTemporada(banner);
+    if (frecuencia === 'sesion') guardado('sessionStorage', clave, '1');
+    if (frecuencia === 'una-vez') guardado('localStorage', clave, '1');
+    if (frecuencia === 'dia') guardado('localStorage', clave, hoy);
+  }, Math.max(0, Number(banner.retraso) || 0) * 1000);
+})();
