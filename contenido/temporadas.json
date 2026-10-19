@@ -8,7 +8,9 @@
       "nombre": "Primavera 2026 (diseño actual)",
       "desde": "",
       "hasta": "",
-      "tema": { "variables": {} },
+      "tema": {
+        "variables": {}
+      },
       "banner": {
         "activo": false,
         "titulo": "¡Bienvenido a Thinkion!",
