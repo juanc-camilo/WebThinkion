@@ -77,7 +77,7 @@ En Vercel → el proyecto → *Settings → Environment Variables*:
 | `ADMIN_USUARIO` / `ADMIN_CLAVE` | Usuario y contraseña del panel | si faltan: juanc / juanc1234 |
 | `ADMIN_SECRETO` | Texto largo al azar que firma la sesión | recomendada |
 
-**Imágenes:** para poder subirlas desde el panel, en Vercel → *Storage → Create → Blob* (acceso **público**), conectalo al proyecto (agrega solo `BLOB_READ_WRITE_TOKEN`; si le pusiste otro prefijo, también sirve) y hacé un **Redeploy** (*Deployments → el último → ⋯ → Redeploy*): la conexión se toma recién en el deploy siguiente. Sin eso igual se pueden usar las imágenes que ya tiene el sitio.
+**Imágenes:** para poder subirlas desde el panel, en Vercel → *Storage → Create → Blob* (acceso **público**), conectalo al proyecto (agrega solo `BLOB_STORE_ID` o `BLOB_READ_WRITE_TOKEN`; si le pusiste otro prefijo, también sirve) y hacé un **Redeploy** (*Deployments → el último → ⋯ → Redeploy*): la conexión se toma recién en el deploy siguiente. Sin eso igual se pueden usar las imágenes que ya tiene el sitio.
 
 `vercel.json` le indica a Vercel que es un proyecto Next.js y que arme con `npm run build`.
 
