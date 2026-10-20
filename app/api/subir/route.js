@@ -4,7 +4,7 @@
    Las imágenes llegan ya achicadas y en WebP (lo hace el navegador). */
 import { createHash } from 'node:crypto';
 import { protegida, json } from '@/lib/sesion';
-import { subirArchivo } from '@/lib/almacen';
+import { subirArchivo, tokenBlob } from '@/lib/almacen';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,9 +29,9 @@ export const POST = protegida(async (request) => {
 });
 
 export const GET = protegida(async () => {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return json({ imagenes: [] });
+  if (!tokenBlob()) return json({ imagenes: [] });
   const { list } = await import('@vercel/blob');
-  const { blobs } = await list({ prefix: 'subidas/', limit: 500 });
+  const { blobs } = await list({ prefix: 'subidas/', limit: 500, token: tokenBlob() });
   const imagenes = blobs.filter((b) => /\.(webp|png|jpe?g|gif|svg|avif)$/i.test(b.pathname))
     .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt)).map((b) => b.url);
   return json({ imagenes });

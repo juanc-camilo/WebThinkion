@@ -1,7 +1,8 @@
 /* =========================================================
-   TEMPORADAS — colores y banner de bienvenida según la fecha.
+   TEMPORADAS — colores según la fecha (el banner de bienvenida va
+   aparte, en ajustes.banner).
    Se configuran en el panel → Ajustes generales → Temporadas:
-     { nombre, desde, hasta, colores: { botones, acento, titulos, fondo }, banner: {…} }
+     { nombre, desde, hasta, colores: { botones, acento, titulos, fondo } }
    Cuál está activa:
      1) la forzada en "Temporada activa" (si se escribió un nombre), si no
      2) la primera cuyas fechas incluyen el día de hoy, si no

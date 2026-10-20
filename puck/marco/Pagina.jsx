@@ -69,7 +69,7 @@ export default function Pagina({ children, plantilla, puck }) {
       <Footer footer={ajustes.footer} eventos={eventos} />
 
       {/* Menú, pestañas, carruseles, video en ventana y banner (solo en la web, no en el editor) */}
-      {!editando && <Comportamientos temporadas={ajustes.temporadas} />}
+      {!editando && <Comportamientos banner={ajustes.banner} />}
     </div>
   );
 }

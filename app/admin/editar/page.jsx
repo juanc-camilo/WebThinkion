@@ -8,6 +8,10 @@
    Mientras editás, se guarda un borrador en este navegador: si cerrás
    sin publicar, al volver te ofrece recuperarlo.
    ?pagina=_ajustes edita los Ajustes generales (menú, footer, temporadas).
+   &version=futuro edita el DISEÑO FUTURO de la página: se guarda en
+   GitHub (contenido/futuro) pero no se ve en la web hasta tocar
+   "Pasar a la web". Sirve para ir armando el próximo diseño de a poco
+   mientras la página actual se sigue editando aparte.
    ========================================================= */
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
@@ -126,14 +130,19 @@ function IframeConEstilos({ children, document: doc }) {
   return children;
 }
 
+// pagina: "check" (la de la web) o "check@futuro" (el diseño futuro)
 const claveBorrador = (pagina) => `thk-borrador:${pagina}`;
 const leerBorrador = (pagina) => { try { return JSON.parse(localStorage.getItem(claveBorrador(pagina)) || 'null'); } catch { return null; } };
 const guardarBorrador = (pagina, datos) => { try { localStorage.setItem(claveBorrador(pagina), JSON.stringify(datos)); } catch { /* sin espacio: no pasa nada */ } };
 const borrarBorrador = (pagina) => { try { localStorage.removeItem(claveBorrador(pagina)); } catch { /* nada */ } };
 
 function Editor() {
-  const pagina = useSearchParams().get('pagina') || 'inicio';
+  const params = useSearchParams();
+  const pagina = params.get('pagina') || 'inicio';
   const esAjustes = pagina === '_ajustes';
+  const esFuturo = !esAjustes && params.get('version') === 'futuro';
+  // El borrador del navegador es aparte para cada versión
+  const clave = esFuturo ? `${pagina}@futuro` : pagina;
   const [sesion, revisar] = useSesion();
   const [estado, setEstado] = useState({ cargando: true });
   const [toast, nodoToast] = useToast();
@@ -146,45 +155,54 @@ function Editor() {
         const [{ ajustes }, { paginas }, pag] = await Promise.all([
           api('ajustes'),
           api('paginas'),
-          esAjustes ? Promise.resolve(null) : api(`paginas?nombre=${pagina}`),
+          esAjustes ? Promise.resolve(null) : api(`paginas?nombre=${pagina}${esFuturo ? '&version=futuro' : ''}`),
         ]);
         let datos = esAjustes ? { root: { props: ajustes }, content: [], zones: {} } : pag.datos;
         publicado.current = JSON.stringify(datos);
         // ¿Quedó un borrador sin publicar en este navegador?
-        const borrador = leerBorrador(pagina);
+        const borrador = leerBorrador(clave);
         if (borrador && JSON.stringify(borrador) !== publicado.current
-          && confirm('Hay cambios sin publicar de la última vez que editaste esta página en este navegador. ¿Recuperarlos?')) {
+          && confirm(esFuturo
+            ? 'Hay cambios sin guardar del diseño futuro de la última vez que lo editaste en este navegador. ¿Recuperarlos?'
+            : 'Hay cambios sin publicar de la última vez que editaste esta página en este navegador. ¿Recuperarlos?')) {
           datos = borrador;
         } else if (borrador) {
-          borrarBorrador(pagina);
+          borrarBorrador(clave);
         }
         setEstado({ datos, ajustes, ruta: pag?.ruta || '/', paginas });
       } catch (e) {
         setEstado({ error: e.message });
       }
     })();
-  }, [sesion?.conectado, pagina, esAjustes]);
+  }, [sesion?.conectado, pagina, esAjustes, esFuturo, clave]);
 
   // Aviso al cerrar la pestaña con cambios sin publicar
   useEffect(() => {
     const avisar = (evento) => {
-      const borrador = leerBorrador(pagina);
+      const borrador = leerBorrador(clave);
       if (borrador && JSON.stringify(borrador) !== publicado.current) evento.preventDefault();
     };
     window.addEventListener('beforeunload', avisar);
     return () => window.removeEventListener('beforeunload', avisar);
-  }, [pagina]);
+  }, [clave]);
+
+  // Lo último que se editó, y la acción "Pasar a la web" (la barra de
+  // arriba la llama; se define más abajo, cuando ya están los datos)
+  const ultimo = useRef(null);
+  const pasarALaWeb = useRef(null);
 
   const overrides = useMemo(() => ({
     iframe: IframeConEstilos,
     headerActions: ({ children }) => (
       <>
         <a className="a-btn a-btn--chico" href="/admin">← Panel</a>
-        {!esAjustes && <a className="a-btn a-btn--chico" href={estado.ruta || '/'} target="_blank" rel="noopener">Ver en la web ↗</a>}
+        {esFuturo && <span className="a-insignia a-insignia--futuro" title="Lo que guardes acá no se ve en la web hasta tocar Pasar a la web">Diseño futuro</span>}
+        {!esAjustes && !esFuturo && <a className="a-btn a-btn--chico" href={estado.ruta || '/'} target="_blank" rel="noopener">Ver en la web ↗</a>}
+        {esFuturo && <button className="a-btn a-btn--chico" type="button" onClick={() => pasarALaWeb.current?.()}>Pasar a la web</button>}
         {children}
       </>
     ),
-  }), [esAjustes, estado.ruta]);
+  }), [esAjustes, esFuturo, estado.ruta]);
 
   if (!sesion) return null;
   if (!sesion.conectado) return <Ingreso alEntrar={revisar} error={sesion.error} />;
@@ -192,21 +210,42 @@ function Editor() {
   if (estado.cargando) return <main className="a-centro"><p className="a-ayuda">Cargando la página…</p></main>;
 
   const publicar = async (datos) => {
-    toast('Publicando…', { duracion: 30000 });
+    toast(esFuturo ? 'Guardando el diseño futuro…' : 'Publicando…', { duracion: 30000 });
     try {
       if (esAjustes) await api('ajustes', { metodo: 'POST', cuerpo: { ajustes: datos.root.props } });
-      else await api('paginas', { metodo: 'POST', cuerpo: { nombre: pagina, datos } });
+      else await api('paginas', { metodo: 'POST', cuerpo: { nombre: pagina, datos, version: esFuturo ? 'futuro' : undefined } });
       publicado.current = JSON.stringify(datos);
-      borrarBorrador(pagina);
-      toast(sesion.modo === 'github'
-        ? '✅ Publicado. En 1 o 2 minutos se ve en la web (Vercel lo está armando).'
-        : '✅ Guardado en los archivos del proyecto.', { duracion: 7000 });
+      borrarBorrador(clave);
+      if (esFuturo) toast('✅ Diseño futuro guardado. La web no cambia hasta que toques "Pasar a la web".', { duracion: 7000 });
+      else {
+        toast(sesion.modo === 'github'
+          ? '✅ Publicado. En 1 o 2 minutos se ve en la web (Vercel lo está armando).'
+          : '✅ Guardado en los archivos del proyecto.', { duracion: 7000 });
+      }
     } catch (e) {
-      toast(`No se pudo publicar: ${e.message}`, { error: true, duracion: 10000 });
+      toast(`No se pudo ${esFuturo ? 'guardar' : 'publicar'}: ${e.message}`, { error: true, duracion: 10000 });
     }
   };
 
-  const titulo = esAjustes ? 'Ajustes generales' : (estado.paginas.find((p) => p.nombre === pagina)?.titulo || pagina);
+  // Diseño futuro → web: reemplaza la página publicada por lo que está en el editor
+  pasarALaWeb.current = async () => {
+    if (!confirm(`¿Pasar este diseño a la web? Reemplaza a la página que se ve hoy en ${estado.ruta}. La versión de hoy queda en el historial de GitHub.`)) return;
+    const datos = ultimo.current || estado.datos;
+    toast('Pasando a la web…', { duracion: 30000 });
+    try {
+      await api('paginas', { metodo: 'POST', cuerpo: { accion: 'pasar-a-la-web', nombre: pagina, datos } });
+      publicado.current = JSON.stringify(datos);
+      borrarBorrador(clave);
+      borrarBorrador(pagina);
+      toast('✅ Listo. En 1 o 2 minutos se ve en la web.', { duracion: 4000 });
+      setTimeout(() => { location.href = '/admin'; }, 1500);
+    } catch (e) {
+      toast(`No se pudo pasar a la web: ${e.message}`, { error: true, duracion: 10000 });
+    }
+  };
+
+  const tituloPagina = estado.datos?.root?.props?.titulo || estado.paginas.find((p) => p.nombre === pagina)?.titulo || pagina;
+  const titulo = esAjustes ? 'Ajustes generales' : esFuturo ? `${tituloPagina} (diseño futuro)` : tituloPagina;
 
   return (
     <>
@@ -216,14 +255,14 @@ function Editor() {
         data={estado.datos}
         metadata={{ ajustes: estado.ajustes, ruta: estado.ruta }}
         onPublish={publicar}
-        onChange={(datos) => guardarBorrador(pagina, datos)}
-        dictionary={DICCIONARIO}
+        onChange={(datos) => { ultimo.current = datos; guardarBorrador(clave, datos); }}
+        dictionary={esFuturo ? { ...DICCIONARIO, 'header-publish': 'Guardar diseño futuro' } : DICCIONARIO}
         viewports={PANTALLAS}
         overrides={overrides}
         // En los ajustes no hay bloques para arrastrar: sin columna izquierda
         ui={esAjustes ? { leftSideBarVisible: false } : undefined}
         headerTitle={titulo}
-        headerPath={esAjustes ? 'Menú, footer, temporadas y banner' : estado.ruta}
+        headerPath={esAjustes ? 'Menú, banner, temporadas y footer' : estado.ruta}
       />
       {nodoToast}
     </>

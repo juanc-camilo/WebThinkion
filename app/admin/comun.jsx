@@ -74,7 +74,7 @@ export function AvisoConfiguracion({ sesion }) {
   if (!sesion) return null;
   const avisos = [];
   if (sesion.modo === 'sin-configurar') avisos.push('Falta configurar GITHUB_TOKEN en Vercel: se puede editar, pero no publicar.');
-  if (sesion.imagenes === 'sin-configurar') avisos.push('Para subir imágenes falta activar Vercel Blob (Vercel → Storage → Create → Blob → conectarlo al proyecto). Mientras tanto se pueden elegir las imágenes que ya tiene el sitio.');
+  if (sesion.imagenes === 'sin-configurar') avisos.push('Para subir imágenes falta Vercel Blob. Si ya lo conectaste, falta un Redeploy: Vercel → Deployments → el último → ⋯ → Redeploy (la conexión se toma recién en el deploy siguiente). Si no: Storage → Create → Blob → conectarlo al proyecto. Mientras tanto se pueden elegir las imágenes que ya tiene el sitio.');
   if (sesion.modo === 'local') avisos.push('Estás en la compu: lo que publiques se guarda directo en los archivos del proyecto.');
   return avisos.map((a) => <p className="a-aviso" key={a}>{a}</p>);
 }

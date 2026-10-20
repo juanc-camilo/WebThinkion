@@ -89,6 +89,23 @@
     "botonTexto": "Pedí tu demo",
     "botonLink": "/demo"
   },
+  "banner": {
+    "activo": false,
+    "desde": "",
+    "hasta": "",
+    "titulo": "¡Bienvenido a Thinkion!",
+    "texto": "Conocé todo lo que tu negocio puede lograr con un ecosistema integrado.",
+    "imagen": "",
+    "imagenAlt": "",
+    "botonTexto": "Pedí tu demo",
+    "botonLink": "/demo",
+    "colorFondo": "#ffffff",
+    "colorTexto": "#1b1b1b",
+    "colorBoton": "#c9373d",
+    "frecuencia": "sesion",
+    "paginas": "todas",
+    "retraso": 1
+  },
   "footer": {
     "logo": "/img/home/logo-thinkion-footer.svg",
     "sellos": "/img/home/sellos-iram-iqnet.webp",
@@ -174,21 +191,6 @@
           "acento": "",
           "titulos": "",
           "fondo": ""
-        },
-        "banner": {
-          "activo": false,
-          "titulo": "¡Bienvenido a Thinkion!",
-          "texto": "Conocé todo lo que tu negocio puede lograr con un ecosistema integrado.",
-          "imagen": "",
-          "imagenAlt": "",
-          "botonTexto": "Pedí tu demo",
-          "botonLink": "/demo",
-          "colorFondo": "#ffffff",
-          "colorTexto": "#1b1b1b",
-          "colorBoton": "#c9373d",
-          "frecuencia": "sesion",
-          "paginas": "todas",
-          "retraso": 1
         }
       }
     ]

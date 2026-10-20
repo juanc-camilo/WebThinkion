@@ -45,6 +45,10 @@ body.admin { margin: 0; font-family: "Outfit", system-ui, sans-serif; background
 .a-insignia { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 99px; background: #f1f0f4; color: #6b6b6b; font-size: 11px; font-weight: 600; vertical-align: middle; }
 .a-acciones { display: flex; gap: 8px; flex-wrap: wrap; }
 
+/* Diseño futuro: violeta claro, para no confundirlo con lo que está en la web */
+.a-insignia--futuro { background: #efe8fd; color: #5b2fc9; white-space: nowrap; }
+.a-pagina--futuro { border-style: dashed; border-color: #c9b8f5; background: #fbf9ff; }
+
 .a-ajustes { display: flex; align-items: center; gap: 16px; padding: 18px 20px; background: linear-gradient(135deg, #f3effd, #fff); border: 1px solid #d8ccf7; border-radius: 16px; flex-wrap: wrap; }
 .a-ajustes > div { flex: 1; min-width: 220px; }
 
@@ -57,3 +61,23 @@ body.admin { margin: 0; font-family: "Outfit", system-ui, sans-serif; background
 .a-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; max-width: min(560px, calc(100vw - 32px));
   padding: 12px 18px; border-radius: 12px; background: #1b1b1b; color: #fff; font-size: 14px; box-shadow: 0 8px 30px rgba(0, 0, 0, .2); }
 .a-toast--error { background: #c9373d; }
+
+/* ---------- Editor: títulos de grupos y listas en negrita ----------
+   A la derecha del editor, cada grupo (Menú, Banner, Temporadas,
+   Footer…) y cada lista (Opciones del menú, Tarjetas…) tiene un
+   título. Puck los pone en gris chico, igual que un campo suelto:
+   acá van en negrita y más grandes para ver dónde empieza cada
+   bloque. Los de primer nivel, además, llevan una línea arriba.
+   Puck usa clases con sufijo al azar (_Input-label_qyenz_5): por eso
+   se buscan por el comienzo del nombre. */
+[class*="_Input-label_"] { font-weight: 500; }
+[class*="_Input-label_"]:has(+ [class*="_ObjectField_"], + [class*="_ArrayField_"], + * > [class*="_ArrayField_"]) {
+  color: #1b1b1b;
+  font-size: 15px;
+  font-weight: 700;
+}
+/* Primer nivel: no está adentro de otro grupo ni de un elemento de lista */
+:not([class*="fieldset"]) > [class*="_InputWrapper_"] > div > [class*="_Input-label_"]:has(+ [class*="_ObjectField_"], + [class*="_ArrayField_"], + * > [class*="_ArrayField_"]) {
+  font-size: 17px;
+  color: #133883;
+}

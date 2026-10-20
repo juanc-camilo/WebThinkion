@@ -1,6 +1,7 @@
 /* =========================================================
    AJUSTES GENERALES — lo que se comparte entre todas las páginas:
-   menú, footer, temporadas (colores y banner) y datos de la empresa.
+   menú, banner de bienvenida, temporadas (colores), footer y datos
+   de la empresa.
    Se edita con Puck igual que una página: a la derecha los campos,
    en el centro la vista previa (menú, banner y footer en vivo).
    Se guarda en contenido/ajustes.json.
@@ -42,7 +43,29 @@ const camposFooter = grupo('Pie de página (footer)', {
   copyright: texto('Texto final (copyright)', { editable: false }),
 });
 
-const camposTemporadas = grupo('Temporadas (colores y banner de bienvenida)', {
+/* ---------- Banner al entrar a la web ----------
+   Va aparte de las temporadas (antes estaba adentro de cada una y
+   costaba encontrarlo). Tiene sus propias fechas: se prende y se
+   apaga solo. */
+const camposBanner = grupo('Banner al entrar a la web', {
+  activo: opciones('Mostrar banner', [[true, 'Sí'], [false, 'No']], { radio: true }),
+  desde: fecha('Desde (vacío = ya)'),
+  hasta: fecha('Hasta (vacío = sin fin)'),
+  titulo: texto('Título', { editable: false }),
+  texto: parrafo('Texto', { editable: false }),
+  imagen: imagen('Imagen (opcional)'),
+  imagenAlt: texto('Descripción de la imagen', { editable: false }),
+  botonTexto: texto('Texto del botón (vacío = sin botón)', { editable: false }),
+  botonLink: link('El botón lleva a'),
+  colorFondo: colorLibre('Color de fondo'),
+  colorTexto: colorLibre('Color de la letra'),
+  colorBoton: colorLibre('Color del botón'),
+  frecuencia: opciones('Cada cuánto se muestra', [['sesion', 'Una vez por visita'], ['dia', 'Una vez por día'], ['una-vez', 'Una sola vez'], ['siempre', 'Siempre']]),
+  paginas: opciones('Dónde', [['todas', 'En todas las páginas'], ['home', 'Solo en la Home']]),
+  retraso: numero('Aparece a los (segundos)', { min: 0, max: 30 }),
+});
+
+const camposTemporadas = grupo('Temporadas (colores)', {
   activa: texto('Forzar una temporada (escribí su nombre; vacío = automática por fechas)', { editable: false }),
   lista: lista('Temporadas', {
     nombre: texto('Nombre (ej.: Navidad 2026)', { editable: false }),
@@ -54,27 +77,9 @@ const camposTemporadas = grupo('Temporadas (colores y banner de bienvenida)', {
       titulos: colorLibre('Títulos (azul)'),
       fondo: colorLibre('Fondo de las páginas'),
     }),
-    banner: grupo('Banner al entrar a la web', {
-      activo: opciones('Mostrar banner', [[true, 'Sí'], [false, 'No']], { radio: true }),
-      titulo: texto('Título', { editable: false }),
-      texto: parrafo('Texto', { editable: false }),
-      imagen: imagen('Imagen (opcional)'),
-      imagenAlt: texto('Descripción de la imagen', { editable: false }),
-      botonTexto: texto('Texto del botón (vacío = sin botón)', { editable: false }),
-      botonLink: link('El botón lleva a'),
-      colorFondo: colorLibre('Color de fondo'),
-      colorTexto: colorLibre('Color de la letra'),
-      colorBoton: colorLibre('Color del botón'),
-      frecuencia: opciones('Cada cuánto se muestra', [['sesion', 'Una vez por visita'], ['dia', 'Una vez por día'], ['una-vez', 'Una sola vez'], ['siempre', 'Siempre']]),
-      paginas: opciones('Dónde', [['todas', 'En todas las páginas'], ['home', 'Solo en la Home']]),
-      retraso: numero('Aparece a los (segundos)', { min: 0, max: 30 }),
-    }),
   }, {
     resumen: 'nombre',
-    nuevo: {
-      nombre: 'Nueva temporada', desde: '', hasta: '', colores: { botones: '', acento: '', titulos: '', fondo: '' },
-      banner: { activo: false, titulo: '', texto: '', imagen: '', imagenAlt: '', botonTexto: 'Pedí tu demo', botonLink: '/demo', colorFondo: '#ffffff', colorTexto: '#1b1b1b', colorBoton: '#c9373d', frecuencia: 'sesion', paginas: 'todas', retraso: 1 },
-    },
+    nuevo: { nombre: 'Nueva temporada', desde: '', hasta: '', colores: { botones: '', acento: '', titulos: '', fondo: '' } },
   }),
 });
 
@@ -88,12 +93,11 @@ const camposSitio = grupo('Datos de la empresa (Google, IAs y al compartir)', {
   redes: lista('Perfiles en redes', { nombre: texto('Red', { editable: false }), link: link('Dirección') }, { resumen: 'nombre', nuevo: { nombre: 'Red', link: 'https://' } }),
 });
 
-/* ---------- Vista previa: menú, colores y banner de la temporada, footer ---------- */
-function VistaAjustes({ menu, footer, temporadas, puck }) {
+/* ---------- Vista previa: menú, colores de la temporada, banner y footer ---------- */
+function VistaAjustes({ menu, footer, temporadas, banner }) {
   const lista = temporadas?.lista || [];
   const activa = temporadaActiva(temporadas);
   const actual = lista.find((t) => idTemporada(t.nombre) === activa);
-  const banner = actual?.banner;
   return (
     <div className="pagina-home" data-temporada={activa || undefined}>
       <style dangerouslySetInnerHTML={{ __html: cssTemporadas(temporadas).replace(/html\[data-temporada=/g, '[data-temporada=') }} />
@@ -119,7 +123,7 @@ function VistaAjustes({ menu, footer, temporadas, puck }) {
           </div>
         ) : (
           <p style={{ background: 'rgba(255,255,255,.85)', borderRadius: 16, padding: '16px 24px', maxWidth: 520, textAlign: 'center' }}>
-            La temporada activa no tiene banner. Para mostrar uno: <strong>Temporadas → la temporada → Banner al entrar a la web → Mostrar banner: Sí</strong>.
+            El banner está apagado. Para mostrarlo: a la derecha, <strong>Banner al entrar a la web → Mostrar banner: Sí</strong>.
           </p>
         )}
       </main>
@@ -131,7 +135,7 @@ function VistaAjustes({ menu, footer, temporadas, puck }) {
 export const configAjustes = {
   components: {},
   root: {
-    fields: { menu: camposMenu, temporadas: camposTemporadas, footer: camposFooter, sitio: camposSitio },
+    fields: { menu: camposMenu, banner: camposBanner, temporadas: camposTemporadas, footer: camposFooter, sitio: camposSitio },
     render: VistaAjustes,
   },
 };

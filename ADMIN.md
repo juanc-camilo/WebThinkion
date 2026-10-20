@@ -15,7 +15,8 @@ Al entrar ves todas las páginas:
 - **Ver ↗** abre la página publicada.
 - **Borrar** la saca de la web; se puede recuperar desde el historial de GitHub. La Home no se puede borrar.
 - **＋ Página nueva**: elegís título y dirección (por ejemplo `/promo-verano`). Podés empezar en blanco o con una copia de otra página.
-- Arriba están los **Ajustes generales**: menú, footer, temporadas con su banner y datos de la empresa.
+- Arriba están los **Ajustes generales**: menú, banner al entrar, temporadas, footer y datos de la empresa.
+- Abajo está el **Diseño futuro**: ver más abajo.
 
 ## El editor
 
@@ -47,12 +48,22 @@ Los colores y los tamaños vienen del diseño: no se pueden poner colores suelto
 ## Ajustes generales
 
 - **Menú:** links y desplegables. Cada desplegable tiene sus opciones (título, ícono, link y lo que va debajo). Para dejar dos opciones en Soluciones, borrá las que sobran de la lista. Al final está el botón de la derecha ("Pedí tu demo").
-- **Temporadas:** cada una tiene nombre, fechas (desde y hasta), colores (vacíos = los de siempre) y su **banner al entrar a la web**.
-  - Activa: la que corresponde por fecha. Fuera de las fechas de todas, se usa la que no tiene fechas. También se puede forzar una escribiendo su nombre.
-  - Banner: título, texto, imagen, botón, colores, cada cuánto se muestra (una vez por visita, por día, una sola vez o siempre), dónde y a los cuántos segundos.
+- **Banner al entrar a la web:** "Mostrar banner: Sí" lo prende. Tiene fechas propias (desde y hasta; vacías = siempre), así se prende y se apaga solo. Además: título, texto, imagen, botón, colores, cada cuánto se muestra (una vez por visita, por día, una sola vez o siempre), dónde y a los cuántos segundos.
   - Para ver el banner en la web aunque ya lo hayas visto: `https://webthinkion.vercel.app/?banner=ver`.
+- **Temporadas:** cada una tiene nombre, fechas (desde y hasta) y colores (vacíos = los de siempre).
+  - Activa: la que corresponde por fecha. Fuera de las fechas de todas, se usa la que no tiene fechas. También se puede forzar una escribiendo su nombre.
 - **Footer:** columnas de links, mail, redes y texto final.
 - **Datos de la empresa:** nombre, descripción, mail, dirección del sitio (dominio) e imagen para compartir. Los usan Google, las IAs (`llms.txt`) y la vista previa al compartir el link.
+
+## Diseño futuro
+
+Para ir armando **el próximo diseño** de una página sin que se vea en la web, mientras la de hoy se sigue editando aparte.
+
+- **Empezar:** en la lista de páginas, **＋ Diseño futuro**. Arranca como copia de la página de hoy. Para una página que todavía no existe: **＋ Página nueva como diseño futuro**.
+- **Trabajar de a poco:** en el editor (dice arriba "Diseño futuro"), **Guardar diseño futuro** lo guarda sin publicar. Se puede seguir otro día, desde cualquier compu.
+- **Publicar:** **Pasar a la web**, en el editor o en el panel. Reemplaza a la página de hoy; la anterior queda en el historial de GitHub.
+- **Descartar:** borra el diseño futuro. La web no cambia.
+- Ojo: si mientras tanto se cambia la página de hoy, esos cambios no pasan solos al diseño futuro (son dos copias aparte).
 
 ---
 
@@ -66,13 +77,13 @@ En Vercel → el proyecto → *Settings → Environment Variables*:
 | `ADMIN_USUARIO` / `ADMIN_CLAVE` | Usuario y contraseña del panel | si faltan: juanc / juanc1234 |
 | `ADMIN_SECRETO` | Texto largo al azar que firma la sesión | recomendada |
 
-**Imágenes:** para poder subirlas desde el panel, en Vercel → *Storage → Create → Blob*, conectalo al proyecto (agrega solo `BLOB_READ_WRITE_TOKEN`) y volvé a publicar. Sin eso igual se pueden usar las imágenes que ya tiene el sitio.
+**Imágenes:** para poder subirlas desde el panel, en Vercel → *Storage → Create → Blob* (acceso **público**), conectalo al proyecto (agrega solo `BLOB_READ_WRITE_TOKEN`; si le pusiste otro prefijo, también sirve) y hacé un **Redeploy** (*Deployments → el último → ⋯ → Redeploy*): la conexión se toma recién en el deploy siguiente. Sin eso igual se pueden usar las imágenes que ya tiene el sitio.
 
 `vercel.json` le indica a Vercel que es un proyecto Next.js y que arme con `npm run build`.
 
 ## Cómo funciona por dentro
 
-- Cada página es `contenido/paginas/<nombre>.json` (formato de Puck). Los ajustes, `contenido/ajustes.json`.
+- Cada página es `contenido/paginas/<nombre>.json` (formato de Puck). Los ajustes, `contenido/ajustes.json`. Los diseños futuros, `contenido/futuro/<nombre>.json`: no se usan para armar la web, y guardarlos no vuelve a publicar el sitio (`ignoreCommand` en `vercel.json`).
 - **Publicar** crea un commit en GitHub con ese archivo; Vercel ve el commit y arma el sitio de nuevo. Cada publicación queda en el historial de GitHub, así que cualquier cambio se puede revertir.
 - Las páginas se generan **estáticas** con el HTML real (`app/(sitio)/[[...ruta]]`), con título, descripción, dirección oficial, Open Graph y datos estructurados (incluidas las preguntas frecuentes). `robots.txt`, `sitemap.xml` y `llms.txt` se arman solos con las páginas.
 - Los bloques están en `puck/bloques/`. Usan el mismo HTML y las mismas clases del diseño, y la misma hoja de estilos en la web y en el editor (`public/estilos/sitio.css`, la arma `scripts/preparar.mjs`).

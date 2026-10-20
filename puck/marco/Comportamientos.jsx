@@ -4,14 +4,14 @@
    menú (vidrio al bajar, desplegables, celular), pestañas, carrusel
    de clientes, carrusel genérico, línea de tiempo, adjuntar CV,
    filtros de clientes, "volver atrás", animación al aparecer, videos
-   en ventana y banner de temporada.
+   en ventana y banner de bienvenida.
    Es el mismo JavaScript que tenía el sitio (controller.js): trabaja
    sobre el HTML ya armado. En el editor de Puck no corre (ahí los
    bloques se editan, no se usan).
    ========================================================= */
 import { useEffect } from 'react';
 
-export default function Comportamientos({ temporadas }) {
+export default function Comportamientos({ banner }) {
   useEffect(() => {
     // Se inicia una sola vez por página (en desarrollo React lo llamaría dos veces)
     if (window.__thkComportamientos) return;
@@ -19,8 +19,8 @@ export default function Comportamientos({ temporadas }) {
     iniciar();
     iniciarCarruselesGenericos();
     iniciarVideos();
-    iniciarBanner(temporadas);
-  }, [temporadas]);
+    iniciarBanner(banner);
+  }, [banner]);
   return null;
 }
 
@@ -411,10 +411,12 @@ function iniciarVideos() {
 }
 
 
-/* ---------- Banner de temporada (al entrar a la página) ----------
-   Se configura en el panel → Ajustes generales → Temporadas.
-   La temporada activa ya la eligió el script del principio de la
-   página (atributo data-temporada en <html>).
+/* ---------- Banner de bienvenida (al entrar a la página) ----------
+   Se configura en el panel → Ajustes generales → Banner al entrar a
+   la web. Se muestra si está activo y hoy está entre "Desde" y
+   "Hasta" (vacías = siempre). La fecha se mira en el navegador de
+   quien visita, así el banner arranca y termina solo aunque nadie
+   vuelva a publicar.
    Frecuencia: "sesion" (una vez por visita), "dia" (una vez por día),
    "una-vez" (una sola vez por navegador) o "siempre".
    Con ?banner=ver en la dirección se muestra siempre (para probarlo). */
@@ -426,7 +428,7 @@ const guardado = (almacen, clave, valor) => {
   return null;
 };
 
-const mostrarBannerTemporada = (banner) => {
+const mostrarBanner = (banner) => {
   document.querySelector('.banner-temporada')?.remove();
   const dialogo = document.createElement('dialog');
   dialogo.className = 'banner-temporada';
@@ -480,26 +482,26 @@ const mostrarBannerTemporada = (banner) => {
   dialogo.showModal();
 };
 
-function iniciarBanner(temporadas = {}) {
-  const id = document.documentElement.getAttribute('data-temporada');
-  const nombreAId = (n = '') => String(n).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  const banner = (temporadas.lista || []).find((t) => nombreAId(t.nombre) === id)?.banner;
+function iniciarBanner(banner) {
   if (!banner?.activo) return;
-  if (new URLSearchParams(location.search).has('banner')) { mostrarBannerTemporada(banner); return; }
+  if (new URLSearchParams(location.search).has('banner')) { mostrarBanner(banner); return; }
+  const h = new Date();
+  const hoy = `${h.getFullYear()}-${String(h.getMonth() + 1).padStart(2, '0')}-${String(h.getDate()).padStart(2, '0')}`;
+  if ((banner.desde && hoy < banner.desde) || (banner.hasta && hoy > banner.hasta)) return;
   if (banner.paginas === 'home' && location.pathname !== '/') return;
 
   // Si se edita el banner, vuelve a aparecer aunque ya se haya visto
-  const clave = `banner-visto:${[id, banner.titulo, banner.texto, banner.imagen].join('|')}`;
-  const hoy = new Date().toDateString();
+  const clave = `banner-visto:${[banner.desde, banner.titulo, banner.texto, banner.imagen].join('|')}`;
+  const dia = h.toDateString();
   const frecuencia = banner.frecuencia || 'sesion';
   if (frecuencia === 'sesion' && guardado('sessionStorage', clave)) return;
   if (frecuencia === 'una-vez' && guardado('localStorage', clave)) return;
-  if (frecuencia === 'dia' && guardado('localStorage', clave) === hoy) return;
+  if (frecuencia === 'dia' && guardado('localStorage', clave) === dia) return;
 
   setTimeout(() => {
-    mostrarBannerTemporada(banner);
+    mostrarBanner(banner);
     if (frecuencia === 'sesion') guardado('sessionStorage', clave, '1');
     if (frecuencia === 'una-vez') guardado('localStorage', clave, '1');
-    if (frecuencia === 'dia') guardado('localStorage', clave, hoy);
+    if (frecuencia === 'dia') guardado('localStorage', clave, dia);
   }, Math.max(0, Number(banner.retraso) || 0) * 1000);
 }
