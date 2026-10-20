@@ -49,6 +49,11 @@ Los colores y los tamaños vienen del diseño: no se pueden poner colores suelto
 
 - **Menú:** links y desplegables. Cada desplegable tiene sus opciones (título, ícono, link y lo que va debajo). Para dejar dos opciones en Soluciones, borrá las que sobran de la lista. Al final está el botón de la derecha ("Pedí tu demo").
 - **Banner al entrar a la web:** "Mostrar banner: Sí" lo prende. Tiene fechas propias (desde y hasta; vacías = siempre), así se prende y se apaga solo.
+  - **Formato:**
+    - *Ventana*: aparece sobre la página, con el fondo difuminado.
+    - *Franja debajo del menú*: un recuadro redondeado entre el menú y la portada de la página. Tiene X; si la cierran, se elige cuándo vuelve a aparecer.
+    - *Portada completa*: la imagen o el video ocupa toda la parte de arriba, detrás del menú (ideal 1440 × 700). Se puede cargar otra imagen para celular, más angosta y alta.
+  - **Franja de aviso:** una línea de texto violeta arriba de todo (ej.: "Llegó el Black Friday a Thinkion • 50% OFF…"). Vacía = no aparece. Sirve con cualquier formato.
   - **Imagen:** foto, GIF, WebP animado o video MP4 corto (hasta 4 MB; se reproduce solo, sin sonido). Opcional: a dónde lleva al tocarla.
   - **Título y texto** y **botón** se prenden y apagan por separado. Con los dos apagados queda **solo la imagen**, sin recuadro: ideal para un banner hecho en Figma (hay uno de fiestas en *Elegir del sitio* → "felices-fiestas").
   - **Cómo aparece:** sube desde abajo, baja desde arriba, entra por un costado, se agranda, rebota o aparece de a poco. **Dónde:** al centro, arriba, abajo o en la esquina. **Tamaño:** chico, mediano o grande. **Detrás:** la página difuminada, oscurecida o nada.

@@ -10,7 +10,8 @@ import { texto, parrafo, imagen, link, lista, grupo, opciones, numero, fecha, co
 import Navbar from './marco/Navbar';
 import Footer from './marco/Footer';
 import { cssTemporadas, idTemporada, temporadaActiva } from './marco/temporadas';
-import { ANIMACIONES, POSICIONES, ANCHOS, FONDOS, normalizarBanner, esVideo, clasesBanner } from './marco/banner';
+import { FORMATOS, ANIMACIONES, POSICIONES, ANCHOS, FONDOS, normalizarBanner, esVideo, clasesBanner, textoSobre } from './marco/banner';
+import { AvisoPromo, BannerEnPagina } from './marco/BannerEnPagina';
 
 const camposMenu = grupo('Menú', {
   items: lista('Opciones del menú', {
@@ -52,11 +53,19 @@ const camposFooter = grupo('Pie de página (footer)', {
 const siNoBanner = (label) => opciones(label, [[true, 'Sí'], [false, 'No']], { radio: true });
 const camposBanner = (banner = {}) => {
   const b = normalizarBanner(banner);
+  const ventana = b.formato === 'ventana';
+  const franja = b.formato === 'franja';
   return grupo('Banner al entrar a la web', {
     activo: siNoBanner('Mostrar banner'),
     desde: fecha('Desde (vacío = ya)'),
     hasta: fecha('Hasta (vacío = sin fin)'),
-    imagen: imagen('Imagen (también GIF, WebP animado o video MP4 corto)', { animada: true }),
+    formato: opciones('Formato', FORMATOS),
+    aviso: texto('Franja de aviso arriba de todo (vacío = sin franja)', { editable: false, placeholder: 'Llegó el Black Friday a Thinkion • 50% OFF en instalación' }),
+    ...(b.aviso ? { avisoLink: link('La franja de aviso lleva a (opcional)') } : {}),
+    imagen: imagen(b.formato === 'portada'
+      ? 'Imagen o video de la portada (ideal 1440 × 700; también GIF o WebP animado)'
+      : 'Imagen (también GIF, WebP animado o video MP4 corto)', { animada: true }),
+    ...(!ventana ? { imagenCelular: imagen('Imagen para celular (opcional, más angosta y alta)', { animada: true }) } : {}),
     imagenAlt: texto('Descripción de la imagen (para quien no la ve)', { editable: false }),
     linkImagen: link('Al tocar la imagen lleva a (opcional)'),
     mostrarTexto: siNoBanner('Mostrar título y texto'),
@@ -69,16 +78,20 @@ const camposBanner = (banner = {}) => {
       botonTexto: texto('Texto del botón', { editable: false }),
       botonLink: link('El botón lleva a'),
     } : {}),
-    animacion: opciones('Cómo aparece', ANIMACIONES),
-    posicion: opciones('Dónde aparece', POSICIONES),
-    ancho: opciones('Tamaño', ANCHOS),
-    fondo: opciones('Detrás del banner', FONDOS),
-    colorFondo: colorLibre('Color de fondo del recuadro'),
+    // Cómo aparece: la ventana y la franja se animan; la portada ya está al cargar
+    ...(ventana || franja ? { animacion: opciones('Cómo aparece', ANIMACIONES) } : {}),
+    ...(ventana ? {
+      posicion: opciones('Dónde aparece', POSICIONES),
+      ancho: opciones('Tamaño', ANCHOS),
+      fondo: opciones('Detrás del banner', FONDOS),
+    } : {}),
+    colorFondo: colorLibre(b.formato === 'portada' ? 'Color de fondo (se ve si no hay imagen)' : 'Color de fondo del recuadro'),
     ...(b.mostrarTexto ? { colorTexto: colorLibre('Color de la letra') } : {}),
     ...(b.mostrarBoton ? { colorBoton: colorLibre('Color del botón') } : {}),
-    frecuencia: opciones('Cada cuánto se muestra', [['sesion', 'Una vez por visita'], ['dia', 'Una vez por día'], ['una-vez', 'Una sola vez'], ['siempre', 'Siempre']]),
+    ...(ventana ? { frecuencia: opciones('Cada cuánto se muestra', [['sesion', 'Una vez por visita'], ['dia', 'Una vez por día'], ['una-vez', 'Una sola vez'], ['siempre', 'Siempre']]) } : {}),
+    ...(franja ? { frecuencia: opciones('Si la cierran, vuelve a aparecer', [['sesion', 'En la próxima visita'], ['dia', 'Al día siguiente'], ['una-vez', 'Nunca más'], ['siempre', 'Al recargar la página']]) } : {}),
     paginas: opciones('En qué páginas', [['todas', 'En todas las páginas'], ['home', 'Solo en la Home']]),
-    retraso: numero('Aparece a los (segundos)', { min: 0, max: 30 }),
+    ...(ventana ? { retraso: numero('Aparece a los (segundos)', { min: 0, max: 30 }) } : {}),
   });
 };
 
@@ -122,7 +135,7 @@ function VistaBanner({ banner }) {
   return (
     <div className="banner-temporada__vista">
       <div key={[b.animacion, b.posicion, b.ancho, b.imagen].join('|')} className={`${clasesBanner(b)} is-vista`}
-        style={{ '--banner-fondo': b.colorFondo || '#fff', '--banner-texto': b.colorTexto || '#1b1b1b', '--banner-boton': b.colorBoton || '#c9373d' }}>
+        style={{ '--banner-fondo': b.colorFondo || '#fff', '--banner-texto': b.colorTexto || '#1b1b1b', '--banner-boton': b.colorBoton || '#c9373d', '--banner-boton-texto': textoSobre(b.colorBoton) || '#fff' }}>
         <span className="banner-temporada__cerrar" aria-hidden="true">×</span>
         {media}
         {(b.verTexto || b.verBoton) && (
@@ -146,7 +159,9 @@ function VistaAjustes({ menu, footer, temporadas, banner }) {
     <div className="pagina-home" data-temporada={activa || undefined}>
       <style dangerouslySetInnerHTML={{ __html: cssTemporadas(temporadas).replace(/html\[data-temporada=/g, '[data-temporada=') }} />
       <div className="fondo-deco" aria-hidden="true"><img className="fondo-deco__hero" src="/img/home/fondo-hero.svg" alt="" width="2065" height="1564" /></div>
+      <AvisoPromo banner={banner} vista />
       <Navbar menu={menu} rutaActual="" eventos={{ onClickCapture: (e) => { if (e.target.closest('a')) e.preventDefault(); } }} />
+      <BannerEnPagina banner={banner} vista />
       <main className="home" style={{ padding: '60px 16px 120px', display: 'grid', gap: 32, justifyItems: 'center' }}>
         <div style={{ color: '#fff', textAlign: 'center', maxWidth: 640 }}>
           <h1 style={{ fontSize: 40, fontWeight: 400 }}>Ajustes generales</h1>
@@ -156,7 +171,7 @@ function VistaAjustes({ menu, footer, temporadas, banner }) {
           </p>
           <p style={{ marginTop: 16 }}><a className="boton" href="/demo">Así se ve un botón</a></p>
         </div>
-        {banner?.activo ? <VistaBanner banner={banner} /> : (
+        {banner?.activo ? (normalizarBanner(banner).formato === 'ventana' && <VistaBanner banner={banner} />) : (
           <p style={{ background: 'rgba(255,255,255,.85)', borderRadius: 16, padding: '16px 24px', maxWidth: 520, textAlign: 'center' }}>
             El banner está apagado. Para mostrarlo: a la derecha, <strong>Banner al entrar a la web → Mostrar banner: Sí</strong>.
           </p>

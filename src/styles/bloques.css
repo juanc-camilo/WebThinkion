@@ -205,3 +205,78 @@
 @media (prefers-reduced-motion: reduce) {
   .banner-temporada[open], .banner-temporada.is-vista, .banner-temporada.is-cerrando, .banner-temporada::backdrop { animation: none; }
 }
+
+/* ---------- Banner dentro de la página (BannerEnPagina.jsx) ----------
+   Figma "Intervención - mini banner" (755:857) e "Intervención
+   completa" (774:1079, 774:2556). Vienen ocultos en el HTML: el script
+   de banner.js pone data-aviso / data-banner en <html> antes de pintar
+   si corresponde por fecha. En la vista previa del panel (.is-vista)
+   se ven siempre. */
+:root { --alto-navbar: 138px; }
+@media (max-width: 1100px) { :root { --alto-navbar: 96px; } }
+@media (max-width: 760px) { :root { --alto-navbar: 80px; } }
+
+.aviso-promo, .banner-franja, .banner-portada { display: none; }
+html[data-aviso] .aviso-promo, .aviso-promo.is-vista { display: block; }
+html[data-banner="franja"] .banner-franja, .banner-franja.is-vista { display: block; }
+html[data-banner="portada"] .banner-portada, .banner-portada.is-vista { display: block; }
+
+/* Franja de aviso: arriba de todo, texto chico blanco sobre violeta */
+.aviso-promo {
+  background: var(--violeta); color: var(--blanco); font-family: var(--fuente); font-size: 14px; font-weight: 600; line-height: 18px;
+  padding: 10px var(--gutter); position: relative; text-align: center; z-index: 51;
+}
+.aviso-promo a { color: inherit; text-decoration: none; }
+.aviso-promo a:hover { text-decoration: underline; }
+@media (max-width: 760px) { .aviso-promo { font-size: 12px; line-height: 16px; padding-block: 8px; } }
+
+/* Imagen o video de la franja y de la portada */
+.banner-pagina__enlace { display: block; height: 100%; }
+.banner-pagina__imagen { display: block; height: auto; width: 100%; }
+
+/* Franja debajo del menú (mini banner): ancho del contenido, puntas de 40 px */
+.banner-franja {
+  --banner-desde: translateY(24px);
+  background: var(--banner-fondo, linear-gradient(90deg, #7a4aeb, #a382f5)); border-radius: 40px; box-shadow: 0 20px 50px rgba(122, 74, 235, .25);
+  color: var(--banner-texto, var(--blanco)); font-family: var(--fuente); margin: 48px auto 0; overflow: hidden; position: relative;
+  width: min(var(--contenido), 100% - 2 * var(--gutter));
+}
+.banner-franja--solo-imagen { background: transparent; }
+.banner-franja--anim-arriba { --banner-desde: translateY(-24px); }
+.banner-franja--anim-izquierda { --banner-desde: translateX(-48px); }
+.banner-franja--anim-derecha { --banner-desde: translateX(48px); }
+.banner-franja--anim-zoom { --banner-desde: scale(.92); }
+.banner-franja--anim-fundido { --banner-desde: none; }
+html[data-banner="franja"] .banner-franja, .banner-franja.is-vista { animation: banner-entrar .7s cubic-bezier(.22, 1, .36, 1) both; }
+html[data-banner="franja"] .banner-franja--anim-rebote, .banner-franja--anim-rebote.is-vista { animation: banner-rebote .8s cubic-bezier(.34, 1.56, .64, 1) both; }
+.banner-franja.is-cerrando { margin-top: 0; opacity: 0; transition: height .4s var(--ease), margin .4s var(--ease), opacity .25s ease; height: 0 !important; }
+@media (max-width: 760px) { .banner-franja { border-radius: 24px; margin-top: 16px; } }
+
+/* X de la franja: círculo blanco translúcido, como en el Figma */
+.banner-franja .banner-temporada__cerrar, .banner-portada .banner-temporada__cerrar {
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); background: rgba(255, 255, 255, .3); color: var(--blanco);
+  height: 40px; right: 16px; text-shadow: 0 1px 3px rgba(0, 0, 0, .35); top: 16px; width: 40px;
+}
+
+/* Portada completa: todo el ancho, detrás del menú, redondeada abajo */
+.banner-portada {
+  background: var(--banner-fondo, linear-gradient(120deg, #7a4aeb, #a382f5)); border-radius: 0 0 40px 40px; box-shadow: 0 20px 50px rgba(122, 74, 235, .2);
+  color: var(--banner-texto, var(--blanco)); font-family: var(--fuente); height: 660px; margin-top: calc(-1 * var(--alto-navbar)); overflow: hidden; position: relative;
+}
+html:not([data-aviso]) .banner-portada { height: 698px; }
+.banner-portada .banner-pagina__enlace, .banner-portada picture { display: block; height: 100%; }
+.banner-portada .banner-pagina__imagen { height: 100%; object-fit: cover; object-position: center top; }
+.banner-portada__cuerpo {
+  bottom: 56px; display: grid; gap: 12px; justify-items: center; left: var(--gutter); position: absolute; right: var(--gutter); text-align: center;
+}
+.banner-portada__cuerpo h2 { font-size: clamp(2rem, 6vw, 4rem); font-weight: 700; line-height: 1.05; margin: 0; text-shadow: 0 2px 16px rgba(0, 0, 0, .25); }
+.banner-portada__cuerpo p { font-size: 1.15rem; margin: 0; max-width: 640px; white-space: pre-line; }
+html[data-banner="portada"] main { margin-top: 32px; }
+@media (max-width: 1100px) { .banner-portada, html:not([data-aviso]) .banner-portada { height: 560px; } }
+@media (max-width: 760px) {
+  .banner-portada, html:not([data-aviso]) .banner-portada { border-radius: 0 0 28px 28px; height: 480px; }
+  .banner-portada__cuerpo { bottom: 32px; }
+}
+
+/* Botón: la letra se pone oscura sola si el color es claro (ej.: lima) */
+.banner-temporada__boton { color: var(--banner-boton-texto, var(--blanco)); }

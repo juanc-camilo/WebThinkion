@@ -9,6 +9,8 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import Comportamientos from './Comportamientos';
 import { cssTemporadas, scriptTemporadas } from './temporadas';
+import { scriptBanner } from './banner';
+import { AvisoPromo, BannerEnPagina } from './BannerEnPagina';
 
 export const PLANTILLAS = {
   inicio: { label: 'Inicio', pagina: 'pagina-home', main: 'home', fondo: 'inicio' },
@@ -55,6 +57,9 @@ export default function Pagina({ children, plantilla, puck }) {
   const { ajustes = {}, ruta = '/' } = puck?.metadata || {};
   const editando = Boolean(puck?.isEditing);
   const eventos = editando ? { onClickCapture: noNavegar } : undefined;
+  // Banner en la página (aviso, franja, portada): solo en la web y en las páginas elegidas
+  const banner = ajustes.banner;
+  const conBanner = !editando && banner?.activo && (banner.paginas !== 'home' || ruta === '/');
   return (
     // "web": solo en la página publicada (ver src/styles/puck-ajustes.css)
     <div className={`${estilo.pagina}${editando ? '' : ' web'}`}>
@@ -64,7 +69,11 @@ export default function Pagina({ children, plantilla, puck }) {
 
       <a className="skip-link" href="#contenido">Ir al contenido</a>
       <FondoDeco tipo={estilo.fondo} />
+      {/* Banner: decide antes de pintar si se ven el aviso, la franja o la portada */}
+      {conBanner && <script dangerouslySetInnerHTML={{ __html: scriptBanner(banner) }} />}
+      {conBanner && <AvisoPromo banner={banner} />}
       <Navbar menu={ajustes.menu} rutaActual={ruta} eventos={eventos} />
+      {conBanner && <BannerEnPagina banner={banner} />}
       <main id="contenido" className={estilo.main}>{children}</main>
       <Footer footer={ajustes.footer} eventos={eventos} />
 

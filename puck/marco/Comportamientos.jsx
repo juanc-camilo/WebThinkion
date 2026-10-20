@@ -10,7 +10,7 @@
    bloques se editan, no se usan).
    ========================================================= */
 import { useEffect } from 'react';
-import { normalizarBanner, esVideo, clasesBanner } from './banner';
+import { normalizarBanner, esVideo, clasesBanner, textoSobre } from './banner';
 
 export default function Comportamientos({ banner }) {
   useEffect(() => {
@@ -21,6 +21,7 @@ export default function Comportamientos({ banner }) {
     iniciarCarruselesGenericos();
     iniciarVideos();
     iniciarBanner(banner);
+    iniciarFranja();
   }, [banner]);
   return null;
 }
@@ -442,6 +443,7 @@ const mostrarBanner = (datos) => {
   dialogo.style.setProperty('--banner-fondo', banner.colorFondo || '#fff');
   dialogo.style.setProperty('--banner-texto', banner.colorTexto || '#1b1b1b');
   dialogo.style.setProperty('--banner-boton', banner.colorBoton || '#c9373d');
+  dialogo.style.setProperty('--banner-boton-texto', textoSobre(banner.colorBoton) || '#fff');
 
   // Cerrar con una animación corta de salida (también con Esc)
   const cerrarBanner = () => {
@@ -518,8 +520,29 @@ const mostrarBanner = (datos) => {
   dialogo.focus();
 };
 
+/* ---------- Franja debajo del menú: la X la cierra ----------
+   Se recuerda según "cada cuánto": el script de antes de pintar
+   (banner.js) no la vuelve a mostrar hasta que corresponda. */
+function iniciarFranja() {
+  const franja = document.querySelector('[data-banner-franja]');
+  const cerrar = franja?.querySelector('[data-cerrar-franja]');
+  if (!cerrar) return;
+  cerrar.addEventListener('click', () => {
+    const clave = franja.getAttribute('data-banner-franja');
+    const frecuencia = franja.getAttribute('data-frecuencia');
+    if (frecuencia === 'sesion') guardado('sessionStorage', clave, '1');
+    if (frecuencia === 'una-vez') guardado('localStorage', clave, '1');
+    if (frecuencia === 'dia') guardado('localStorage', clave, new Date().toDateString());
+    // Se achica hasta desaparecer (sin saltos bruscos)
+    franja.style.height = `${franja.offsetHeight}px`;
+    requestAnimationFrame(() => franja.classList.add('is-cerrando'));
+    setTimeout(() => document.documentElement.removeAttribute('data-banner'), matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 400);
+  });
+}
+
 function iniciarBanner(banner) {
-  if (!banner?.activo) return;
+  // Solo el formato "ventana" se abre acá (la franja y la portada ya vienen en el HTML)
+  if (!banner?.activo || (banner.formato && banner.formato !== 'ventana')) return;
   if (new URLSearchParams(location.search).has('banner')) { mostrarBanner(banner); return; }
   const h = new Date();
   const hoy = `${h.getFullYear()}-${String(h.getMonth() + 1).padStart(2, '0')}-${String(h.getDate()).padStart(2, '0')}`;
