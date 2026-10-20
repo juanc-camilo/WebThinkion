@@ -23,7 +23,8 @@
    Rutas: en los datos, "~/" significa "raíz del sitio". Acá se
    reemplaza por el camino relativo de cada página ("" o "../../").
    ========================================================= */
-import { readFileSync, existsSync, writeFileSync } from 'node:fs';
+import { readFileSync, existsSync, writeFileSync, mkdirSync } from 'node:fs';
+import path from 'node:path';
 import { parseHTML } from 'linkedom';
 import { nombreDeFuente, cssDeEdiciones, cssTemporada, urlGoogleFonts, aplicarEstructura } from './compartido.mjs';
 
@@ -228,7 +229,10 @@ export const aplicarEdiciones = (html, { clavePagina, raiz, salida }) => {
     meta.setAttribute('name', 'robots');
     meta.setAttribute('content', 'noindex, nofollow');
     document.head.append(meta);
-    writeFileSync(salida.replace(/\.html$/,'.editor.html'), corregirSvg(document.toString()));
+    // En un armado de cero (como en Vercel) la carpeta todavía no existe: Eleventy la crea después
+    const copia = salida.replace(/\.html$/, '.editor.html');
+    mkdirSync(path.dirname(copia), { recursive: true });
+    writeFileSync(copia, corregirSvg(document.toString()));
     meta.remove();
   }
 
