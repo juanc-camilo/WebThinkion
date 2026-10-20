@@ -1,3 +1,0 @@
-module.exports=[97658,a=>{"use strict";var b=a.i(7997);a.s(["default",0,function({children:a}){return(0,b.jsx)("html",{lang:"es",children:(0,b.jsx)("body",{className:"admin",children:a})})},"metadata",0,{title:"Panel de administración · Thinkion",robots:{index:!1,follow:!1},icons:{icon:"/favicon.ico"}}])},34744,function(a){a.n(a.i(97658))}];
-
-//# sourceMappingURL=app_admin_layout_jsx_0-9mnld8dl5vk._.js.map

@@ -1,6 +1,0 @@
-User-Agent: *
-Allow: /
-Disallow: /admin
-Disallow: /api/
-
-Sitemap: https://webthinkion.vercel.app/sitemap.xml

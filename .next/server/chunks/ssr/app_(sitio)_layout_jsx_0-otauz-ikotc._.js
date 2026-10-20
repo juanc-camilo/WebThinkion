@@ -1,3 +1,0 @@
-module.exports=[26294,a=>{"use strict";var b=a.i(7997);a.s(["default",0,function({children:a}){return(0,b.jsxs)("html",{lang:"es",suppressHydrationWarning:!0,children:[(0,b.jsxs)("head",{children:[(0,b.jsx)("link",{rel:"preload",href:"/fonts/outfit-latin.woff2",as:"font",type:"font/woff2",crossOrigin:""}),(0,b.jsx)("link",{rel:"stylesheet",href:"/estilos/sitio.css"})]}),(0,b.jsx)("body",{children:a})]})},"metadata",0,{icons:{icon:"/favicon.ico"},other:{"theme-color":"#7a4aeb"}}])},22360,function(a){a.n(a.i(26294))}];
-
-//# sourceMappingURL=app_%28sitio%29_layout_jsx_0-otauz-ikotc._.js.map
