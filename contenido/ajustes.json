@@ -104,13 +104,13 @@
     "botonLink": "/demo",
     "animacion": "abajo",
     "posicion": "centro",
-    "ancho": "mediano",
+    "ancho": "grande",
     "fondo": "difuminado",
-    "colorFondo": "#ffffff",
+    "colorFondo": "#b56969",
     "colorTexto": "#1b1b1b",
     "colorBoton": "#c9373d",
     "frecuencia": "sesion",
-    "paginas": "todas",
+    "paginas": "home",
     "retraso": 1
   },
   "footer": {
