@@ -92,6 +92,7 @@ export const urlGoogleFonts = (nombres) => {
      { op: 'duplicar', id, nuevo }            copia queda justo después
      { op: 'insertar', despues, nuevo, html } elemento nuevo después de "despues"
      { op: 'orden', padre, hijos: [ids] }     orden de los hijos de "padre"
+     { op: 'mover', id, destino, lugar }      arrastrado: "antes" o "despues" de destino
    Los elementos nuevos llevan direcciones propias ("n…", o "menu/n…"),
    así no se corren las del HTML original.
    Funciona igual en Node (linkedom) y en el navegador.
@@ -136,6 +137,12 @@ export const aplicarEstructura = (raiz, operaciones = [], prepararHtml = (html) 
       if (!nuevo) continue;
       numerarNuevo(nuevo, op.nuevo);
       referencia.after(nuevo);
+    } else if (op.op === 'mover') {
+      // Arrastrado a otro lugar: queda antes o después de "destino"
+      const elemento = buscarId(raiz, op.id);
+      const destino = buscarId(raiz, op.destino);
+      if (!elemento || !destino || elemento === raiz || destino === raiz || elemento === destino || elemento.contains(destino)) continue;
+      if (op.lugar === 'antes') destino.before(elemento); else destino.after(elemento);
     } else if (op.op === 'orden') {
       const padre = buscarId(raiz, op.padre);
       if (!padre || !Array.isArray(op.hijos)) continue;

@@ -27,6 +27,9 @@ Desde `/admin` se puede cambiar todo lo que se ve en la web sin tocar código: t
   - *Link*: a qué página lleva, o una dirección externa (`https://…`, `mailto:…`, `tel:…`).
   - *Imagen*: "Cambiar imagen" (se convierte sola a WebP, máximo 2400 px) y la descripción para Google.
   - *Estilo*: color de letra, color o imagen de fondo, tipografía, tamaño, grosor, alineación, redondeo y opacidad.
+  - **Arrastrar (como en Figma)**: sobre lo seleccionado aparecen dos manijas.
+    - **⠿ Arrastrar**: llevalo a cualquier lugar de la página; una línea coral muestra dónde cae. El resto se reacomoda solo, así que en el celular sigue viéndose bien. Lo del menú/footer solo se mueve dentro del menú/footer.
+    - **✥ Libre**: correlo unos píxeles sin mover lo demás (con Shift, de a 10 px). Se guarda aparte para escritorio y para celular (🖥️/📱), porque correr algo en una pantalla puede encimarlo en la otra. También se ajusta con *Posición libre* en el panel, y ↺ lo vuelve a su lugar.
   - *Ordenar y agregar*: **↑ Subir / ↓ Bajar** (cambia el orden entre sus hermanos: arriba/abajo o izquierda/derecha), **⧉ Duplicar** (copia con el mismo estilo justo después; ideal para sumar una tarjeta, una opción del menú o una pregunta), **🗑 Eliminar** (se restaura desde la pestaña Página) y **Agregar debajo** un título, subtítulo, párrafo, botón o imagen.
   - *Ocultar en la web* y *Volver al original*.
   - Los chips de arriba ("Sección › Bloque › Título") seleccionan el bloque que contiene al elemento: así se le cambia el fondo a una sección entera.
@@ -36,7 +39,7 @@ Desde `/admin` se puede cambiar todo lo que se ve en la web sin tocar código: t
 - **Temporadas** — cada temporada tiene fechas, su propio diseño (colores y tipografías) y su banner:
   - *Temporada activa*: "Automática según las fechas" o forzar una.
   - Fuera de las fechas de todas, se usa la **temporada por defecto**. El diseño actual quedó cargado como *Primavera 2026 (diseño actual)*.
-  - *Banner al entrar*: título, texto, imagen, botón, colores, cada cuánto se muestra (una vez por visita, por día, una sola vez o siempre), en qué páginas y con cuántos segundos de espera. "Ver cómo queda" lo muestra en la vista.
+  - *Banner al entrar*: título, texto, imagen, botón, colores, cada cuánto se muestra (una vez por visita, por día, una sola vez o siempre), en qué páginas y con cuántos segundos de espera. "Ver cómo queda" lo muestra en la vista (también aparece solo al activarlo). **En la web se ve después de Publicar.** Como se muestra según la frecuencia elegida, para verlo de nuevo abrí la web con `?banner=ver` al final de la dirección (por ejemplo `https://webthinkion.vercel.app/?banner=ver`).
 
 > Los textos y las imágenes son los mismos en todas las temporadas; lo que cambia por temporada es el diseño (colores y tipografías) y el banner.
 

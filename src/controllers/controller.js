@@ -345,6 +345,9 @@ window.mostrarBannerTemporada = mostrarBannerTemporada;
   const id = document.documentElement.getAttribute('data-temporada');
   const banner = datos.temporadas.find((t) => t.id === id)?.banner;
   if (!banner) return;
+  // ?banner=ver en la dirección: lo muestra siempre (para probarlo sin esperar)
+  const forzado = new URLSearchParams(location.search).has('banner');
+  if (forzado) { mostrarBannerTemporada(banner); return; }
   if (banner.paginas === 'home' && !document.body.classList.contains('pagina-home')) return;
 
   // Si se edita el banner, vuelve a aparecer aunque ya se haya visto

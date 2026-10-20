@@ -172,7 +172,8 @@ const leerBorrador = () => {
 const actualizarBarra = () => {
   const cambios = hayCambios();
   $('#btn-publicar').disabled = !cambios;
-  $('#contador-cambios').textContent = cambios ? '●' : '';
+  $('#contador-cambios').textContent = cambios ? 'sin publicar' : '';
+  $('#btn-publicar').title = cambios ? 'Hay cambios que todavía no están en la web' : 'No hay cambios pendientes';
   $('#btn-deshacer').disabled = !estado.historial.length;
 };
 
@@ -345,6 +346,16 @@ const CSS_EDITOR = `
   .reveal { opacity: 1 !important; transform: none !important; }
   /* Si lo seleccionado está dentro de un desplegable del menú, el desplegable queda abierto */
   .navbar__item:has([data-editor-sel]) .dropdown, .navbar__item:has([contenteditable]) .dropdown { opacity: 1 !important; pointer-events: auto !important; }
+  /* Manijas para arrastrar (aparecen sobre lo seleccionado) */
+  #editor-asas { position: fixed; z-index: 2147483646; display: flex; gap: 4px; pointer-events: none; }
+  #editor-asas[hidden] { display: none; }
+  #editor-asas button { pointer-events: auto; display: inline-flex; align-items: center; gap: 4px; padding: 4px 9px; border: 0; border-radius: 6px;
+    background: #7a4aeb; color: #fff; font: 600 12px/1.2 system-ui, sans-serif; cursor: grab; box-shadow: 0 2px 8px rgba(0, 0, 0, .25); touch-action: none; }
+  #editor-asas button[data-asa="libre"] { background: #133883; }
+  #editor-indicador { position: fixed; z-index: 2147483645; background: #ff6f72; border-radius: 3px; pointer-events: none; box-shadow: 0 0 0 2px #fff; }
+  #editor-indicador[hidden] { display: none; }
+  html.editor-arrastrando, html.editor-arrastrando * { cursor: grabbing !important; user-select: none !important; }
+  [data-editor-arrastrado] { opacity: .35 !important; }
 `;
 
 /* Operaciones de estructura (mover, duplicar, eliminar, agregar): primero menú/footer, después la página */
@@ -463,8 +474,8 @@ vista.addEventListener('load', () => {
 const escucharVista = (doc) => {
   let resaltado = null;
   doc.addEventListener('mouseover', (evento) => {
-    if (estado.modo !== 'editar') return;
-    const elemento = evento.target.closest?.('[data-e]');
+    if (estado.modo !== 'editar' || arrastre) return;
+    const elemento = evento.target.closest?.('#editor-asas') ? null : evento.target.closest?.('[data-e]');
     if (elemento === resaltado) return;
     resaltado?.removeAttribute('data-editor-hover');
     resaltado = elemento;
@@ -481,6 +492,7 @@ const escucharVista = (doc) => {
       return;
     }
     if (evento.target.closest('.banner-temporada')) return; // la vista previa del banner funciona normal
+    if (evento.target.closest('#editor-asas')) { evento.preventDefault(); evento.stopPropagation(); return; }
     const elemento = evento.target.closest('[data-e]');
     evento.preventDefault(); // nunca abre links ni envía formularios
     evento.stopPropagation();
@@ -490,8 +502,185 @@ const escucharVista = (doc) => {
   doc.addEventListener('submit', (evento) => evento.preventDefault(), true);
   doc.addEventListener('keydown', (evento) => {
     if ((evento.ctrlKey || evento.metaKey) && evento.key === 'z' && !evento.target.isContentEditable) { evento.preventDefault(); deshacer(); }
-    if (evento.key === 'Escape' && estado.seleccion) deseleccionar();
+    if (evento.key === 'Escape' && arrastre) cancelarArrastre();
+    else if (evento.key === 'Escape' && estado.seleccion) deseleccionar();
   });
+  crearAsas(doc);
+};
+
+/* =========================================================
+   ARRASTRAR (como en Figma)
+   Dos manijas sobre lo seleccionado:
+   - "⠿ Arrastrar": lo lleva a otro lugar de la página. Una línea coral
+     muestra dónde cae (antes o después de otro elemento). Se guarda como
+     operación "mover": el resto se reacomoda y en el celular sigue bien.
+   - "✥ Libre": lo corre unos píxeles sin mover lo demás (propiedad CSS
+     "translate"). Se guarda aparte para escritorio y para celular.
+   ========================================================= */
+let arrastre = null; // datos del arrastre en curso
+
+// "menu" o "footer" si está adentro del menú/footer; "pagina" si no.
+// El menú y el footer en sí (la etiqueta raíz) viven en la página.
+const ambitoDe = (id) => id.match(/^(menu|footer)\//)?.[1] || 'pagina';
+
+const crearAsas = (doc) => {
+  const asas = doc.createElement('div');
+  asas.id = 'editor-asas';
+  asas.hidden = true;
+  asas.innerHTML = '<button type="button" data-asa="mover" title="Arrastralo a otro lugar de la página">⠿ Arrastrar</button>'
+    + '<button type="button" data-asa="libre" title="Correlo libremente unos píxeles (sin mover lo demás)">✥ Libre</button>';
+  const indicador = doc.createElement('div');
+  indicador.id = 'editor-indicador';
+  indicador.hidden = true;
+  doc.body.append(asas, indicador);
+
+  $$('button', asas).forEach((boton) => boton.addEventListener('pointerdown', (evento) => {
+    if (!estado.seleccion) return;
+    evento.preventDefault();
+    evento.stopPropagation();
+    boton.setPointerCapture(evento.pointerId);
+    terminarEdicionTexto();
+    if (boton.dataset.asa === 'mover') empezarArrastre(doc, evento);
+    else empezarLibre(doc, evento);
+  }));
+  $$('button', asas).forEach((boton) => {
+    boton.addEventListener('pointermove', (evento) => arrastre?.mover(evento));
+    boton.addEventListener('pointerup', (evento) => arrastre?.soltar(evento));
+    boton.addEventListener('pointercancel', () => cancelarArrastre());
+  });
+
+  // Las manijas siguen al elemento (scroll, cambios de tamaño, menús que se abren)
+  const seguir = () => {
+    if (!asas.isConnected) return;
+    posicionarAsas(doc);
+    doc.defaultView.requestAnimationFrame(seguir);
+  };
+  seguir();
+};
+
+const posicionarAsas = (doc) => {
+  const asas = doc.getElementById('editor-asas');
+  const elemento = estado.seleccion;
+  const visible = elemento?.isConnected && estado.modo === 'editar' && !['body', 'menu', 'footer'].includes(elemento.dataset.e) && !esSvg(elemento);
+  asas.hidden = !visible;
+  if (!visible || (arrastre && arrastre.tipo === 'mover')) return;
+  const rect = elemento.getBoundingClientRect();
+  asas.style.top = `${Math.max(4, rect.top - 30)}px`;
+  asas.style.left = `${Math.max(4, Math.min(rect.left, doc.documentElement.clientWidth - 190))}px`;
+};
+
+// ¿Los hermanos están uno al lado del otro (fila) o uno abajo del otro?
+const enFila = (elemento) => {
+  const ventana = elemento.ownerDocument.defaultView;
+  const propio = ventana.getComputedStyle(elemento);
+  if (propio.display.startsWith('inline')) return true;
+  const padre = elemento.parentElement && ventana.getComputedStyle(elemento.parentElement);
+  if (!padre) return false;
+  if (padre.display.includes('flex')) return padre.flexDirection.startsWith('row');
+  if (padre.display.includes('grid')) return padre.gridTemplateColumns.trim().split(/\s+/).length > 1;
+  return false;
+};
+
+const empezarArrastre = (doc, evento) => {
+  const elemento = estado.seleccion;
+  const ventana = doc.defaultView;
+  const indicador = doc.getElementById('editor-indicador');
+  const asas = doc.getElementById('editor-asas');
+  doc.documentElement.classList.add('editor-arrastrando');
+  elemento.setAttribute('data-editor-arrastrado', '');
+  let destino = null;
+  let lugar = 'despues';
+
+  arrastre = {
+    tipo: 'mover',
+    mover: (e) => {
+      // Las manijas siguen al puntero mientras se arrastra
+      asas.style.top = `${e.clientY + 12}px`;
+      asas.style.left = `${e.clientX + 12}px`;
+      // Scroll automático cerca de los bordes
+      if (e.clientY < 60) ventana.scrollBy(0, -18);
+      if (e.clientY > ventana.innerHeight - 60) ventana.scrollBy(0, 18);
+
+      asas.style.visibility = 'hidden';
+      const debajo = doc.elementFromPoint(e.clientX, e.clientY);
+      asas.style.visibility = '';
+      let candidato = debajo?.closest('[data-e]');
+      // No vale: él mismo, algo de adentro suyo, la página entera, textos SVG ni otro ámbito (menú ↔ página)
+      while (candidato && (candidato === elemento || elemento.contains(candidato) || esSvg(candidato))) candidato = candidato.parentElement?.closest('[data-e]');
+      const valido = candidato && candidato !== doc.body && ambitoDe(candidato.dataset.e) === ambitoDe(elemento.dataset.e);
+      if (!valido) { destino = null; indicador.hidden = true; return; }
+      destino = candidato;
+      const rect = destino.getBoundingClientRect();
+      const fila = enFila(destino);
+      lugar = fila ? (e.clientX < rect.left + rect.width / 2 ? 'antes' : 'despues') : (e.clientY < rect.top + rect.height / 2 ? 'antes' : 'despues');
+      indicador.hidden = false;
+      if (fila) {
+        Object.assign(indicador.style, { top: `${rect.top}px`, height: `${rect.height}px`, width: '4px',
+          left: `${(lugar === 'antes' ? rect.left : rect.right) - 2}px` });
+      } else {
+        Object.assign(indicador.style, { left: `${rect.left}px`, width: `${rect.width}px`, height: '4px',
+          top: `${(lugar === 'antes' ? rect.top : rect.bottom) - 2}px` });
+      }
+    },
+    soltar: () => {
+      const final = destino;
+      const donde = lugar;
+      cancelarArrastre();
+      if (final) moverA(elemento, final, donde);
+    },
+  };
+  arrastre.mover(evento);
+};
+
+const empezarLibre = (doc, evento) => {
+  const elemento = estado.seleccion;
+  const claveEstilo = estado.ancho <= CORTE_MOVIL ? 'estiloMovil' : 'estilo';
+  const actual = (edicionDe(elemento.dataset.e)?.[claveEstilo]?.translate || '0px 0px').split(/\s+/).map(parseFloat);
+  const [x0, y0] = [actual[0] || 0, actual[1] || 0];
+  const inicio = { x: evento.clientX, y: evento.clientY };
+  doc.documentElement.classList.add('editor-arrastrando');
+  let valor = `${x0}px ${y0}px`;
+  arrastre = {
+    tipo: 'libre',
+    mover: (e) => {
+      // Con Shift se mueve de a 10 px (como la grilla de Figma)
+      let dx = e.clientX - inicio.x;
+      let dy = e.clientY - inicio.y;
+      if (e.shiftKey) { dx = Math.round(dx / 10) * 10; dy = Math.round(dy / 10) * 10; }
+      valor = `${Math.round(x0 + dx)}px ${Math.round(y0 + dy)}px`;
+      elemento.style.setProperty('translate', valor, 'important');
+    },
+    soltar: () => {
+      cancelarArrastre();
+      elemento.style.removeProperty('translate');
+      editar(elemento, { [claveEstilo]: { translate: valor === '0px 0px' ? '' : valor } });
+      aplicarEstilosEnVista();
+      pintarPanelElemento();
+    },
+  };
+};
+
+const cancelarArrastre = () => {
+  const doc = documentoVista();
+  arrastre = null;
+  if (!doc) return;
+  doc.documentElement.classList.remove('editor-arrastrando');
+  $$('[data-editor-arrastrado]', doc).forEach((n) => n.removeAttribute('data-editor-arrastrado'));
+  const indicador = doc.getElementById('editor-indicador');
+  if (indicador) indicador.hidden = true;
+};
+
+const moverA = (elemento, destino, lugar) => {
+  recordar();
+  if (lugar === 'antes') destino.before(elemento); else destino.after(elemento);
+  const id = elemento.dataset.e;
+  // Solo cuenta el último lugar al que se arrastró este elemento
+  const operaciones = operacionesDe(id);
+  const resto = operaciones.filter((op) => !(op.op === 'mover' && op.id === id));
+  operaciones.splice(0, operaciones.length, ...resto, { op: 'mover', id, destino: destino.dataset.e, lugar });
+  cambio();
+  pintarPanelElemento();
+  toast('Movido. Tocá Publicar para que se vea en la web.');
 };
 
 /* =========================================================
@@ -714,7 +903,7 @@ const pintarPanelElemento = () => {
     ${['body', 'menu', 'footer'].includes(id) || esSvg(elemento) ? '' : `
     <div class="grupo">
       <h3>Ordenar y agregar</h3>
-      <p>Para mover una tarjeta o una opción del menú entera, elegí primero el bloque en los chips de arriba.</p>
+      <p>Arrastralo con la manija <strong>⠿ Arrastrar</strong> que aparece arriba del elemento, o usá estos botones. Para mover una tarjeta u opción del menú entera, elegí primero el bloque en los chips de arriba.</p>
       <div class="herramientas">
         <button type="button" data-estructura="subir" title="Mover antes (arriba o a la izquierda)">↑ Subir</button>
         <button type="button" data-estructura="bajar" title="Mover después (abajo o a la derecha)">↓ Bajar</button>
@@ -817,6 +1006,13 @@ const pintarPanelElemento = () => {
         <label class="campo"><span>Redondeo (px)</span><input type="number" min="0" max="500" data-estilo="border-radius" data-unidad="px" value="${esc(parseFloat(estilo['border-radius']) || '')}" placeholder="${esc(parseFloat(calculado.borderRadius) || 0)}"></label>
         <label class="campo"><span>Opacidad (%)</span><input type="number" min="0" max="100" data-estilo="opacity" data-unidad="%" value="${esc(estilo.opacity ? Math.round(estilo.opacity * 100) : '')}" placeholder="${esc(Math.round(calculado.opacity * 100))}"></label>
       </div>
+      <div class="campo"><span>Posición libre (px) · también con la manija ✥ Libre</span>
+        <div class="fila">
+          <label class="campo"><span class="sr-only">Horizontal</span><input type="number" id="libre-x" value="${esc(parseFloat((estilo.translate || '').split(/\s+/)[0]) || '')}" placeholder="← 0 →"></label>
+          <label class="campo"><span class="sr-only">Vertical</span><input type="number" id="libre-y" value="${esc(parseFloat((estilo.translate || '').split(/\s+/)[1]) || '')}" placeholder="↑ 0 ↓"></label>
+          ${estilo.translate ? '<button type="button" class="btn fijo" id="btn-libre-reset" title="Volver a su lugar">↺</button>' : ''}
+        </div>
+      </div>
     </div>
 
     <div class="grupo">
@@ -907,6 +1103,16 @@ const pintarPanelElemento = () => {
     if (valor !== '' && campo.dataset.unidad === '%') valor = String(Math.min(100, Math.max(0, Number(valor))) / 100);
     ponerEstilo(campo.dataset.estilo, valor);
   }));
+  // Posición libre (translate): X e Y en píxeles
+  const ponerLibre = () => {
+    const x = Number($('#libre-x', panel).value) || 0;
+    const y = Number($('#libre-y', panel).value) || 0;
+    ponerEstilo('translate', x || y ? `${x}px ${y}px` : '');
+  };
+  $('#libre-x', panel).addEventListener('input', ponerLibre);
+  $('#libre-y', panel).addEventListener('input', ponerLibre);
+  $('#btn-libre-reset', panel)?.addEventListener('click', () => { ponerEstilo('translate', ''); pintarPanelElemento(); });
+
   $('#btn-fondo-imagen', panel).addEventListener('click', async () => {
     const archivo = await pedirArchivo('image/*');
     if (!archivo) return;
@@ -1283,6 +1489,7 @@ const pintarPanelTemporadas = () => {
     <div class="grupo" id="grupo-banner">
       <h3>Banner al entrar</h3>
       <label class="check"><input type="checkbox" data-banner="activo" ${banner.activo ? 'checked' : ''}> Mostrar banner en esta temporada</label>
+      <p>📣 El banner aparece en la web <strong>después de tocar Publicar</strong> (y 1 o 2 minutos de Vercel). Se muestra según "Mostrar": si ya lo viste en esta visita no vuelve a salir. Para verlo igual: <a href="${esc(RAIZ_SITIO)}index.html?banner=ver" target="_blank" rel="noopener">abrir la web con el banner ↗</a>.</p>
       <label class="campo"><span>Título</span><input data-banner="titulo" value="${esc(banner.titulo || '')}"></label>
       <label class="campo"><span>Texto</span><textarea class="normal" data-banner="texto" rows="3">${esc(banner.texto || '')}</textarea></label>
       <div class="campo"><span>Imagen</span>
@@ -1386,7 +1593,12 @@ const pintarPanelTemporadas = () => {
       return;
     }
     ponerBanner(campo.dataset.banner, valor);
-    if (campo.dataset.banner === 'activo') pintarPanelTemporadas();
+    if (campo.dataset.banner === 'activo') {
+      pintarPanelTemporadas();
+      // Al activarlo se muestra enseguida en la vista, para ver cómo queda
+      if (valor) $('#btn-ver-banner')?.click();
+      toast(valor ? 'Banner activado. Tocá Publicar para que aparezca en la web.' : 'Banner desactivado. Tocá Publicar para sacarlo de la web.', { duracion: 5000 });
+    }
   }));
   conectarColores($('#grupo-banner', panel), (clave, valor) => ponerBanner(clave, valor));
   $('#btn-banner-imagen', panel).addEventListener('click', async () => {
