@@ -1,0 +1,143 @@
+/* =========================================================
+   BLOQUES GENÉRICOS — los que se usan para armar secciones nuevas
+   desde el panel (Sección, Columnas, Título, Texto, Imagen, Botón,
+   Video, Carrusel, Espaciador). Usan los colores de variables.css,
+   así siempre quedan con la estética de la marca.
+   ========================================================= */
+
+/* ---------- Sección: contenedor con fondo opcional ---------- */
+.bloque-seccion {
+  margin-inline: auto;
+  padding-block: var(--bloque-espacio, 40px);
+  width: min(var(--contenido), 100% - 2 * var(--gutter));
+}
+.bloque-seccion--completa { width: 100%; padding-inline: max(var(--gutter), calc(50% - var(--contenido) / 2)); }
+.bloque-seccion--tarjeta { background: rgba(255, 255, 255, .78); border-radius: var(--radio-card); box-shadow: 0 20px 60px rgba(19, 56, 131, .08); padding-inline: 56px; }
+.bloque-seccion--lila { background: var(--lila); border-radius: var(--radio-card); padding-inline: 56px; }
+.bloque-seccion--azul { background: var(--azul-oscuro); border-radius: var(--radio-card); color: var(--blanco); padding-inline: 56px; }
+.bloque-seccion--azul :is(h1, h2, h3, p, li) { color: var(--blanco); }
+/* La zona de adentro acomoda los bloques uno debajo del otro */
+.bloque-seccion__zona { display: flex; flex-direction: column; gap: var(--bloque-gap, 24px); }
+.bloque-seccion--centro .bloque-seccion__zona { align-items: center; text-align: center; }
+
+/* ---------- Columnas: bloques uno al lado del otro ---------- */
+.bloque-columnas {
+  align-items: var(--bloque-alinear, start);
+  display: grid;
+  gap: var(--bloque-gap, 32px);
+  grid-template-columns: var(--bloque-columnas, 1fr 1fr);
+  margin-inline: auto;
+  width: min(var(--contenido), 100% - 2 * var(--gutter));
+}
+/* Dentro de una sección o de otra columna, ocupa el ancho disponible */
+:is(.bloque-seccion, .bloque-columnas__col) .bloque-columnas { width: 100%; }
+.bloque-columnas__col { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+/* En el celular las columnas se apilan; "invertir" muestra primero la última */
+@media (max-width: 760px) {
+  .bloque-columnas { grid-template-columns: 1fr; }
+  .bloque-columnas--invertir .bloque-columnas__col:last-child { order: -1; }
+}
+
+/* ---------- Título y texto ---------- */
+.bloque-titulo { color: var(--azul-oscuro); font-weight: 400; margin: 0; text-wrap: balance; }
+.bloque-titulo--grande { font-size: 56px; letter-spacing: -1.68px; line-height: 1.25; }
+.bloque-titulo--mediano { font-size: 40px; letter-spacing: -.8px; line-height: 1.25; }
+.bloque-titulo--chico { font-size: 28px; line-height: 1.3; }
+.bloque-texto { color: var(--gris-parrafo); font-size: 18px; font-weight: 300; line-height: 1.5; }
+.bloque-texto p + p, .bloque-texto ul, .bloque-texto ol { margin-top: .8em; }
+.bloque-texto ul, .bloque-texto ol { padding-left: 1.4em; }
+.bloque-texto ul { list-style: disc; }
+.bloque-texto ol { list-style: decimal; }
+.bloque-texto strong { font-weight: 600; }
+.bloque-texto a { color: var(--violeta-texto); text-decoration: underline; }
+.bloque--izquierda { text-align: left; }
+.bloque--centro { text-align: center; }
+.bloque--derecha { text-align: right; }
+.bloque-color--violeta { color: var(--violeta-texto); }
+.bloque-color--coral { color: var(--coral-oscuro); }
+.bloque-color--blanco { color: var(--blanco); }
+.bloque-color--texto { color: var(--texto); }
+@media (max-width: 760px) {
+  .bloque-titulo--grande { font-size: 36px; letter-spacing: -.8px; }
+  .bloque-titulo--mediano { font-size: 30px; }
+  .bloque-titulo--chico { font-size: 24px; }
+  .bloque-texto { font-size: 16px; }
+}
+
+/* ---------- Imagen ---------- */
+.bloque-imagen { display: flex; margin: 0; }
+.bloque-imagen--centro { justify-content: center; }
+.bloque-imagen--derecha { justify-content: flex-end; }
+.bloque-imagen img { display: block; height: auto; max-width: min(100%, var(--bloque-ancho, 100%)); object-fit: cover; width: 100%; }
+.bloque-imagen--redondeada img { border-radius: 24px; }
+.bloque-imagen figcaption { color: var(--gris); font-size: 14px; margin-top: 8px; }
+
+/* ---------- Botón ---------- */
+.bloque-boton { display: flex; }
+.bloque-boton--centro { justify-content: center; }
+.bloque-boton--derecha { justify-content: flex-end; }
+
+/* ---------- Video (portada que abre el video en una ventana) ---------- */
+.bloque-video { border-radius: 24px; display: block; margin-inline: auto; max-width: min(100%, var(--bloque-ancho, 100%)); overflow: hidden; position: relative; width: 100%; }
+.bloque-video img:first-child { aspect-ratio: 16 / 9; display: block; height: auto; object-fit: cover; width: 100%; }
+.bloque-video::after { background: rgba(0, 0, 0, .18); content: ""; inset: 0; position: absolute; transition: background-color .3s; }
+.bloque-video:hover::after { background: rgba(0, 0, 0, .06); }
+.bloque-video__play { height: 72px; left: 50%; position: absolute; top: 50%; transform: translate(-50%, -50%); transition: transform .3s var(--ease); width: 64px; z-index: 1; }
+.bloque-video:hover .bloque-video__play { transform: translate(-50%, -50%) scale(1.12); }
+
+/* ---------- Carrusel genérico (logos, imágenes o tarjetas) ---------- */
+.bloque-carrusel { margin-inline: auto; overflow: hidden; position: relative; width: min(var(--contenido), 100% - 2 * var(--gutter)); }
+.bloque-carrusel__pista { display: flex; gap: var(--bloque-gap, 24px); transition: transform .5s var(--ease); }
+.bloque-carrusel__item { align-items: center; display: flex; flex: 0 0 calc((100% - (var(--por-vista) - 1) * var(--bloque-gap, 24px)) / var(--por-vista)); flex-direction: column; gap: 10px; text-align: center; }
+.bloque-carrusel__item img { border-radius: 16px; display: block; height: var(--bloque-alto, auto); max-width: 100%; object-fit: contain; width: 100%; }
+.bloque-carrusel--logos .bloque-carrusel__item img { border-radius: 0; filter: grayscale(1); height: 80px; opacity: .7; transition: filter .3s, opacity .3s; }
+.bloque-carrusel--logos .bloque-carrusel__item:hover img { filter: none; opacity: 1; }
+.bloque-carrusel__item h3 { color: var(--azul-oscuro); font-size: 20px; font-weight: 500; }
+.bloque-carrusel__item p { color: var(--gris-parrafo); font-size: 15px; font-weight: 300; }
+.bloque-carrusel__flecha {
+  align-items: center; background: rgba(255, 255, 255, .92); border: 0; border-radius: 50%; box-shadow: 0 4px 14px rgba(19, 56, 131, .18);
+  color: var(--azul-oscuro); cursor: pointer; display: flex; font-size: 22px; height: 44px; justify-content: center; position: absolute; top: 50%; transform: translateY(-50%); width: 44px; z-index: 2;
+}
+.bloque-carrusel__flecha--anterior { left: 4px; }
+.bloque-carrusel__flecha--siguiente { right: 4px; }
+.bloque-carrusel__flecha:focus-visible { outline: 3px solid var(--violeta); }
+@media (max-width: 760px) {
+  .bloque-carrusel__item { flex-basis: calc((100% - (var(--por-vista-movil) - 1) * var(--bloque-gap, 24px)) / var(--por-vista-movil)); }
+}
+@media (prefers-reduced-motion: reduce) { .bloque-carrusel__pista { transition: none; } }
+
+/* ---------- Separador y espaciador ---------- */
+.bloque-espaciador { flex-shrink: 0; height: var(--bloque-alto, 40px); width: 100%; }
+@media (max-width: 760px) { .bloque-espaciador { height: calc(var(--bloque-alto, 40px) * .6); } }
+
+/* ---------- Video en ventana y banner de temporada (los usa toda la web) ---------- */
+.video-modal {
+  background: transparent; border: 0; border-radius: 20px; max-width: none; overflow: visible; padding: 0;
+  width: min(1100px, calc(100vw - 2 * var(--gutter)));
+}
+.video-modal[open] { animation: aparecer-modal .35s var(--ease); }
+.video-modal::backdrop { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); background: rgba(19, 27, 51, .6); }
+.video-modal__marco { aspect-ratio: 16 / 9; background: #000; border-radius: 20px; box-shadow: 0 30px 80px rgba(0, 0, 0, .45); margin-inline: auto; max-height: calc(100dvh - 120px); overflow: hidden; }
+.video-modal__marco iframe, .video-modal__marco video { border: 0; display: block; height: 100%; width: 100%; }
+.video-modal__cerrar, .banner-temporada__cerrar {
+  background: rgba(255, 255, 255, .95); border: 0; border-radius: 50%; color: var(--texto); cursor: pointer; font-size: 1.8rem; height: 44px; line-height: 1; position: absolute; width: 44px;
+}
+.video-modal__cerrar { right: 0; top: -52px; }
+
+.banner-temporada {
+  background: var(--banner-fondo, var(--blanco)); border: 0; border-radius: 24px; box-shadow: 0 24px 64px rgba(19, 56, 131, .25);
+  color: var(--banner-texto, var(--texto)); font-family: var(--fuente); max-height: calc(100dvh - 32px); overflow: auto; padding: 0;
+  width: min(520px, calc(100vw - 2 * var(--gutter)));
+}
+.banner-temporada[open] { animation: aparecer-modal .4s var(--ease); }
+.banner-temporada::backdrop { backdrop-filter: blur(3px); background: rgba(19, 27, 51, .55); }
+.banner-temporada__imagen { display: block; height: auto; max-height: 300px; object-fit: cover; width: 100%; }
+.banner-temporada__cuerpo { display: grid; gap: 12px; justify-items: start; padding: 28px 32px 32px; }
+.banner-temporada__cuerpo h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; line-height: 1.15; margin: 0; }
+.banner-temporada__cuerpo p { font-size: 1.05rem; line-height: 1.5; margin: 0; white-space: pre-line; }
+.banner-temporada__boton { background: var(--banner-boton, var(--coral-oscuro)); border-radius: 999px; color: var(--blanco); font-weight: 600; margin-top: 8px; padding: 12px 28px; text-decoration: none; }
+.banner-temporada__boton:hover { filter: brightness(.92); }
+.banner-temporada__cerrar { font-size: 1.6rem; height: 40px; right: 12px; top: 12px; width: 40px; }
+:is(.video-modal__cerrar, .banner-temporada__cerrar, .banner-temporada__boton):focus-visible { outline: 3px solid var(--violeta); outline-offset: 2px; }
+@keyframes aparecer-modal { from { opacity: 0; transform: translateY(16px) scale(.97); } }
+@media (prefers-reduced-motion: reduce) { .video-modal[open], .banner-temporada[open] { animation: none; } }

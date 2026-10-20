@@ -1,0 +1,203 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Sistema POS y ERP para gastronomía | Thinkion",
+      "descripcion": "Punto de venta, KDS y ERP conectados: vendé online u offline, gestioná compras, producción y stock, e integrá Mercado Pago, PedidosYa y Rappi. Pedí tu demo.",
+      "plantilla": "pos-erp",
+      "indexar": true,
+      "productoNombre": "Thinkion POS & ERP",
+      "productoDescripcion": "Punto de venta, KDS y ERP conectados: vendé online u offline, gestioná compras, producción y stock, e integrá Mercado Pago, PedidosYa y Rappi. Pedí tu demo."
+    }
+  },
+  "content": [
+    {
+      "type": "HeroProducto",
+      "props": {
+        "id": "HeroProducto-c410651e-63de-4dec-83b3-df66b6dde8f4",
+        "titulo": "Vendé, gestioná y controlá tu negocio desde un solo lugar",
+        "resaltado": "solo lugar",
+        "bajada": "El punto de venta y el ERP de Thinkion trabajan conectados: cada venta impacta en el stock, las compras y los reportes, en todos tus locales y en tiempo real.",
+        "botonTexto": "Pedí tu demo",
+        "botonLink": "/demo",
+        "estilo": "producto"
+      }
+    },
+    {
+      "type": "MediaProducto",
+      "props": {
+        "id": "MediaProducto-0efdcfd8-9fc4-4aa1-81da-c1dcf563fe47",
+        "tipo": "imagen",
+        "imagen": "/img/segmentos/video-sistema.webp",
+        "imagenAlt": "Panel de Thinkion con el resumen de ventas de todos los locales",
+        "videoLink": ""
+      }
+    },
+    {
+      "type": "Ventajas",
+      "props": {
+        "id": "Ventajas-bbcdf3cb-c422-4069-b9e8-74dd073e081d",
+        "titulo": "Un sistema pensado para el día a día de tu operación",
+        "texto": "Thinkion nace centralizado: los productos, precios y usuarios se cargan una sola vez y llegan a todos los locales, sin duplicar información.",
+        "items": [
+          {
+            "icono": "/img/home/diagrama-pos.webp",
+            "titulo": "Punto de venta",
+            "texto": "Rápido, simple y preparado para funcionar aunque se corte internet"
+          },
+          {
+            "icono": "/img/home/diagrama-erp.webp",
+            "titulo": "ERP",
+            "texto": "Compras, producción, stock y cuentas de todos tus locales en un mismo lugar"
+          },
+          {
+            "icono": "/img/home/diagrama-reportes-bi.webp",
+            "titulo": "Reportes BI",
+            "texto": "Más de 500 métricas y tableros a medida, desde cualquier dispositivo"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Funciones",
+      "props": {
+        "id": "Funciones-701df81b-5709-456b-b880-353479053fb9",
+        "funciones": [
+          {
+            "imagen": "/img/segmentos/pos-notebook.webp",
+            "marco": "visual",
+            "etiqueta": "Modos de uso",
+            "titulo": "Tomá pedidos desde cualquier dispositivo",
+            "texto": "<p>Usá el punto de venta en tablet, celular o computadora. Con la impresora fiscal en red podés imprimir desde cualquier equipo, y la cola de impresión evita volver a comandar.</p><ul><li>Funciona online y offline: si se corta internet, seguís vendiendo</li><li>Salón, mostrador, delivery y call center</li><li>Precios por horario y grupos de productos</li></ul>",
+            "ancla": "modos-de-uso",
+            "imagenMedidas": {
+              "src": "/img/segmentos/pos-notebook.webp",
+              "ancho": 1154,
+              "alto": 710
+            }
+          },
+          {
+            "imagen": "/img/segmentos/producto-kds.svg",
+            "marco": "icono",
+            "etiqueta": "KDS",
+            "titulo": "La cocina, conectada con el salón",
+            "texto": "<p>Las comandas llegan directo a la pantalla de cocina apenas se cargan en el punto de venta, sin papeles ni idas y vueltas. Cada sector ve solo lo que tiene que preparar.</p><ul><li>Pedidos de salón, mostrador y apps de delivery en una misma pantalla</li><li>Estados de cada pedido y tiempos de preparación</li><li>Aviso al salón cuando el pedido está listo</li></ul>",
+            "ancla": "kds"
+          },
+          {
+            "imagen": "/img/segmentos/adm-notebook.webp",
+            "marco": "visual",
+            "etiqueta": "Gestión centralizada",
+            "titulo": "Todo tu negocio en un solo lugar",
+            "texto": "<p>Administrá cada local de forma individual o todos a la vez: productos en una única lista, con reglas por canal, categoría o grupo, botonera, planos del salón, impresoras y descuentos.</p><ul><li><strong>Compras:</strong> los locales hacen sus pedidos y el comprador genera y envía las órdenes de compra</li><li><strong>Producción:</strong> recetas por etapa, con costeo de cada instancia</li><li><strong>Stock:</strong> el valor teórico más cercano a la compra real</li><li><strong>Cuentas:</strong> calendario de pagos, chequeras virtuales, plan de cuentas y P&amp;L</li></ul>",
+            "ancla": "erp",
+            "imagenMedidas": {
+              "src": "/img/segmentos/adm-notebook.webp",
+              "ancho": 1076,
+              "alto": 728
+            }
+          },
+          {
+            "imagen": "/img/segmentos/adm-tablet.webp",
+            "marco": "visual",
+            "etiqueta": "Analítica avanzada",
+            "titulo": "Reportes BI en tiempo real",
+            "texto": "<p>Armá todos los tableros que necesites con más de 500 métricas, compartilos con tu equipo y miralos desde el celular. Gráficos, tablas comparativas y descarga a Excel.</p><ul><li>Datos procesados en segundos, sin esperar al día siguiente</li><li>Auditoría inteligente que detecta órdenes sospechosas</li><li>Sin límite de usuarios</li></ul>",
+            "ancla": "reportes",
+            "imagenMedidas": {
+              "src": "/img/segmentos/adm-tablet.webp",
+              "ancho": 444,
+              "alto": 512
+            }
+          },
+          {
+            "imagen": "/img/segmentos/tec-seguridad.webp",
+            "marco": "ilustracion",
+            "etiqueta": "Seguridad",
+            "titulo": "Tu información, siempre protegida",
+            "texto": "<p>Servidor central en Google Cloud, backup diario y datos encriptados. Cada venta se valida al sincronizarse, y los cambios que hacés en el central llegan solos a los locales.</p><ul><li>Permisos por usuario y por función</li><li>Soporte técnico y funcional por WhatsApp</li></ul>",
+            "ancla": "seguridad",
+            "imagenMedidas": {
+              "src": "/img/segmentos/tec-seguridad.webp",
+              "ancho": 398,
+              "alto": 340
+            }
+          }
+        ],
+        "empezar": "izquierda"
+      }
+    },
+    {
+      "type": "Integraciones",
+      "props": {
+        "id": "Integraciones-3da499e9-0e09-46dc-9ea3-16729130be4d",
+        "titulo": "Integraciones",
+        "texto": "Los pedidos y los cobros entran directo al sistema: menos errores de carga, menos cancelaciones y todo en un mismo lugar.",
+        "columnas": "",
+        "ancla": "integraciones",
+        "items": [
+          {
+            "logo": "/img/integraciones/mercado-pago.webp",
+            "logoAlt": "Mercado Pago",
+            "ajusteLogo": "",
+            "titulo": "Mercado Pago Point",
+            "texto": "Cobrá con el posnet de Mercado Pago y el pago se registra solo en la venta."
+          },
+          {
+            "logo": "/img/integraciones/mercado-pago.webp",
+            "logoAlt": "Mercado Pago",
+            "ajusteLogo": "",
+            "titulo": "Mercado Pago QR",
+            "texto": "Un QR único por operación, en la mesa o en pantalla, acreditado directo en el sistema."
+          },
+          {
+            "logo": "/img/integraciones/mercado-pago.webp",
+            "logoAlt": "Mercado Pago",
+            "ajusteLogo": "",
+            "titulo": "Mercado Deli",
+            "texto": "Recibí los pedidos del delivery de Mercado Pago directo en el punto de venta."
+          },
+          {
+            "logo": "/img/integraciones/pedidosya.webp",
+            "logoAlt": "PedidosYa",
+            "ajusteLogo": "",
+            "titulo": "PedidosYa",
+            "texto": "Pedidos y pagos directo al sistema, sin volver a cargar la comanda."
+          },
+          {
+            "logo": "/img/integraciones/rappi.webp",
+            "logoAlt": "Rappi",
+            "ajusteLogo": "",
+            "titulo": "Rappi",
+            "texto": "Pedidos directo al sistema y la carta de Rappi administrada desde Thinkion."
+          },
+          {
+            "logo": "/img/integraciones/tucan.webp",
+            "logoAlt": "Tucán",
+            "ajusteLogo": "relleno",
+            "titulo": "Tucán",
+            "texto": "Los pedidos de tu canal propio de venta online llegan directo a la cocina."
+          },
+          {
+            "logo": "/img/integraciones/pedix.webp",
+            "logoAlt": "Pedix",
+            "ajusteLogo": "texto",
+            "titulo": "Pedix",
+            "texto": "Recibí los pedidos de tu tienda online sin cargarlos a mano."
+          }
+        ]
+      }
+    },
+    {
+      "type": "LlamadoFinal",
+      "props": {
+        "id": "LlamadoFinal-5b878d1f-9c09-43a7-bfd0-cbd3f4556a53",
+        "titulo": "¿Querés ver cómo funciona en tu negocio?",
+        "bajada": "Te mostramos el sistema en vivo, adaptado a tu tipo de local.",
+        "botonTexto": "Pedí tu demo",
+        "botonLink": "/demo",
+        "separado": "grande"
+      }
+    }
+  ],
+  "zones": {}
+}

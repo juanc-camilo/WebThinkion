@@ -1,0 +1,46 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Productividad e IoT | Thinkion (en construcción)",
+      "descripcion": "Productividad e IoT de Thinkion: dispositivos, integración y sensores conectados a tu operación. Estamos terminando esta página.",
+      "plantilla": "construccion",
+      "indexar": false,
+      "productoNombre": "",
+      "productoDescripcion": ""
+    }
+  },
+  "content": [
+    {
+      "type": "EnConstruccion",
+      "props": {
+        "id": "EnConstruccion-6d136e9f-ec78-4bfe-944a-4f4c7504840d",
+        "etiqueta": "Productividad e IoT",
+        "titulo": "Estamos construyendo esta página",
+        "texto": "Muy pronto vas a encontrar acá toda la información sobre los dispositivos conectados y sensores que trabajan por vos. Mientras tanto, podés seguir recorriendo la web o pedirnos una demo.",
+        "links": [
+          {
+            "texto": "Gastronomía",
+            "link": "/gastronomia"
+          },
+          {
+            "texto": "Retail",
+            "link": "/retail"
+          },
+          {
+            "texto": "Auditorías",
+            "link": "/check"
+          },
+          {
+            "texto": "Clientes",
+            "link": "/clientes"
+          },
+          {
+            "texto": "Nosotros",
+            "link": "/sobre-nosotros"
+          }
+        ]
+      }
+    }
+  ],
+  "zones": {}
+}

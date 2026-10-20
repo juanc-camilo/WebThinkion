@@ -1,49 +1,40 @@
 # CLAUDE.md · Web Thinkion
 
-Contexto para Claude Code. Basado en la auditoría técnica del 29 y 30/09/2026 ("Guía técnica WebThinkion", de Hernán), adaptado al estado del 02/10/2026.
+Contexto para Claude Code. Actualizado el 20/10/2026, después de pasar el sitio a Next.js + Puck.
 
 ## El proyecto
 
-- Sitio institucional de Thinkion: HTML + CSS + JavaScript vanilla. **Eleventy** arma `_site` pegando `src/_includes/` (menú, footer, head), uniendo los CSS (`eleventy.config.mjs`) y aplicando las ediciones del panel (`cms/aplicar-ediciones.mjs`, usa `linkedom` solo al armar). No agregar dependencias de runtime en el navegador.
-- **Panel de administración** (`/admin`, pedido del usuario el 19/10/2026): edita todo lo visible y banners por temporada. Hosting en **Vercel** (`vercel.json`, funciones en `api/`). Guarda `contenido/*.json` con un commit vía API de GitHub (`GITHUB_TOKEN`). Detalles en `ADMIN.md`. Usuario provisorio `juanc` / `juanc1234` (env `ADMIN_USUARIO`, `ADMIN_CLAVE`).
-- Cada elemento del `<body>` lleva `data-e` (su dirección, calculada sobre el HTML original). Si cambiás la estructura de una página, las ediciones guardadas después de ese punto pueden quedar salteadas: revisar `contenido/ediciones.json`.
-- Estructura: `index.html` en la raíz, vistas en `src/views/`, estilos en `src/styles/`, JS en `src/controllers/controller.js`, imágenes en `public/img/`, fuentes en `public/fonts/`.
-- Cada página arranca con front matter (`titulo`, `descripcion`, `estilos`, opcional `producto`). Dominio y datos de la empresa en `src/_data/sitio.json`.
-- Todo el contenido visible va escrito en el HTML; el JS solo maneja interacción. Quien edita la web no programa: los textos tienen que poder cambiarse en el HTML.
-- Rutas relativas: desde una vista, `../../public/img/…`; en los includes, `{{ raiz }}` y `{{ vistas }}`.
-- Español rioplatense con voseo ("Pedí", "Conocé", "Trabajá").
-- Imágenes en WebP con `width` y `height`; `loading="lazy"` debajo del primer pantallazo.
-- Colores y medidas en `src/styles/variables.css`.
-- Comentarios en el código: detallados, en español, por sección.
-
-## Decisiones ya tomadas (no cambiar)
-
-- **No modificar** el hero de la Home, los íconos e ilustraciones, la alineación de las tarjetas ni la sección de Industrias de la Home.
-- Las internas (POS & ERP, Check, Marketing, Clientes, Demo, Trabajá) ya tienen la estética de la Home (commit `2b9f2ea`). **No aplicar** `internas-home.patch` de la auditoría: es de la versión anterior.
-- Demo y Trabajá con nosotros son páginas propias (no modales).
-- Hosting: Vercel (decidido por el usuario el 19/10/2026). Dominio provisorio `https://webthinkion.vercel.app` en `src/_data/sitio.json`: de ahí salen canonical, Open Graph, JSON-LD, `robots.txt`, `sitemap.xml` y `llms.txt` (los arma `eleventy.config.mjs`). Cuando esté el dominio final, cambiar solo ese dato. Formularios y GTM/GA4/Pixel **esperan indicación de Hernán**.
-- Páginas en construcción (Retail, Productividad): `indexar: false` en el front matter → `noindex` y fuera del sitemap. Sacarlo cuando marketing las termine.
+- Sitio institucional de Thinkion en **Next.js (App Router) + Puck** (editor visual de bloques, `@puckeditor/core`). Hosting en **Vercel** (`vercel.json`: framework nextjs, build `npm run build`).
+- Quien edita la web es marketing, sin programar, desde `/admin`. Lo que piden: que se pueda cambiar todo con bloques y que **sea difícil de romper** (nada de posiciones libres ni colores sueltos). Guía de uso: `ADMIN.md`.
+- Contenido: `contenido/paginas/<nombre>.json` (datos de Puck; "inicio" = `/`) y `contenido/ajustes.json` (menú, footer, temporadas con banner, datos de la empresa). El panel los guarda con un commit vía API de GitHub (`GITHUB_TOKEN`); las imágenes subidas van a Vercel Blob (`BLOB_READ_WRITE_TOKEN`). En local (`npm run dev`) se escribe en los archivos y en `public/subidas`.
+- Páginas estáticas (`app/(sitio)/[[...ruta]]`, `generateStaticParams`), con metadatos, canonical, Open Graph y JSON-LD (`lib/seo.js`). `robots.js`, `sitemap.js` y `llms.txt/route.js` se arman con las páginas.
+- Bloques en `puck/bloques/` (inicio, producto, industria, institucional, genericos), registrados en `puck/config.jsx`. **Usan el mismo HTML y las mismas clases del diseño original** (se comparó al píxel con la versión anterior). Un bloque nuevo: mismas convenciones, `bloque({...})` de `puck/util.jsx` (inline + `ref={puck.dragRef}` en la etiqueta principal).
+- Marco de página en `puck/marco/` (Pagina = root de Puck con plantillas, Navbar, Footer, temporadas). Las interacciones de la web están en `puck/marco/Comportamientos.jsx` (JS vanilla sobre el HTML ya armado; no corre en el editor).
+- Campos del panel: `puck/campos.js` (atajos, sirve en servidor y cliente) y `puck/campos-ui.jsx` (componentes `'use client'`: imagen con subida, link, fecha, color). No llamar funciones de un módulo `'use client'` desde el servidor.
+- Estilos: `src/styles/*.css` (colores y medidas en `variables.css`). `scripts/preparar.mjs` los une en `public/estilos/sitio.css` (lo usan la web y el iframe del editor) y lista las imágenes para la biblioteca del panel. `bloques.css`: bloques genéricos, banner y video en ventana. `puck-ajustes.css`: que el editor se vea igual que la web.
+- Usuario provisorio del panel `juanc` / `juanc1234` (env `ADMIN_USUARIO`, `ADMIN_CLAVE`, `ADMIN_SECRETO`).
+- Español rioplatense con voseo. Comentarios en el código: detallados, en español, por sección.
 
 ## No inventar
 
-- Textos `<!-- TEXTO PROVISORIO -->` / `<!-- RESPUESTA PROVISORIA -->` y los hitos en lorem ipsum de "Nuestra evolución": los define marketing.
+- Textos provisorios (algunas respuestas de la FAQ, hitos de "Nuestra evolución", Retail y Productividad): los define marketing.
 - Cifras: "300 métricas" contra "más de 500" y ">1 min" en Gastronomía están pendientes de confirmar.
 - Colores de marca: preguntar antes de cambiarlos.
 
 ## Pendientes
 
-- Contraste del botón coral: prueba A (POS & ERP) y B (Check) en el bloque "PRUEBA DE CONTRASTE" de `paginas.css`. Cuando el usuario elija, pasar la opción a `.boton` (y revisar `.boton-borde` y el `.navbar__demo` coral de `.pagina-nosotros`).
-- Pestañas inactivas (`.pestanas__boton:not(.is-activa)`, azul al 30 %): contraste 1,8:1, decisión de diseño.
-- Colores sueltos: quedan ~25 hexadecimales y ~100 `rgba()` fuera de `variables.css`.
+- Contraste del botón coral y de las pestañas inactivas (azul al 30 %): decisión de diseño.
+- Formularios de demo y empleo sin destino: se conectan desde el panel (campo "Enviar a").
+- Dominio final: se cambia en el panel → Ajustes generales → Datos de la empresa.
 
 ## Cómo verificar
 
 ```bash
 npm install
 npx playwright install chromium
-npm test          # arma _site con Eleventy y corre Playwright en :8080
+npm test          # arma con Next.js, levanta en :8080 y corre Playwright
+npm run dev       # sitio + panel en :8080 (/admin)
 ```
 
-- `npm run admin`: sitio + panel en local (guarda en los archivos).
-- Al 19/10/2026: 116 pasan y 13 fallan (3 texto de relleno, 2 formularios y 8 de contraste por el coral y las pestañas).
-- Después de cada cambio: tests, mirar la página en escritorio (1440) y celular (390).
+- Al 20/10/2026: 117 pasan y 13 fallan (3 texto de relleno, 2 formularios y 8 de contraste por el coral y las pestañas).
+- Después de cada cambio: tests y mirar la página en escritorio (1440) y celular (390), en la web y en el editor.

@@ -1,0 +1,64 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Pedí tu demo | Thinkion",
+      "descripcion": "Pedí una demo de Thinkion: te la mostramos en vivo por Google Meet con uno de nuestros asesores comerciales.",
+      "plantilla": "demo",
+      "indexar": true,
+      "productoNombre": "",
+      "productoDescripcion": ""
+    }
+  },
+  "content": [
+    {
+      "type": "FormularioDemo",
+      "props": {
+        "id": "FormularioDemo-720a5d79-5f9b-463f-9709-3b7a7ec14b6b",
+        "etiqueta": "Demo personalizada",
+        "titulo": "Pedí tu demo",
+        "texto": "<p>Dejanos tus datos y un asesor comercial de Thinkion te va a contactar para coordinar una <strong>videollamada por Google Meet</strong>. Ahí te mostramos el sistema en vivo, adaptado a tu tipo de local, y respondemos todas tus dudas.</p>",
+        "pasos": [
+          {
+            "destacado": "Completá el formulario",
+            "texto": "con tus datos y los de tu negocio."
+          },
+          {
+            "destacado": "Te contactamos",
+            "texto": "por teléfono o mail para acordar día y horario."
+          },
+          {
+            "destacado": "Nos conectamos por Meet",
+            "texto": "y recorremos Thinkion con uno de nuestros vendedores."
+          }
+        ],
+        "tiposLocal": [
+          {
+            "opcion": "Restaurante"
+          },
+          {
+            "opcion": "Bar / Cervecería"
+          },
+          {
+            "opcion": "Cafetería / Panadería"
+          },
+          {
+            "opcion": "Fast food / Delivery"
+          },
+          {
+            "opcion": "Heladería"
+          },
+          {
+            "opcion": "Retail / Comercio"
+          },
+          {
+            "opcion": "Otro"
+          }
+        ],
+        "aviso": "La demo es sin cargo y se realiza por Google Meet.",
+        "botonTexto": "Pedir mi demo",
+        "destino": ""
+      }
+    }
+  ],
+  "zones": {}
+}

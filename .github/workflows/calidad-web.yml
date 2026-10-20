@@ -41,7 +41,6 @@ jobs:
         with:
           node-version: 22
       - run: npm install
-      # Arma el sitio en _site (Eleventy)
-      - run: npx eleventy
-      # lighthouserc.json define las URLs, las 3 corridas y los umbrales
+      # Arma el sitio con Next.js (lighthouserc.json lo levanta y define URLs y umbrales)
+      - run: npm run build
       - run: npx lhci autorun

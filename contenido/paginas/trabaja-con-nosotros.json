@@ -1,0 +1,79 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Trabajá con nosotros | Thinkion",
+      "descripcion": "Sumate al equipo de Thinkion: completá el formulario con tus datos y adjuntá tu CV para postularte.",
+      "plantilla": "empleo",
+      "indexar": true,
+      "productoNombre": "",
+      "productoDescripcion": ""
+    }
+  },
+  "content": [
+    {
+      "type": "FormularioEmpleo",
+      "props": {
+        "id": "FormularioEmpleo-c76cdfcb-5e8d-4a23-81f8-ba956fd00edb",
+        "titulo": "Unite a nuestro equipo",
+        "texto": "Estamos en constante crecimiento y siempre buscamos personas talentosas que quieran sumarse a nuestro propósito. Completa el formulario y adjunta tu CV para que podamos contactarte.",
+        "ciudades": [
+          {
+            "opcion": "Ciudad de Buenos Aires"
+          },
+          {
+            "opcion": "Provincia de Buenos Aires"
+          },
+          {
+            "opcion": "Córdoba"
+          },
+          {
+            "opcion": "Rosario"
+          },
+          {
+            "opcion": "Mendoza"
+          },
+          {
+            "opcion": "Otra"
+          }
+        ],
+        "puestos": [
+          {
+            "opcion": "Desarrollador Front-End"
+          },
+          {
+            "opcion": "Desarrollador Back-End"
+          },
+          {
+            "opcion": "Soporte técnico"
+          },
+          {
+            "opcion": "Implementación"
+          },
+          {
+            "opcion": "Ventas"
+          },
+          {
+            "opcion": "Otro"
+          }
+        ],
+        "niveles": [
+          {
+            "opcion": "Junior (0-2 años)"
+          },
+          {
+            "opcion": "Semi Senior (2-5 años)"
+          },
+          {
+            "opcion": "Senior (+5 años)"
+          }
+        ],
+        "botonTexto": "Enviar postulación",
+        "destino": "",
+        "ciudadInicial": "Buenos Aires",
+        "puestoInicial": "Desarrollador Front-End",
+        "nivelInicial": "Junior (0-2 años)"
+      }
+    }
+  ],
+  "zones": {}
+}

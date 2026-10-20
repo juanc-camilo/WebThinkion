@@ -1,28 +1,61 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./_site",
       "url": [
-        "http://localhost/index.html",
-        "http://localhost/src/views/gastronomia.html",
-        "http://localhost/src/views/pos-erp.html",
-        "http://localhost/src/views/check.html",
-        "http://localhost/src/views/sobre-nosotros.html",
-        "http://localhost/src/views/demo.html"
+        "http://localhost:8080/",
+        "http://localhost:8080/gastronomia",
+        "http://localhost:8080/pos-erp",
+        "http://localhost:8080/check",
+        "http://localhost:8080/sobre-nosotros",
+        "http://localhost:8080/demo"
       ],
-      "numberOfRuns": 3
+      "numberOfRuns": 3,
+      "startServerCommand": "npm run start",
+      "startServerReadyPattern": "Ready"
     },
     "assert": {
       "assertions": {
-        "categories:performance": ["error", { "minScore": 0.9 }],
-        "categories:accessibility": ["error", { "minScore": 0.95 }],
-        "categories:best-practices": ["error", { "minScore": 0.95 }],
-        "categories:seo": ["error", { "minScore": 0.95 }],
-        "largest-contentful-paint": ["warn", { "maxNumericValue": 2500 }],
-        "cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+        "categories:performance": [
+          "error",
+          {
+            "minScore": 0.9
+          }
+        ],
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 0.95
+          }
+        ],
+        "categories:best-practices": [
+          "error",
+          {
+            "minScore": 0.95
+          }
+        ],
+        "categories:seo": [
+          "error",
+          {
+            "minScore": 0.95
+          }
+        ],
+        "largest-contentful-paint": [
+          "warn",
+          {
+            "maxNumericValue": 2500
+          }
+        ],
+        "cumulative-layout-shift": [
+          "error",
+          {
+            "maxNumericValue": 0.1
+          }
+        ],
         "color-contrast": "error"
       }
     },
-    "upload": { "target": "temporary-public-storage" }
+    "upload": {
+      "target": "temporary-public-storage"
+    }
   }
 }

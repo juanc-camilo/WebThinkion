@@ -1,0 +1,158 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Encuestas, fidelización y reservas | Thinkion",
+      "descripcion": "Conocé a tus clientes con encuestas por QR, campañas de email y reservas con pre-compra, todo conectado al punto de venta de Thinkion. Pedí tu demo.",
+      "plantilla": "producto",
+      "indexar": true,
+      "productoNombre": "Thinkion Marketing",
+      "productoDescripcion": "Conocé a tus clientes con encuestas por QR, campañas de email y reservas con pre-compra, todo conectado al punto de venta de Thinkion. Pedí tu demo."
+    }
+  },
+  "content": [
+    {
+      "type": "HeroProducto",
+      "props": {
+        "id": "HeroProducto-40aba50d-9073-443a-a530-ae9607175a16",
+        "titulo": "Conocé a tus clientes y hacé que vuelvan",
+        "resaltado": "vuelvan",
+        "bajada": "Encuestas, reservas y campañas conectadas al punto de venta, para entender qué pasa en tus locales y cuidar la relación con cada cliente.",
+        "botonTexto": "Pedí tu demo",
+        "botonLink": "/demo",
+        "estilo": "producto"
+      }
+    },
+    {
+      "type": "Ventajas",
+      "props": {
+        "id": "Ventajas-2a57d4b4-86a8-4565-8b8a-0001912d3779",
+        "titulo": "Herramientas para vender más y mejor",
+        "texto": "Todo lo que tus clientes hacen (reservar, opinar, volver) queda registrado en Thinkion y conectado con sus consumos.",
+        "items": [
+          {
+            "icono": "/img/home/diagrama-encuestas.webp",
+            "titulo": "Encuestas",
+            "texto": "Escuchá a tus clientes con encuestas por QR en cada local"
+          },
+          {
+            "icono": "/img/home/diagrama-fidelizacion.webp",
+            "titulo": "Fidelización",
+            "texto": "Premiá a tus clientes y comunicate con ellos uno a uno"
+          },
+          {
+            "icono": "/img/home/diagrama-reservas.webp",
+            "titulo": "Reservas",
+            "texto": "Reservas con pre-compra, lista de espera y mesa asignada"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Funciones",
+      "props": {
+        "id": "Funciones-9b3bc15a-b3c9-42ca-b5ec-b873bec12be7",
+        "funciones": [
+          {
+            "imagen": "/img/segmentos/prod-encuestas-1.webp",
+            "marco": "",
+            "etiqueta": "Encuestas",
+            "titulo": "Sabé qué opinan tus clientes",
+            "texto": "<p>Tus clientes escanean un QR en el local, responden una encuesta corta y pueden ganar uno o más beneficios. Vos sabés qué pasa en cada local y sumás sus datos a tu base.</p><ul><li>Encuestas por local, con premios configurables</li><li>Resultados en los reportes de Thinkion</li></ul>",
+            "ancla": "encuestas"
+          },
+          {
+            "imagen": "/img/segmentos/prod-fidelizacion-2.webp",
+            "marco": "",
+            "etiqueta": "Fidelización",
+            "titulo": "Comunicate uno a uno con cada cliente",
+            "texto": "<p>Con los datos que dejan en las encuestas y las reservas, armá tu propia base de clientes. El motor de email marketing te deja enviar campañas filtradas por local, consumo o respuestas.</p><ul><li>Base de clientes propia, sin intermediarios</li><li>Campañas de email segmentadas</li><li>Beneficios para que vuelvan</li></ul>",
+            "ancla": "fidelizacion"
+          },
+          {
+            "imagen": "/img/segmentos/prod-reservas-1.webp",
+            "marco": "",
+            "etiqueta": "Reservas",
+            "titulo": "Reservas conectadas con el consumo",
+            "texto": "<p>Gestioná cada reserva de punta a punta: sus datos, avisos por email y SMS, y la mesa asignada dentro del sistema. Además, tus clientes pueden comprar con anticipación productos para el día de la reserva.</p><ul><li>Pre-compra y cobro anticipado</li><li>Las reservas llegan directo al punto de venta</li><li>Seguimiento del consumo de cada reserva</li></ul>",
+            "ancla": "reservas"
+          },
+          {
+            "imagen": "/img/segmentos/prod-reservas-2.webp",
+            "marco": "",
+            "etiqueta": "Lista de espera",
+            "titulo": "Tus clientes se anotan con un QR",
+            "texto": "<p>Los clientes que llegan sin reserva escanean un QR y quedan en la lista de espera del día. Cuando se libera una mesa, los llamás por SMS o por su nombre.</p>",
+            "ancla": "lista-de-espera"
+          }
+        ],
+        "empezar": "izquierda"
+      }
+    },
+    {
+      "type": "Integraciones",
+      "props": {
+        "id": "Integraciones-cb2393bd-4306-4471-b2d4-0bed6d3172f7",
+        "titulo": "Todo lo que incluye Reservas",
+        "texto": "Administrá todos tus locales desde el central: horarios, días, zonas, descuentos y promociones, de uno o de todos a la vez.",
+        "columnas": "tres",
+        "ancla": "",
+        "items": [
+          {
+            "logo": "",
+            "logoAlt": "",
+            "ajusteLogo": "",
+            "titulo": "Multi local",
+            "texto": "Todos tus locales gestionados desde el central de Thinkion."
+          },
+          {
+            "logo": "",
+            "logoAlt": "",
+            "ajusteLogo": "",
+            "titulo": "Pre-compra",
+            "texto": "Ventas anticipadas asociadas a cada reserva."
+          },
+          {
+            "logo": "",
+            "logoAlt": "",
+            "ajusteLogo": "",
+            "titulo": "Avisos por email y SMS",
+            "texto": "Confirmaciones y validación segura por SMS."
+          },
+          {
+            "logo": "",
+            "logoAlt": "",
+            "ajusteLogo": "",
+            "titulo": "Zonas y horarios",
+            "texto": "Distintas zonas, días y configuraciones de disponibilidad."
+          },
+          {
+            "logo": "",
+            "logoAlt": "",
+            "ajusteLogo": "",
+            "titulo": "Tu propia página",
+            "texto": "Landing de reservas con tu marca y widget para tu web."
+          },
+          {
+            "logo": "",
+            "logoAlt": "",
+            "ajusteLogo": "",
+            "titulo": "Reportes",
+            "texto": "Todas las reservas, cancelaciones y consumos, medidos."
+          }
+        ]
+      }
+    },
+    {
+      "type": "LlamadoFinal",
+      "props": {
+        "id": "LlamadoFinal-1f666679-baf1-4ab0-8bb1-7bb1ecfb3881",
+        "titulo": "¿Querés ver cómo funciona en tu negocio?",
+        "bajada": "Te mostramos el sistema en vivo, adaptado a tu tipo de local.",
+        "botonTexto": "Pedí tu demo",
+        "botonLink": "/demo",
+        "separado": "grande"
+      }
+    }
+  ],
+  "zones": {}
+}

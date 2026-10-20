@@ -1,0 +1,338 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Thinkion | Crecé sin límites, simplificá tu negocio",
+      "descripcion": "Thinkion es un ecosistema que se adapta a tu negocio: POS, ERP, compras y auditorías integrados en un solo lugar para gastronomía, retail y servicios.",
+      "plantilla": "inicio",
+      "indexar": true,
+      "productoNombre": "",
+      "productoDescripcion": ""
+    }
+  },
+  "content": [
+    {
+      "type": "HeroInicio",
+      "props": {
+        "id": "HeroInicio-5aa08023-875d-4e22-8461-35215be4846d",
+        "titulo": "Crecé sin límites, simplificá tu negocio",
+        "resaltado": "Crecé",
+        "bajada": "<p>Un ecosistema que se adapta al tamaño de tu negocio. Gestioná todo desde un solo lugar, manteniendo <strong>control y datos claros</strong> en cada etapa.</p>",
+        "botonTexto": "Pedí tu demo",
+        "botonLink": "/demo",
+        "videoLink": "https://vimeo.com/1182132915",
+        "portada": "/img/home/video-portada.webp",
+        "portadaAlt": "Persona usando el sistema Thinkion en una notebook"
+      }
+    },
+    {
+      "type": "Diferenciales",
+      "props": {
+        "id": "Diferenciales-08d2f1cf-e260-4aba-840d-97ec8b22bb13",
+        "titulo": "Todo tu negocio conectado en un solo ecosistema",
+        "bajada": "Una plataforma que conecta todos los puntos de tu operación, sin importar la industria.",
+        "pilares": [
+          {
+            "icono": "/img/home/icono-integracion.webp",
+            "titulo": "Integración",
+            "texto": "Conectá ventas, operación y canales para trabajar sin fricciones.",
+            "ajuste": ""
+          },
+          {
+            "icono": "/img/home/icono-inteligencia.webp",
+            "titulo": "Inteligencia",
+            "texto": "Visualizá ventas, inventario y rendimiento con datos claros, en tiempo real.",
+            "ajuste": "lampara"
+          },
+          {
+            "icono": "/img/home/icono-escalabilidad.webp",
+            "titulo": "Escalabilidad",
+            "texto": "Automatizá procesos y acompañá el crecimiento de tu negocio sin perder control.",
+            "ajuste": "suave"
+          }
+        ]
+      }
+    },
+    {
+      "type": "DiagramaSoluciones",
+      "props": {
+        "id": "DiagramaSoluciones-420e530b-4ca2-4933-979d-e50270ac6e96",
+        "modulos": [
+          {
+            "nombre": "Compras",
+            "imagen": "/img/home/diagrama-compras.webp",
+            "opacidad": 0.8
+          },
+          {
+            "nombre": "POS",
+            "imagen": "/img/home/diagrama-pos.webp",
+            "opacidad": 0.8
+          },
+          {
+            "nombre": "ERP",
+            "imagen": "/img/home/diagrama-erp.webp",
+            "opacidad": ""
+          },
+          {
+            "nombre": "Forecasting",
+            "imagen": "/img/home/diagrama-forecasting.webp",
+            "opacidad": 0.9
+          },
+          {
+            "nombre": "Reservas",
+            "imagen": "/img/home/diagrama-reservas.webp",
+            "opacidad": ""
+          },
+          {
+            "nombre": "Carta QR",
+            "imagen": "/img/home/diagrama-carta-qr.webp",
+            "opacidad": ""
+          },
+          {
+            "nombre": "Encuestas",
+            "imagen": "/img/home/diagrama-encuestas.webp",
+            "opacidad": ""
+          },
+          {
+            "nombre": "Fidelización",
+            "imagen": "/img/home/diagrama-fidelizacion.webp",
+            "opacidad": ""
+          },
+          {
+            "nombre": "Reportes BI",
+            "imagen": "/img/home/diagrama-reportes-bi.webp",
+            "opacidad": 0.8
+          },
+          {
+            "nombre": "Agente AI",
+            "imagen": "/img/home/diagrama-agente-ai.webp",
+            "opacidad": 0.8
+          },
+          {
+            "nombre": "Auditorías",
+            "imagen": "/img/home/diagrama-auditorias.webp",
+            "opacidad": ""
+          },
+          {
+            "nombre": "E-commerce",
+            "imagen": "/img/home/diagrama-e-commerce.webp",
+            "opacidad": ""
+          }
+        ],
+        "titulo": "Soluciones que se potencian entre sí",
+        "bajada": "Un ecosistema donde cada módulo se integra para amplificar el valor de tu operación, desde la venta hasta la analítica.",
+        "botonTexto": "Pedí tu demo",
+        "botonLink": "/demo"
+      }
+    },
+    {
+      "type": "Industrias",
+      "props": {
+        "id": "Industrias-ffe4e4ea-a9cf-4844-b948-25e503167b3d",
+        "pestanas": [
+          {
+            "nombre": "Gastronomía",
+            "titulo": "Diseñado para el día a día de la gastronomía",
+            "texto": "<p><strong>Gestioná</strong> pedidos, mesas y pagos sin cortar el ritmo del servicio. <strong>Mantené el control</strong> de la operación incluso en los momentos de mayor demanda.</p>",
+            "imagen": "/img/home/tab-gastronomia.webp",
+            "imagenAlt": "Plato con cubiertos"
+          },
+          {
+            "nombre": "Retail",
+            "titulo": "Diseñado para la operación diaria del retail",
+            "texto": "<p>Administrá ventas, stock y promociones desde un mismo entorno. <strong>Detectá oportunidades, cuidá márgenes y evitá quiebres de stock.</strong></p>",
+            "imagen": "/img/home/tab-retail.webp",
+            "imagenAlt": "Bolsa de compras"
+          },
+          {
+            "nombre": "Productividad",
+            "titulo": "Diseñado para mejorar la productividad de tu negocio",
+            "texto": "<p><strong>Automatizá y monitoreá equipos y dispositivos en tiempo real.</strong> Reducí tareas manuales y ganá control sobre la operación física de tu negocio.</p>",
+            "imagen": "/img/home/tab-productividad.webp",
+            "imagenAlt": "Dispositivos conectados"
+          }
+        ],
+        "abierta": 1
+      }
+    },
+    {
+      "type": "ClientesCarrusel",
+      "props": {
+        "id": "ClientesCarrusel-a3809a0c-409d-4b65-863f-ed334be23fdc",
+        "titulo": "Ellos ya se sumaron al cambio",
+        "clientes": [
+          {
+            "foto": "/img/home/cliente-sushi.webp",
+            "fotoAlt": "Sushi de Sushi 2x1",
+            "logo": "/img/home/logo-sushi.webp",
+            "nombre": "Sushi 2x1",
+            "rubro": "Gastronomía",
+            "ajusteLogo": "ancho"
+          },
+          {
+            "foto": "/img/home/cliente-club-milanesa.webp",
+            "fotoAlt": "Milanesa con papas fritas de El Club de la Milanesa",
+            "logo": "/img/home/logo-club-milanesa.webp",
+            "nombre": "El Club de la Milanesa",
+            "rubro": "Gastronomía",
+            "ajusteLogo": ""
+          },
+          {
+            "foto": "/img/home/cliente-temple.webp",
+            "fotoAlt": "Barra de la cervecería Temple",
+            "logo": "/img/home/logo-temple.webp",
+            "nombre": "Temple Brewery",
+            "rubro": "Gastronomía",
+            "ajusteLogo": "temple"
+          },
+          {
+            "foto": "/img/home/cliente-mishka.webp",
+            "fotoAlt": "Frente del local de Mishka",
+            "logo": "/img/home/logo-mishka.webp",
+            "nombre": "Mishka",
+            "rubro": "Retail",
+            "ajusteLogo": "mishka"
+          },
+          {
+            "foto": "/img/home/cliente-prune.webp",
+            "fotoAlt": "Vidriera de Prüne",
+            "logo": "/img/home/logo-prune.svg",
+            "nombre": "Prüne",
+            "rubro": "Retail",
+            "ajusteLogo": "ancho"
+          },
+          {
+            "foto": "/img/home/cliente-patagonia.webp",
+            "fotoAlt": "Cervecería Patagonia",
+            "logo": "/img/home/logo-patagonia.webp",
+            "nombre": "Cerveza Patagonia",
+            "rubro": "Gastronomía",
+            "ajusteLogo": "ancho"
+          },
+          {
+            "foto": "/img/home/cliente-beerco.webp",
+            "fotoAlt": "Cervezas de Beer Co.",
+            "logo": "/img/home/logo-beerco.webp",
+            "nombre": "Beer Co.",
+            "rubro": "Gastronomía",
+            "ajusteLogo": "ancho"
+          },
+          {
+            "foto": "/img/home/cliente-quijote.webp",
+            "fotoAlt": "Sándwiches y tortas de Quijote",
+            "logo": "/img/home/logo-quijote.webp",
+            "nombre": "Quijote",
+            "rubro": "Gastronomía",
+            "ajusteLogo": "ancho"
+          },
+          {
+            "foto": "/img/home/cliente-antares.webp",
+            "fotoAlt": "Fábrica de Cervecería Antares",
+            "logo": "/img/home/logo-antares.webp",
+            "nombre": "Cervecería Antares",
+            "rubro": "Gastronomía",
+            "ajusteLogo": "ancho"
+          },
+          {
+            "foto": "/img/home/cliente-trevi.webp",
+            "fotoAlt": "Helado de Trevi Gelato",
+            "logo": "/img/home/logo-trevi.webp",
+            "nombre": "Trevi Gelato",
+            "rubro": "Gastronomía",
+            "ajusteLogo": "ancho"
+          }
+        ],
+        "destacado": 2,
+        "cita": "“Mantener el control de toda la operación nunca fue tan fácil. Todo integrado, todo desde cualquier lugar.”",
+        "autor": "Federico Sala, El Club de la Milanesa",
+        "botonTexto": "Ver nuestros clientes",
+        "botonLink": "/clientes"
+      }
+    },
+    {
+      "type": "Separador",
+      "props": {
+        "id": "Separador-2c61cbce-cd63-4300-84c7-e4f1d317c244"
+      }
+    },
+    {
+      "type": "PreguntasFrecuentes",
+      "props": {
+        "id": "PreguntasFrecuentes-680d4f30-5c77-4c1f-898d-ec1b4a0eab03",
+        "titulo": "Preguntas frecuentes",
+        "bajada": "Conocé cómo funciona la plataforma, cómo se integra y qué incluye cada solución.",
+        "categorias": [
+          {
+            "nombre": "Generales",
+            "preguntas": [
+              {
+                "pregunta": "¿Qué es Thinkion y a quién está dirigido?",
+                "respuesta": "<p>Thinkion es una plataforma que unifica todas las herramientas que necesitás para gestionar tu negocio. Está pensada para <strong>gastronomía, retail y servicios</strong>, y te ayuda a simplificar la operación y crecer con control.</p>"
+              },
+              {
+                "pregunta": "¿Necesito ser un experto en tecnología para usar Thinkion?",
+                "respuesta": "<p>No. Thinkion está pensado para que cualquier persona de tu equipo lo use desde el primer día, y te acompañamos en la implementación.</p>"
+              },
+              {
+                "pregunta": "¿Thinkion puede integrarse con los sistemas que ya uso?",
+                "respuesta": "<p>Sí. Thinkion se integra con plataformas de delivery, medios de pago, facturación electrónica y otras herramientas que ya usás.</p>"
+              },
+              {
+                "pregunta": "¿Qué tipo de soporte técnico ofrecen?",
+                "respuesta": "<p>Tenemos un equipo de soporte que te ayuda por WhatsApp, mail y teléfono para que tu operación nunca se detenga.</p>"
+              }
+            ]
+          },
+          {
+            "nombre": "Retail",
+            "preguntas": [
+              {
+                "pregunta": "¿Puedo manejar varias sucursales?",
+                "respuesta": "<p>Sí. Controlás stock, ventas y precios de todas tus sucursales desde un mismo panel.</p>"
+              }
+            ]
+          },
+          {
+            "nombre": "Gastronómicas",
+            "preguntas": [
+              {
+                "pregunta": "¿Sirve para restaurantes con delivery?",
+                "respuesta": "<p>Sí. Integrás mesas, mostrador y delivery en un solo sistema, con los pedidos de todas las plataformas en un mismo lugar.</p>"
+              }
+            ]
+          },
+          {
+            "nombre": "Productos",
+            "preguntas": [
+              {
+                "pregunta": "¿Qué módulos incluye Thinkion?",
+                "respuesta": "<p>POS, ERP, compras, auditorías, fidelización, reportes BI y más. Podés sumar solo los que necesitás.</p>"
+              }
+            ]
+          },
+          {
+            "nombre": "Precios",
+            "preguntas": [
+              {
+                "pregunta": "¿Cuánto cuesta Thinkion?",
+                "respuesta": "<p>Depende de los módulos y la cantidad de locales. Pedí tu demo y te armamos una propuesta a medida.</p>"
+              }
+            ]
+          }
+        ],
+        "abierta": 1
+      }
+    },
+    {
+      "type": "LlamadoFinal",
+      "props": {
+        "id": "LlamadoFinal-3500893b-4753-4390-a44c-73ea3d4d1062",
+        "titulo": "¿Querés ver cómo funciona en tu negocio?",
+        "bajada": "Hablemos y veamos cómo Thinkion puede adaptarse a tu negocio.",
+        "botonTexto": "Pedí tu demo",
+        "botonLink": "/demo",
+        "separado": ""
+      }
+    }
+  ],
+  "zones": {}
+}

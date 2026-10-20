@@ -17,20 +17,19 @@ import AxeBuilder from '@axe-core/playwright';
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8080';
 
-// Rutas del sitio. Si al publicar se pasa a URLs limpias (/gastronomia),
-// alcanza con cambiar esta lista: el resto de los tests no cambia.
+// Rutas del sitio (las páginas que hay en contenido/paginas).
 const PAGINAS = [
-  { ruta: '/index.html', nombre: 'Home' },
-  { ruta: '/src/views/gastronomia.html', nombre: 'Gastronomía' },
-  { ruta: '/src/views/retail.html', nombre: 'Retail' },
-  { ruta: '/src/views/pos-erp.html', nombre: 'POS y ERP' },
-  { ruta: '/src/views/check.html', nombre: 'Check' },
-  { ruta: '/src/views/marketing.html', nombre: 'Marketing' },
-  { ruta: '/src/views/productividad.html', nombre: 'Productividad' },
-  { ruta: '/src/views/clientes.html', nombre: 'Clientes' },
-  { ruta: '/src/views/sobre-nosotros.html', nombre: 'Sobre nosotros' },
-  { ruta: '/src/views/demo.html', nombre: 'Demo' },
-  { ruta: '/src/views/trabaja-con-nosotros.html', nombre: 'Trabajá con nosotros' },
+  { ruta: '/', nombre: 'Home' },
+  { ruta: '/gastronomia', nombre: 'Gastronomía' },
+  { ruta: '/retail', nombre: 'Retail' },
+  { ruta: '/pos-erp', nombre: 'POS y ERP' },
+  { ruta: '/check', nombre: 'Check' },
+  { ruta: '/marketing', nombre: 'Marketing' },
+  { ruta: '/productividad', nombre: 'Productividad' },
+  { ruta: '/clientes', nombre: 'Clientes' },
+  { ruta: '/sobre-nosotros', nombre: 'Sobre nosotros' },
+  { ruta: '/demo', nombre: 'Demo' },
+  { ruta: '/trabaja-con-nosotros', nombre: 'Trabajá con nosotros' },
 ];
 
 for (const { ruta, nombre } of PAGINAS) {
@@ -133,7 +132,7 @@ for (const { ruta, nombre } of PAGINAS) {
 // ---------- Pruebas de comportamiento (solo Home) ----------
 test('menú mobile: abre con Enter y cierra con Escape', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 800 });
-  await page.goto(BASE_URL + '/index.html');
+  await page.goto(BASE_URL + '/');
   const boton = page.locator('.navbar__hamburguesa');
   await boton.focus();
   await page.keyboard.press('Enter');
@@ -143,7 +142,7 @@ test('menú mobile: abre con Enter y cierra con Escape', async ({ page }) => {
 });
 
 test('desplegable de Soluciones: abre con Enter y cierra con Escape', async ({ page }) => {
-  await page.goto(BASE_URL + '/index.html');
+  await page.goto(BASE_URL + '/');
   const boton = page.locator('[data-dropdown] > button').first();
   await boton.focus();
   await page.keyboard.press('Enter');

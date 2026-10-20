@@ -1,0 +1,46 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Retail | Thinkion (en construcción)",
+      "descripcion": "Thinkion para retail: administrá ventas, stock y promociones desde un mismo entorno. Estamos terminando esta página.",
+      "plantilla": "construccion",
+      "indexar": false,
+      "productoNombre": "",
+      "productoDescripcion": ""
+    }
+  },
+  "content": [
+    {
+      "type": "EnConstruccion",
+      "props": {
+        "id": "EnConstruccion-114e87c4-0f2f-4ad6-bb35-6bbcf78e184d",
+        "etiqueta": "Retail",
+        "titulo": "Estamos construyendo esta página",
+        "texto": "Muy pronto vas a encontrar acá toda la información sobre cómo Thinkion acompaña a los comercios retail: ventas, stock y promociones desde un mismo entorno. Mientras tanto, podés seguir recorriendo la web o pedirnos una demo.",
+        "links": [
+          {
+            "texto": "Gastronomía",
+            "link": "/gastronomia"
+          },
+          {
+            "texto": "Auditorías",
+            "link": "/check"
+          },
+          {
+            "texto": "Marketing",
+            "link": "/marketing"
+          },
+          {
+            "texto": "Clientes",
+            "link": "/clientes"
+          },
+          {
+            "texto": "Nosotros",
+            "link": "/sobre-nosotros"
+          }
+        ]
+      }
+    }
+  ],
+  "zones": {}
+}

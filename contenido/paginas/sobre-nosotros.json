@@ -1,0 +1,108 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Sobre nosotros | Thinkion",
+      "descripcion": "Conocé a Thinkion: nuestros valores, nuestra evolución y nuestra política de calidad.",
+      "plantilla": "institucional",
+      "indexar": true,
+      "productoNombre": "",
+      "productoDescripcion": ""
+    }
+  },
+  "content": [
+    {
+      "type": "HeroNosotros",
+      "props": {
+        "id": "HeroNosotros-e232a31e-7683-4ca1-ac6f-69a78eafae5b",
+        "titulo": "Thinkion: un ecosistema diseñado para tu crecimiento",
+        "texto": "<p>Nacimos de la necesidad de <strong>unificar la gestión y la operación.</strong> Hoy, somos la plataforma que <strong>centraliza</strong> cada dato de tu negocio, permitiéndote <strong>escalar</strong> sin preocuparte por el caos de sistemas aislados.</p>",
+        "imagen": "/img/nosotros/hero-ecosistema-544.webp",
+        "imagenAlt": "Ilustración del ecosistema Thinkion: módulos conectados a una plataforma central"
+      }
+    },
+    {
+      "type": "Valores",
+      "props": {
+        "id": "Valores-215e4f91-5e93-4ed2-8951-80cd67e36d48",
+        "titulo": "Los valores que nos definen",
+        "texto": "<p>En Thinkion, nuestra esencia va más allá del código. Estos pilares fundamentales guían cada <strong>decisión, proyecto y relación</strong> que construimos día a día.</p>",
+        "valores": [
+          {
+            "imagen": "/img/nosotros/valor-startup.webp",
+            "titulo": "Mentalidad Startup",
+            "texto": "<p><strong>Nos movemos rápido y nos adaptamos constantemente</strong>. Nuestra estructura horizontal y flexible nos permite <strong>innovar</strong> sin frenos. Trabajamos por <strong>objetivos claros</strong>, priorizando siempre a las personas: nuestro equipo y nuestros clientes son el <strong>centro</strong> de cada decisión.</p>"
+          },
+          {
+            "imagen": "/img/nosotros/valor-honestidad.webp",
+            "titulo": "Honestidad",
+            "texto": "<p>La confianza se construye con <strong>transparencia</strong> y <strong>franqueza</strong>. En Thinkion, cumplimos nuestra palabra y actuamos con <strong>sinceridad absoluta</strong>. Mantenemos una <strong>comunicación abierta</strong> y honesta con cada persona que forma parte de nuestro ecosistema.</p>"
+          },
+          {
+            "imagen": "/img/nosotros/valor-equipo.webp",
+            "titulo": "Trabajo en equipo",
+            "texto": "<p><strong>Construimos</strong> sobre el respeto mutuo, la tolerancia y la lealtad. <strong>Compartimos</strong> objetivos y <strong>celebramos</strong> juntos cada logro. Porque en Thinkion sabemos que los grandes resultados nacen de la <strong>colaboración genuina.</strong></p>"
+          },
+          {
+            "imagen": "/img/nosotros/valor-crecimiento.webp",
+            "titulo": "Desarrollo y crecimiento",
+            "texto": "<p>Nos impulsa la <strong>mejora</strong> continua y el <strong>desarrollo</strong> constante. Buscamos superarnos cada día, tanto <strong>individual</strong> como <strong>colectivamente</strong>, porque el crecimiento de cada persona fortalece el crecimiento de toda la compañía.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Evolucion",
+      "props": {
+        "id": "Evolucion-13f8c768-3fe5-41cb-aad4-fc80e706a268",
+        "titulo": "Nuestra evolución",
+        "texto": "Cada año ha sido un escalón fundamental en nuestro camino, transformando desafíos en oportunidades y expandiendo nuestros horizontes hacia nuevas metas.",
+        "hitos": [
+          {
+            "anio": "2019",
+            "titulo": "Título 2019",
+            "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam."
+          },
+          {
+            "anio": "2020",
+            "titulo": "Título 2020",
+            "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam."
+          },
+          {
+            "anio": "2021",
+            "titulo": "Título 2021",
+            "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam."
+          },
+          {
+            "anio": "2022",
+            "titulo": "Título 2022",
+            "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam."
+          },
+          {
+            "anio": "2023",
+            "titulo": "Título 2023",
+            "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam."
+          },
+          {
+            "anio": "2024",
+            "titulo": "Título 2024",
+            "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam."
+          },
+          {
+            "anio": "2025",
+            "titulo": "Título 2025",
+            "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed venenatis magna, id luctus risus. Nulla a bibendum diam."
+          }
+        ]
+      }
+    },
+    {
+      "type": "TextoLargo",
+      "props": {
+        "id": "TextoLargo-c3edfd46-0cf4-4e59-98b8-5e7ed019f3b4",
+        "titulo": "Nuestra política de calidad",
+        "texto": "<p>Thinkion brinda soluciones especializadas en sistemas POS &amp; ERP para la gestión eficiente de locales gastronómicos. Nuestra propuesta integral va más allá de la automatización, abarcando operación, gestión, venta y administración, brindando así una experiencia completa a nuestros clientes.</p><p>Centramos nuestro enfoque en un proceso de consultoría personalizado, identificando la configuración óptima del sistema para adaptarlo a las operaciones específicas del cliente, brindando asesoramiento integral durante todas las etapas de la implementación. Esto incluye respaldo durante cambios culturales, transformación digital, mejora de la productividad y optimización del flujo de trabajo.</p><p>Creemos en la integración de soluciones, enfocada en mejorar tanto la comunicación interna como las interacciones externas relacionadas con la operación y el soporte. Buscamos crear un ecosistema cohesivo que optimice la eficiencia y efectividad en las operaciones gastronómicas.</p><p>Reafirmamos nuestro compromiso inquebrantable con la calidad, estableciendo relaciones sólidas con proveedores estratégicos, evaluando la calidad de sus servicios para garantizar coherencia y fiabilidad en nuestra cadena de suministro. La capacidad de nuestro equipo es también un pilar en la búsqueda de la calidad, su formación constante es una prioridad fundamental. Todo ello nos permite aspirar a ser una entidad rentable a largo plazo en búsqueda de la satisfacción continua de nuestros clientes.</p><p>Operamos eficientemente, optimizando recursos y comprometiéndonos con la mejora continua. El cumplimiento de legislación y normativas aplicables es esencial en nuestra búsqueda de excelencia operativa.</p><p>Nuestro enfoque trasciende la simple transacción comercial. Buscamos posicionar a Thinkion como una fuerza en la innovación tecnológica, aspirando a ser auténticos socios estratégicos de nuestros clientes en su camino hacia el éxito.</p>"
+      }
+    }
+  ],
+  "zones": {}
+}

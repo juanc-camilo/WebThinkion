@@ -1,0 +1,196 @@
+{
+  "sitio": {
+    "nombre": "Thinkion",
+    "razonSocial": "Thinkion SAS",
+    "descripcion": "Thinkion es un ecosistema de software que se adapta a tu negocio: POS, ERP, compras y auditorías integrados en un solo lugar para gastronomía, retail y servicios.",
+    "email": "marketing@thinkion.com.ar",
+    "dominio": "https://webthinkion.vercel.app",
+    "imagenCompartir": "/img/og/thinkion.jpg",
+    "redes": [
+      {
+        "nombre": "Instagram",
+        "link": "https://www.instagram.com/_thinkion_/"
+      },
+      {
+        "nombre": "LinkedIn",
+        "link": "https://www.linkedin.com/company/b-smart/posts/"
+      }
+    ]
+  },
+  "menu": {
+    "items": [
+      {
+        "tipo": "desplegable",
+        "texto": "Soluciones",
+        "link": "",
+        "estilo": "soluciones",
+        "opciones": [
+          {
+            "titulo": "POS & ERP",
+            "icono": "/img/home/menu-pos.svg",
+            "link": "/pos-erp",
+            "detalle": "KDS\nIntegraciones\nModos de uso"
+          },
+          {
+            "titulo": "Auditorías",
+            "icono": "/img/home/menu-auditorias.svg",
+            "link": "/check",
+            "detalle": "Funcionalidades\nModos de uso\nBeneficios"
+          },
+          {
+            "titulo": "Marketing",
+            "icono": "/img/home/menu-marketing.svg",
+            "link": "/marketing",
+            "detalle": "Fidelización\nEncuestas\nReservas"
+          },
+          {
+            "titulo": "Productividad",
+            "icono": "/img/home/menu-productividad.svg",
+            "link": "/productividad",
+            "detalle": "Dispositivos\nIntegración\nSensores"
+          }
+        ]
+      },
+      {
+        "tipo": "desplegable",
+        "texto": "Industrias",
+        "link": "",
+        "estilo": "industrias",
+        "opciones": [
+          {
+            "titulo": "Gastronómicas",
+            "icono": "/img/home/menu-gastronomia.svg",
+            "link": "/gastronomia",
+            "detalle": "Gestioná pedidos, mesas y pagos sin cortar el ritmo del servicio."
+          },
+          {
+            "titulo": "Retail",
+            "icono": "/img/home/menu-retail.svg",
+            "link": "/retail",
+            "detalle": "Administrá ventas, stock y promociones desde un mismo entorno."
+          }
+        ]
+      },
+      {
+        "tipo": "link",
+        "texto": "Nosotros",
+        "link": "/sobre-nosotros",
+        "estilo": "",
+        "opciones": []
+      },
+      {
+        "tipo": "link",
+        "texto": "Clientes",
+        "link": "/clientes",
+        "estilo": "",
+        "opciones": []
+      }
+    ],
+    "botonTexto": "Pedí tu demo",
+    "botonLink": "/demo"
+  },
+  "footer": {
+    "logo": "/img/home/logo-thinkion-footer.svg",
+    "sellos": "/img/home/sellos-iram-iqnet.webp",
+    "sellosAlt": "Certificaciones IRAM ISO 9001 e IQNET",
+    "columnas": [
+      {
+        "titulo": "Industrias",
+        "links": [
+          {
+            "texto": "Gastronómicas",
+            "link": "/gastronomia"
+          },
+          {
+            "texto": "Retail",
+            "link": "/retail"
+          }
+        ]
+      },
+      {
+        "titulo": "Soluciones",
+        "links": [
+          {
+            "texto": "POS y ERP",
+            "link": "/pos-erp"
+          },
+          {
+            "texto": "Auditorías",
+            "link": "/check"
+          },
+          {
+            "texto": "Marketing",
+            "link": "/marketing"
+          },
+          {
+            "texto": "IoT",
+            "link": "/productividad"
+          }
+        ]
+      },
+      {
+        "titulo": "Empresa",
+        "links": [
+          {
+            "texto": "Sobre nosotros",
+            "link": "/sobre-nosotros"
+          },
+          {
+            "texto": "Clientes",
+            "link": "/clientes"
+          },
+          {
+            "texto": "Trabajá con nosotros",
+            "link": "/trabaja-con-nosotros"
+          }
+        ]
+      }
+    ],
+    "contactoTitulo": "TRABAJEMOS JUNTOS",
+    "email": "marketing@thinkion.com.ar",
+    "redes": [
+      {
+        "nombre": "Instagram",
+        "link": "https://www.instagram.com/_thinkion_/",
+        "icono": "/img/home/icono-instagram.webp"
+      },
+      {
+        "nombre": "LinkedIn",
+        "link": "https://www.linkedin.com/company/b-smart/posts/",
+        "icono": "/img/home/icono-linkedin.webp"
+      }
+    ],
+    "copyright": "© 2026 Thinkion. Todos los derechos reservados."
+  },
+  "temporadas": {
+    "activa": "",
+    "lista": [
+      {
+        "nombre": "Primavera 2026 (diseño actual)",
+        "desde": "",
+        "hasta": "",
+        "colores": {
+          "botones": "",
+          "acento": "",
+          "titulos": "",
+          "fondo": ""
+        },
+        "banner": {
+          "activo": false,
+          "titulo": "¡Bienvenido a Thinkion!",
+          "texto": "Conocé todo lo que tu negocio puede lograr con un ecosistema integrado.",
+          "imagen": "",
+          "imagenAlt": "",
+          "botonTexto": "Pedí tu demo",
+          "botonLink": "/demo",
+          "colorFondo": "#ffffff",
+          "colorTexto": "#1b1b1b",
+          "colorBoton": "#c9373d",
+          "frecuencia": "sesion",
+          "paginas": "todas",
+          "retraso": 1
+        }
+      }
+    ]
+  }
+}
