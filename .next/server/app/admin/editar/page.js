@@ -1,0 +1,13 @@
+var R=require("../../../chunks/ssr/[turbopack]_runtime.js")("server/app/admin/editar/page.js")
+R.c("server/chunks/ssr/node_modules_next_dist_esm_build_templates_app-page_08mm7_c_67azs.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0il74tijx67k_._.js")
+R.c("server/chunks/ssr/node_modules_next_dist_0janj0i6dqko7._.js")
+R.c("server/chunks/ssr/node_modules_next_dist_1g0hsq_f-fygr._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__1a91ucu_h_7kg._.js")
+R.c("server/chunks/ssr/node_modules_next_dist_client_components_builtin_forbidden_0symwr9mbf-fh.js")
+R.c("server/chunks/ssr/node_modules_next_dist_client_components_builtin_unauthorized_0l_sp0xky89qu.js")
+R.c("server/chunks/ssr/node_modules_next_dist_1c5t_vsn6u8fr._.js")
+R.c("server/chunks/ssr/app_admin_layout_jsx_0-9mnld8dl5vk._.js")
+R.c("server/chunks/ssr/_next-internal_server_app_admin_editar_page_actions_072ug8ryvuq82.js")
+R.m(35521)
+module.exports=R.m(35521).exports
