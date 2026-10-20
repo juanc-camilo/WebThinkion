@@ -11,7 +11,9 @@
       - Menú y footer (compartidos) llevan data-ambito y se numeran
         aparte: "menu/0.1", "footer/2.0". Un cambio ahí vale para todas
         las páginas.
-   2) Aplica las ediciones guardadas en contenido/ediciones.json:
+   2) Aplica la estructura (elementos movidos, duplicados, eliminados o
+      agregados: ver aplicarEstructura en compartido.mjs) y después las
+      ediciones guardadas en contenido/ediciones.json:
       texto (html), atributos (href, src, alt…) y ocultar. Los estilos
       (colores, fondos, letra) se escriben como reglas CSS en el <head>.
    3) Cambia título y descripción si se editaron desde el panel.
@@ -21,9 +23,9 @@
    Rutas: en los datos, "~/" significa "raíz del sitio". Acá se
    reemplaza por el camino relativo de cada página ("" o "../../").
    ========================================================= */
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, writeFileSync } from 'node:fs';
 import { parseHTML } from 'linkedom';
-import { nombreDeFuente, cssDeEdiciones, cssTemporada, urlGoogleFonts } from './compartido.mjs';
+import { nombreDeFuente, cssDeEdiciones, cssTemporada, urlGoogleFonts, aplicarEstructura } from './compartido.mjs';
 
 /* ---------- Lectura de los datos del panel ---------- */
 const leerJSON = (ruta, porDefecto) => {
@@ -210,7 +212,7 @@ ${cssPagina}
 };
 
 /* ---------- Punto de entrada: transforma el HTML de una página ---------- */
-export const aplicarEdiciones = (html, { clavePagina, raiz }) => {
+export const aplicarEdiciones = (html, { clavePagina, raiz, salida }) => {
   if (!html.includes('<body')) return html;
   const { ediciones, temporadas } = leerContenido();
   const { document } = parseHTML(html);
@@ -218,11 +220,33 @@ export const aplicarEdiciones = (html, { clavePagina, raiz }) => {
 
   numerar(body);
 
+  // Copia SIN cambios (solo numerada) para el editor: check.html → check.editor.html.
+  // El panel parte siempre de esta versión y le aplica lo último, así no
+  // duplica nada ni muestra cambios viejos. No se indexa.
+  if (salida) {
+    const meta = document.createElement('meta');
+    meta.setAttribute('name', 'robots');
+    meta.setAttribute('content', 'noindex, nofollow');
+    document.head.append(meta);
+    writeFileSync(salida.replace(/\.html$/,'.editor.html'), corregirSvg(document.toString()));
+    meta.remove();
+  }
+
   const propias = ediciones.paginas?.[clavePagina] || {};
+
+  // Elementos movidos, duplicados, eliminados o agregados (primero menú/footer, después la página)
+  const prepararHtml = (texto) => {
+    const molde = document.createElement('div');
+    molde.innerHTML = texto;
+    limpiarNodo(molde);
+    return molde.innerHTML.replace(/(href|src)="~\//g, `$1="${raiz}`);
+  };
+  aplicarEstructura(body, [...(ediciones.global?._estructura || []), ...(propias._estructura || [])], prepararHtml);
+
   const todas = { ...ediciones.global, ...propias };
   const cssPagina = cssDeEdiciones(todas, raiz);
   for (const [id, edicion] of Object.entries(todas)) {
-    if (id === '_meta' || !edicion) continue;
+    if (id.startsWith('_') || !edicion) continue; // _meta y _estructura no son elementos
     const elemento = body.getAttribute('data-e') === id ? body : body.querySelector(`[data-e="${CSS_escape(id)}"]`);
     if (elemento) aplicarEdicion(elemento, edicion, raiz, document);
   }
@@ -241,12 +265,14 @@ export const aplicarEdiciones = (html, { clavePagina, raiz }) => {
   let resultado = document.toString();
   resultado = resultado.replace('</head>', `${bloqueTemporadas(ediciones, temporadas, raiz, cssPagina)}</head>`);
 
-  // El parser escribe en minúscula algunas etiquetas y atributos de SVG; se devuelven a su forma original
-  return resultado
-    .replace(/<(\/?)textpath\b/g, '<$1textPath')
-    .replace(/\sviewbox=/g, ' viewBox=')
-    .replace(/\sstartoffset=/g, ' startOffset=');
+  return corregirSvg(resultado);
 };
+
+// El parser escribe en minúscula algunas etiquetas y atributos de SVG; se devuelven a su forma original
+const corregirSvg = (html) => html
+  .replace(/<(\/?)textpath\b/g, '<$1textPath')
+  .replace(/\sviewbox=/g, ' viewBox=')
+  .replace(/\sstartoffset=/g, ' startOffset=');
 
 // Las direcciones solo tienen números, puntos, barras y letras: alcanza con escapar comillas
 const CSS_escape = (texto) => String(texto).replace(/["\\]/g, '\\$&');

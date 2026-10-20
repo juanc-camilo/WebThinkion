@@ -27,10 +27,11 @@ Desde `/admin` se puede cambiar todo lo que se ve en la web sin tocar código: t
   - *Link*: a qué página lleva, o una dirección externa (`https://…`, `mailto:…`, `tel:…`).
   - *Imagen*: "Cambiar imagen" (se convierte sola a WebP, máximo 2400 px) y la descripción para Google.
   - *Estilo*: color de letra, color o imagen de fondo, tipografía, tamaño, grosor, alineación, redondeo y opacidad.
+  - *Ordenar y agregar*: **↑ Subir / ↓ Bajar** (cambia el orden entre sus hermanos: arriba/abajo o izquierda/derecha), **⧉ Duplicar** (copia con el mismo estilo justo después; ideal para sumar una tarjeta, una opción del menú o una pregunta), **🗑 Eliminar** (se restaura desde la pestaña Página) y **Agregar debajo** un título, subtítulo, párrafo, botón o imagen.
   - *Ocultar en la web* y *Volver al original*.
   - Los chips de arriba ("Sección › Bloque › Título") seleccionan el bloque que contiene al elemento: así se le cambia el fondo a una sección entera.
   - Lo que esté en el **menú o el footer** se cambia en **todas las páginas** (el panel lo avisa).
-- **Página** — título y descripción para Google, fondo de toda la página, lista de todas las imágenes (incluso las decorativas del fondo, que no se pueden tocar con el mouse) y los elementos ocultos.
+- **Página** — botones para **abrir los desplegables del menú** (Soluciones, Industrias y el menú del celular) y editarlos, lista de **elementos eliminados** para restaurarlos, título y descripción para Google, fondo de toda la página, lista de todas las imágenes (incluso las decorativas del fondo, que no se pueden tocar con el mouse) y los elementos ocultos.
 - **Diseño** — colores de marca y tipografías de la temporada elegida. Se aplican en todo el sitio. Se pueden subir tipografías propias (`.woff2`).
 - **Temporadas** — cada temporada tiene fechas, su propio diseño (colores y tipografías) y su banner:
   - *Temporada activa*: "Automática según las fechas" o forzar una.
@@ -86,11 +87,14 @@ scripts/servidor-local.mjs   npm run admin
 public/img/subidas/, public/fonts/subidas/   Lo que se sube desde el panel
 ```
 
-- Al armar el sitio, Eleventy numera cada elemento con `data-e="…"` (su "dirección") y aplica `contenido/ediciones.json`. **Los cambios quedan escritos en el HTML**: Google ve el texto real, no hay JavaScript que lo cambie en el navegador.
+- Al armar el sitio, Eleventy numera cada elemento con `data-e="…"` (su "dirección"), aplica la estructura (`_estructura`: mover, duplicar, eliminar, agregar) y después `contenido/ediciones.json`. Los elementos nuevos llevan direcciones propias (`n…`), así no se corren las del original.
+- También arma una copia **sin cambios** de cada página (`check.editor.html`, con `noindex`): el panel siempre parte de esa copia y le aplica lo último. **Los cambios quedan escritos en el HTML**: Google ve el texto real, no hay JavaScript que lo cambie en el navegador.
 - Los estilos editados se escriben como reglas CSS en el `<head>` (`[data-e="3.0.0.0"] { color: … !important }`), con un bloque aparte para celular (hasta 760 px).
 - La temporada se elige en el navegador con un script mínimo en el `<head>` (según la fecha del día), antes de que se pinte la página: no hay parpadeo. El banner lo muestra `controller.js`.
 - En `ediciones.json` las rutas que empiezan con `~/` son relativas a la raíz del sitio; Eleventy las convierte para cada página.
 
 **Si un programador cambia el HTML de una página** (agrega o saca elementos), las direcciones de los elementos que vienen después pueden correrse. Cada edición guarda la etiqueta original (`"etiqueta": "h2"`) y, si ya no coincide, se saltea y Eleventy avisa en la consola (`[admin] Edición salteada…`). Lo más prolijo: después de un cambio de estructura, revisar la página en el panel. El campo `"original"` de cada edición muestra qué texto tenía, para ubicarla.
 
-**Límites actuales:** el panel edita lo que ya existe (texto, imagen, link, estilo, ocultar); no agrega secciones ni tarjetas nuevas. Algunos colores todavía están escritos fijos en los CSS (no en `variables.css`) y no cambian desde *Diseño*.
+**Ejemplo — dejar dos opciones en Soluciones:** pestaña Página → *Abrir Soluciones* → clic en el título de una opción → en los chips de arriba elegí *Link / botón: …* (la opción entera) → *Eliminar*. Para sumar una, elegí una opción entera → *Duplicar* → cambiale texto, ícono y link.
+
+**Límites actuales:** se agregan elementos copiando uno existente o sumando títulos, párrafos, botones e imágenes; no hay plantillas de secciones enteras nuevas (se logra duplicando una sección y cambiándola). Algunos colores todavía están escritos fijos en los CSS (no en `variables.css`) y no cambian desde *Diseño*.

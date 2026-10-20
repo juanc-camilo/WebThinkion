@@ -13,7 +13,7 @@
    ========================================================= */
 import {
   FUENTES_LOCALES, FUENTES_GOOGLE, pilaDeFuente, nombreDeFuente,
-  cssDeEdiciones, cssTemporada, urlGoogleFonts, CORTE_MOVIL,
+  cssDeEdiciones, cssTemporada, urlGoogleFonts, CORTE_MOVIL, aplicarEstructura,
 } from './compartido.mjs';
 
 /* ---------- Páginas del sitio (clave = ruta sin .html) ---------- */
@@ -213,7 +213,7 @@ document.addEventListener('keydown', (evento) => {
    EDICIONES: leer y escribir cambios de un elemento
    ========================================================= */
 // "menu/…" y "footer/…" son compartidos por todas las páginas
-const esGlobal = (id) => id !== 'body' && /^[a-z]/i.test(id);
+const esGlobal = (id) => /^(menu|footer)(\/|$)/.test(id);
 
 const grupoDe = (id, crear = false) => {
   const { ediciones } = estado.datos;
@@ -298,16 +298,18 @@ const resolverCSSVista = (valor) => String(valor).replace(/url\(\s*(["']?)~\/([^
    ========================================================= */
 const vista = $('#vista');
 const documentoVista = () => vista.contentDocument;
-const urlPagina = (clave) => `${RAIZ_SITIO}${clave === 'index' ? 'index.html' : `${clave}.html`}?editor=1`;
+// El editor carga la copia SIN cambios de cada página (check.editor.html, la arma
+// Eleventy) y le aplica lo último. Así nunca duplica nada ni muestra cambios viejos.
+const urlPagina = (clave) => `${RAIZ_SITIO}${clave}.editor.html?editor=1`;
 const claveDeUrl = (url) => {
-  const ruta = new URL(url).href.slice(RAIZ_SITIO.length).split(/[?#]/)[0].replace(/\.html$/, '');
+  const ruta = new URL(url).href.slice(RAIZ_SITIO.length).split(/[?#]/)[0].replace(/(\.editor)?\.html$/, '');
   return ruta === '' ? 'index' : ruta;
 };
 
 let recarga = null; // qué restaurar después de recargar (scroll y selección)
-const recargarVista = () => {
+const recargarVista = (idSeleccion = estado.idSeleccion) => {
   const doc = documentoVista();
-  recarga = { scroll: doc?.defaultView?.scrollY || 0, id: estado.idSeleccion };
+  recarga = { scroll: doc?.defaultView?.scrollY || 0, id: idSeleccion };
   vista.src = urlPagina(estado.pagina);
 };
 
@@ -341,7 +343,17 @@ const CSS_EDITOR = `
   [contenteditable="true"] { outline: 2px solid #ff6f72 !important; outline-offset: 3px; cursor: text !important; }
   [data-oculto-editor] { opacity: .3 !important; outline: 2px dashed #999 !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
+  /* Si lo seleccionado está dentro de un desplegable del menú, el desplegable queda abierto */
+  .navbar__item:has([data-editor-sel]) .dropdown, .navbar__item:has([contenteditable]) .dropdown { opacity: 1 !important; pointer-events: auto !important; }
 `;
+
+/* Operaciones de estructura (mover, duplicar, eliminar, agregar): primero menú/footer, después la página */
+const operacionesEnVista = () => [
+  ...(estado.datos.ediciones.global._estructura || []),
+  ...(estado.datos.ediciones.paginas[estado.pagina]?._estructura || []),
+];
+// En la vista, "~/" apunta a la raíz del sitio (o a la vista previa de lo recién subido)
+const resolverHtmlVista = (html) => html.replace(/(href|src)="~\/([^"]*)"/g, (_, atributo, ruta) => `${atributo}="${estado.vistas[ruta] || RAIZ_SITIO + ruta}"`);
 
 /* Aplica TODAS las ediciones sobre la página del iframe (así se ve lo
    último aunque Vercel todavía esté publicando) */
@@ -354,11 +366,13 @@ const aplicarEdicionesEnVista = () => {
   // Los ocultos se muestran transparentes, para poder volver a mostrarlos
   $$('[data-oculto]', doc).forEach((nodo) => { nodo.removeAttribute('data-oculto'); nodo.setAttribute('data-oculto-editor', ''); });
 
+  aplicarEstructura(doc.body, operacionesEnVista(), resolverHtmlVista);
+
   for (const [id, edicion] of Object.entries(todas)) {
-    if (id === '_meta' || !edicion) continue;
+    if (id.startsWith('_') || !edicion) continue; // _meta y _estructura no son elementos
     const elemento = doc.querySelector(`[data-e="${CSS.escape(id)}"]`);
     if (!elemento || (edicion.etiqueta && edicion.etiqueta !== elemento.localName.toLowerCase())) continue;
-    if (typeof edicion.html === 'string') elemento.innerHTML = edicion.html.replace(/(href|src)="~\//g,`$1="${RAIZ_SITIO}`);
+    if (typeof edicion.html === 'string') elemento.innerHTML = resolverHtmlVista(edicion.html);
     for (const [nombre, valor] of Object.entries(edicion.atributos || {})) {
       if (valor === null || valor === false) elemento.removeAttribute(nombre);
       else elemento.setAttribute(nombre, resolverVista(String(valor)));
@@ -419,13 +433,11 @@ vista.addEventListener('load', () => {
   if (!doc?.body) return;
   const ventana = doc.defaultView;
 
-  // Si se navegó a otra página desde el modo Navegar, se actualiza la selección
+  // Si se navegó a otra página desde el modo Navegar, se abre su copia para el editor
   const clave = claveDeUrl(ventana.location.href);
-  if (clave !== estado.pagina && PAGINAS.some((p) => p.clave === clave)) {
-    estado.pagina = clave;
-    $('#selector-pagina').value = clave;
-    estado.seleccion = null;
-    estado.idSeleccion = null;
+  if (!ventana.location.pathname.endsWith('.editor.html')) {
+    if (PAGINAS.some((p) => p.clave === clave)) irAPagina(clave);
+    return;
   }
 
   doc.documentElement.classList.add('modo-editor');
@@ -437,7 +449,12 @@ vista.addEventListener('load', () => {
     ventana.scrollTo(0, recarga.scroll);
     const elemento = recarga.id && doc.querySelector(`[data-e="${CSS.escape(recarga.id)}"]`);
     recarga = null;
-    if (elemento) { seleccionar(elemento, { sinEditarTexto: true }); return; }
+    if (elemento) {
+      seleccionar(elemento, { sinEditarTexto: true });
+      elemento.scrollIntoView({ block: 'nearest' });
+      pintarPanelPagina();
+      return;
+    }
   }
   pintarPaneles();
 });
@@ -674,7 +691,13 @@ const pintarPanelElemento = () => {
   // Camino de padres (para seleccionar el bloque que contiene al elemento)
   const padres = [];
   for (let nodo = elemento; nodo && padres.length < 6; nodo = nodo.parentElement?.closest('[data-e]')) padres.unshift(nodo);
-  const nombreDe = (nodo) => NOMBRES[nodo.localName.toLowerCase()] || `<${nodo.localName}>`;
+  // Nombre + el comienzo de su texto si es corto (ej.: "Link / botón: POS & ERP"), para reconocer cada bloque
+  const nombreDe = (nodo) => {
+    const nombre = NOMBRES[nodo.localName.toLowerCase()] || `<${nodo.localName}>`;
+    const textoNodo = (nodo.textContent || '').trim().replace(/\s+/g, ' ');
+    if (!textoNodo || textoNodo.length > 120 || nodo.localName === 'body') return nombre;
+    return `${nombre}: ${textoNodo.length > 22 ? `${textoNodo.slice(0, 22)}…` : textoNodo}`;
+  };
 
   const texto = esTexto(elemento);
   const link = etiqueta === 'a' ? elemento : null;
@@ -687,6 +710,29 @@ const pintarPanelElemento = () => {
       <div class="etiqueta-elemento">${esc(nombreDe(elemento))}</div>
       ${esGlobal(id) ? '<p>⚠️ Está en el menú o el pie: el cambio se aplica en <strong>todas las páginas</strong>.</p>' : ''}
     </div>
+
+    ${['body', 'menu', 'footer'].includes(id) || esSvg(elemento) ? '' : `
+    <div class="grupo">
+      <h3>Ordenar y agregar</h3>
+      <p>Para mover una tarjeta o una opción del menú entera, elegí primero el bloque en los chips de arriba.</p>
+      <div class="herramientas">
+        <button type="button" data-estructura="subir" title="Mover antes (arriba o a la izquierda)">↑ Subir</button>
+        <button type="button" data-estructura="bajar" title="Mover después (abajo o a la derecha)">↓ Bajar</button>
+        <button type="button" data-estructura="duplicar" title="Crear una copia justo después">⧉ Duplicar</button>
+        <button type="button" data-estructura="eliminar" title="Sacarlo de la web (se puede restaurar desde la pestaña Página)">🗑 Eliminar</button>
+      </div>
+      <label class="campo"><span>Agregar debajo</span>
+        <select id="agregar-tipo">
+          <option value="">Elegí qué agregar…</option>
+          <option value="h2">Título</option>
+          <option value="h3">Subtítulo</option>
+          <option value="p">Párrafo</option>
+          <option value="boton">Botón</option>
+          <option value="imagen">Imagen</option>
+        </select>
+        <small>Para que quede con el mismo estilo que lo de al lado, conviene Duplicar y cambiar el texto.</small>
+      </label>
+    </div>`}
 
     ${texto ? `
     <div class="grupo">
@@ -888,6 +934,100 @@ const pintarPanelElemento = () => {
     cambio();
     recargarVista();
   });
+
+  $$('[data-estructura]', panel).forEach((boton) => boton.addEventListener('click', () => {
+    const accion = boton.dataset.estructura;
+    if (accion === 'subir' || accion === 'bajar') moverElemento(elemento, accion);
+    if (accion === 'duplicar') duplicarElemento(elemento);
+    if (accion === 'eliminar') eliminarElemento(elemento);
+  }));
+  $('#agregar-tipo', panel)?.addEventListener('change', (evento) => {
+    const tipo = evento.target.value;
+    evento.target.value = '';
+    if (tipo) agregarElemento(elemento, tipo);
+  });
+};
+
+/* =========================================================
+   ESTRUCTURA: mover, duplicar, eliminar y agregar
+   Cada acción suma una operación a "_estructura" (ver compartido.mjs).
+   ========================================================= */
+// Dirección nueva y única: "n…" en la página, "menu/n…" o "footer/n…" en lo compartido
+const nuevoId = (id) => `${esGlobal(id) ? `${id.split('/')[0]}/` : ''}n${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`;
+const operacionesDe = (id) => {
+  const grupo = grupoDe(id, true);
+  return grupo._estructura || (grupo._estructura = []);
+};
+
+const moverElemento = (elemento, direccion) => {
+  const padre = elemento.parentElement;
+  if (!padre?.dataset.e) return toast('Este elemento no se puede mover.', { error: true });
+  const hermanos = [...padre.children].filter((h) => h.dataset.e);
+  const destino = hermanos[hermanos.indexOf(elemento) + (direccion === 'subir' ? -1 : 1)];
+  if (!destino) return toast(direccion === 'subir' ? 'Ya está primero.' : 'Ya está último.');
+  recordar();
+  if (direccion === 'subir') destino.before(elemento); else destino.after(elemento);
+  // Se guarda el orden completo de los hermanos (reemplaza el anterior del mismo bloque)
+  const operaciones = operacionesDe(padre.dataset.e);
+  const resto = operaciones.filter((op) => !(op.op === 'orden' && op.padre === padre.dataset.e));
+  operaciones.splice(0, operaciones.length, ...resto,
+    { op: 'orden', padre: padre.dataset.e, hijos: [...padre.children].filter((h) => h.dataset.e).map((h) => h.dataset.e) });
+  cambio();
+  elemento.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+};
+
+const duplicarElemento = (elemento) => {
+  const id = elemento.dataset.e;
+  const nuevo = nuevoId(id);
+  recordar();
+  // La copia se lleva también los cambios de texto y estilo del original (y de lo que tiene adentro)
+  const grupo = grupoDe(id, true);
+  for (const [clave, edicion] of Object.entries(grupo)) {
+    if (clave === id || clave.startsWith(`${id}.`)) grupo[nuevo + clave.slice(id.length)] = clonar(edicion);
+  }
+  operacionesDe(id).push({ op: 'duplicar', id, nuevo });
+  cambio();
+  recargarVista(nuevo);
+  toast('Copia creada justo después. Cambiale el texto, el link o la imagen.');
+};
+
+const textoCorto = (elemento) => (elemento.textContent || elemento.getAttribute('alt') || NOMBRES[elemento.localName] || elemento.localName)
+  .trim().replace(/\s+/g, ' ').slice(0, 50);
+
+const eliminarElemento = (elemento) => {
+  if (!confirm(`¿Eliminar "${textoCorto(elemento)}"? Se puede restaurar desde la pestaña Página.`)) return;
+  recordar();
+  operacionesDe(elemento.dataset.e).push({ op: 'eliminar', id: elemento.dataset.e, texto: textoCorto(elemento) });
+  cambio();
+  deseleccionar();
+  elemento.remove();
+  pintarPanelPagina();
+};
+
+const agregarElemento = async (referencia, tipo) => {
+  const id = referencia.dataset.e;
+  // Si lo de al lado es del mismo tipo, el nuevo toma su estilo (clase)
+  const clase = (etiqueta) => (referencia.localName === etiqueta && referencia.className ? ` class="${esc(referencia.className)}"` : '');
+  let html;
+  if (tipo === 'h2' || tipo === 'h3' || tipo === 'p') {
+    const texto = { h2: 'Nuevo título', h3: 'Nuevo subtítulo', p: 'Nuevo párrafo: escribí acá el texto.' }[tipo];
+    html = `<${tipo}${clase(tipo)}>${texto}</${tipo}>`;
+  } else if (tipo === 'boton') {
+    html = '<a class="boton" href="~/src/views/demo.html">Nuevo botón</a>';
+  } else if (tipo === 'imagen') {
+    const archivo = await pedirArchivo('image/*');
+    if (!archivo) return;
+    try {
+      const { ruta, medidas } = await subir(archivo, 'imagen');
+      const tamano = medidas ? ` width="${medidas.ancho}" height="${medidas.alto}"` : '';
+      html = `<img src="~/${ruta}" alt=""${tamano} loading="lazy" style="max-width: 100%; height: auto;">`;
+    } catch (error) { toast(error.message, { error: true }); return; }
+  }
+  const nuevo = nuevoId(id);
+  recordar();
+  operacionesDe(id).push({ op: 'insertar', despues: id, nuevo, html });
+  cambio();
+  recargarVista(nuevo);
 };
 
 // Los links creados en el texto se guardan con "~/" (sirven desde cualquier página)
@@ -905,6 +1045,7 @@ const pintarPanelPagina = () => {
   const descripcionActual = doc?.querySelector('meta[name="description"]')?.content || '';
   const imagenes = doc ? $$('img[data-e]', doc) : [];
   const ocultos = doc ? $$('[data-oculto-editor]', doc) : [];
+  const eliminados = operacionesEnVista().filter((op) => op.op === 'eliminar');
   const nombre = PAGINAS.find((p) => p.clave === estado.pagina)?.nombre || estado.pagina;
 
   panel.innerHTML = `
@@ -919,6 +1060,17 @@ const pintarPanelPagina = () => {
         <small id="cuenta-descripcion"></small>
       </label>
     </div>
+    <div class="grupo">
+      <h3>Menú</h3>
+      <p>Abrí un desplegable para editar sus opciones: cambiá textos y links, ordenalas con Subir y Bajar, sacá las que no quieras con Eliminar o sumá otra con Duplicar. Lo del menú se cambia en todas las páginas.</p>
+      <div class="herramientas">
+        <button type="button" data-abrir-menu="0">Abrir Soluciones</button>
+        <button type="button" data-abrir-menu="1">Abrir Industrias</button>
+        <button type="button" data-abrir-menu="movil" title="Usalo con la vista de celular (📱)">Abrir menú del celular</button>
+      </div>
+    </div>
+    ${eliminados.length ? `<div class="grupo"><h3>Eliminados (${eliminados.length})</h3><div class="lista">${eliminados.map((op, i) => `
+      <button type="button" class="item" data-restaurar="${i}"><span>↺ ${esc(op.texto || op.id)}<small>${esGlobal(op.id) ? 'Menú / footer · ' : ''}Restaurar</small></span></button>`).join('')}</div></div>` : ''}
     <div class="grupo">
       <h3>Fondo de la página</h3>
       <p>Color o imagen de fondo de toda la página.</p>
@@ -972,6 +1124,32 @@ const pintarPanelPagina = () => {
     const nodo = ocultos[Number(b.dataset.oculto)];
     nodo.scrollIntoView({ block: 'center', behavior: 'smooth' });
     seleccionar(nodo, { sinEditarTexto: true });
+  }));
+
+  // Abrir desplegables del menú (o el menú del celular) dentro de la vista
+  $$('[data-abrir-menu]', panel).forEach((b) => b.addEventListener('click', () => {
+    if (!doc) return;
+    const navbar = doc.querySelector('[data-navbar]');
+    if (b.dataset.abrirMenu === 'movil') {
+      navbar?.classList.toggle('menu-abierto');
+      return;
+    }
+    const item = doc.querySelectorAll('[data-dropdown]')[Number(b.dataset.abrirMenu)];
+    if (!item) return;
+    const abrir = !item.classList.contains('is-open');
+    doc.querySelectorAll('[data-dropdown]').forEach((otro) => otro.classList.remove('is-open'));
+    item.classList.toggle('is-open', abrir);
+    doc.defaultView.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+
+  // Restaurar un elemento eliminado: se borra la operación y se recarga la vista
+  $$('[data-restaurar]', panel).forEach((b) => b.addEventListener('click', () => {
+    const op = eliminados[Number(b.dataset.restaurar)];
+    recordar();
+    const operaciones = operacionesDe(op.id);
+    operaciones.splice(operaciones.indexOf(op), 1);
+    cambio();
+    recargarVista(op.id);
   }));
 };
 

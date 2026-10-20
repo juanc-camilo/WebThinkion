@@ -25,6 +25,12 @@ test.describe('Panel de administración', () => {
     await expect(page.locator('html')).toHaveAttribute('data-temporada', /.+/);
   });
 
+  test('existe la copia sin cambios para el editor y no se indexa', async ({ page }) => {
+    await page.goto(`${BASE_URL}/src/views/check.editor.html`);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+    await expect(page.locator('h1')).toHaveAttribute('data-e', /^[\d.]+$/);
+  });
+
   test('el panel carga, pide ingreso y no se indexa', async ({ page }) => {
     await page.goto(`${BASE_URL}/admin/index.html`);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);

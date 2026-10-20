@@ -65,6 +65,7 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /*.editor.html
 
 Sitemap: ${sitio.dominio}/sitemap.xml
 `;
@@ -137,7 +138,7 @@ export default function (eleventyConfig) {
     // "./src/views/check.html" → "src/views/check"; "./index.html" → "index"
     const clavePagina = this.page.inputPath.replace(/^\.\//, '').replace(/\.html$/, '');
     const profundidad = clavePagina.split('/').length - 1;
-    return aplicarEdiciones(contenido, { clavePagina, raiz: '../'.repeat(profundidad) });
+    return aplicarEdiciones(contenido, { clavePagina, raiz: '../'.repeat(profundidad), salida });
   });
 
   // Completa el JSON-LD de la Home con las preguntas frecuentes

@@ -45,5 +45,5 @@ npm test          # arma _site con Eleventy y corre Playwright en :8080
 ```
 
 - `npm run admin`: sitio + panel en local (guarda en los archivos).
-- Al 19/10/2026: 115 pasan y 13 fallan (3 texto de relleno, 2 formularios y 8 de contraste por el coral y las pestañas).
+- Al 19/10/2026: 116 pasan y 13 fallan (3 texto de relleno, 2 formularios y 8 de contraste por el coral y las pestañas).
 - Después de cada cambio: tests, mirar la página en escritorio (1440) y celular (390).
