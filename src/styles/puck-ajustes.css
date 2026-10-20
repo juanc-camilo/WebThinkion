@@ -1,0 +1,41 @@
+/* =========================================================
+   AJUSTES PARA PUCK — que el editor se vea igual que la web
+   1) En el editor, Puck pone un contenedor (data-puck-dropzone) entre
+      la página y los bloques. Con "display: contents" ese contenedor
+      no ocupa lugar y los bloques se acomodan igual que en la web.
+   2) Los estilos que dependían de "hijo directo" (.home > section)
+      también contemplan ese contenedor.
+   3) En Puck el hero de la Home va dentro de .home (antes iba afuera):
+      se compensa la separación para que quede donde estaba.
+   ========================================================= */
+main > [data-puck-dropzone] { display: contents; }
+
+.home > [data-puck-dropzone] > section:not(.clientes):not(.hero),
+.home > [data-puck-dropzone] > .separador { width: min(var(--contenido), 100% - 2 * var(--gutter)); }
+.nosotros > [data-puck-dropzone] > section { width: 100%; }
+.segmento > [data-puck-dropzone] > section { width: min(var(--contenido), 100% - 2 * var(--gutter)); }
+.segmento > [data-puck-dropzone] > .seg-logos,
+.segmento > [data-puck-dropzone] > .seg-calidad { width: 100%; }
+
+/* Hero de la Home adentro de .home: sin la separación de 80 px del contenedor */
+.home > .hero,
+.home > [data-puck-dropzone] > .hero { margin-bottom: -80px; }
+@media (max-width: 760px) {
+  .home > .hero,
+  .home > [data-puck-dropzone] > .hero { margin-bottom: -56px; }
+}
+
+/* Página nueva sin bloques todavía: que el editor tenga lugar para soltar */
+main:empty { min-height: 40vh; }
+
+/* Texto con formato (negrita, listas): Puck lo envuelve en dos <div>.
+   En la web esos envoltorios no ocupan lugar, así los párrafos y las
+   listas quedan como antes (con la misma separación del contenedor).
+   El editor de texto también pone un <p> dentro de cada ítem de lista:
+   que tome el estilo del ítem, no el de párrafo. */
+.web [class*="_RichTextEditor"], .web .rich-text { display: contents; }
+.rich-text li > p { color: inherit; font: inherit; letter-spacing: inherit; margin: 0; }
+
+/* En el editor, el fondo decorativo cubre toda la página (no solo la
+   primera pantalla del iframe) */
+[class*="pagina-"]:not(.web) { position: relative; }

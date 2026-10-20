@@ -2,21 +2,24 @@
   "name": "web-thinkion",
   "private": true,
   "type": "module",
-  "description": "Sitio institucional de Thinkion. HTML, CSS y JS vanilla; Eleventy solo arma el menú, el footer y el head compartidos en la carpeta _site. Nada de esto llega al navegador.",
+  "description": "Sitio institucional de Thinkion. Next.js + Puck: las páginas se arman con bloques desde el panel /admin y se guardan en contenido/ (JSON).",
   "scripts": {
-    "dev": "eleventy --serve --port=8080",
-    "build": "eleventy",
-    "servir": "http-server _site -p 8080 -s",
-    "test": "eleventy && playwright test",
-    "lighthouse": "eleventy && lhci autorun",
-    "admin": "node scripts/servidor-local.mjs"
+    "dev": "node scripts/preparar.mjs && next dev -p 8080",
+    "build": "node scripts/preparar.mjs && next build",
+    "start": "next start -p 8080",
+    "test": "npm run build && playwright test",
+    "lighthouse": "npm run build && lhci autorun"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.6",
     "@axe-core/playwright": "^4.13.0",
     "@lhci/cli": "^0.15.1",
-    "@playwright/test": "^1.63.0",
-    "http-server": "^14.1.1",
-    "linkedom": "^0.18.13"
+    "@playwright/test": "^1.63.0"
+  },
+  "dependencies": {
+    "@puckeditor/core": "0.23.0",
+    "@vercel/blob": "2.8.0",
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   }
 }

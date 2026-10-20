@@ -188,7 +188,7 @@
 .demo { align-items: start; display: grid; gap: 48px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); padding: 40px 50px; }
 .demo__info { display: flex; flex-direction: column; gap: 16px; }
 .demo__info h1 { color: var(--azul-oscuro); font-size: 40px; font-weight: 400; line-height: 50px; }
-.demo__info > p { color: var(--gris); font-size: 20px; font-weight: 300; line-height: 28px; }
+.demo__info > p, .demo__info .rich-text > p { color: var(--gris); font-size: 20px; font-weight: 300; line-height: 28px; }
 .demo__info strong { color: var(--azul-oscuro); font-weight: 500; }
 .demo__pasos { display: flex; flex-direction: column; gap: 14px; list-style: none; margin: 8px 0 0; padding: 0; }
 .demo__pasos li { align-items: flex-start; color: var(--gris); display: flex; font-size: 18px; gap: 14px; line-height: 24px; }
@@ -297,10 +297,10 @@
 .funcion__visual img { height: 100%; object-fit: contain; width: 100%; }
 .funcion__visual--icono img { height: 180px; width: 180px; }
 .funcion__visual--ilustracion img { height: 70%; }
-.funcion__lista { display: flex; flex-direction: column; gap: 10px; }
-.funcion__lista li { color: var(--gris); font-size: 18px; line-height: 24px; padding-left: 30px; position: relative; }
-.funcion__lista li::before { background: var(--lila) url("../../public/img/segmentos/dato-check.svg") center / 12px no-repeat; border-radius: 50%; content: ""; height: 20px; left: 0; position: absolute; top: 2px; width: 20px; }
-.funcion__lista strong { color: var(--azul-oscuro); font-weight: 500; }
+.funcion__lista, .funcion__texto ul { display: flex; flex-direction: column; gap: 10px; }
+.funcion__lista li, .funcion__texto ul li { color: var(--gris); font-size: 18px; line-height: 24px; padding-left: 30px; position: relative; }
+.funcion__lista li::before, .funcion__texto ul li::before { background: var(--lila) url("../../public/img/segmentos/dato-check.svg") center / 12px no-repeat; border-radius: 50%; content: ""; height: 20px; left: 0; position: absolute; top: 2px; width: 20px; }
+.funcion__lista strong, .funcion__texto ul strong { color: var(--azul-oscuro); font-weight: 500; }
 
 /* Grilla de tarjetas (Integraciones / Todo lo que incluye) */
 .integraciones { display: flex; flex-direction: column; gap: 32px; margin-top: 130px; width: min(var(--contenido), 100% - 2 * var(--gutter)); }
@@ -441,7 +441,7 @@
   .formulario__enviar { align-self: stretch; }
   .demo { gap: 32px; grid-template-columns: minmax(0, 1fr); padding: 24px 18px; }
   .demo__info h1 { font-size: 28px; line-height: 34px; }
-  .demo__info > p { font-size: 17px; line-height: 24px; }
+  .demo__info > p, .demo__info .rich-text > p { font-size: 17px; line-height: 24px; }
   .check-video { margin-top: 32px; }
   .check-video__play { height: 64px; width: 56px; }
   .check-dif { border-radius: 28px; margin-top: 64px; }
@@ -453,7 +453,7 @@
   .check-logos, .check-funciones { margin-top: 64px; }
   .integraciones, .solucion__cta { margin-top: 64px; }
   .integraciones__encabezado p { font-size: 17px; line-height: 23px; }
-  .funcion__lista li { font-size: 16px; line-height: 22px; }
+  .funcion__lista li, .funcion__texto ul li { font-size: 16px; line-height: 22px; }
   .funcion__visual--icono img { height: 110px; width: 110px; }
   .check-logos img { height: 80px; width: 80px; }
   .funcion__texto h2 { font-size: 32px; line-height: 40px; }
@@ -491,8 +491,8 @@
 .construccion h1 { color: var(--azul-oscuro); font-size: 40px; font-weight: 400; line-height: 50px; }
 .construccion__texto { color: var(--gris); font-size: 20px; font-weight: 300; line-height: 26px; max-width: 560px; }
 .construccion__botones { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 8px; }
-.construccion__atras { border: 2px solid var(--coral); border-radius: 40px; color: var(--coral); font-size: 18px; font-weight: 500; line-height: 23px; padding: 8px 28px; text-transform: uppercase; transition: background-color .2s, color .2s; }
-.construccion__atras:hover { background: var(--coral); color: var(--blanco); }
+.boton-borde.construccion__atras { border: 2px solid var(--coral); border-radius: 40px; color: var(--coral); font-size: 18px; font-weight: 500; line-height: 23px; padding: 8px 28px; text-transform: uppercase; transition: background-color .2s, color .2s; }
+.boton-borde.construccion__atras:hover { background: var(--coral); color: var(--blanco); }
 .construccion__links { color: var(--gris); display: flex; flex-wrap: wrap; font-size: 16px; gap: 8px 18px; justify-content: center; margin-top: 12px; }
 .construccion__links a { color: var(--violeta); font-weight: 500; }
 .construccion__links a:hover { text-decoration: underline; }

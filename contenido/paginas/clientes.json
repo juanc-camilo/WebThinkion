@@ -1,0 +1,313 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Clientes: restaurantes y cadenas que usan Thinkion",
+      "descripcion": "Conocé a las empresas de gastronomía y retail que ya confían en Thinkion para centralizar su operación.",
+      "plantilla": "clientes",
+      "indexar": true,
+      "productoNombre": "",
+      "productoDescripcion": ""
+    }
+  },
+  "content": [
+    {
+      "type": "HeroProducto",
+      "props": {
+        "id": "HeroProducto-063dfa7b-ea43-4ad3-b102-c03f3daff2da",
+        "titulo": "La plataforma que impulsa el crecimiento de tu negocio",
+        "resaltado": "crecimiento",
+        "bajada": "Cientos de empresas ya confían en nuestro ecosistema para centralizar su operación y tomar decisiones basadas en datos reales",
+        "botonTexto": "",
+        "botonLink": "",
+        "estilo": "clientes"
+      }
+    },
+    {
+      "type": "GrillaClientes",
+      "props": {
+        "id": "GrillaClientes-a9048204-7050-4799-a392-b8c4da4120e2",
+        "textoTodos": "TODOS",
+        "filtros": [
+          {
+            "clave": "gastronomicas",
+            "nombre": "GASTRONÓMICAS"
+          },
+          {
+            "clave": "retail",
+            "nombre": "RETAIL"
+          },
+          {
+            "clave": "productividad",
+            "nombre": "PRODUCTIVIDAD"
+          }
+        ],
+        "clientes": [
+          {
+            "foto": "/img/clientes/foto-club-milanesa.webp",
+            "logo": "/img/clientes/logo-club-milanesa.webp",
+            "nombre": "El Club de la Milanesa",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-quijote.webp",
+            "logo": "/img/clientes/logo-quijote.webp",
+            "nombre": "Quijote",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-prune.webp",
+            "logo": "/img/clientes/logo-prune.webp",
+            "nombre": "Prüne",
+            "rubro": "Retail",
+            "industria": "retail",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-sushi.webp",
+            "logo": "/img/clientes/logo-sushi.webp",
+            "nombre": "Sushi 2x1",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "retail",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-mishka.webp",
+            "logo": "/img/clientes/logo-mishka.webp",
+            "nombre": "Mishka",
+            "rubro": "Retail",
+            "industria": "retail",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-beerco.webp",
+            "logo": "/img/clientes/logo-beerco.webp",
+            "nombre": "Beer Co.",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-eltopo.webp",
+            "logo": "/img/clientes/logo-eltopo.webp",
+            "nombre": "El Topo",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": true
+          },
+          {
+            "foto": "/img/home/cliente-temple.webp",
+            "logo": "/img/home/logo-temple.webp",
+            "nombre": "Temple Brewery",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/home/cliente-patagonia.webp",
+            "logo": "/img/home/logo-patagonia.webp",
+            "nombre": "Cerveza Patagonia",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-central-pan.webp",
+            "logo": "/img/clientes/logo-central-pan.webp",
+            "nombre": "Central Pan",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-alcira.webp",
+            "logo": "/img/clientes/logo-alcira.webp",
+            "nombre": "Alcira Café Resto",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-antares.webp",
+            "logo": "/img/clientes/logo-antares.webp",
+            "nombre": "Cervecería Antares",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-cerdos-voladores.webp",
+            "logo": "/img/clientes/logo-cerdos-voladores.webp",
+            "nombre": "Cerdos Voladores",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-afines.webp",
+            "logo": "/img/clientes/logo-afines.webp",
+            "nombre": "Afines",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-geci.webp",
+            "logo": "/img/clientes/logo-geci.webp",
+            "nombre": "Panadería Geci",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-bar-ipa.webp",
+            "logo": "/img/clientes/logo-bar-ipa.webp",
+            "nombre": "IPA Cervecería",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-rebelion.webp",
+            "logo": "/img/clientes/logo-rebelion.webp",
+            "nombre": "Rebelión",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-ronnie.webp",
+            "logo": "/img/clientes/logo-ronnie.webp",
+            "nombre": "Ronnie Burgers",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-adorado.webp",
+            "logo": "/img/clientes/logo-adorado.webp",
+            "nombre": "Adorado Café & Bar",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-nishan.webp",
+            "logo": "/img/clientes/logo-nishan.webp",
+            "nombre": "Nishan Craft Beer Park",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-tiendas-naturales.webp",
+            "logo": "/img/clientes/logo-tiendas-naturales.webp",
+            "nombre": "Tiendas Naturales",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-il-pirata.webp",
+            "logo": "/img/clientes/logo-il-pirata.webp",
+            "nombre": "Il Pirata Pizzería",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-taste-meet.webp",
+            "logo": "/img/clientes/logo-taste-meet.webp",
+            "nombre": "Taste & Meet",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-sensei.webp",
+            "logo": "/img/clientes/logo-sensei.webp",
+            "nombre": "Sensei Sushi",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-harrys.webp",
+            "logo": "/img/clientes/logo-harrys.webp",
+            "nombre": "Harry's Burger",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-trevi.webp",
+            "logo": "/img/clientes/logo-trevi.webp",
+            "nombre": "Trevi Gelato",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-dashi.webp",
+            "logo": "/img/clientes/logo-dashi.webp",
+            "nombre": "Dashi",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          },
+          {
+            "foto": "/img/clientes/foto-tutsy.webp",
+            "logo": "/img/clientes/logo-tutsy.webp",
+            "nombre": "Tutsy Pizza",
+            "rubro": "Gastronómica",
+            "industria": "gastronomicas",
+            "tambien": "",
+            "logoClaro": false
+          }
+        ],
+        "vacio": "Muy pronto vas a ver acá a los clientes de esta industria."
+      }
+    },
+    {
+      "type": "BotonFlotante",
+      "props": {
+        "id": "BotonFlotante-1dec601a-b212-43d8-9325-d1cdc283f610",
+        "titulo": "¿Listo para usar Thinkion?",
+        "texto": "Unite a los líderes que confían en nosotros para impulsar su crecimiento",
+        "botonTexto": "PEDÍ TU DEMO",
+        "botonLink": "/demo"
+      }
+    }
+  ],
+  "zones": {}
+}

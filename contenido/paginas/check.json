@@ -1,0 +1,182 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Thinkion Check | Auditorías y checklists",
+      "descripcion": "Check es la herramienta de Thinkion para ordenar, escalar y estandarizar tus procesos con auditorías, reportes BI y planes de acción.",
+      "plantilla": "auditorias",
+      "indexar": true,
+      "productoNombre": "Thinkion Check",
+      "productoDescripcion": "Check es la herramienta de Thinkion para ordenar, escalar y estandarizar tus procesos con auditorías, reportes BI y planes de acción."
+    }
+  },
+  "content": [
+    {
+      "type": "HeroProducto",
+      "props": {
+        "id": "HeroProducto-7dea1a0a-37e5-401c-a9fe-cc114ba5d17a",
+        "titulo": "Medí, controlá y mejorá tus procesos en un solo lugar",
+        "resaltado": "solo lugar",
+        "bajada": "Check es la herramienta de Thinkion para equipos que buscan ordenar, escalar y estandarizar su forma de trabajar",
+        "botonTexto": "",
+        "botonLink": "",
+        "estilo": "producto"
+      }
+    },
+    {
+      "type": "MediaProducto",
+      "props": {
+        "id": "MediaProducto-e921dc79-c9cf-4e04-a4e2-f653e13ce1bf",
+        "tipo": "video",
+        "imagen": "/img/check/video-portada.webp",
+        "imagenAlt": "Persona usando Thinkion Check en una notebook",
+        "videoLink": ""
+      }
+    },
+    {
+      "type": "Ventajas",
+      "props": {
+        "id": "Ventajas-209a80ca-d0be-416f-be91-98f184c6b97d",
+        "titulo": "De la observación a la acción:\nConvertí cada auditoría en una oportunidad de mejora",
+        "texto": "Los checklists de Check simplifican la supervisión diaria. Centralizá la información clave de tu marca y obtené una visión clara de lo que ocurre en cada punto. Una manera simple de mantener el control sin perder tiempo ni detalle.",
+        "items": [
+          {
+            "icono": "/img/check/icono-app.webp",
+            "titulo": "App Mobile",
+            "texto": "Auditorías rápidas y simples, pensadas para equipos en movimiento"
+          },
+          {
+            "icono": "/img/check/icono-reportes.webp",
+            "titulo": "Reportes BI",
+            "texto": "Visualizá métricas y resultados en tiempo real desde cualquier dispositivo."
+          },
+          {
+            "icono": "/img/check/icono-plan.webp",
+            "titulo": "Plan de acción",
+            "texto": "Convertí hallazgos en tareas y seguí su evolución hasta su resolución"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Mockup",
+      "props": {
+        "id": "Mockup-186f6d93-b1b5-43af-9ba6-8b7996b7da59",
+        "monitor": "/img/check/mockup-monitor.webp",
+        "monitorAlt": "Panel de Thinkion Check en un monitor",
+        "celular": "/img/check/mockup-celular.webp",
+        "celularAlt": "Auditoría de Thinkion Check en el celular",
+        "datos": [
+          {
+            "texto": "Toda tu información al instante"
+          },
+          {
+            "texto": "Otro dato relevante"
+          },
+          {
+            "texto": "Otro dato relevante"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Logos",
+      "props": {
+        "id": "Logos-3b4ba6e2-31dd-430e-b53d-ac0f93408d74",
+        "estilo": "producto",
+        "logos": [
+          {
+            "imagen": "/img/check/logo-prune.webp",
+            "nombre": "Prüne",
+            "opacidad": 0.6,
+            "ajuste": "prune"
+          },
+          {
+            "imagen": "/img/check/logo-club-milanesa.webp",
+            "nombre": "El Club de la Milanesa",
+            "opacidad": 0.4,
+            "ajuste": ""
+          },
+          {
+            "imagen": "/img/check/logo-sushi.webp",
+            "nombre": "Sushi 2x1",
+            "opacidad": 0.8,
+            "ajuste": ""
+          },
+          {
+            "imagen": "/img/check/logo-quijote.webp",
+            "nombre": "Quijote",
+            "opacidad": 0.5,
+            "ajuste": ""
+          },
+          {
+            "imagen": "/img/check/logo-mishka.webp",
+            "nombre": "Mishka",
+            "opacidad": 0.7,
+            "ajuste": "mishka"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Funciones",
+      "props": {
+        "id": "Funciones-eedd4bce-f02f-4d2d-ba45-134a9a8e95bd",
+        "funciones": [
+          {
+            "imagen": "/img/check/checklist.webp",
+            "marco": "",
+            "etiqueta": "Flexibilidad total",
+            "titulo": "Checklist 100% personalizable",
+            "texto": "<p>Diseñá auditorías adaptadas a cada local, área o equipo.<br>Creá categorías, subcategorías y preguntas con distintos tipos de respuesta —del 1 al 5, binarias, informativas o con alertas— y asigná ponderación individual para priorizar lo importante.</p>",
+            "ancla": "funcionalidades"
+          },
+          {
+            "imagen": "/img/check/app-movil.webp",
+            "marco": "",
+            "etiqueta": "Acceso Móvil",
+            "titulo": "App online simple, ágil e intuitiva",
+            "texto": "<p>Accedé desde cualquier dispositivo y completá y finalizá las auditorías en el momento que necesites. Sumá comentarios y fotos directamente desde la app para dejar constancia visual de cada revisión.</p>",
+            "ancla": "modos-de-uso"
+          },
+          {
+            "imagen": "/img/check/escalabilidad.webp",
+            "marco": "",
+            "etiqueta": "Escalabilidad",
+            "titulo": "Sin límites de locales o usuarios",
+            "texto": "<p>Pensado para escalar sin restricciones. Gestioná toda tu red, sin importar su tamaño, con un sistema preparado para grandes volúmenes de información y múltiples usuarios activos.</p>",
+            "ancla": "beneficios"
+          },
+          {
+            "imagen": "/img/check/reportes.webp",
+            "marco": "",
+            "etiqueta": "Analítica avanzada",
+            "titulo": "Reportes BI",
+            "texto": "<p>Visualizá toda la información procesada en tableros dinámicos y claros. Detectá patrones, analizá datos en tiempo real y obtené insights accionables sin preocuparte por el volumen de información.</p>",
+            "ancla": ""
+          },
+          {
+            "imagen": "/img/check/planes-de-accion.webp",
+            "marco": "",
+            "etiqueta": "Gestión de tareas",
+            "titulo": "Mejora continua con planes de acción",
+            "texto": "<p>Cada punto que no cumple con el estándar se convierte automáticamente en una tarea dentro del plan de acción.<br>Desde allí, podés hacer seguimiento, dejar comentarios y marcarlo como resuelto en la próxima revisión.</p>",
+            "ancla": ""
+          }
+        ],
+        "empezar": "izquierda"
+      }
+    },
+    {
+      "type": "LlamadoFinal",
+      "props": {
+        "id": "LlamadoFinal-240fe923-0169-4354-8281-e35ee8764e1b",
+        "titulo": "¿Querés ver cómo funciona en tu negocio?",
+        "bajada": "Hablemos y veamos cómo Thinkion puede adaptarse a tu negocio.",
+        "botonTexto": "Pedí tu demo",
+        "botonLink": "/demo",
+        "separado": ""
+      }
+    }
+  ],
+  "zones": {}
+}

@@ -4,3 +4,9 @@ test-results/
 playwright-report/
 resultados-tests.json
 .lighthouseci/
+.next/
+next-env.d.ts
+# Lo arma scripts/armar-css.mjs a partir de src/styles
+public/estilos/
+# Imágenes subidas en la compu (en Vercel van a Vercel Blob)
+public/subidas/

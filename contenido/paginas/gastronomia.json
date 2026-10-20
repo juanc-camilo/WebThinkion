@@ -1,0 +1,342 @@
+{
+  "root": {
+    "props": {
+      "titulo": "Software para restaurantes y gastronomía | Thinkion",
+      "descripcion": "Punto de venta, administración, delivery, reservas y fidelización integrados para tu restaurante.",
+      "plantilla": "industria",
+      "indexar": true,
+      "productoNombre": "Thinkion para gastronomía",
+      "productoDescripcion": "Punto de venta, administración, delivery, reservas y fidelización integrados para tu restaurante."
+    }
+  },
+  "content": [
+    {
+      "type": "HeroIndustria",
+      "props": {
+        "id": "HeroIndustria-7d5dbdcb-f717-4bcb-a58a-d5b6559d4ab6",
+        "titulo": "Un solo software, todas las herramientas para potenciar tu restaurante",
+        "resaltado": "potenciar",
+        "bajada": "Diseñado para que cada área de tu negocio funcione conectada, haciendo más simple tu día a día. Trabajá con más claridad y control, optimizando tu tiempo y mejorando la experiencia de tu equipo y tus clientes",
+        "botonTexto": "Pedí tu demo",
+        "botonLink": "/demo",
+        "videoLink": "",
+        "portada": "/img/segmentos/video-sistema.webp",
+        "portadaAlt": "Panel de Thinkion con el resumen de ventas"
+      }
+    },
+    {
+      "type": "ModulosPestanas",
+      "props": {
+        "id": "ModulosPestanas-94ae607c-1854-47c7-a4ab-28bf2c1ba329",
+        "ancla": "punto-de-venta",
+        "pestanas": [
+          {
+            "nombre": "Punto de venta",
+            "titulo": "Enfocados en tus beneficios",
+            "items": [
+              {
+                "icono": "/img/segmentos/icono-celular.svg",
+                "texto": "Tomá comandas desde cualquier dispositivo"
+              },
+              {
+                "icono": "/img/segmentos/icono-sin-internet.svg",
+                "texto": "Seguí operando con o sin internet sin interrupciones"
+              },
+              {
+                "icono": "/img/segmentos/icono-local.svg",
+                "texto": "Visualizá lo que pasa en tu local al instante"
+              },
+              {
+                "icono": "/img/segmentos/icono-rayo.svg",
+                "texto": "Atención rápida, fácil e intuitiva"
+              },
+              {
+                "icono": "/img/segmentos/icono-delivery.svg",
+                "texto": "Integrá apps de delivery y gestioná todo en un mismo lugar"
+              },
+              {
+                "icono": "/img/segmentos/icono-factura.svg",
+                "texto": "Facturación electrónica integrada con ARCA"
+              }
+            ],
+            "disposicion": "celular",
+            "imagenGrande": "/img/segmentos/pos-notebook.webp",
+            "imagenGrandeAlt": "Punto de venta de Thinkion en una notebook",
+            "imagenChica": "/img/segmentos/pos-celular.webp",
+            "imagenChicaAlt": "Punto de venta de Thinkion en el celular"
+          },
+          {
+            "nombre": "Administración",
+            "titulo": "Gestioná todo desde un solo lugar",
+            "items": [
+              {
+                "icono": "/img/segmentos/icono-ajustes.svg",
+                "texto": "Personalización de Punto de venta"
+              },
+              {
+                "icono": "/img/segmentos/icono-calendario.svg",
+                "texto": "Calendario e historial de pagos"
+              },
+              {
+                "icono": "/img/segmentos/icono-seguridad.svg",
+                "texto": "Alertas de seguridad"
+              },
+              {
+                "icono": "/img/segmentos/icono-stock.svg",
+                "texto": "Stock en tiempo real"
+              },
+              {
+                "icono": "/img/segmentos/icono-personal.svg",
+                "texto": "Gestión de personal"
+              },
+              {
+                "icono": "/img/segmentos/icono-sucursales.svg",
+                "texto": "Gestión completa de uno o más locales en simultanea"
+              }
+            ],
+            "disposicion": "tablet",
+            "imagenGrande": "/img/segmentos/adm-notebook.webp",
+            "imagenGrandeAlt": "Administración de Thinkion en una notebook",
+            "imagenChica": "/img/segmentos/adm-tablet.webp",
+            "imagenChicaAlt": "Administración de Thinkion en una tablet"
+          }
+        ],
+        "abierta": 1
+      }
+    },
+    {
+      "type": "Logos",
+      "props": {
+        "id": "Logos-275cae9d-81be-4139-812e-e1e8d2ae2f21",
+        "estilo": "industria",
+        "logos": [
+          {
+            "imagen": "/img/segmentos/logo-cliente-1.webp",
+            "nombre": "El Club de la Milanesa",
+            "opacidad": "",
+            "ajuste": ""
+          },
+          {
+            "imagen": "/img/segmentos/logo-cliente-2.webp",
+            "nombre": "Sushi 2x1",
+            "opacidad": "",
+            "ajuste": ""
+          },
+          {
+            "imagen": "/img/segmentos/logo-cliente-3.webp",
+            "nombre": "Quijote",
+            "opacidad": "",
+            "ajuste": ""
+          },
+          {
+            "imagen": "/img/segmentos/logo-cliente-4.webp",
+            "nombre": "Temple",
+            "opacidad": "",
+            "ajuste": "multiplicar"
+          },
+          {
+            "imagen": "/img/segmentos/logo-cliente-5.webp",
+            "nombre": "Patagonia",
+            "opacidad": "",
+            "ajuste": "multiplicar"
+          },
+          {
+            "imagen": "/img/segmentos/logo-cliente-antares.webp",
+            "nombre": "Cervecería Antares",
+            "opacidad": "",
+            "ajuste": ""
+          },
+          {
+            "imagen": "/img/segmentos/logo-cliente-7.webp",
+            "nombre": "Beatmemo",
+            "opacidad": "",
+            "ajuste": "multiplicar"
+          }
+        ]
+      }
+    },
+    {
+      "type": "HojaDeRuta",
+      "props": {
+        "id": "HojaDeRuta-87eeaa10-7bc2-44f1-8abc-0167c95ecc9f",
+        "titulo": "La instalación más fácil: te acompañamos en todo el proceso",
+        "pasos": [
+          {
+            "icono": "/img/segmentos/ruta-relevamiento.webp",
+            "texto": "Relevamiento para compra de hardware"
+          },
+          {
+            "icono": "/img/segmentos/ruta-carga-datos.webp",
+            "texto": "Puesta a punto del sistema: carga masiva de datos"
+          },
+          {
+            "icono": "/img/segmentos/ruta-apps-delivery.webp",
+            "texto": "Configuración de apps de delivery e integraciones"
+          },
+          {
+            "icono": "/img/segmentos/ruta-instalacion.webp",
+            "texto": "Instalación presencial o remota"
+          },
+          {
+            "icono": "/img/segmentos/ruta-capacitaciones.webp",
+            "texto": "Capacitaciones personalizadas del punto de venta y del administrador"
+          },
+          {
+            "icono": "/img/segmentos/ruta-acompanamiento.webp",
+            "texto": "Acompañamiento durante el primer mes"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Calidad",
+      "props": {
+        "id": "Calidad-832f75f6-4571-418f-8288-65d77d1dda42",
+        "titulo": "Garantizamos la mejor calidad de atención",
+        "texto": "<p>Resolvemos todas tus dudas en <strong>tiempo récord</strong> con un <strong>equipo experto y dedicado</strong> para tu tranquilidad.</p>",
+        "datos": [
+          {
+            "icono": "/img/segmentos/dato-rayo.svg",
+            "cifra": "100",
+            "unidad": "%",
+            "texto": "SLA Primera Respuesta\n(Menos de 5 minutos)"
+          },
+          {
+            "icono": "/img/segmentos/dato-check.svg",
+            "cifra": "94,5",
+            "unidad": "%",
+            "texto": "Tickets resueltos en 1ª linea"
+          },
+          {
+            "icono": "/img/segmentos/dato-reloj.svg",
+            "cifra": ">1",
+            "unidad": "min",
+            "texto": "Tiempo de primera respuesta"
+          },
+          {
+            "icono": "/img/segmentos/dato-horario.svg",
+            "cifra": "19",
+            "unidad": "min",
+            "texto": "Tiempo promedio de resolución de incidencias"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Tecnologia",
+      "props": {
+        "id": "Tecnologia-a951ee9f-21c6-4207-a2cc-03fbc2e44992",
+        "titulo": "Tecnología de vanguardia para tomar mejores decisiones",
+        "tarjetas": [
+          {
+            "imagen": "/img/segmentos/tec-seguridad.webp",
+            "titulo": "Seguridad y actualizaciones",
+            "texto": "Tu información es nuestra prioridad, por eso garantizamos el sistema más seguro y resguardamos tu información con backups diarios. Además, actualizamos la plataforma automáticamente con mejoras y nuevas funciones, sin costo adicional y sin interrumpir tu operación."
+          },
+          {
+            "imagen": "/img/segmentos/tec-reportes.webp",
+            "titulo": "Reportes BI",
+            "texto": "Nuestros reportes de Business Intelligence son mucho más que datos centralizados. Ofrecen un panel de control detallado que transforma cada una de las 300 métricas en información práctica para mejorar tu rentabilidad."
+          },
+          {
+            "imagen": "/img/segmentos/tec-ia.webp",
+            "titulo": "Inteligencia Artificial",
+            "texto": "Ofrecemos funcionalidades con IA que detectan patrones, optimizan procesos y facilitan la toma de decisiones en base a datos históricos y fuentes externas.\nEsto permite anticipar tendencias y actuar antes de que los problemas impacten en tu operación."
+          },
+          {
+            "imagen": "/img/segmentos/tec-deteccion.webp",
+            "titulo": "Detección inteligente de inconsistencias",
+            "texto": "Analizamos automáticamente ventas, órdenes y cierres de caja para identificar comportamientos inusuales. El sistema resalta operaciones sospechosas para que puedas revisarlas, calificarlas y actuar a tiempo."
+          }
+        ]
+      }
+    },
+    {
+      "type": "Productos",
+      "props": {
+        "id": "Productos-a00c6bd4-7378-431e-ad3a-b5c0ce0c1d0c",
+        "productos": [
+          {
+            "nombre": "Fidelización",
+            "icono": "/img/segmentos/producto-fidelizacion.svg",
+            "foto1": "/img/segmentos/prod-fidelizacion-1.webp",
+            "foto2": "/img/segmentos/prod-fidelizacion-2.webp",
+            "celular": "/img/segmentos/prod-fidelizacion-celular.webp",
+            "celularAlt": "Pantalla de Fidelización en el celular",
+            "texto": "Fidelizá a tus clientes mediante una e-card otorgando puntos y beneficios, traccionando el consumo de forma dirigida. Se podrán trazar mediante reportes historiales de compra de clientes, tipo de consumo y mucho más.",
+            "linkTexto": "Conocer más",
+            "link": "/marketing#fidelizacion"
+          },
+          {
+            "nombre": "Encuestas y satisfacción",
+            "icono": "/img/segmentos/producto-encuestas.svg",
+            "foto1": "/img/segmentos/prod-encuestas-1.webp",
+            "foto2": "/img/segmentos/prod-encuestas-2.webp",
+            "celular": "/img/segmentos/prod-encuestas-celular.webp",
+            "celularAlt": "Pantalla de Encuestas y satisfacción en el celular",
+            "texto": "Conocé a tus clientes y su experiencia en el local. Aumentá la frecuencia de su visita otorgando beneficios por responder las preguntas. Integrado con Google Places para mejorar tu reputación online.",
+            "linkTexto": "Conocer más",
+            "link": "/marketing#encuestas"
+          },
+          {
+            "nombre": "Reservas",
+            "icono": "/img/segmentos/producto-reservas.svg",
+            "foto1": "/img/segmentos/prod-reservas-1.webp",
+            "foto2": "/img/segmentos/prod-reservas-2.webp",
+            "celular": "/img/segmentos/prod-reservas-celular.webp",
+            "celularAlt": "Pantalla de Reservas en el celular",
+            "texto": "Vas a poder gestionar las reservas que hacen tus clientes, asignarle una mesa y trazar todos sus consumos. Podés ofrecer pre compra, cobro por reserva, descuentos en determinados horarios y más.",
+            "linkTexto": "Conocer más",
+            "link": "/marketing#reservas"
+          },
+          {
+            "nombre": "Auditorías",
+            "icono": "/img/segmentos/producto-auditorias.svg",
+            "foto1": "/img/segmentos/prod-fidelizacion-1.webp",
+            "foto2": "/img/segmentos/prod-fidelizacion-2.webp",
+            "celular": "/img/segmentos/prod-fidelizacion-celular.webp",
+            "celularAlt": "Pantalla de Auditorías en el celular",
+            "texto": "Te permite realizar checklists detallados de cada sucursal, proceso o espacio que necesites relevar. Asegurá la eficiencia de todos los procesos cumpliendo con tus estándares. Podés planificar auditorias, ver la información histórica, trabajar sobre alertas y más.",
+            "linkTexto": "Conocer más",
+            "link": "/check"
+          },
+          {
+            "nombre": "Carta digital y autopedido",
+            "icono": "/img/segmentos/producto-carta-digital.svg",
+            "foto1": "/img/segmentos/prod-fidelizacion-1.webp",
+            "foto2": "/img/segmentos/prod-fidelizacion-2.webp",
+            "celular": "/img/segmentos/prod-fidelizacion-celular.webp",
+            "celularAlt": "Pantalla de Carta digital y autopedido en el celular",
+            "texto": "Digitalizá tu local de una forma ágil y sencilla. Tus clientes van a poder ver el menú desde el celular, incluso pudiendo seleccionar su pedido y abonarlo, para luego pasar a retirarlo por el mostrador.",
+            "linkTexto": "Conocer más",
+            "link": "/pos-erp#carta-digital"
+          },
+          {
+            "nombre": "KDS",
+            "icono": "/img/segmentos/producto-kds.svg",
+            "foto1": "/img/segmentos/prod-fidelizacion-1.webp",
+            "foto2": "/img/segmentos/prod-fidelizacion-2.webp",
+            "celular": "/img/segmentos/prod-fidelizacion-celular.webp",
+            "celularAlt": "Pantalla de KDS en el celular",
+            "texto": "Digitalizá tus órdenes para dejar de depender de las comandas en papel. Permite dar trazabilidad a cada orden, seguir su estado y trabajar en la mejora de tiempos de cocina.",
+            "linkTexto": "Conocer más",
+            "link": "/pos-erp#kds"
+          },
+          {
+            "nombre": "E-commerce",
+            "icono": "/img/segmentos/producto-e-commerce.svg",
+            "foto1": "/img/segmentos/prod-fidelizacion-1.webp",
+            "foto2": "/img/segmentos/prod-fidelizacion-2.webp",
+            "celular": "/img/segmentos/prod-fidelizacion-celular.webp",
+            "celularAlt": "Pantalla de E-commerce en el celular",
+            "texto": "Recibí y gestioná pedidos con nuestra plataforma de delivery propio. Integrado con Mercado Pago para el cobro de pedidos. Geolocalización de clientes, notificaciones vía mail, y mucho más.",
+            "linkTexto": "Conocer más",
+            "link": "/pos-erp#e-commerce"
+          }
+        ],
+        "abierta": 1
+      }
+    }
+  ],
+  "zones": {}
+}

@@ -1,103 +1,80 @@
 # Panel de administración
 
-Desde `/admin` se puede cambiar todo lo que se ve en la web sin tocar código: textos, links, imágenes, colores, fondos, tipografías, título y descripción para Google, y un **banner de bienvenida por temporada**.
+Desde `/admin` se arma y se cambia toda la web sin programar, con bloques que se arrastran (editor visual [Puck](https://puckeditor.com)).
 
-- En la compu: `npm run admin` → http://localhost:8080/admin/
-- En Vercel: `https://TU-DOMINIO/admin/`
-- Usuario provisorio: **juanc** · contraseña: **juanc1234** (cambiala en Vercel antes de salir a producción, ver abajo).
+- En la web: `https://webthinkion.vercel.app/admin`
+- En la compu: `npm run dev` → http://localhost:8080/admin
+- Usuario provisorio: **juanc** · contraseña: **juanc1234** (cambiala en Vercel, ver abajo).
 
 ---
 
-## Cómo se usa
+## La lista de páginas
 
-**Barra de arriba**
+Al entrar ves todas las páginas:
+- **Editar** abre el editor.
+- **Ver ↗** abre la página publicada.
+- **Borrar** la saca de la web; se puede recuperar desde el historial de GitHub. La Home no se puede borrar.
+- **＋ Página nueva**: elegís título y dirección (por ejemplo `/promo-verano`). Podés empezar en blanco o con una copia de otra página.
+- Arriba están los **Ajustes generales**: menú, footer, temporadas con su banner y datos de la empresa.
 
-| | |
+## El editor
+
+| Zona | Qué hay |
 |---|---|
-| Selector de página | Elegí qué página editar (Home, POS & ERP, Check…). |
-| ✏️ Editar / 👆 Navegar | En *Editar*, un clic selecciona. En *Navegar* la página funciona normal: usalo para abrir menús desplegables, pestañas o carruseles, y después volvé a *Editar*. |
-| 🖥️ / 📱 | Ver en escritorio (1440 px) o celular (390 px). Los estilos que cambies con 📱 activo valen **solo en celular**. |
-| ↶ Deshacer | También con Ctrl+Z. |
-| Publicar | Guarda todo y publica. Mientras no publiques, los cambios quedan como borrador en tu navegador (si cerrás la pestaña, al volver te ofrece recuperarlos). |
+| Izquierda | **Bloques**: arrastralos a la página. **Esquema**: la lista de bloques de la página, para reordenarlos arrastrando. |
+| Centro | La página tal cual se ve en la web. Arriba elegís **celular, tablet o escritorio**. |
+| Derecha | Los campos del bloque que tocaste. Sin nada elegido, los datos de la **Página**: título y descripción para Google, estilo de la página y si aparece en Google. |
+| Arriba | Deshacer, rehacer, **← Panel**, **Ver en la web** y **Publicar**. |
 
-**Pestañas de la izquierda**
+**Cómo se hace cada cosa:**
+- **Cambiar un texto:** hacé clic en el texto de la página y escribí encima. Los títulos con una palabra subrayada se editan a la derecha, en los campos "Título" y "Palabra subrayada".
+- **Cambiar una imagen:** tocá el bloque y, a la derecha, en la imagen, usá **Subir** (se achica y se convierte a WebP sola) o **Elegir del sitio** para usar una que ya está.
+- **Links y botones:** campo "Lleva a". Elegí una página de la lista o pegá una dirección. Si pegás un video de YouTube, Vimeo o Drive, se reproduce en una ventana sobre la página.
+- **Agregar una sección:** arrastrá un bloque desde la izquierda al lugar de la página donde lo querés. Una línea te marca dónde va a quedar.
+- **Mover, duplicar o borrar un bloque:** tocalo y usá los botones de su barrita (duplicar, borrar), o arrastralo. También desde el **Esquema**.
+- **Tarjetas, preguntas, logos, opciones:** son listas en el panel de la derecha. El **＋** agrega una, se reordenan arrastrando y cada una tiene duplicar y borrar.
+- **Uno al lado del otro:** usá el bloque **Columnas** (dos, tres o cuatro). Dentro de cada columna arrastrás otros bloques: texto, imagen, botón, video, carrusel. En el celular se apilan solas.
+- **Carrusel:** bloque **Carrusel**, para logos, imágenes o tarjetas. Elegís cuántos se ven a la vez y si pasa solo.
+- **Pestañas** (Industrias, Módulos, Productos, Preguntas frecuentes): cada pestaña es un elemento de la lista. "Pestaña abierta al cargar" define cuál se ve primero (también en el editor, para editarla sobre la página).
+- **Publicar:** guarda y publica. En **1 o 2 minutos** se ve en la web. Mientras no publicás, los cambios quedan como borrador en tu navegador: si cerrás la pestaña, al volver te ofrece recuperarlos.
 
-- **Elemento** — lo que seleccionaste con el clic:
-  - *Texto*: escribís directo sobre la página (Enter = salto de línea). Negrita, cursiva, links y quitar formato con los botones.
-  - *Link*: a qué página lleva, o una dirección externa (`https://…`, `mailto:…`, `tel:…`).
-  - *Imagen*: "Cambiar imagen" (se convierte sola a WebP, máximo 2400 px) y la descripción para Google.
-  - *Estilo*: color de letra, color o imagen de fondo, tipografía, tamaño, grosor, alineación, redondeo y opacidad.
-  - **Arrastrar (como en Figma)**: sobre lo seleccionado aparecen dos manijas.
-    - **⠿ Arrastrar**: llevalo a cualquier lugar de la página; una línea coral muestra dónde cae. El resto se reacomoda solo, así que en el celular sigue viéndose bien. Lo del menú/footer solo se mueve dentro del menú/footer.
-    - **✥ Libre**: correlo unos píxeles sin mover lo demás (con Shift, de a 10 px). Se guarda aparte para escritorio y para celular (🖥️/📱), porque correr algo en una pantalla puede encimarlo en la otra. También se ajusta con *Posición libre* en el panel, y ↺ lo vuelve a su lugar.
-  - *Ordenar y agregar*: **↑ Subir / ↓ Bajar** (cambia el orden entre sus hermanos: arriba/abajo o izquierda/derecha), **⧉ Duplicar** (copia con el mismo estilo justo después; ideal para sumar una tarjeta, una opción del menú o una pregunta), **🗑 Eliminar** (se restaura desde la pestaña Página) y **Agregar debajo** un título, subtítulo, párrafo, botón o imagen.
-  - *Ocultar en la web* y *Volver al original*.
-  - Los chips de arriba ("Sección › Bloque › Título") seleccionan el bloque que contiene al elemento: así se le cambia el fondo a una sección entera.
-  - Lo que esté en el **menú o el footer** se cambia en **todas las páginas** (el panel lo avisa).
-- **Página** — botones para **abrir los desplegables del menú** (Soluciones, Industrias y el menú del celular) y editarlos, lista de **elementos eliminados** para restaurarlos, título y descripción para Google, fondo de toda la página, lista de todas las imágenes (incluso las decorativas del fondo, que no se pueden tocar con el mouse) y los elementos ocultos.
-- **Diseño** — colores de marca y tipografías de la temporada elegida. Se aplican en todo el sitio. Se pueden subir tipografías propias (`.woff2`).
-- **Temporadas** — cada temporada tiene fechas, su propio diseño (colores y tipografías) y su banner:
-  - *Temporada activa*: "Automática según las fechas" o forzar una.
-  - Fuera de las fechas de todas, se usa la **temporada por defecto**. El diseño actual quedó cargado como *Primavera 2026 (diseño actual)*.
-  - *Banner al entrar*: título, texto, imagen, botón, colores, cada cuánto se muestra (una vez por visita, por día, una sola vez o siempre), en qué páginas y con cuántos segundos de espera. "Ver cómo queda" lo muestra en la vista (también aparece solo al activarlo). **En la web se ve después de Publicar.** Como se muestra según la frecuencia elegida, para verlo de nuevo abrí la web con `?banner=ver` al final de la dirección (por ejemplo `https://webthinkion.vercel.app/?banner=ver`).
+**Los bloques que hay:**
+- *Armar secciones:* Sección (caja con fondo), Columnas, Título, Texto, Imagen, Botón, Video, Carrusel, Espacio.
+- *Secciones del Home, de producto, de industria e institucionales:* las secciones del diseño (portadas, tarjetas, diagrama, clientes, funciones, integraciones, hoja de ruta, línea de tiempo, formularios…). Se ven exactamente como en el diseño y se pueden usar en cualquier página.
 
-> Los textos y las imágenes son los mismos en todas las temporadas; lo que cambia por temporada es el diseño (colores y tipografías) y el banner.
+Los colores y los tamaños vienen del diseño: no se pueden poner colores sueltos ni mover cosas pixel por pixel. Así la web no se rompe y en el celular siempre se ve bien.
+
+## Ajustes generales
+
+- **Menú:** links y desplegables. Cada desplegable tiene sus opciones (título, ícono, link y lo que va debajo). Para dejar dos opciones en Soluciones, borrá las que sobran de la lista. Al final está el botón de la derecha ("Pedí tu demo").
+- **Temporadas:** cada una tiene nombre, fechas (desde y hasta), colores (vacíos = los de siempre) y su **banner al entrar a la web**.
+  - Activa: la que corresponde por fecha. Fuera de las fechas de todas, se usa la que no tiene fechas. También se puede forzar una escribiendo su nombre.
+  - Banner: título, texto, imagen, botón, colores, cada cuánto se muestra (una vez por visita, por día, una sola vez o siempre), dónde y a los cuántos segundos.
+  - Para ver el banner en la web aunque ya lo hayas visto: `https://webthinkion.vercel.app/?banner=ver`.
+- **Footer:** columnas de links, mail, redes y texto final.
+- **Datos de la empresa:** nombre, descripción, mail, dirección del sitio (dominio) e imagen para compartir. Los usan Google, las IAs (`llms.txt`) y la vista previa al compartir el link.
 
 ---
 
-## Publicar en Vercel (una sola vez)
+## Configuración en Vercel (una vez)
 
-1. **Subí el proyecto a GitHub** (el repositorio `WebThinkion`).
-2. En [vercel.com](https://vercel.com) → *Add New → Project* → importá el repositorio. Vercel lee `vercel.json` (arma con `npm run build` y publica `_site`); no hay que tocar nada más.
-3. **Token de GitHub** (para que el panel pueda guardar): en GitHub → *Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token*.
-   - *Repository access*: solo `WebThinkion`.
-   - *Permissions → Contents*: **Read and write**.
-4. En Vercel → el proyecto → *Settings → Environment Variables*, cargá:
+En Vercel → el proyecto → *Settings → Environment Variables*:
 
-| Variable | Valor | |
+| Variable | Para qué | |
 |---|---|---|
-| `GITHUB_TOKEN` | el token del paso 3 | obligatoria |
-| `ADMIN_USUARIO` | usuario del panel | si falta: `juanc` |
-| `ADMIN_CLAVE` | contraseña del panel | si falta: `juanc1234` |
-| `ADMIN_SECRETO` | un texto largo al azar (firma la sesión) | recomendada |
-| `GITHUB_RAMA` | la rama que publica Vercel | si falta: la del deploy (normalmente `main`) |
-| `GITHUB_REPO` | `usuario/repositorio` | si falta: el que tiene conectado Vercel |
+| `GITHUB_TOKEN` | Publicar (token de GitHub con *Contents: Read and write* sobre el repositorio) | obligatoria |
+| `ADMIN_USUARIO` / `ADMIN_CLAVE` | Usuario y contraseña del panel | si faltan: juanc / juanc1234 |
+| `ADMIN_SECRETO` | Texto largo al azar que firma la sesión | recomendada |
 
-5. *Deployments → Redeploy* para que tome las variables.
+**Imágenes:** para poder subirlas desde el panel, en Vercel → *Storage → Create → Blob*, conectalo al proyecto (agrega solo `BLOB_READ_WRITE_TOKEN`) y volvé a publicar. Sin eso igual se pueden usar las imágenes que ya tiene el sitio.
 
-**Qué pasa al tocar Publicar:** el panel crea un commit en GitHub con `contenido/ediciones.json`, `contenido/temporadas.json` y las imágenes o tipografías subidas. Vercel ve el commit y vuelve a armar el sitio solo: tarda **1 o 2 minutos**. Mientras tanto el panel ya muestra la versión nueva. Cada publicación queda en el historial de GitHub, así que cualquier cambio se puede revertir desde ahí.
-
----
+`vercel.json` le indica a Vercel que es un proyecto Next.js y que arme con `npm run build`.
 
 ## Cómo funciona por dentro
 
-```
-admin/                 El panel (HTML, CSS y JS, sin dependencias)
-  editor.js            Editor visual: selección, paneles, subidas, publicar
-api/                   Funciones de Vercel
-  login.js, logout.js, sesion.js   Ingreso con cookie firmada (12 h)
-  datos.js             Lee lo guardado (desde GitHub, siempre lo último)
-  subir.js             Sube imágenes y tipografías
-  guardar.js           Publica: un commit con todo
-  _lib/                sesion.js (usuario y cookie) · almacen.js (GitHub o archivos locales)
-cms/
-  aplicar-ediciones.mjs  Lo usa Eleventy: escribe los cambios en el HTML final
-  compartido.mjs         Tipografías y armado de CSS (lo usan Eleventy y el panel)
-contenido/
-  ediciones.json       Cambios por página ("paginas") y del menú/footer ("global")
-  temporadas.json      Temporadas, diseño, banner y tipografías subidas
-scripts/servidor-local.mjs   npm run admin
-public/img/subidas/, public/fonts/subidas/   Lo que se sube desde el panel
-```
-
-- Al armar el sitio, Eleventy numera cada elemento con `data-e="…"` (su "dirección"), aplica la estructura (`_estructura`: mover, duplicar, eliminar, agregar) y después `contenido/ediciones.json`. Los elementos nuevos llevan direcciones propias (`n…`), así no se corren las del original.
-- También arma una copia **sin cambios** de cada página (`check.editor.html`, con `noindex`): el panel siempre parte de esa copia y le aplica lo último. **Los cambios quedan escritos en el HTML**: Google ve el texto real, no hay JavaScript que lo cambie en el navegador.
-- Los estilos editados se escriben como reglas CSS en el `<head>` (`[data-e="3.0.0.0"] { color: … !important }`), con un bloque aparte para celular (hasta 760 px).
-- La temporada se elige en el navegador con un script mínimo en el `<head>` (según la fecha del día), antes de que se pinte la página: no hay parpadeo. El banner lo muestra `controller.js`.
-- En `ediciones.json` las rutas que empiezan con `~/` son relativas a la raíz del sitio; Eleventy las convierte para cada página.
-
-**Si un programador cambia el HTML de una página** (agrega o saca elementos), las direcciones de los elementos que vienen después pueden correrse. Cada edición guarda la etiqueta original (`"etiqueta": "h2"`) y, si ya no coincide, se saltea y Eleventy avisa en la consola (`[admin] Edición salteada…`). Lo más prolijo: después de un cambio de estructura, revisar la página en el panel. El campo `"original"` de cada edición muestra qué texto tenía, para ubicarla.
-
-**Ejemplo — dejar dos opciones en Soluciones:** pestaña Página → *Abrir Soluciones* → clic en el título de una opción → en los chips de arriba elegí *Link / botón: …* (la opción entera) → *Eliminar*. Para sumar una, elegí una opción entera → *Duplicar* → cambiale texto, ícono y link.
-
-**Límites actuales:** se agregan elementos copiando uno existente o sumando títulos, párrafos, botones e imágenes; no hay plantillas de secciones enteras nuevas (se logra duplicando una sección y cambiándola). Algunos colores todavía están escritos fijos en los CSS (no en `variables.css`) y no cambian desde *Diseño*.
+- Cada página es `contenido/paginas/<nombre>.json` (formato de Puck). Los ajustes, `contenido/ajustes.json`.
+- **Publicar** crea un commit en GitHub con ese archivo; Vercel ve el commit y arma el sitio de nuevo. Cada publicación queda en el historial de GitHub, así que cualquier cambio se puede revertir.
+- Las páginas se generan **estáticas** con el HTML real (`app/(sitio)/[[...ruta]]`), con título, descripción, dirección oficial, Open Graph y datos estructurados (incluidas las preguntas frecuentes). `robots.txt`, `sitemap.xml` y `llms.txt` se arman solos con las páginas.
+- Los bloques están en `puck/bloques/`. Usan el mismo HTML y las mismas clases del diseño, y la misma hoja de estilos en la web y en el editor (`public/estilos/sitio.css`, la arma `scripts/preparar.mjs`).
+- Lo que se mueve en la web (menú, pestañas, carruseles, línea de tiempo, filtros, videos en ventana, banner) está en `puck/marco/Comportamientos.jsx`. En el editor no corre: ahí los bloques se editan.
+- Para sumar un bloque nuevo, crealo en `puck/bloques/`, agregalo a `puck/config.jsx` y a una categoría.

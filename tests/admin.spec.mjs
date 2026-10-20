@@ -1,48 +1,46 @@
 // =====================================================================
-// Tests del panel de administración y de lo que Eleventy agrega para él.
-// No prueban /api (en los tests el sitio se sirve como archivos estáticos):
-// verifican que cada página traiga las direcciones (data-e), la temporada
-// y que el panel cargue y no aparezca en Google.
+// Tests del panel (Puck), de las temporadas y de lo que leen buscadores e IAs.
+// El sitio se arma con "npm run build" y se sirve con "next start".
 // =====================================================================
 import { test, expect } from '@playwright/test';
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8080';
 
 test.describe('Panel de administración', () => {
-  test('cada elemento editable tiene su dirección (data-e)', async ({ page }) => {
-    await page.goto(`${BASE_URL}/index.html`);
-    await expect(page.locator('body')).toHaveAttribute('data-e', 'body');
-    await expect(page.locator('h1')).toHaveAttribute('data-e', /^[\d.]+$/);
-    // Menú y footer se numeran aparte: un cambio ahí vale para todas las páginas
-    await expect(page.locator('header.navbar')).toHaveAttribute('data-e', 'menu');
-    await expect(page.locator('footer.footer')).toHaveAttribute('data-e', 'footer');
-  });
-
-  test('la temporada queda elegida antes de pintar la página', async ({ page }) => {
-    await page.goto(`${BASE_URL}/src/views/check.html`);
-    const datos = JSON.parse(await page.locator('#temporadas-datos').textContent());
-    expect(datos.temporadas.length).toBeGreaterThan(0);
-    await expect(page.locator('html')).toHaveAttribute('data-temporada', /.+/);
-  });
-
-  test('existe la copia sin cambios para el editor y no se indexa', async ({ page }) => {
-    await page.goto(`${BASE_URL}/src/views/check.editor.html`);
+  test('el panel pide ingreso y no se indexa', async ({ page }) => {
+    await page.goto(`${BASE_URL}/admin`);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
-    await expect(page.locator('h1')).toHaveAttribute('data-e', /^[\d.]+$/);
+    await expect(page.locator('input[name="usuario"]')).toBeVisible();
   });
 
-  test('el panel carga, pide ingreso y no se indexa', async ({ page }) => {
-    await page.goto(`${BASE_URL}/admin/index.html`);
-    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
-    // Sin /api (servidor estático) muestra el ingreso con el aviso de conexión
-    await expect(page.locator('#form-ingreso')).toBeVisible();
+  test('la API del panel no responde sin sesión', async ({ request }) => {
+    expect((await request.get(`${BASE_URL}/api/paginas`)).status()).toBe(401);
+    expect((await request.get(`${BASE_URL}/api/ajustes`)).status()).toBe(401);
+  });
+
+  test('con usuario y contraseña equivocados no entra', async ({ request }) => {
+    const respuesta = await request.post(`${BASE_URL}/api/login`, { data: { usuario: 'juanc', clave: 'mal' } });
+    expect(respuesta.status()).toBe(401);
   });
 });
 
-// ---------- Buscadores e IAs ----------
+test.describe('Temporadas y direcciones', () => {
+  test('la temporada queda elegida antes de pintar la página', async ({ page }) => {
+    await page.goto(`${BASE_URL}/check`);
+    await expect(page.locator('html')).toHaveAttribute('data-temporada', /.+/);
+  });
+
+  test('las direcciones viejas llevan a las nuevas', async ({ page }) => {
+    await page.goto(`${BASE_URL}/src/views/check.html`);
+    expect(new URL(page.url()).pathname).toBe('/check');
+    await page.goto(`${BASE_URL}/index.html`);
+    expect(new URL(page.url()).pathname).toBe('/');
+  });
+});
+
 test.describe('Buscadores e IAs', () => {
   test('las preguntas frecuentes llegan al JSON-LD (no vacío)', async ({ page }) => {
-    await page.goto(`${BASE_URL}/index.html`);
+    await page.goto(`${BASE_URL}/`);
     const bloques = await page.locator('script[type="application/ld+json"]').allTextContents();
     const faq = bloques.map((b) => JSON.parse(b)['@graph'] || []).flat().find((n) => n['@type'] === 'FAQPage');
     expect(faq?.mainEntity?.length, 'FAQPage sin preguntas').toBeGreaterThan(0);
@@ -51,10 +49,10 @@ test.describe('Buscadores e IAs', () => {
   test('robots.txt, sitemap.xml y llms.txt existen y apuntan al dominio', async ({ request }) => {
     const robots = await (await request.get(`${BASE_URL}/robots.txt`)).text();
     expect(robots).toMatch(/Sitemap: https:\/\/\S+\/sitemap\.xml/);
-    expect(robots).toContain('Disallow: /admin/');
+    expect(robots).toMatch(/Disallow: \/admin/);
     const sitemap = await (await request.get(`${BASE_URL}/sitemap.xml`)).text();
     expect(sitemap).toContain('<loc>https://');
-    expect(sitemap, 'las páginas en construcción no van al sitemap').not.toContain('retail.html');
+    expect(sitemap, 'las páginas en construcción no van al sitemap').not.toContain('/retail');
     const llms = await (await request.get(`${BASE_URL}/llms.txt`)).text();
     expect(llms).toMatch(/^# Thinkion/);
     expect(llms).toContain('## Preguntas frecuentes');
