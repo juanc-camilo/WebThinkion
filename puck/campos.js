@@ -57,7 +57,8 @@ export const COLORES = [
 export const color = (label = 'Color') => opciones(label, COLORES);
 
 /* ---------- Campos propios (los dibuja campos-ui.jsx en el navegador) ---------- */
-export const imagen = (label = 'Imagen') => ({ type: 'custom', label, render: CampoImagen });
+// animada: true → acepta también GIF, WebP animado y video corto (MP4/WebM), sin convertirlos
+export const imagen = (label = 'Imagen', { animada = false } = {}) => ({ type: 'custom', label, render: CampoImagen, animada });
 export const link = (label = 'Lleva a') => ({ type: 'custom', label, render: CampoLink });
 export const fecha = (label) => ({ type: 'custom', label, render: CampoFecha });
 export const colorLibre = (label) => ({ type: 'custom', label, render: CampoColor });

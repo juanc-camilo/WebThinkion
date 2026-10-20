@@ -10,6 +10,7 @@ import { texto, parrafo, imagen, link, lista, grupo, opciones, numero, fecha, co
 import Navbar from './marco/Navbar';
 import Footer from './marco/Footer';
 import { cssTemporadas, idTemporada, temporadaActiva } from './marco/temporadas';
+import { ANIMACIONES, POSICIONES, ANCHOS, FONDOS, normalizarBanner, esVideo, clasesBanner } from './marco/banner';
 
 const camposMenu = grupo('Menú', {
   items: lista('Opciones del menú', {
@@ -44,26 +45,42 @@ const camposFooter = grupo('Pie de página (footer)', {
 });
 
 /* ---------- Banner al entrar a la web ----------
-   Va aparte de las temporadas (antes estaba adentro de cada una y
-   costaba encontrarlo). Tiene sus propias fechas: se prende y se
-   apaga solo. */
-const camposBanner = grupo('Banner al entrar a la web', {
-  activo: opciones('Mostrar banner', [[true, 'Sí'], [false, 'No']], { radio: true }),
-  desde: fecha('Desde (vacío = ya)'),
-  hasta: fecha('Hasta (vacío = sin fin)'),
-  titulo: texto('Título', { editable: false }),
-  texto: parrafo('Texto', { editable: false }),
-  imagen: imagen('Imagen (opcional)'),
-  imagenAlt: texto('Descripción de la imagen', { editable: false }),
-  botonTexto: texto('Texto del botón (vacío = sin botón)', { editable: false }),
-  botonLink: link('El botón lleva a'),
-  colorFondo: colorLibre('Color de fondo'),
-  colorTexto: colorLibre('Color de la letra'),
-  colorBoton: colorLibre('Color del botón'),
-  frecuencia: opciones('Cada cuánto se muestra', [['sesion', 'Una vez por visita'], ['dia', 'Una vez por día'], ['una-vez', 'Una sola vez'], ['siempre', 'Siempre']]),
-  paginas: opciones('Dónde', [['todas', 'En todas las páginas'], ['home', 'Solo en la Home']]),
-  retraso: numero('Aparece a los (segundos)', { min: 0, max: 30 }),
-});
+   Va aparte de las temporadas, con sus propias fechas: se prende y se
+   apaga solo. Los campos del texto y del botón se ocultan cuando están
+   apagados (camposBanner recibe el banner actual). Opciones y valores
+   por defecto en marco/banner.js. */
+const siNoBanner = (label) => opciones(label, [[true, 'Sí'], [false, 'No']], { radio: true });
+const camposBanner = (banner = {}) => {
+  const b = normalizarBanner(banner);
+  return grupo('Banner al entrar a la web', {
+    activo: siNoBanner('Mostrar banner'),
+    desde: fecha('Desde (vacío = ya)'),
+    hasta: fecha('Hasta (vacío = sin fin)'),
+    imagen: imagen('Imagen (también GIF, WebP animado o video MP4 corto)', { animada: true }),
+    imagenAlt: texto('Descripción de la imagen (para quien no la ve)', { editable: false }),
+    linkImagen: link('Al tocar la imagen lleva a (opcional)'),
+    mostrarTexto: siNoBanner('Mostrar título y texto'),
+    ...(b.mostrarTexto ? {
+      titulo: texto('Título', { editable: false }),
+      texto: parrafo('Texto', { editable: false }),
+    } : {}),
+    mostrarBoton: siNoBanner('Mostrar botón'),
+    ...(b.mostrarBoton ? {
+      botonTexto: texto('Texto del botón', { editable: false }),
+      botonLink: link('El botón lleva a'),
+    } : {}),
+    animacion: opciones('Cómo aparece', ANIMACIONES),
+    posicion: opciones('Dónde aparece', POSICIONES),
+    ancho: opciones('Tamaño', ANCHOS),
+    fondo: opciones('Detrás del banner', FONDOS),
+    colorFondo: colorLibre('Color de fondo del recuadro'),
+    ...(b.mostrarTexto ? { colorTexto: colorLibre('Color de la letra') } : {}),
+    ...(b.mostrarBoton ? { colorBoton: colorLibre('Color del botón') } : {}),
+    frecuencia: opciones('Cada cuánto se muestra', [['sesion', 'Una vez por visita'], ['dia', 'Una vez por día'], ['una-vez', 'Una sola vez'], ['siempre', 'Siempre']]),
+    paginas: opciones('En qué páginas', [['todas', 'En todas las páginas'], ['home', 'Solo en la Home']]),
+    retraso: numero('Aparece a los (segundos)', { min: 0, max: 30 }),
+  });
+};
 
 const camposTemporadas = grupo('Temporadas (colores)', {
   activa: texto('Forzar una temporada (escribí su nombre; vacío = automática por fechas)', { editable: false }),
@@ -93,6 +110,33 @@ const camposSitio = grupo('Datos de la empresa (Google, IAs y al compartir)', {
   redes: lista('Perfiles en redes', { nombre: texto('Red', { editable: false }), link: link('Dirección') }, { resumen: 'nombre', nuevo: { nombre: 'Red', link: 'https://' } }),
 });
 
+/* ---------- Vista previa del banner ----------
+   Mismas clases que en la web (Comportamientos.jsx), pero adentro de
+   la página en vez de flotando. Al cambiar una opción la animación de
+   entrada se repite (key), así se ve cómo va a aparecer. */
+function VistaBanner({ banner }) {
+  const b = normalizarBanner(banner);
+  const media = b.imagen && (esVideo(b.imagen)
+    ? <video className="banner-temporada__imagen" src={b.imagen} autoPlay muted loop playsInline />
+    : <img className="banner-temporada__imagen" src={b.imagen} alt={b.imagenAlt} />);
+  return (
+    <div className="banner-temporada__vista">
+      <div key={[b.animacion, b.posicion, b.ancho, b.imagen].join('|')} className={`${clasesBanner(b)} is-vista`}
+        style={{ '--banner-fondo': b.colorFondo || '#fff', '--banner-texto': b.colorTexto || '#1b1b1b', '--banner-boton': b.colorBoton || '#c9373d' }}>
+        <span className="banner-temporada__cerrar" aria-hidden="true">×</span>
+        {media}
+        {(b.verTexto || b.verBoton) && (
+          <div className="banner-temporada__cuerpo">
+            {b.verTexto && b.titulo && <h2>{b.titulo}</h2>}
+            {b.verTexto && b.texto && <p>{b.texto}</p>}
+            {b.verBoton && <span className="banner-temporada__boton">{b.botonTexto}</span>}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /* ---------- Vista previa: menú, colores de la temporada, banner y footer ---------- */
 function VistaAjustes({ menu, footer, temporadas, banner }) {
   const lista = temporadas?.lista || [];
@@ -112,16 +156,7 @@ function VistaAjustes({ menu, footer, temporadas, banner }) {
           </p>
           <p style={{ marginTop: 16 }}><a className="boton" href="/demo">Así se ve un botón</a></p>
         </div>
-        {banner?.activo ? (
-          <div className="banner-temporada" style={{ position: 'static', display: 'block', '--banner-fondo': banner.colorFondo || '#fff', '--banner-texto': banner.colorTexto || '#1b1b1b', '--banner-boton': banner.colorBoton || '#c9373d' }}>
-            {banner.imagen && <img className="banner-temporada__imagen" src={banner.imagen} alt="" />}
-            <div className="banner-temporada__cuerpo">
-              {banner.titulo && <h2>{banner.titulo}</h2>}
-              {banner.texto && <p>{banner.texto}</p>}
-              {banner.botonTexto && <span className="banner-temporada__boton">{banner.botonTexto}</span>}
-            </div>
-          </div>
-        ) : (
+        {banner?.activo ? <VistaBanner banner={banner} /> : (
           <p style={{ background: 'rgba(255,255,255,.85)', borderRadius: 16, padding: '16px 24px', maxWidth: 520, textAlign: 'center' }}>
             El banner está apagado. Para mostrarlo: a la derecha, <strong>Banner al entrar a la web → Mostrar banner: Sí</strong>.
           </p>
@@ -135,7 +170,9 @@ function VistaAjustes({ menu, footer, temporadas, banner }) {
 export const configAjustes = {
   components: {},
   root: {
-    fields: { menu: camposMenu, banner: camposBanner, temporadas: camposTemporadas, footer: camposFooter, sitio: camposSitio },
+    fields: { menu: camposMenu, banner: camposBanner(), temporadas: camposTemporadas, footer: camposFooter, sitio: camposSitio },
+    // Los campos del banner dependen de lo que esté prendido (texto, botón)
+    resolveFields: (data) => ({ menu: camposMenu, banner: camposBanner(data.props?.banner), temporadas: camposTemporadas, footer: camposFooter, sitio: camposSitio }),
     render: VistaAjustes,
   },
 };

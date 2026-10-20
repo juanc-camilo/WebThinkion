@@ -2,6 +2,8 @@
 /* =========================================================
    CAMPOS PROPIOS DEL PANEL (se dibujan en el navegador)
    - CampoImagen: vista previa, subir (se pasa a WebP) y elegir del sitio.
+     Con field.animada también acepta GIF, WebP animado y video corto
+     (MP4/WebM): esos se suben tal cual, para no perder el movimiento.
    - CampoLink: página del sitio o dirección escrita.
    - ListaDePaginas: sugerencias para el campo link.
    ========================================================= */
@@ -32,6 +34,10 @@ const aWebp = async (archivo, maximo = 2400) => {
   const blob = await new Promise((listo) => lienzo.toBlob(listo, 'image/webp', 0.85));
   return { blob, nombre: archivo.name.replace(/\.[^.]+$/, '') + '.webp' };
 };
+
+// Archivos que se suben sin convertir (la conversión a WebP los dejaría quietos)
+const conMovimiento = (archivo) => /^video\//.test(archivo.type) || /\.(gif|webp|mp4|webm)$/i.test(archivo.name);
+const esVideo = (url = '') => /\.(mp4|webm)(\?|#|$)/i.test(url);
 
 export const subirArchivo = async (archivo, { convertir = true } = {}) => {
   const { blob, nombre } = convertir ? await aWebp(archivo) : { blob: archivo, nombre: archivo.name };
@@ -68,14 +74,14 @@ export function CampoImagen({ value, onChange, field, readOnly }) {
   const elegirArchivo = () => {
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'image/*';
+    input.accept = field.animada ? 'image/*,video/mp4,video/webm' : 'image/*';
     input.onchange = async () => {
       const archivo = input.files?.[0];
       if (!archivo) return;
       setError('');
       setEstado('Subiendo…');
       try {
-        onChange(await subirArchivo(archivo));
+        onChange(await subirArchivo(archivo, { convertir: !(field.animada && conMovimiento(archivo)) }));
         cacheBiblioteca = null;
         setEstado('');
       } catch (e) {
@@ -91,7 +97,10 @@ export function CampoImagen({ value, onChange, field, readOnly }) {
   return (
     <div style={estilos.caja}>
       <span style={{ fontSize: 14, fontWeight: 600 }}>{field.label}</span>
-      {value ? <img src={value} alt="" style={estilos.vista} /> : <p style={estilos.ayuda}>Sin imagen</p>}
+      {value
+        ? (esVideo(value) ? <video src={value} style={estilos.vista} autoPlay muted loop playsInline /> : <img src={value} alt="" style={estilos.vista} />)
+        : <p style={estilos.ayuda}>Sin imagen</p>}
+      {field.animada && !readOnly && <p style={estilos.ayuda}>Hasta 4 MB. Para que cargue rápido, mejor WebP animado o MP4 antes que GIF.</p>}
       {!readOnly && (
         <div style={estilos.fila}>
           <button type="button" style={estilos.boton} onClick={elegirArchivo}>⬆️ Subir</button>

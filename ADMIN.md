@@ -48,7 +48,12 @@ Los colores y los tamaños vienen del diseño: no se pueden poner colores suelto
 ## Ajustes generales
 
 - **Menú:** links y desplegables. Cada desplegable tiene sus opciones (título, ícono, link y lo que va debajo). Para dejar dos opciones en Soluciones, borrá las que sobran de la lista. Al final está el botón de la derecha ("Pedí tu demo").
-- **Banner al entrar a la web:** "Mostrar banner: Sí" lo prende. Tiene fechas propias (desde y hasta; vacías = siempre), así se prende y se apaga solo. Además: título, texto, imagen, botón, colores, cada cuánto se muestra (una vez por visita, por día, una sola vez o siempre), dónde y a los cuántos segundos.
+- **Banner al entrar a la web:** "Mostrar banner: Sí" lo prende. Tiene fechas propias (desde y hasta; vacías = siempre), así se prende y se apaga solo.
+  - **Imagen:** foto, GIF, WebP animado o video MP4 corto (hasta 4 MB; se reproduce solo, sin sonido). Opcional: a dónde lleva al tocarla.
+  - **Título y texto** y **botón** se prenden y apagan por separado. Con los dos apagados queda **solo la imagen**, sin recuadro: ideal para un banner hecho en Figma (hay uno de fiestas en *Elegir del sitio* → "felices-fiestas").
+  - **Cómo aparece:** sube desde abajo, baja desde arriba, entra por un costado, se agranda, rebota o aparece de a poco. **Dónde:** al centro, arriba, abajo o en la esquina. **Tamaño:** chico, mediano o grande. **Detrás:** la página difuminada, oscurecida o nada.
+  - La X para cerrar va adentro del banner. También se cierra tocando afuera o con Esc.
+  - Cada cuánto se muestra (una vez por visita, por día, una sola vez o siempre), en qué páginas y a los cuántos segundos.
   - Para ver el banner en la web aunque ya lo hayas visto: `https://webthinkion.vercel.app/?banner=ver`.
 - **Temporadas:** cada una tiene nombre, fechas (desde y hasta) y colores (vacíos = los de siempre).
   - Activa: la que corresponde por fecha. Fuera de las fechas de todas, se usa la que no tiene fechas. También se puede forzar una escribiendo su nombre.

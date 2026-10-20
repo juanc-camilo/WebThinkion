@@ -124,20 +124,84 @@
 }
 .video-modal__cerrar { right: 0; top: -52px; }
 
+@keyframes aparecer-modal { from { opacity: 0; transform: translateY(16px) scale(.97); } }
+@media (prefers-reduced-motion: reduce) { .video-modal[open] { animation: none; } }
+
+/* ---------- Banner al entrar a la web ----------
+   Lo arma Comportamientos.jsx (y la vista previa del panel) con las
+   opciones de Ajustes generales → Banner:
+   - Tamaño: --chico / --mediano / --grande
+   - Posición: --centro / --arriba / --abajo / --esquina
+   - Animación de entrada: --anim-abajo, -arriba, -izquierda, -derecha,
+     -zoom, -rebote, -fundido. Al cerrar, sale con un fundido corto.
+   - Detrás: --fondo-difuminado / -oscuro / -nada
+   - --solo-imagen: sin texto ni botón, la imagen es todo el banner
+     (sin recuadro abajo). Sirve para banners armados en Figma.
+   La X va siempre adentro, arriba a la derecha. */
 .banner-temporada {
-  background: var(--banner-fondo, var(--blanco)); border: 0; border-radius: 24px; box-shadow: 0 24px 64px rgba(19, 56, 131, .25);
-  color: var(--banner-texto, var(--texto)); font-family: var(--fuente); max-height: calc(100dvh - 32px); overflow: auto; padding: 0;
-  width: min(520px, calc(100vw - 2 * var(--gutter)));
+  --banner-ancho: 540px;
+  --banner-desde: translateY(40vh);
+  background: var(--banner-fondo, var(--blanco)); border: 0; border-radius: 24px; box-shadow: 0 30px 80px rgba(19, 27, 51, .35);
+  color: var(--banner-texto, var(--texto)); font-family: var(--fuente); max-height: calc(100dvh - 32px); max-width: none; overflow: auto; padding: 0;
+  width: min(var(--banner-ancho), calc(100vw - 2 * var(--gutter)));
 }
-.banner-temporada[open] { animation: aparecer-modal .4s var(--ease); }
-.banner-temporada::backdrop { backdrop-filter: blur(3px); background: rgba(19, 27, 51, .55); }
-.banner-temporada__imagen { display: block; height: auto; max-height: 300px; object-fit: cover; width: 100%; }
+.banner-temporada:focus { outline: none; }
+.banner-temporada--chico { --banner-ancho: 400px; }
+.banner-temporada--grande { --banner-ancho: 760px; }
+
+/* Dónde aparece */
+.banner-temporada--arriba { margin-block: 24px auto; }
+.banner-temporada--abajo { margin-block: auto 24px; }
+.banner-temporada--esquina { margin: auto 24px 24px auto; }
+@media (max-width: 760px) { .banner-temporada--esquina { margin: auto auto 16px; } }
+
+/* Cómo aparece: desde dónde arranca */
+.banner-temporada--anim-arriba { --banner-desde: translateY(-40vh); }
+.banner-temporada--anim-izquierda { --banner-desde: translateX(-60vw); }
+.banner-temporada--anim-derecha { --banner-desde: translateX(60vw); }
+.banner-temporada--anim-zoom { --banner-desde: scale(.5); }
+.banner-temporada--anim-fundido { --banner-desde: none; }
+.banner-temporada[open], .banner-temporada.is-vista { animation: banner-entrar .65s cubic-bezier(.22, 1, .36, 1) both; }
+.banner-temporada--anim-rebote[open], .banner-temporada--anim-rebote.is-vista { animation: banner-rebote .8s cubic-bezier(.34, 1.56, .64, 1) both; }
+.banner-temporada.is-cerrando { animation: banner-salir .22s ease forwards; }
+@keyframes banner-entrar { from { opacity: 0; transform: var(--banner-desde); } }
+@keyframes banner-rebote { 0% { opacity: 0; transform: scale(.3); } 60% { opacity: 1; } 100% { transform: none; } }
+@keyframes banner-salir { to { opacity: 0; transform: scale(.96); } }
+
+/* Qué se ve detrás */
+.banner-temporada::backdrop { animation: banner-fondo .4s ease both; background: rgba(19, 27, 51, .3); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.banner-temporada--fondo-oscuro::backdrop { background: rgba(19, 27, 51, .6); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.banner-temporada--fondo-nada::backdrop { background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.banner-temporada.is-cerrando::backdrop { opacity: 0; transition: opacity .22s ease; }
+@keyframes banner-fondo { from { opacity: 0; } }
+
+/* Imagen (o GIF / video) */
+.banner-temporada__enlace { display: block; }
+.banner-temporada__imagen { display: block; height: auto; max-height: 340px; object-fit: cover; width: 100%; }
+
+/* Solo imagen: la imagen entera, sin recortar y sin recuadro abajo */
+.banner-temporada--solo-imagen { background: transparent; overflow: hidden; }
+.banner-temporada--solo-imagen .banner-temporada__imagen { max-height: calc(100dvh - 48px); object-fit: contain; }
+
+/* Texto y botón */
 .banner-temporada__cuerpo { display: grid; gap: 12px; justify-items: start; padding: 28px 32px 32px; }
-.banner-temporada__cuerpo h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; line-height: 1.15; margin: 0; }
+.banner-temporada__cuerpo h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; line-height: 1.15; margin: 0; padding-right: 32px; }
 .banner-temporada__cuerpo p { font-size: 1.05rem; line-height: 1.5; margin: 0; white-space: pre-line; }
 .banner-temporada__boton { background: var(--banner-boton, var(--coral-oscuro)); border-radius: 999px; color: var(--blanco); font-weight: 600; margin-top: 8px; padding: 12px 28px; text-decoration: none; }
 .banner-temporada__boton:hover { filter: brightness(.92); }
-.banner-temporada__cerrar { font-size: 1.6rem; height: 40px; right: 12px; top: 12px; width: 40px; }
-:is(.video-modal__cerrar, .banner-temporada__cerrar, .banner-temporada__boton):focus-visible { outline: 3px solid var(--violeta); outline-offset: 2px; }
-@keyframes aparecer-modal { from { opacity: 0; transform: translateY(16px) scale(.97); } }
-@media (prefers-reduced-motion: reduce) { .video-modal[open], .banner-temporada[open] { animation: none; } }
+
+/* La X: adentro, arriba a la derecha, visible sobre cualquier imagen */
+.banner-temporada__cerrar {
+  align-items: center; background: rgba(255, 255, 255, .92); box-shadow: 0 4px 14px rgba(0, 0, 0, .18); display: flex; font-size: 1.5rem;
+  height: 36px; justify-content: center; right: 12px; top: 12px; transition: transform .2s ease; width: 36px; z-index: 2;
+}
+.banner-temporada__cerrar:hover { transform: scale(1.08); }
+:is(.video-modal__cerrar, .banner-temporada__cerrar, .banner-temporada__boton, .banner-temporada__enlace):focus-visible { outline: 3px solid var(--violeta); outline-offset: 2px; }
+
+/* Vista previa en el panel: el banner adentro de la página, no flotando */
+.banner-temporada__vista { display: flex; justify-content: center; width: 100%; }
+.banner-temporada.is-vista { display: block; margin: 0; position: relative; }
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-temporada[open], .banner-temporada.is-vista, .banner-temporada.is-cerrando, .banner-temporada::backdrop { animation: none; }
+}

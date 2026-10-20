@@ -10,6 +10,7 @@
    bloques se editan, no se usan).
    ========================================================= */
 import { useEffect } from 'react';
+import { normalizarBanner, esVideo, clasesBanner } from './banner';
 
 export default function Comportamientos({ banner }) {
   useEffect(() => {
@@ -397,6 +398,7 @@ const abrirVideo = (video, titulo) => {
   dialogo.addEventListener('close', () => dialogo.remove());
   document.body.append(dialogo);
   dialogo.showModal();
+  dialogo.focus();
 };
 
 function iniciarVideos() {
@@ -428,58 +430,92 @@ const guardado = (almacen, clave, valor) => {
   return null;
 };
 
-const mostrarBanner = (banner) => {
+const mostrarBanner = (datos) => {
+  const banner = normalizarBanner(datos);
   document.querySelector('.banner-temporada')?.remove();
   const dialogo = document.createElement('dialog');
-  dialogo.className = 'banner-temporada';
-  dialogo.setAttribute('aria-labelledby', 'banner-temporada-titulo');
+  dialogo.className = clasesBanner(banner);
+  if (banner.verTexto && banner.titulo) dialogo.setAttribute('aria-labelledby', 'banner-temporada-titulo');
+  else dialogo.setAttribute('aria-label', banner.imagenAlt || banner.titulo || 'Aviso');
+  // El foco arranca en el banner (no en la X): así no aparece el aro de foco al abrir
+  dialogo.tabIndex = -1;
   dialogo.style.setProperty('--banner-fondo', banner.colorFondo || '#fff');
   dialogo.style.setProperty('--banner-texto', banner.colorTexto || '#1b1b1b');
   dialogo.style.setProperty('--banner-boton', banner.colorBoton || '#c9373d');
 
+  // Cerrar con una animación corta de salida (también con Esc)
+  const cerrarBanner = () => {
+    if (dialogo.classList.contains('is-cerrando')) return;
+    dialogo.classList.add('is-cerrando');
+    const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(() => dialogo.close(), quieto ? 0 : 220);
+  };
+  dialogo.addEventListener('cancel', (evento) => { evento.preventDefault(); cerrarBanner(); });
+
+  // La X va adentro del banner, arriba a la derecha
   const cerrar = document.createElement('button');
   cerrar.type = 'button';
   cerrar.className = 'banner-temporada__cerrar';
   cerrar.setAttribute('aria-label', 'Cerrar');
   cerrar.textContent = '×';
-  cerrar.addEventListener('click', () => dialogo.close());
+  cerrar.addEventListener('click', cerrarBanner);
   dialogo.append(cerrar);
 
+  // Imagen, GIF, WebP animado o video (sin sonido, en bucle)
   if (banner.imagen) {
-    const imagen = document.createElement('img');
-    imagen.className = 'banner-temporada__imagen';
-    imagen.src = banner.imagen;
-    imagen.alt = banner.imagenAlt || '';
-    dialogo.append(imagen);
+    let media;
+    if (esVideo(banner.imagen)) {
+      media = document.createElement('video');
+      Object.assign(media, { src: banner.imagen, autoplay: true, muted: true, loop: true, playsInline: true });
+      media.setAttribute('aria-label', banner.imagenAlt || '');
+    } else {
+      media = document.createElement('img');
+      media.src = banner.imagen;
+      media.alt = banner.imagenAlt || '';
+    }
+    media.className = 'banner-temporada__imagen';
+    if (banner.linkImagen) {
+      const enlace = document.createElement('a');
+      enlace.className = 'banner-temporada__enlace';
+      enlace.href = banner.linkImagen;
+      enlace.append(media);
+      dialogo.append(enlace);
+    } else {
+      dialogo.append(media);
+    }
   }
 
-  const cuerpo = document.createElement('div');
-  cuerpo.className = 'banner-temporada__cuerpo';
-  if (banner.titulo) {
-    const titulo = document.createElement('h2');
-    titulo.id = 'banner-temporada-titulo';
-    titulo.textContent = banner.titulo;
-    cuerpo.append(titulo);
+  // Título, texto y botón: solo si están prendidos (si no, no queda el recuadro de abajo)
+  if (banner.verTexto || banner.verBoton) {
+    const cuerpo = document.createElement('div');
+    cuerpo.className = 'banner-temporada__cuerpo';
+    if (banner.verTexto && banner.titulo) {
+      const titulo = document.createElement('h2');
+      titulo.id = 'banner-temporada-titulo';
+      titulo.textContent = banner.titulo;
+      cuerpo.append(titulo);
+    }
+    if (banner.verTexto && banner.texto) {
+      const texto = document.createElement('p');
+      texto.textContent = banner.texto;
+      cuerpo.append(texto);
+    }
+    if (banner.verBoton) {
+      const boton = document.createElement('a');
+      boton.className = 'banner-temporada__boton';
+      boton.href = banner.botonLink;
+      boton.textContent = banner.botonTexto;
+      cuerpo.append(boton);
+    }
+    dialogo.append(cuerpo);
   }
-  if (banner.texto) {
-    const texto = document.createElement('p');
-    texto.textContent = banner.texto;
-    cuerpo.append(texto);
-  }
-  if (banner.botonTexto && banner.botonLink) {
-    const boton = document.createElement('a');
-    boton.className = 'banner-temporada__boton';
-    boton.href = banner.botonLink;
-    boton.textContent = banner.botonTexto;
-    cuerpo.append(boton);
-  }
-  dialogo.append(cuerpo);
 
-  // Clic en el fondo oscuro (fuera de la tarjeta): cierra
-  dialogo.addEventListener('click', (evento) => { if (evento.target === dialogo) dialogo.close(); });
+  // Clic en el fondo (fuera del banner): cierra
+  dialogo.addEventListener('click', (evento) => { if (evento.target === dialogo) cerrarBanner(); });
   dialogo.addEventListener('close', () => dialogo.remove());
   document.body.append(dialogo);
   dialogo.showModal();
+  dialogo.focus();
 };
 
 function iniciarBanner(banner) {
